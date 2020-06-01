@@ -14,6 +14,10 @@ sudo make install
 ## Usage
 In very short: by clicking on the QSpeakers icon in your preferred menu, the application shows up. Select a loudspeaker or enter a new one by filling its Thiele/Small mechanical parameters. Click on *optimize* and you're done: the best enclosure volume is calculated for you.
 
+## Homepage
+QSpeakers homepage with source releases and Microsoft® Windows® installer here:
+http://brouits.free.fr/qspeakers/
+
 ## Thanks
 Thanks to *Upacesky* for his free drawing: https://openclipart.org/detail/202508/
 
