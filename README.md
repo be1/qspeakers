@@ -1,5 +1,6 @@
 # QSpeakers
-loudspeaker enclosure designer, open-source, portable, written in c++/Qt, for Linux and some other platforms.
+Loudspeaker enclosure designer, open-source, portable, written in c++/Qt, for Linux and some other platforms.
+Note that stable versions of QSpeakers are officially in Debian GNU/Linux and Ubuntu Linux.
 
 ## Pre-requisites
 Install Qt5 and QtCharts libraries and development files.
