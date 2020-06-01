@@ -1,5 +1,5 @@
 # QSpeakers
-loudspeaker enclosure designer
+loudspeaker enclosure designer, open-source, portable, written in c++/Qt, for Linux and some other platforms.
 
 ## Pre-requisites
 Install Qt5 and QtCharts libraries and development files.
@@ -25,3 +25,6 @@ Thanks to *Upacesky* for his free drawing: https://openclipart.org/detail/202508
 - more plots: excursion, phase and impendance
 - implement dual-free ports and dual-flanged ports in a combobox option
 - implement crossover filters
+
+## Formulæ
+See INFO file.
