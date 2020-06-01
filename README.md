@@ -2,10 +2,10 @@
 loudspeaker enclosure designer
 
 ## Pre-requisites
-Install Qt5 (and QtCharts) library and development files.
+Install Qt5 and QtCharts libraries and development files.
 
 ## Build
-You can use QtCreator to build the program. You can also use qmake in commandline:
+You can use QtCreator to build the program. You can also use `qmake` in commandline:
 ```
 qmake -config release && make
 sudo make install
