@@ -1,0 +1,8 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+#define TARGET \"$$TARGET\"
+#define PREFIX \"$$PREFIX\"
+#define VERSION \"$$VERSION\"
+#define DATADIR \"$$DATADIR\"
+#define $$HOST
+#endif

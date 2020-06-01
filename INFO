@@ -1,0 +1,27 @@
+- about frequency response formulae:
+http://www.diysubwoofers.org/
+
+- about multiple instance of the same loudspeaker:
+Two drivers in series: Re, Le, Sd, Vas and Bl double and the sensitivity is the same as for one driver.
+Two drivers in parallel: Re and Le are halved, Sd and Vas double (Bl same as for one driver) and the sensitivity increases by 6dB.
+Qes, Qms and Qts don't change for either combination, remaining same as for one driver.
+
+- about Legendre bass-reflex alignment:
+Fb = 0.3802 * pow(Qts, 1.0657) * Fs
+Vb = 10.728 * pow(Qts, 2.4186) * Vas
+(see: https://sites.google.com/site/francisaudio69/5-l-enceinte-acoustique/5-6-comment-calculer-une-enceinte-bass-reflex)
+
+- about Bessel bass-refex alignment:
+Fb = 0.3552 * pow(Qts, 0.9649) * Fs
+Vb = 8.0707 * pow(Qts, 2.5848) * Vas
+(see: same site as above)
+
+- about the Zbinden M4 alignment:
+for average baffle:
+Volume = (2.68 * Qts - 0.45) * Vas
+Tuning frequency = 0.41 * sqrt(1/(Qts*Qts) + 0.97) * Fs
+the one above is used in QSpeakers.
+for infinite baffle or car application:
+Volume = (2.52 * Qts - 0.35) * Vas
+Tuning frequency = 0.32 * sqrt(1/(Qts*Qts) + 3.38) * Fs 
+(see: http://www.mzbinden.ch/ventedalignments/index.html)

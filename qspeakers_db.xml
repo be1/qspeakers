@@ -1,0 +1,65 @@
+<!DOCTYPE QSpeakers PUBLIC '-//HEREWE//DTD QSpeakers 1.0 //EN' 'http://def.herewe.org/DTD/qspeakers1.dtd'>
+<!--QSpeakers db of Thiele-Small parameters-->
+<speakers>
+ <speaker model="PR300M0" qts="0.26" fs="17" re="5.7" vendor="AUDAX" xmax="4.4" vas="1,012" sd="0.0521"/>
+ <speaker model="HT210F0" qts="0.36" fs="34" re="6.3" vendor="AUDAX" xmax="4.5" vas="55" sd="0.0221"/>
+ <speaker model="SP-200X" qts="0.52" fs="50" re="7.2" vendor="MONACOR" xmax="1.6" vas="48" sd="0.021"/>
+ <speaker model="SPH-130AL" qts="0.32" fs="48" re="6.4" vendor="MONACOR" xmax="2.3" vas="10.8" sd="0.008"/>
+ <speaker model="SPH-135TC" qts="0.42" fs="40" re="7.5" vendor="MONACOR" xmax="2.25" vas="16" sd="0.0095"/>
+ <speaker model="SPX-20M" qts="0.42" fs="157" re="6.9" vendor="MONACOR" xmax="0.5" vas="0.2" sd="0.0013"/>
+ <speaker model="SP-150" qts="0.5" fs="35" re="6.5" vendor="MONACOR" xmax="2.5" vas="35" sd="0.0127"/>
+ <speaker model="SPH-165" qts="0.21" fs="33" re="6.5" vendor="MONACOR" xmax="3.5" vas="36" sd="0.0137"/>
+ <speaker model="SPH-165CP" qts="0.31" fs="30" re="6" vendor="MONACOR" xmax="4.75" vas="38" sd="0.0127"/>
+ <speaker model="SPH-170" qts="0.44" fs="38" re="6.2" vendor="MONACOR" xmax="3" vas="37" sd="0.0137"/>
+ <speaker model="HP170G0" qts="0.4" fs="51.6" re="5.6" vendor="AUDAX" xmax="3.5" vas="16.57" sd="0.013273"/>
+ <speaker model="SPH-100C" qts="0.44" fs="50" re="6" vendor="MONACOR" xmax="4" vas="6" sd="0.0054"/>
+ <speaker model="SPX-32M" qts="0.56" fs="110" re="6.6" vendor="MONACOR" xmax="1.1" vas="1.6" sd="0.0032"/>
+ <speaker model="SPH-100AL" qts="0.55" fs="80" re="6.2" vendor="MONACOR" xmax="1.5" vas="3.2" sd="0.0055"/>
+ <speaker model="HT170G2" qts="0.41" fs="40" re="5.2" vendor="AUDAX" xmax="3.5" vas="39" sd="0.0139"/>
+ <speaker model="LD165CR08" qts="0.45" fs="43" re="6.7" vendor="ATOHM" xmax="5.5" vas="14.7" sd="0.012"/>
+ <speaker model="FR135EX" qts="0.49" fs="61.5" re="6" vendor="FOUNTEK" xmax="5" vas="6.26" sd="0.00705"/>
+ <speaker model="FW146" qts="0.4" fs="50" re="6" vendor="FOUNTEK" xmax="3.6" vas="9.8" sd="0.007761"/>
+ <speaker model="FW200" qts="0.52" fs="35.7" re="6.8" vendor="FOUNTEK" xmax="4.35" vas="61.6" sd="0.02138"/>
+ <speaker model="8 D 1,5 CS" qts="0.31" fs="65" re="6.7" vendor="SICA" xmax="3.7" vas="22.4" sd="0.02138"/>
+ <speaker model="HM100C0" qts="0.21" fs="54" re="6.4" vendor="AUDAX" xmax="1.8" vas="6.4" sd="0.0051"/>
+ <speaker model="B4N" qts="0.52" fs="56" re="6.5" vendor="HIVI" xmax="3.2" vas="4.5" sd="0.0053"/>
+ <speaker model="SPH-175HQ" qts="0.42" fs="39" re="6.5" vendor="MONACOR" xmax="5.5" vas="32.95" sd="0.014"/>
+ <speaker model="SPH-176" qts="0.37" fs="39" re="6.6" vendor="MONACOR" xmax="5.5" vas="27" sd="0.014"/>
+ <speaker model="SPH-200KE" qts="0.38" fs="28" re="6.2" vendor="MONACOR" xmax="4.75" vas="54" sd="0.0207"/>
+ <speaker model="LD180CR04" qts="0.32" fs="45.8" re="3.6" vendor="ATOHM" xmax="7.5" vas="24.3" sd="0.01606"/>
+ <speaker model="AL170" qts="0.39" fs="38" re="5.6" vendor="VISATON" xmax="11" vas="34" sd="0.0133"/>
+ <speaker model="W170" qts="0.69" fs="57" re="7.2" vendor="VISATON" xmax="7.5" vas="24" sd="0.0137"/>
+ <speaker model="WS17E/8" qts="0.81" fs="45" re="5.8" vendor="VISATON" xmax="6.5" vas="22" sd="0.0143"/>
+ <speaker model="W170S/4" qts="0.41" fs="36" re="3.2" vendor="VISATON" xmax="10" vas="38" sd="0.0129"/>
+ <speaker model="W170S/8" qts="0.52" fs="36" re="5.9" vendor="VISATON" xmax="10" vas="38" sd="0.0129"/>
+ <speaker model="FW168" qts="0.39" fs="45" re="7.2" vendor="FOUNTEK" xmax="4.6" vas="16.5" sd="0.0119"/>
+ <speaker model="WS17E/4 " qts="0.48" fs="45" re="3.2" vendor="VISATON" xmax="13" vas="21" sd="0.0143"/>
+ <speaker model="AL200" qts="0.35" fs="38" re="6.6" vendor="VISATON" xmax="10" vas="77" sd="0.0216"/>
+ <speaker model="FRS5X" qts="0.7" fs="190" re="7.7" vendor="VISATON" xmax="3" vas="0.2" sd="0.00125"/>
+ <speaker model="FRSW5" qts="1.63" fs="330" re="6.8" vendor="VISATON" xmax="2" vas="0.1" sd="0.0012"/>
+ <speaker model="FR58" qts="0.97" fs="190" re="7.3" vendor="VISATON" xmax="5.5" vas="0.2" sd="0.00132"/>
+ <speaker model="FRS7/8" qts="1.28" fs="250" re="7.2" vendor="VISATON" xmax="1.5" vas="0.3" sd="0.0022"/>
+ <speaker model="B80" qts="0.62" fs="110" re="6.6" vendor="VISATON" xmax="2.2" vas="1.8" sd="0.00385"/>
+ <speaker model="F8RC" qts="0.89" fs="125" re="7.9" vendor="VISATON" xmax="5" vas="1" sd="0.003"/>
+ <speaker model="FR8JS/8" qts="1.24" fs="130" re="7.2" vendor="VISATON" xmax="2" vas="0.8" sd="0.003"/>
+ <speaker model="FR8/4" qts="1.05" fs="150" re="3.4" vendor="VISATON" xmax="2" vas="0.6" sd="0.003"/>
+ <speaker model="B200" qts="0.75" fs="40" re="5" vendor="VISATON" xmax="3.5" vas="102" sd="0.0214"/>
+ <speaker model="BG20" qts="0.44" fs="38" re="6.2" vendor="VISATON" xmax="2" vas="110" sd="0.0214"/>
+ <speaker model="AP170Z0" qts="0.38" fs="48.5" re="5.3" vendor="AUDAX" xmax="3" vas="24.65" sd="0.013273"/>
+ <speaker model="HP170Z2" qts="0.37" fs="48" re="5.3" vendor="AUDAX" xmax="3.5" vas="25.03" sd="0.013273"/>
+ <speaker model="HM170G10" qts="0.42" fs="41" re="6.2" vendor="AUDAX" xmax="6.5" vas="17.9" sd="0.0139"/>
+ <speaker model="FW168K" qts="0.43" fs="48.6" re="6.8" vendor="FOUNTEK" xmax="5" vas="15.1" sd="0.012469"/>
+ <speaker model="17KLV6R" qts="0.53" fs="54.43" re="6.36" vendor="DAVIS" xmax="6" vas="21.72" sd="0.013"/>
+ <speaker model="16TK6" qts="0.4" fs="43" re="6.1" vendor="DAVIS" xmax="6" vas="30" sd="0.012"/>
+ <speaker model="165MRP" qts="0.59" fs="87.5" re="6.7" vendor="DAVIS" xmax="6" vas="11.9" sd="0.012"/>
+ <speaker model="6W4359" qts="0.38" fs="52.7" re="4.16" vendor="FOCAL" xmax="3" vas="16.4" sd="0.0136"/>
+ <speaker model="6W4361" qts="0.39" fs="53.3" re="6.72" vendor="FOCAL" xmax="3" vas="19.34" sd="0.0132"/>
+ <speaker model="FF165WK" qts="0.34" fs="50" re="6.5" vendor="FOSTEX" xmax="1.85" vas="27.83" sd="0.0132"/>
+ <speaker model="FE166EN" qts="0.25" fs="53" re="7.2" vendor="FOSTEX" xmax="1" vas="37.02" sd="0.013"/>
+ <speaker model="LD130CR08" qts="0.69" fs="44" re="6.2" vendor="ATOHM" xmax="4.5" vas="13.1" sd="0.00866"/>
+ <speaker model="LD130CR04" qts="0.66" fs="47" re="3.5" vendor="ATOHM" xmax="4.5" vas="10.5" sd="0.00866"/>
+ <speaker model="FF85WK" qts="0.55" fs="115" re="7.2" vendor="FOSTEX" xmax="0.35" vas="1.03" sd="0.0028"/>
+ <speaker model="FF105WK" qts="0.41" fs="75" re="6.7" vendor="FOSTEX" xmax="1.7" vas="4.84" sd="0.005"/>
+ <speaker model="FF125WK" qts="0.42" fs="65" re="6.7" vendor="FOSTEX" xmax="1.65" vas="7.26" sd="0.0066"/>
+ <speaker model="HF100Z0" qts="1.56" fs="209" re="3" vendor="AUDAX" vas="1.01" xmax="1" sd="0.002"/>
+</speakers>
