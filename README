@@ -1,0 +1,31 @@
+Building QSpeakers:
+
+ Pre requisites:
+
+  Install Qt5 (and QtCharts) library.
+  Don't forget to install the development header files too.
+
+ Compilation:
+
+  You can use both command-line compilation or QtCreator.
+  See below:
+
+ In short, for Qt5 on Debian Buster, this should do the trick:
+  $ sudo apt-get install qt5-default qttools5-dev-tools
+  $ cd qspeakers
+  $ qmake -config release && make && sudo make install
+
+Using QSpeakers:
+
+  Start it by your window manager's menu, or /usr/local/bin/qspeakers from
+  a shell. Choose a loudspeaker, or create a new one you want to build an
+  enclosure for. Change the box parameters or click 'Optimize'.
+
+Contributing:
+
+  If you want, you can read TODO and start contribute, or write litterals translations in your own language.
+
+Thanks:
+Thanks to Upacesky for his drawing: https://openclipart.org/detail/202508/
+
+Happy DIY!

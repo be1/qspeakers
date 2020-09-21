@@ -2,6 +2,9 @@
 #define PORTEDBOX_H
 
 #include <QDomElement>
+#include <QDomDocument>
+#include <QRectF>
+#include <QPainter>
 
 #include "sealedbox.h"
 #define K 0.732 /* correction factor for a half flanged disposed port */
@@ -16,11 +19,13 @@ public:
     void setPortDiam(double diam);
     void setSlotWidth(double width);
     void setResFreq(double value);
+    void setSlotPortActivated(bool enable);
 
     double getBoxVolume(void) const;
     unsigned int getPortNum() const;
     double getPortLen(void) const;
     double getPortDiam(void) const;
+    bool getSlotPortActivated(void) const;
     double getSlotWidth() const;
     double getSlotHeight() const;
     double getResFreq() const;
@@ -41,6 +46,7 @@ private:
     double portLen;
     double portDiam;
     double slotWidth;
+    bool slotActivated;
 };
 
 #endif // PORTEDBOX_H

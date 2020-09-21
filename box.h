@@ -2,6 +2,8 @@
 #define BOX_H
 
 #include <QDomElement>
+#include <QDomDocument>
+#include <QRectF>
 #include <QPainter>
 
 #define PI 3.1415927

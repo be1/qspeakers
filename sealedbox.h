@@ -2,6 +2,9 @@
 #define SEALEDBOX_H
 
 #include <QDomElement>
+#include <QDomDocument>
+#include <QRectF>
+#include <QPainter>
 
 #include "box.h"
 

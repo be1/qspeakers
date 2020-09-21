@@ -1,6 +1,8 @@
 #ifndef SPEAKERDB_H
 #define SPEAKERDB_H
 
+#include <QDomDocument>
+#include <QDateTime>
 #include <QString>
 #include <QList>
 #include <QFile>

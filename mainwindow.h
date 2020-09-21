@@ -72,6 +72,7 @@ public slots:
     void onPortedPortsNumberSpinChanged(int val);
     void onPortedPortDiameterDoubleSpinChanged(double val);
     void onPortedSlotWidthDoubleSpinChanged(double val);
+    void onPortedSlotPortActivated();
 
     void onBandPassSealedVolumeDoubleSpinChanged(double val);
     void onBandPassPortedVolumeDoubleSpinChanged(double val);

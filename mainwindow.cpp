@@ -103,6 +103,9 @@ MainWindow::MainWindow(QWidget *parent) :
      * connections
      */
 
+    /* ported box slotport button */
+    connect(ui->portedPortSlotWidthButton, SIGNAL(clicked()), this, SLOT(onPortedSlotPortActivated()));
+
     /* drivers number spin action */
     connect(ui->numberSpinBox, SIGNAL(valueChanged(int)), this, SLOT(onNumberSpinChanged(int)));
 
@@ -281,6 +284,7 @@ void MainWindow::syncUiFromCurrentPortedBox(const PortedBox& box)
     ui->portedResonancedoubleSpinBox->setValue(box.getResFreq());
     ui->portedPortsNumberSpinBox->setValue(box.getPortNum());
     ui->portedPortDiameterDoubleSpinBox->setValue(box.getPortDiam());
+    ui->portedPortSlotWidthButton->setChecked(box.getSlotPortActivated());
     ui->portedPortSlotWidthDoubleSpinBox->setValue(box.getSlotWidth());
     ui->portedPortSlotHeightLineEdit->setText(QString::number(box.getSlotHeight(), 'f', 2));
     ui->portedPortLengthLineEdit->setText(QString::number(box.getPortLen(), 'f', 2));
@@ -965,6 +969,12 @@ void MainWindow::onPortedPortDiameterDoubleSpinChanged(double val)
 void MainWindow::onPortedSlotWidthDoubleSpinChanged(double val)
 {
     currentPortedBox.setSlotWidth(val);
+    emit currentPortedBoxChanged(currentPortedBox);
+}
+
+void MainWindow::onPortedSlotPortActivated()
+{
+    currentPortedBox.setSlotPortActivated(ui->portedPortSlotWidthButton->isChecked());
     emit currentPortedBoxChanged(currentPortedBox);
 }
 

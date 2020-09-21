@@ -2,7 +2,10 @@
 #define BANDPASSBOX_H
 
 #include <QDomElement>
-
+#include <QDomDocument>
+#include <QPainter>
+#include <QRectF>
+#include "box.h"
 #include "sealedbox.h"
 #include "portedbox.h"
 

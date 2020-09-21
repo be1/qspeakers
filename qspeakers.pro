@@ -6,7 +6,7 @@
 
 QT       += core gui xml widgets printsupport charts
 
-VERSION = 1.3.1
+VERSION = 1.4
 TARGET = qspeakers
 TEMPLATE = app
 

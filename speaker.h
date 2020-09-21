@@ -1,10 +1,13 @@
 #ifndef SPEAKER_H
 #define SPEAKER_H
+
+#include <QString>
 #include <QMetaType>
 #include <QDomNode>
+#include <QDomElement>
+#include <QDomDocument>
 #include <QPainter>
-
-
+#include <QRectF>
 
 class Speaker
 {

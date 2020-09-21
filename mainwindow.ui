@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1013</width>
+    <width>1033</width>
     <height>720</height>
    </rect>
   </property>
@@ -299,7 +299,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="sealedTab">
        <attribute name="title">
@@ -562,9 +562,12 @@
              </spacer>
             </item>
             <item>
-             <widget class="QLabel" name="portedPortSlotLabel">
+             <widget class="QPushButton" name="portedPortSlotWidthButton">
               <property name="text">
                <string>Slot port</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -913,7 +916,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1013</width>
+     <width>1033</width>
      <height>22</height>
     </rect>
    </property>
