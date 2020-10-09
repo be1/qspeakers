@@ -41,7 +41,11 @@
     </widget>
    </item>
    <item>
-    <widget class="QDoubleSpinBox" name="searchMinDoubleSpinBox"/>
+    <widget class="QDoubleSpinBox" name="searchMinDoubleSpinBox">
+     <property name="decimals">
+      <number>3</number>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QLabel" name="searchAndLabel">
@@ -54,7 +58,11 @@
     </widget>
    </item>
    <item>
-    <widget class="QDoubleSpinBox" name="searchMaxdoubleSpinBox"/>
+    <widget class="QDoubleSpinBox" name="searchMaxdoubleSpinBox">
+     <property name="decimals">
+      <number>3</number>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="searchButtonBox">

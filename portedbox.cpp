@@ -8,10 +8,10 @@
 PortedBox::PortedBox(double volume, double resfreq, unsigned int portnum, double portdiam, double portlen) :
     box(volume)
 {
-    resFreq = resfreq;
+    setResFreq(resfreq);
     portNum = portnum;
-    portDiam = portdiam;
-    portLen = portlen;
+    setPortDiam(portdiam);
+    setPortLen(portlen);
     slotActivated = false;
 }
 
@@ -27,22 +27,22 @@ void PortedBox::setPortNum(unsigned int value)
 
 void PortedBox::setPortLen(double len)
 {
-    portLen = len;
+    portLen = double ((int)(len * 100) / 100.0);
 }
 
 void PortedBox::setPortDiam(double diam)
 {
-    portDiam = diam;
+    portDiam = double ((int)(diam * 100) / 100.0);
 }
 
 void PortedBox::setSlotWidth(double width)
 {
-    slotWidth = width;
+    slotWidth = double ((int)(width * 100) / 100.0);
 }
 
 void PortedBox::setResFreq(double value)
 {
-    resFreq = value;
+    resFreq = double ((int)(value * 100) / 100.0);
 }
 
 void PortedBox::setSlotPortActivated(bool enable)
@@ -70,7 +70,8 @@ double PortedBox::getPortLen() const
         x = getSlotHeight() / getSlotWidth();
     }
 
-    return (1.1 - log10(x + 1.1) * 0.35) * portLen; /* estimated from https://sites.google.com/site/francisaudio69/ */
+    /* estimated from https://sites.google.com/site/francisaudio69/ */
+    return double ((int)((1.1 - log10(x + 1.1) * 0.35) * portLen * 100) / 100.0);
 }
 
 double PortedBox::getPortDiam() const
@@ -91,7 +92,7 @@ double PortedBox::getSlotWidth() const
 double PortedBox::getSlotHeight() const
 {
     /* width is manual, height is computed from eq. diam. */
-    return (PI * pow(portDiam, 2.0)) / (4.0 * slotWidth);
+    return double ((int)((PI * pow(portDiam, 2.0)) / (4.0 * slotWidth) * 100) / 100.0);
 }
 
 double PortedBox::getResFreq() const
@@ -117,7 +118,7 @@ void PortedBox::updateSlots()
 
     /* consider "width" over "height" and reset if too small */
     if (slotWidth == 0.0)
-        slotWidth = s;
+        slotWidth = double ((int)(s * 100) / 100.0);
 }
 
 void PortedBox::updatePortsLength()

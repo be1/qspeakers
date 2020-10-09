@@ -299,7 +299,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="sealedTab">
        <attribute name="title">
@@ -572,7 +572,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QDoubleSpinBox" name="portedPortSlotWidthDoubleSpinBox"/>
+             <widget class="QDoubleSpinBox" name="portedPortSlotWidthDoubleSpinBox">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QLabel" name="portedPortSlotMultLabel">
@@ -583,6 +587,9 @@
             </item>
             <item>
              <widget class="QLineEdit" name="portedPortSlotHeightLineEdit">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="sizePolicy">
                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -949,6 +956,9 @@
     <addaction name="actionEditOptimize"/>
     <addaction name="menuPorted_alignments"/>
     <addaction name="actionBandpass_alignement"/>
+    <addaction name="separator"/>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
@@ -985,6 +995,8 @@
    </attribute>
    <addaction name="actionEditOptimize"/>
    <addaction name="actionProjectPrint"/>
+   <addaction name="actionUndo"/>
+   <addaction name="actionRedo"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionProjectImport">
@@ -1104,7 +1116,7 @@
     <string>Bessel</string>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Linear phase and fast transient response alignment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>Linear phase and fast transient response alignment</string>
    </property>
   </action>
   <action name="actionLegendre">
@@ -1112,7 +1124,7 @@
     <string>Legendre</string>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Extended bass response with minimum ripple.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>Extended bass response with minimum ripple</string>
    </property>
   </action>
   <action name="actionKeele_Hoge">
@@ -1120,7 +1132,7 @@
     <string>Hoge BB4</string>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Boom box butterworth 4th order alignment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>Boom box butterworth 4th order alignment</string>
    </property>
   </action>
   <action name="actionBullock">
@@ -1128,7 +1140,7 @@
     <string>Bullock SBB4</string>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Super boom box butterworth 4th order alignment.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>Super boom box butterworth 4th order alignment</string>
    </property>
   </action>
   <action name="actionModerate_Inf">
@@ -1136,12 +1148,42 @@
     <string>Zbinden M4</string>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Moderate alignment (infinite baffle).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>Moderate alignment (infinite baffle)</string>
    </property>
   </action>
   <action name="actionBandpass_alignement">
    <property name="text">
     <string>Bandpass alignement</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="icon">
+    <iconset theme="undo">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Undo</string>
+   </property>
+   <property name="toolTip">
+    <string>Undo action</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="icon">
+    <iconset theme="redo">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Redo</string>
+   </property>
+   <property name="toolTip">
+    <string>Redo action</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
    </property>
   </action>
  </widget>

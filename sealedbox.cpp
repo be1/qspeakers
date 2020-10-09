@@ -5,12 +5,12 @@
 
 SealedBox::SealedBox(double vol)
 {
-    volume = vol;
+    setVolume(vol);
 }
 
 void SealedBox::setVolume(double vol)
 {
-    volume = vol;
+    volume = double ((int)(vol * 100) / 100.0);
 }
 
 double SealedBox::getVolume() const

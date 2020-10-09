@@ -6,7 +6,7 @@
 
 QT       += core gui xml widgets printsupport charts
 
-VERSION = 1.4
+VERSION = 1.5
 TARGET = qspeakers
 TEMPLATE = app
 
@@ -65,7 +65,8 @@ HEADERS  += mainwindow.h \
     searchdialog.h \
     system.h \
     optimizer.h \
-    bandpassdialog.h
+    bandpassdialog.h \
+    undocommands.h
 
 FORMS    += mainwindow.ui \
     speakerdialog.ui \

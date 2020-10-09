@@ -27,6 +27,25 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    QUndoStack* getCommandStack() {
+        return this->commandStack;
+    };
+
+    void changeSpeakerNumber(int number, bool manual=true);
+    void changeVendor(const QString &vendor, const Speaker& oldspeaker, bool manual=true);
+    void changeModel(const QString &model, bool manual=true);
+    void changeSealedVolume(double val, bool manual=true);
+    void changePortedVolume(double val, bool manual=true);
+    void changePortedResFreq(double val, bool manual=true);
+    void changePortedPortNumber(unsigned int val, bool manual=true);
+    void changePortedPortDiam(double val, bool manual=true);
+    void changePortedSlotPortActivation(bool checked, bool manual=true);
+    void changePortedSlotWidth(double val, bool manual=true);
+    void changeBPSealedVolume(double val, bool manual=true);
+    void changeBPPortedVolume(double val, bool manual=true);
+    void changeBPPortedResFreq(double val, bool manual=true);
+    void changeBPPortedPortNumber(double val, bool manual=true);
+    void changeBPPortedPortDiam(double val, bool manual=true);
 signals:
     void currentSpeakerChanged(Speaker spk);
     void currentSealedBoxChanged(SealedBox box);
@@ -46,6 +65,8 @@ public slots:
     void onEditOptimize();
     void onSpeakerSearch();
     void onProjectPrint();
+    void onUndo();
+    void onRedo();
     void onAboutAbout();
 
     void onSearchRequested(const QString& param, double min, double max);
@@ -72,7 +93,7 @@ public slots:
     void onPortedPortsNumberSpinChanged(int val);
     void onPortedPortDiameterDoubleSpinChanged(double val);
     void onPortedSlotWidthDoubleSpinChanged(double val);
-    void onPortedSlotPortActivated();
+    void onPortedSlotPortActivated(bool checked);
 
     void onBandPassSealedVolumeDoubleSpinChanged(double val);
     void onBandPassPortedVolumeDoubleSpinChanged(double val);
@@ -98,10 +119,10 @@ protected:
     void unlinkTabs();
     void unlinkInternals();
     bool print(QPrinter* printer);
-    void syncUiFromCurrentSpeaker(const Speaker &spk);
-    void syncUiFromCurrentSealedBox(const SealedBox& box);
-    void syncUiFromCurrentPortedBox(const PortedBox& box);
-    void syncUiFromCurrentBandPassBox(const BandPassBox& box);
+    void syncUiFromCurrentSpeaker(const Speaker &spk, bool manual);
+    void syncUiFromCurrentSealedBox(const SealedBox& box, bool manual);
+    void syncUiFromCurrentPortedBox(const PortedBox& box, bool manual);
+    void syncUiFromCurrentBandPassBox(const BandPassBox& box, bool manual);
     void setActivateActions(QList<QAction *> actions, bool enable);
     void setCurrentSpeaker(const Speaker& spk);   
 
@@ -117,8 +138,10 @@ private:
     ListDialog *listDialog;
     BandpassDialog *bandpassDialog;
 
+    Speaker oldSpeaker;
     Speaker currentSpeaker;
     int currentSpeakerNumber;
+
     SealedBox currentSealedBox;
     PortedBox currentPortedBox;
     BandPassBox currentBandPassBox;
@@ -130,6 +153,7 @@ private:
     Plot *bandpassPlot;
 
     const Speaker *notInDbSpeaker;
+    QUndoStack *commandStack;
 };
 
 #endif // MAINWINDOW_H
