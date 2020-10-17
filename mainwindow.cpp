@@ -72,6 +72,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->vendorComboBox->addItems(SpeakerDb::getVendors());
     ui->modelComboBox->addItems(SpeakerDb::getModelsByVendor(ui->vendorComboBox->currentText()));
 
+    /* undo history is empty */
+    this->ui->actionUndo->setEnabled(false);
+    this->ui->actionRedo->setEnabled(false);
+
     /* restore last saved project... */
     ImportExport::restoreProject(currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, &currentSpeakerNumber, &currentTabIndex);
     projectSaved = true;
@@ -105,16 +109,6 @@ MainWindow::MainWindow(QWidget *parent) :
     /*
      * connections
      */
-
-    /* ported box slotport button */
-    connect(ui->portedPortSlotWidthButton, SIGNAL(clicked(bool)), this, SLOT(onPortedSlotPortActivated(bool)));
-
-    /* drivers number spin action */
-    connect(ui->numberSpinBox, SIGNAL(valueChanged(int)), this, SLOT(onNumberSpinChanged(int)));
-
-    /* combos action */
-    connect(ui->vendorComboBox, SIGNAL(activated(QString)), this, SLOT(onVendorChanged(QString)));
-    connect(ui->modelComboBox, SIGNAL(activated(QString)), this, SLOT(onModelChanged(QString)));
 
     /* menu actions */
     linkMenus();
@@ -165,6 +159,9 @@ void MainWindow::onProjectImport()
     if (fileName.isEmpty())
         return;
 
+    /* clear undo history */
+    this->commandStack->clear();
+
     unlinkInternals();
     unlinkTabs();
 
@@ -173,7 +170,6 @@ void MainWindow::onProjectImport()
     ImportExport::setSavePath(fileName);
     setWindowFilePath(ImportExport::getSavePath());
 
-    ui->numberSpinBox->setValue(currentSpeakerNumber);
     ui->tabWidget->setCurrentIndex(currentTabIndex);
 
     syncUiFromCurrentSpeaker(currentSpeaker, true);
@@ -216,6 +212,7 @@ void MainWindow::syncUiFromCurrentSpeaker(const Speaker& spk, bool manual)
     /* look if vendor is in the db */
     QList<Speaker> speakers = SpeakerDb::getByVendor(spk.getVendor());
 
+    unlinkTabs();
     if (speakers.count() == 0)  {
         /* if this is an unknown vendor, insert in combo */
         ui->vendorComboBox->insertItem(0, spk.getVendor());
@@ -260,16 +257,21 @@ void MainWindow::syncUiFromCurrentSpeaker(const Speaker& spk, bool manual)
         }
     }
 
+    ui->numberSpinBox->setValue(currentSpeakerNumber);
+
     /* display speaker's values */
     ui->fsValueLabel->setNum(currentSpeaker.getFs());
     ui->qtsValueLabel->setNum(currentSpeaker.getQts());
     ui->vasValueLabel->setNum(currentSpeaker.getVas());
     ui->diaValueLabel->setNum(currentSpeaker.getDia());
     ui->zValueLabel->setNum(currentSpeaker.getZ());
+
+    linkTabs();
 }
 
 void MainWindow::syncUiFromCurrentSealedBox(const SealedBox& box, bool manual)
 {
+    unlinkTabs();
     ui->sealedVolumeDoubleSpinBox->setValue(box.getVolume());
 
     System s(currentSpeaker, &box, currentSpeakerNumber);
@@ -279,10 +281,12 @@ void MainWindow::syncUiFromCurrentSealedBox(const SealedBox& box, bool manual)
         sealedPlot->appendPointF(QPointF(f, db));
     }
     sealedPlot->draw3dbVLine();
+    linkTabs();
 }
 
 void MainWindow::syncUiFromCurrentPortedBox(const PortedBox& box, bool manual)
 {
+    unlinkTabs();
     ui->portedVolumeDoubleSpinBox->setValue(box.getBoxVolume());
     ui->portedResonancedoubleSpinBox->setValue(box.getResFreq());
     ui->portedPortsNumberSpinBox->setValue(box.getPortNum());
@@ -300,10 +304,12 @@ void MainWindow::syncUiFromCurrentPortedBox(const PortedBox& box, bool manual)
         portedPlot->appendPointF(QPointF(f, db));
     }
     portedPlot->draw3dbVLine();
+    linkTabs();
 }
 
 void MainWindow::syncUiFromCurrentBandPassBox(const BandPassBox& box, bool manual)
 {
+    unlinkTabs();
     ui->bandPassSealedVolumeDoubleSpinBox->setValue(box.getSealedBoxVolume());
     ui->bandPassPortedVolumeDoubleSpinBox->setValue(box.getPortedBoxVolume());
     ui->bandPassPortedResonanceDoubleSpinBox->setValue(box.getPortedBoxResFreq());
@@ -318,6 +324,7 @@ void MainWindow::syncUiFromCurrentBandPassBox(const BandPassBox& box, bool manua
         bandpassPlot->appendPointF(QPointF(f, db));
     }
     bandpassPlot->draw3dbVLine();
+    linkTabs();
 }
 
 void MainWindow::setCurrentSpeaker(const Speaker &spk)
@@ -438,12 +445,20 @@ void MainWindow::linkTabs()
 {
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onCurrentTabChanged(int)));
 
+    /* spk combos action */
+    connect(ui->vendorComboBox, SIGNAL(activated(QString)), this, SLOT(onVendorChanged(QString)));
+    connect(ui->modelComboBox, SIGNAL(activated(QString)), this, SLOT(onModelChanged(QString)));
+
+    /* drivers number spin action */
+    connect(ui->numberSpinBox, SIGNAL(valueChanged(int)), this, SLOT(onNumberSpinChanged(int)));
+
     connect(ui->sealedVolumeDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onSealedVolumeDoubleSpinChanged(double)));
 
     connect(ui->portedVolumeDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onPortedVolumeDoubleSpinChanged(double)));
     connect(ui->portedResonancedoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onPortedResonanceDoubleSpinChanged(double)));
     connect(ui->portedPortsNumberSpinBox, SIGNAL(valueChanged(int)), this, SLOT(onPortedPortsNumberSpinChanged(int)));
     connect(ui->portedPortDiameterDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onPortedPortDiameterDoubleSpinChanged(double)));
+    connect(ui->portedPortSlotWidthButton, SIGNAL(clicked(bool)), this, SLOT(onPortedSlotPortActivated(bool)));
     connect(ui->portedPortSlotWidthDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onPortedSlotWidthDoubleSpinChanged(double)));
 
     connect(ui->bandPassSealedVolumeDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onBandPassSealedVolumeDoubleSpinChanged(double)));
@@ -493,12 +508,19 @@ void MainWindow::unlinkTabs()
 {
     disconnect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onCurrentTabChanged(int)));
 
+    /* spk combos action */
+    disconnect(ui->vendorComboBox, SIGNAL(activated(QString)), this, SLOT(onVendorChanged(QString)));
+    disconnect(ui->modelComboBox, SIGNAL(activated(QString)), this, SLOT(onModelChanged(QString)));
+
+    disconnect(ui->numberSpinBox, SIGNAL(valueChanged(int)), this, SLOT(onNumberSpinChanged(int)));
+
     disconnect(ui->sealedVolumeDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onSealedVolumeDoubleSpinChanged(double)));
 
     disconnect(ui->portedVolumeDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onPortedVolumeDoubleSpinChanged(double)));
     disconnect(ui->portedResonancedoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onPortedResonanceDoubleSpinChanged(double)));
     disconnect(ui->portedPortsNumberSpinBox, SIGNAL(valueChanged(int)), this, SLOT(onPortedPortsNumberSpinChanged(int)));
     disconnect(ui->portedPortDiameterDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onPortedPortDiameterDoubleSpinChanged(double)));
+    disconnect(ui->portedPortSlotWidthButton, SIGNAL(clicked(bool)), this, SLOT(onPortedSlotPortActivated(bool)));
     disconnect(ui->portedPortSlotWidthDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onPortedSlotWidthDoubleSpinChanged(double)));
 
     disconnect(ui->bandPassSealedVolumeDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onBandPassSealedVolumeDoubleSpinChanged(double)));
@@ -634,7 +656,7 @@ void MainWindow::onAlignModerate_Inf()
 void MainWindow::onAlignLegendre()
 {
     if (ui->tabWidget->currentWidget() == ui->portedTab) {
-        Optimizer optimizer(currentSpeaker, &currentPortedBox, currentSpeakerNumber);
+        Optimizer optimizer(currentSpeaker, &currentPortedBox, currentSpeakerNumber, this);
         optimizer.portedAlignLegendre();
         emit currentPortedBoxChanged(currentPortedBox);
     }
@@ -643,7 +665,7 @@ void MainWindow::onAlignLegendre()
 void MainWindow::onAlignBessel()
 {
     if (ui->tabWidget->currentWidget() == ui->portedTab) {
-        Optimizer optimzer(currentSpeaker, &currentPortedBox, currentSpeakerNumber);
+        Optimizer optimzer(currentSpeaker, &currentPortedBox, currentSpeakerNumber, this);
         optimzer.portedAlignBessel();
         emit currentPortedBoxChanged(currentPortedBox);
     }
@@ -653,7 +675,7 @@ void MainWindow::onAlignKeele_Hoge()
 {
     /* BB4 */
     if (ui->tabWidget->currentWidget() == ui->portedTab) {
-        Optimizer optimizer(currentSpeaker, &currentPortedBox, currentSpeakerNumber);
+        Optimizer optimizer(currentSpeaker, &currentPortedBox, currentSpeakerNumber, this);
         optimizer.portedAlignKeele_Hoge();
         emit currentPortedBoxChanged(currentPortedBox);
     }
@@ -663,7 +685,7 @@ void MainWindow::onAlignBullock()
 {
     /* SBB4 */
     if (ui->tabWidget->currentWidget() == ui->portedTab) {
-        Optimizer optimizer(currentSpeaker, &currentPortedBox, currentSpeakerNumber);
+        Optimizer optimizer(currentSpeaker, &currentPortedBox, currentSpeakerNumber, this);
         optimizer.portedAlignBullock();
         emit currentPortedBoxChanged(currentPortedBox);
     }
@@ -971,19 +993,12 @@ void MainWindow::onCurrentSpeakerChanged(const Speaker &spk)
 
 void MainWindow::onSealedVolumeDoubleSpinChanged(double val)
 {
-    /* rounding is crucial to avoid crash loop */
-    if ((int)(currentSealedBox.getVolume() * 100) == (int)(val * 100))
-        return;
-
     SealedVolumeCommand* com = new SealedVolumeCommand (currentSealedBox.getVolume(), val, this);
     this->commandStack->push(com);
 }
 
 void MainWindow::changeSealedVolume(double val, bool manual)
 {
-    /* ensure val is truncated to avoid missync */
-    val = double ((int)(val * 100) / 100.0);
-
     currentSealedBox.setVolume(val);
     syncUiFromCurrentSealedBox(currentSealedBox, manual);
 }
@@ -999,19 +1014,12 @@ void MainWindow::onCurrentSealedBoxChanged(const SealedBox &box)
 
 void MainWindow::onPortedVolumeDoubleSpinChanged(double val)
 {
-    /* rounding is crucial to avoid crash loop */
-    if ((int)(currentPortedBox.getBoxVolume() * 100) == (int)(val * 100))
-        return;
-
     PortedVolumeCommand* com = new PortedVolumeCommand (currentPortedBox.getBoxVolume(), val, this);
     this->commandStack->push(com);
 }
 
 void MainWindow::changePortedVolume(double val, bool manual)
 {
-    /* ensure val is truncated to avoid missync */
-    val = double ((int)(val * 100) / 100.0);
-
     currentPortedBox.setBoxVolume(val);
     currentPortedBox.updatePorts(currentSpeaker.getSd() * currentSpeakerNumber, currentSpeaker.getXmax());
     syncUiFromCurrentPortedBox(currentPortedBox, manual);
@@ -1019,19 +1027,12 @@ void MainWindow::changePortedVolume(double val, bool manual)
 
 void MainWindow::onPortedResonanceDoubleSpinChanged(double val)
 {
-    /* rounding is crucial to avoid crash loop */
-    if ((int)(currentPortedBox.getResFreq() * 100) == (int)(val * 100))
-        return;
-
     PortedResFreqCommand* com = new PortedResFreqCommand (currentPortedBox.getResFreq(), val, this);
     this->commandStack->push(com);
 }
 
 void MainWindow::changePortedResFreq(double val, bool manual)
 {
-    /* ensure val is truncated to avoid missync */
-    val = double ((int)(val * 100) / 100.0);
-
     currentPortedBox.setResFreq(val);
     currentPortedBox.updatePorts(currentSpeaker.getSd() * currentSpeakerNumber, currentSpeaker.getXmax());
     syncUiFromCurrentPortedBox(currentPortedBox, manual);
@@ -1039,9 +1040,6 @@ void MainWindow::changePortedResFreq(double val, bool manual)
 
 void MainWindow::onPortedPortsNumberSpinChanged(int val)
 {
-    if (val == (int) currentPortedBox.getPortNum())
-        return;
-
     PortedPortNumberCommand* com = new PortedPortNumberCommand (currentPortedBox.getPortNum(), val, this);
     this->commandStack->push(com);
 }
@@ -1056,19 +1054,12 @@ void MainWindow::changePortedPortNumber(unsigned int val, bool manual)
 void MainWindow::onPortedPortDiameterDoubleSpinChanged(double val)
 {
     /* allow manual decrease/increase of port diameter */
-    /* rounding is crucial to avoid crash loop */
-    if ((int)(currentPortedBox.getPortDiam() * 100) == (int)(val * 100))
-        return;
-
     PortedPortDiamCommand* com = new PortedPortDiamCommand (currentPortedBox.getPortDiam(), val, this);
     this->commandStack->push(com);
 }
 
 void MainWindow::changePortedPortDiam(double val, bool manual)
 {
-    /* ensure val is trucated to avoid missync */
-    val = double ((int)(val * 100) / 100.0);
-
     currentPortedBox.setPortDiam(val);
     currentPortedBox.updateSlots();
     currentPortedBox.updatePortsLength();
@@ -1077,9 +1068,6 @@ void MainWindow::changePortedPortDiam(double val, bool manual)
 
 void MainWindow::onPortedSlotPortActivated(bool checked)
 {
-    if (checked == this->currentPortedBox.getSlotPortActivated())
-        return;
-
     PortedSlotPortCommand* com = new PortedSlotPortCommand (this->currentPortedBox.getSlotPortActivated(), checked, this);
     this->commandStack->push(com);
 }
@@ -1096,20 +1084,12 @@ void MainWindow::changePortedSlotPortActivation(bool checked, bool manual)
 
 void MainWindow::onPortedSlotWidthDoubleSpinChanged(double val)
 {
-    /* allow manual decrease/increase of port diameter */
-    /* rounding is crucial to avoid crash loop */
-    if ((int)(currentPortedBox.getSlotWidth() * 100) == (int)(val * 100))
-        return;
-
     PortedSlotWidthCommand* com = new PortedSlotWidthCommand (currentPortedBox.getSlotWidth(), val, this);
     this->commandStack->push(com);
 }
 
 void MainWindow::changePortedSlotWidth(double val, bool manual)
 {
-    /* ensure val is truncated to avoid missync */
-    val = double ((int)(val * 100) / 100.0);
-
     currentPortedBox.setSlotWidth(val);
     syncUiFromCurrentPortedBox(currentPortedBox, manual);
 }
@@ -1125,38 +1105,24 @@ void MainWindow::onCurrentPortedBoxChanged(const PortedBox &box)
 
 void MainWindow::onBandPassSealedVolumeDoubleSpinChanged(double val)
 {
-    /* rounding is crucial to avoid crash loop */
-    if ((int)(currentBandPassBox.getSealedBoxVolume() * 100) == (int)(val * 100))
-        return;
-
     BPSealedVolumeCommand* com = new BPSealedVolumeCommand (currentBandPassBox.getSealedBoxVolume(), val, this);
     this->commandStack->push(com);
 }
 
 void MainWindow::changeBPSealedVolume(double val, bool manual)
 {
-    /* ensure val is truncated to avoid missync */
-    val = double ((int)(val * 100) / 100.0);
-
     currentBandPassBox.setSealedBoxVolume(val);
     syncUiFromCurrentBandPassBox(currentBandPassBox, manual);
 }
 
 void MainWindow::onBandPassPortedVolumeDoubleSpinChanged(double val)
 {
-    /* rounding is crucial to avoid crash loop */
-    if ((int)(currentBandPassBox.getPortedBoxVolume() * 100) == (int)(val * 100))
-        return;
-
     BPPortedVolumeCommand* com = new BPPortedVolumeCommand (currentBandPassBox.getPortedBoxVolume(), val, this);
     this->commandStack->push(com);
 }
 
 void MainWindow::changeBPPortedVolume(double val, bool manual)
 {
-    /* ensure val is truncated to avoid missync */
-    val = double ((int)(val * 100) / 100.0);
-
     currentBandPassBox.setPortedBoxVolume(val);
     currentBandPassBox.updatePortedBoxPorts(currentSpeaker.getSd() * currentSpeakerNumber, currentSpeaker.getXmax());
     syncUiFromCurrentBandPassBox(currentBandPassBox, manual);
@@ -1164,19 +1130,12 @@ void MainWindow::changeBPPortedVolume(double val, bool manual)
 
 void MainWindow::onBandPassPortedResonanceDoubleSpinChanged(double val)
 {
-    /* rounding is crucial to avoid crash loop */
-    if ((int)(currentBandPassBox.getPortedBoxResFreq() * 100) == (int)(val * 100))
-        return;
-
     BPPortedResFreqCommand* com = new BPPortedResFreqCommand (currentBandPassBox.getPortedBoxResFreq(), val, this);
     this->commandStack->push(com);
 }
 
 void MainWindow::changeBPPortedResFreq(double val, bool manual)
 {
-    /* ensure val is truncated to avoid missync */
-    val = double ((int)(val * 100) / 100.0);
-
     currentBandPassBox.setPortedBoxResFreq(val);
     currentBandPassBox.updatePortedBoxPorts(currentSpeaker.getSd() * currentSpeakerNumber, currentSpeaker.getXmax());
     syncUiFromCurrentBandPassBox(currentBandPassBox, manual);
@@ -1184,9 +1143,6 @@ void MainWindow::changeBPPortedResFreq(double val, bool manual)
 
 void MainWindow::onBandPassPortNumSpinChanged(int val)
 {
-    if (val == (int) currentBandPassBox.getPortedBoxPortNum())
-        return;
-
     BPPortedPortNumberCommand* com = new BPPortedPortNumberCommand (currentBandPassBox.getPortedBoxPortNum(), val, this);
     this->commandStack->push(com);
 }
@@ -1201,19 +1157,12 @@ void MainWindow::changeBPPortedPortNumber(double val, bool manual)
 void MainWindow::onBandPassPortDiameterDoubleSpinChanged(double val)
 {
     /* allow manual decrease/increase of port diameter */
-    /* rounding is crucial to avoid crash loop */
-    if ((int)(currentBandPassBox.getPortedBoxPortDiam() * 100) == (int)(val * 100))
-        return;
-
     BPPortedPortDiamCommand* com = new BPPortedPortDiamCommand (currentBandPassBox.getPortedBoxPortDiam(), val, this);
     this->commandStack->push(com);
 }
 
 void MainWindow::changeBPPortedPortDiam(double val, bool manual)
 {
-    /* ensure val is truncated to avoid missync */
-    val = double ((int)(val * 100) / 100.0);
-
     currentBandPassBox.setPortedBoxPortDiam(val);
     currentBandPassBox.updatePortedBoxPortsLength();
     syncUiFromCurrentBandPassBox(currentBandPassBox, manual);

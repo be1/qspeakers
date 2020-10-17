@@ -1,10 +1,10 @@
-#include "config.h"
 #include "mainwindow.h"
 #include "importexport.h"
 #include <QApplication>
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QLocale>
+#include "config.h"
 
 int main(int argc, char *argv[])
 {
