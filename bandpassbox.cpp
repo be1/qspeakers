@@ -118,7 +118,7 @@ void BandPassBox::render(QPainter *painter, const QRectF &area) const
     QString params[6];
     qreal tab = area.left();
 
-    painter->drawRoundRect(area.toRect(), 5, 5);
+    painter->drawRoundedRect(area.toRect(), 5, 5);
 
     params[0] = QObject::tr("Sealed Vol. %1 L").arg(getSealedBoxVolume());
     params[1] = QObject::tr("Ported Vol. %1 L").arg(getPortedBoxVolume());

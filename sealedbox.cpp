@@ -46,7 +46,7 @@ void SealedBox::render(QPainter *painter, const QRectF &area) const
     if (!painter)
         return;
 
-    painter->drawRoundRect(area.toRect(), 5, 5);
+    painter->drawRoundedRect(area.toRect(), 5, 5);
 
     QString text = QObject::tr("Vol. %1 L").arg(getVolume());
     QRectF where(area.left(), area.top(), area.width(), area.height());

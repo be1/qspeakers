@@ -309,7 +309,7 @@ void Speaker::render(QPainter *painter, const QRectF &area)
     if (!painter)
         return;
 
-    painter->drawRoundRect(area.toRect(), 5, 5);
+    painter->drawRoundedRect(area.toRect(), 5, 5);
 
 #define PARAMLEN 8
 
