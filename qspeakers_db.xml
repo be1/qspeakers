@@ -49,7 +49,7 @@
  <speaker vendor="AUDAX" model="HT110G0" vas="3.8" mms="5.3" cms="0.83 mm/N" dia="0.1285" qes="0.61" pe="30" rms="1.2 kg/s" bl="4.8 N/A" qms="2.09" fs="75" sd="0.0057" z="8" qts="0.47" spl="86" re="5.7" le="0.34" xmax="3"/>
  <speaker vendor="AUDAX" model="HT130G8" vas="9.18" mms="7.54" cms="0.91 mm/N" dia="0.1425" qes="0.5" pe="40" rms="1.27 kg/s" bl="6 N/A" qms="2.28" fs="61" sd="0.0085" z="8" qts="0.41" spl="90" re="6.3" le="0.37" xmax="3.75"/>
  <speaker qes="0.47" vendor="AUDAX" sd="0.0139" dia="0.173" vas="39" qms="3.24" spl="90" bl="0" le="0.42" z="8" qts="0.41" pe="60" model="HT170G2" re="5.2" xmax="3.5" fs="40"/>
- <speaker vendor="AUDAX" model="HT170G8" vas="19.9" mms="17.4" cms="0.76 mm/N" dia="0.1735" qes="0.55" pe="50" rms="1.1 kg/s" bl="5.5 N/A" qms="4.93" fs="45" sd="0.0136" z="4" qts="0.49" spl="90" re="3.5" le="0.49" xmax="3.5"/>
+ <speaker vendor="AUDAX" model="HT170G8" vas="19.9" mms="17.4" cms="0.76 mm/N" dia="0.1735" qes="0.55" pe="50" rms="1.1 kg/s" bl="5.5" qms="4.93" fs="45" sd="0.0136" z="8" qts="0.49" spl="90" re="3.5" le="0.49" xmax="3.5" vc="2" />
  <speaker vendor="AUDAX" model="HT210G2" vas="88" mms="23" cms="1.177 mm/N" dia="0.2135" qes="0.38" pe="70" rms="1.45 kg/s" bl="8.6 N/A" qms="3.07" fs="31" sd="0.023" z="8" qts="0.34" spl="90" re="6.5" le="0.61" xmax="4.5"/>
  <speaker qes="0.44" vendor="AUDAX" sd="0.0221" dia="0.213" vas="55.1" qms="2.05" spl="90" bl="0" le="0.6" z="8" qts="0.36" pe="70" model="HT210F0" re="6.3" xmax="4.5" fs="34"/>
  <speaker vendor="AUDAX" model="HT100K0" vas="5.21" mms="5.23" cms="1.43 mm/N" dia="0.119" qes="0.48" pe="30" rms="0.89 kg/s" bl="4.83 N/A" qms="2.15" fs="58" sd="0.005" z="8" qts="0.4" spl="88" re="5.9" le="0.34" xmax="3"/>
@@ -623,5 +623,5 @@
  <speaker qes="0.46" vendor="FOSTEX" sd="0.005" dia="0.08" vas="4.84" qms="4.2" spl="88" bl="4.82" le="0.04" z="8" qts="0.41" pe="10" model="FF105WK" re="6.7" xmax="1.7" fs="75"/>
  <speaker qes="0.59" vendor="AUDAX" vas="1.59" sd="0.005027" dia="0.1" qms="3.29" spl="83.4" bl="7.13" z="8" le="0" qts="0.5" pe="25" model="AP100G2" re="6.15" xmax="2.1" fs="73.2"/>
  <speaker xmax="8.4" z="6.21" sd="0.02138" vendor="PEERLESS" dia="0.203" model="SLS-P830667" re="5.53" le="0.78" spl="85.6" qts="0.66" qms="5.73" qes="0.75" bl="8.26" fs="42.19" vas="26.27" pe="90"/>
- <speaker xmax="7.5" z="8" sd="0.0214" vendor="MONACOR" dia="0.211" model="SPH-200CTC" re="3.4" le="1" spl="88" qts="0.22" qms="4.91" qes="0.23" bl="9" fs="22" vas="75" pe="120"/>
+ <speaker xmax="7.5" z="8" sd="0.0214" vendor="MONACOR" dia="0.211" model="SPH-200CTC" re="6.8" le="1" spl="88" qts="0.22" qms="4.91" qes="0.23" bl="9" fs="22" vas="75" pe="120" vc="2"/>
 </speakers>
