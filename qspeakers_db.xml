@@ -622,4 +622,6 @@
  <speaker qes="0.42" vendor="AUDAX" sd="0" dia="93.6" vas="3.34" qms="3.12" spl="87.2" bl="0" le="0.68" z="8" qts="0.37" pe="42" model="AM100Z0" re="6.46" xmax="2" fs="75.7"/>
  <speaker qes="0.46" vendor="FOSTEX" sd="0.005" dia="0.08" vas="4.84" qms="4.2" spl="88" bl="4.82" le="0.04" z="8" qts="0.41" pe="10" model="FF105WK" re="6.7" xmax="1.7" fs="75"/>
  <speaker qes="0.59" vendor="AUDAX" vas="1.59" sd="0.005027" dia="0.1" qms="3.29" spl="83.4" bl="7.13" z="8" le="0" qts="0.5" pe="25" model="AP100G2" re="6.15" xmax="2.1" fs="73.2"/>
+ <speaker xmax="8.4" z="6.21" sd="0.02138" vendor="PEERLESS" dia="0.203" model="SLS-P830667" re="5.53" le="0.78" spl="85.6" qts="0.66" qms="5.73" qes="0.75" bl="8.26" fs="42.19" vas="26.27" pe="90"/>
+ <speaker xmax="7.5" z="8" sd="0.0214" vendor="MONACOR" dia="0.211" model="SPH-200CTC" re="3.4" le="1" spl="88" qts="0.22" qms="4.91" qes="0.23" bl="9" fs="22" vas="75" pe="120"/>
 </speakers>
