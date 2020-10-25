@@ -177,20 +177,20 @@ bool SpeakerDb::merge(QFile &with)
         QDomElement spk_ = s_.toElement();
         QString vnd_ = spk_.attribute("vendor");
         QString mdl_ = spk_.attribute("model");
-        qDebug() << "\telement " + with.fileName() + ": " + vnd_ + ":" + mdl_;
-        qDebug() << "\tlooking " + file.fileName();
+        qDebug() << "  element " + with.fileName() + ": " + vnd_ + ":" + mdl_;
+        qDebug() << "  looking " + file.fileName();
         for (int j = 0; j < speakerlist.size(); j++) {
             QDomNode s = speakerlist.at(j);
             QDomElement spk = s.toElement();
             QString vnd = spk.attribute("vendor");
             QString mdl = spk.attribute("model");
-            //qDebug() << "\t\telement " + file.fileName() + ": " + vnd + ":" + mdl;
+            //qDebug() << "    element " + file.fileName() + ": " + vnd + ":" + mdl;
             if ((vnd.toUpper() == vnd_.toUpper()) && (mdl.toUpper() == mdl_.toUpper())) {
-                qDebug() << "\t\tCONFLICT!";
+                qDebug() << "    CONFLICT!";
                 conflict = true;
                 ret = true;
                 /* copy the element from user's db to the temporary xml */
-                qDebug() << "\t\timport " + vnd + ":" + mdl;
+                qDebug() << "    import " + vnd + ":" + mdl;
                 QDomElement t = spk.cloneNode(true).toElement();
                 t.normalize();
                 troot.appendChild(t);
@@ -202,7 +202,7 @@ bool SpeakerDb::merge(QFile &with)
             continue;
 
         /* no conflict, so append the new speaker */
-        qDebug() << "\timport " + vnd_ + ":" + mdl_;
+        qDebug() << "  import " + vnd_ + ":" + mdl_;
         QDomElement t_ = spk_.cloneNode(true).toElement();
         t_.normalize();
         troot.appendChild(t_);
@@ -223,17 +223,17 @@ bool SpeakerDb::merge(QFile &with)
         QDomElement spk = s.toElement();
         QString vnd = spk.attribute("vendor");
         QString mdl = spk.attribute("model");
-        qDebug() << "\telement " + file.fileName() + ": " + vnd + ":" + mdl;
-        qDebug() << "\tlooking " + with.fileName();
+        qDebug() << "  element " + file.fileName() + ": " + vnd + ":" + mdl;
+        qDebug() << "  looking " + with.fileName();
         for (int j = 0; j < templist.size(); j++) {
             QDomNode s_ = templist.at(j);
             QDomElement spk_ = s_.toElement();
             QString vnd_ = spk_.attribute("vendor");
             QString mdl_ = spk_.attribute("model");
-            //qDebug() << "\t\telement " + with.fileName() + ": " + vnd_ + ":" + mdl_;
+            //qDebug() << "    element " + with.fileName() + ": " + vnd_ + ":" + mdl_;
             if ((vnd.toUpper() == vnd_.toUpper()) && (mdl.toUpper() == mdl_.toUpper())) {
                 already = true;
-                qDebug() << "\t\tALREADY!";
+                qDebug() << "    ALREADY!";
                 break;
             }
         }
@@ -242,7 +242,7 @@ bool SpeakerDb::merge(QFile &with)
             continue;
 
         /* not already inserted, so append the old speaker */
-        qDebug() << "\timport " + vnd + ":" + mdl;
+        qDebug() << "  import " + vnd + ":" + mdl;
         QDomElement m = spk.cloneNode(true).toElement();
         m.normalize();
         mroot.appendChild(m);
