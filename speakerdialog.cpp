@@ -40,6 +40,7 @@ SpeakerDialog::SpeakerDialog(const Speaker &edit, QWidget *parent) :
     ui->splDoubleSpinBox->setValue(edit.getSpl());
     ui->peDoubleSpinBox->setValue(edit.getPe());
     ui->blDoubleSpinBox->setValue(edit.getBL());
+    ui->vcSpinBox->setValue(edit.getVc());
 
     oldVendor = edit.getVendor();
     oldModel = edit.getModel();
@@ -97,6 +98,7 @@ void SpeakerDialog::onSpeakerAccepted()
     spk.setSpl(ui->splDoubleSpinBox->value());
     spk.setPe(ui->peDoubleSpinBox->value());
     spk.setBL(ui->blDoubleSpinBox->value());
+    spk.setVc(ui->vcSpinBox->value());
 
 
     if (oldVendor.isNull() || oldModel.isNull()) {

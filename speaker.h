@@ -39,6 +39,7 @@ public:
     void setPe(double val);
     void setBL(double val);
     void setDia(double val);
+    void setVc(int val);
 
     QString getVendor() const;
     QString getModel() const;
@@ -57,6 +58,7 @@ public:
     double getPe() const;
     double getBL() const;
     double getDia() const;
+    int getVc() const;
 
     QDomElement toDomElement(QDomDocument& doc) const;
     void fromDomElement(const QDomElement& el);
@@ -80,6 +82,7 @@ private:
     double pe; // W (maxpower in normal use)
     double bl; // Tm (force factor)
     double dia; // m (diameter)
+    int vc; // number of voice coils
 };
 
 Q_DECLARE_METATYPE(Speaker)

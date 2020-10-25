@@ -35,6 +35,7 @@ public:
     static QList<Speaker> getBySpl(double min, double max);
     static QList<Speaker> getByPe(double min, double max);
     static QList<Speaker> getByBL(double min, double max);
+    static QList<Speaker> getByVc(int min, int max);
 
     static QList<Speaker> getByValue(QString var, double min, double max);
 

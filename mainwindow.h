@@ -31,21 +31,21 @@ public:
         return this->commandStack;
     };
 
-    void changeSpeakerNumber(int number, bool manual=true);
-    void changeVendor(const QString &vendor, const Speaker& oldspeaker, bool manual=true);
-    void changeModel(const QString &model, bool manual=true);
-    void changeSealedVolume(double val, bool manual=true);
-    void changePortedVolume(double val, bool manual=true);
-    void changePortedResFreq(double val, bool manual=true);
-    void changePortedPortNumber(unsigned int val, bool manual=true);
-    void changePortedPortDiam(double val, bool manual=true);
-    void changePortedSlotPortActivation(bool checked, bool manual=true);
-    void changePortedSlotWidth(double val, bool manual=true);
-    void changeBPSealedVolume(double val, bool manual=true);
-    void changeBPPortedVolume(double val, bool manual=true);
-    void changeBPPortedResFreq(double val, bool manual=true);
-    void changeBPPortedPortNumber(double val, bool manual=true);
-    void changeBPPortedPortDiam(double val, bool manual=true);
+    void changeSpeakerNumber(int number);
+    void changeVendor(const QString &vendor, const Speaker& oldspeaker);
+    void changeModel(const QString &model);
+    void changeSealedVolume(double val);
+    void changePortedVolume(double val);
+    void changePortedResFreq(double val);
+    void changePortedPortNumber(unsigned int val);
+    void changePortedPortDiam(double val);
+    void changePortedSlotPortActivation(bool checked);
+    void changePortedSlotWidth(double val);
+    void changeBPSealedVolume(double val);
+    void changeBPPortedVolume(double val);
+    void changeBPPortedResFreq(double val);
+    void changeBPPortedPortNumber(double val);
+    void changeBPPortedPortDiam(double val);
 signals:
     void currentSpeakerChanged(Speaker spk);
     void currentSealedBoxChanged(SealedBox box);
@@ -119,10 +119,10 @@ protected:
     void unlinkTabs();
     void unlinkInternals();
     bool print(QPrinter* printer);
-    void syncUiFromCurrentSpeaker(const Speaker &spk, bool manual);
-    void syncUiFromCurrentSealedBox(const SealedBox& box, bool manual);
-    void syncUiFromCurrentPortedBox(const PortedBox& box, bool manual);
-    void syncUiFromCurrentBandPassBox(const BandPassBox& box, bool manual);
+    void syncUiFromCurrentSpeaker(const Speaker &spk);
+    void syncUiFromCurrentSealedBox(const SealedBox& box);
+    void syncUiFromCurrentPortedBox(const PortedBox& box);
+    void syncUiFromCurrentBandPassBox(const BandPassBox& box);
     void setActivateActions(QList<QAction *> actions, bool enable);
     void setCurrentSpeaker(const Speaker& spk);   
 

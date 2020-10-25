@@ -287,6 +287,26 @@
          </property>
         </spacer>
        </item>
+       <item>
+        <widget class="QLabel" name="vcLabel">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Vc</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="vcValueLabel">
+         <property name="text">
+          <string>1</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>

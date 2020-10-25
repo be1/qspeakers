@@ -15,7 +15,8 @@ Speaker::Speaker() :
     spl(0.0),
     pe(0.0),
     bl(0.0),
-    dia(0.0)
+    dia(0.0),
+    vc(1)
 {
 }
 
@@ -35,6 +36,7 @@ Speaker::Speaker(const Speaker &copy)
     this->qes = copy.getQes();
     this->qms = copy.getQms();
     this->spl = copy.getSpl();
+    this->vc = copy.getVc();
 
     this->vendor = copy.getVendor();
     this->model = copy.getModel();
@@ -61,6 +63,7 @@ Speaker &Speaker::operator=(const Speaker &copy)
     this->qes = copy.getQes();
     this->qms = copy.getQms();
     this->spl = copy.getSpl();
+    this->vc = copy.getVc();
 
     this->vendor = copy.getVendor();
     this->model = copy.getModel();
@@ -83,7 +86,8 @@ bool Speaker::operator!=(const Speaker& r) const
             this->qes != r.getQes() ||
             this->pe != r.getPe() ||
             this->bl != r.getBL() ||
-            this->spl != r.getSpl();
+            this->spl != r.getSpl() ||
+            this->vc != r.getVc();
 }
 
 bool Speaker::operator==(const Speaker& r) const
@@ -176,6 +180,11 @@ void Speaker::setDia(double val)
     dia = val;
 }
 
+void Speaker::setVc(int val)
+{
+    vc = val;
+}
+
 QString Speaker::getVendor() const
 {
     return vendor;
@@ -256,6 +265,11 @@ double Speaker::getDia() const
     return dia;
 }
 
+int Speaker::getVc() const
+{
+    return vc;
+}
+
 QDomElement Speaker::toDomElement(QDomDocument &doc) const
 {
     QDomElement e = doc.createElement("speaker");
@@ -278,6 +292,7 @@ QDomElement Speaker::toDomElement(QDomDocument &doc) const
     e.setAttribute("pe", c.toString(pe));
     e.setAttribute("bl", c.toString(bl));
     e.setAttribute("dia", c.toString(dia));
+    e.setAttribute("vc", c.toString(vc));
 
     return e;
 }
@@ -302,6 +317,10 @@ void Speaker::fromDomElement(const QDomElement &el)
     pe = c.toDouble(el.attribute("pe"));
     bl = c.toDouble(el.attribute("bl"));
     dia = c.toDouble(el.attribute("dia"));
+    vc = c.toInt(el.attribute("vc"));
+
+    /* for older db compatibility */
+    vc = vc ? vc : 1;
 }
 
 void Speaker::render(QPainter *painter, const QRectF &area)
@@ -311,7 +330,7 @@ void Speaker::render(QPainter *painter, const QRectF &area)
 
     painter->drawRoundedRect(area.toRect(), 5, 5);
 
-#define PARAMLEN 8
+#define PARAMLEN 9
 
     QString params[PARAMLEN];
 
@@ -323,6 +342,7 @@ void Speaker::render(QPainter *painter, const QRectF &area)
     params[5] = QString::fromUtf8("Xmax: %1 mm").arg(getXmax());
     params[6] = QString::fromUtf8("Z: %1 Ohm").arg(getZ());
     params[7] = QString::fromUtf8("Re: %1 Ohm").arg(getRe());
+    params[8] = QString::fromUtf8("Vc: %1").arg(getVc());
 
     qreal tab = area.left();
 

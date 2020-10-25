@@ -44,14 +44,14 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item row="3" column="0">
       <widget class="QLabel" name="fsLabel">
        <property name="text">
         <string>Fs (Hz)</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
+     <item row="3" column="1">
       <widget class="QDoubleSpinBox" name="fsDoubleSpinBox">
        <property name="decimals">
         <number>3</number>
@@ -61,28 +61,28 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
+     <item row="4" column="0">
       <widget class="QLabel" name="qtsLabel">
        <property name="text">
         <string>Qts</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
+     <item row="4" column="1">
       <widget class="QDoubleSpinBox" name="qtsDoubleSpinBox">
        <property name="decimals">
         <number>3</number>
        </property>
       </widget>
      </item>
-     <item row="4" column="0">
+     <item row="5" column="0">
       <widget class="QLabel" name="vasLabel">
        <property name="text">
         <string>Vas (L)</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
+     <item row="5" column="1">
       <widget class="QDoubleSpinBox" name="vasDoubleSpinBox">
        <property name="decimals">
         <number>3</number>
@@ -92,14 +92,14 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="0">
+     <item row="7" column="0">
       <widget class="QLabel" name="diaLabel">
        <property name="text">
         <string>Dia (m)</string>
        </property>
       </widget>
      </item>
-     <item row="6" column="1">
+     <item row="7" column="1">
       <widget class="QDoubleSpinBox" name="diaDoubleSpinBox">
        <property name="decimals">
         <number>3</number>
@@ -109,112 +109,112 @@
        </property>
       </widget>
      </item>
-     <item row="7" column="0">
+     <item row="8" column="0">
       <widget class="QLabel" name="zLabel">
        <property name="text">
         <string>Z (Ohm)</string>
        </property>
       </widget>
      </item>
-     <item row="7" column="1">
+     <item row="8" column="1">
       <widget class="QDoubleSpinBox" name="zDoubleSpinBox">
        <property name="decimals">
         <number>3</number>
        </property>
       </widget>
      </item>
-     <item row="8" column="0">
+     <item row="9" column="0">
       <widget class="QLabel" name="sdLabel">
        <property name="text">
         <string>Sd (m²)</string>
        </property>
       </widget>
      </item>
-     <item row="8" column="1">
+     <item row="9" column="1">
       <widget class="QDoubleSpinBox" name="sdDoubleSpinBox">
        <property name="decimals">
         <number>6</number>
        </property>
       </widget>
      </item>
-     <item row="9" column="0">
+     <item row="10" column="0">
       <widget class="QLabel" name="reLabel">
        <property name="text">
         <string>Re (Ohm)</string>
        </property>
       </widget>
      </item>
-     <item row="9" column="1">
+     <item row="10" column="1">
       <widget class="QDoubleSpinBox" name="reDoubleSpinBox">
        <property name="decimals">
         <number>3</number>
        </property>
       </widget>
      </item>
-     <item row="10" column="0">
+     <item row="11" column="0">
       <widget class="QLabel" name="leLabel">
        <property name="text">
         <string>Le (mH)</string>
        </property>
       </widget>
      </item>
-     <item row="10" column="1">
+     <item row="11" column="1">
       <widget class="QDoubleSpinBox" name="leDoubleSpinBox">
        <property name="decimals">
         <number>3</number>
        </property>
       </widget>
      </item>
-     <item row="11" column="0">
+     <item row="12" column="0">
       <widget class="QLabel" name="xmaxLabel">
        <property name="text">
         <string>Xmax (mm)</string>
        </property>
       </widget>
      </item>
-     <item row="11" column="1">
+     <item row="12" column="1">
       <widget class="QDoubleSpinBox" name="xmaxDoubleSpinBox">
        <property name="decimals">
         <number>3</number>
        </property>
       </widget>
      </item>
-     <item row="12" column="0">
+     <item row="13" column="0">
       <widget class="QLabel" name="qmsLabel">
        <property name="text">
         <string>Qms</string>
        </property>
       </widget>
      </item>
-     <item row="12" column="1">
+     <item row="13" column="1">
       <widget class="QDoubleSpinBox" name="qmsDoubleSpinBox">
        <property name="decimals">
         <number>3</number>
        </property>
       </widget>
      </item>
-     <item row="13" column="0">
+     <item row="14" column="0">
       <widget class="QLabel" name="qesLabel">
        <property name="text">
         <string>Qes</string>
        </property>
       </widget>
      </item>
-     <item row="13" column="1">
+     <item row="14" column="1">
       <widget class="QDoubleSpinBox" name="qesDoubleSpinBox">
        <property name="decimals">
         <number>3</number>
        </property>
       </widget>
      </item>
-     <item row="14" column="0">
+     <item row="15" column="0">
       <widget class="QLabel" name="splLabel">
        <property name="text">
         <string>Spl (dB)</string>
        </property>
       </widget>
      </item>
-     <item row="14" column="1">
+     <item row="15" column="1">
       <widget class="QDoubleSpinBox" name="splDoubleSpinBox">
        <property name="decimals">
         <number>3</number>
@@ -224,14 +224,14 @@
        </property>
       </widget>
      </item>
-     <item row="15" column="0">
+     <item row="16" column="0">
       <widget class="QLabel" name="peLabel">
        <property name="text">
         <string>Pe (W)</string>
        </property>
       </widget>
      </item>
-     <item row="15" column="1">
+     <item row="16" column="1">
       <widget class="QDoubleSpinBox" name="peDoubleSpinBox">
        <property name="decimals">
         <number>3</number>
@@ -241,17 +241,34 @@
        </property>
       </widget>
      </item>
-     <item row="16" column="0">
+     <item row="17" column="0">
       <widget class="QLabel" name="blLabel">
        <property name="text">
         <string>BL (Tm)</string>
        </property>
       </widget>
      </item>
-     <item row="16" column="1">
+     <item row="17" column="1">
       <widget class="QDoubleSpinBox" name="blDoubleSpinBox">
        <property name="decimals">
         <number>3</number>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="vcLabel">
+       <property name="text">
+        <string>Voice Coil</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QSpinBox" name="vcSpinBox">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>2</number>
        </property>
       </widget>
      </item>

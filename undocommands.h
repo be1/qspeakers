@@ -29,11 +29,11 @@ public:
       this->newer = newer;
     };
     void undo() override {
-        this->mainwindow->changeSpeakerNumber(older, manual);
+        this->mainwindow->changeSpeakerNumber(older);
         GenericCommand::undo();
     };
     void redo() override {
-        this->mainwindow->changeSpeakerNumber(newer, manual);
+        this->mainwindow->changeSpeakerNumber(newer);
         GenericCommand::redo();
     };
 
@@ -52,11 +52,11 @@ public:
       this->newer = newer;
     };
     void undo() override {
-        this->mainwindow->changeVendor(older, oldspeaker, manual);
+        this->mainwindow->changeVendor(older, oldspeaker);
         GenericCommand::undo();
     };
     void redo() override {
-        this->mainwindow->changeVendor(newer, Speaker(), manual);
+        this->mainwindow->changeVendor(newer, Speaker());
         GenericCommand::redo();
     };
 
@@ -75,11 +75,11 @@ public:
       this->newer = newer;
     };
     void undo() override {
-        this->mainwindow->changeModel(older, manual);
+        this->mainwindow->changeModel(older);
         GenericCommand::undo();
     };
     void redo() override {
-        this->mainwindow->changeModel(newer, manual);
+        this->mainwindow->changeModel(newer);
         GenericCommand::redo();
     };
 
@@ -97,11 +97,11 @@ public:
       this->newer = newer;
     };
     void undo() override {
-        this->mainwindow->changeSealedVolume(older, manual);
+        this->mainwindow->changeSealedVolume(older);
         GenericCommand::undo();
     };
     void redo() override {
-        this->mainwindow->changeSealedVolume(newer, manual);
+        this->mainwindow->changeSealedVolume(newer);
         GenericCommand::redo();
     };
 
@@ -119,11 +119,11 @@ public:
       this->newer = newer;
     };
     void undo() override {
-        this->mainwindow->changePortedVolume(older, manual);
+        this->mainwindow->changePortedVolume(older);
         GenericCommand::undo();
     };
     void redo() override {
-        this->mainwindow->changePortedVolume(newer, manual);
+        this->mainwindow->changePortedVolume(newer);
         GenericCommand::redo();
     };
 
@@ -141,11 +141,11 @@ public:
       this->newer = newer;
     };
     void undo() override {
-        this->mainwindow->changePortedResFreq(older, manual);
+        this->mainwindow->changePortedResFreq(older);
         GenericCommand::undo();
     };
     void redo() override {
-        this->mainwindow->changePortedResFreq(newer, manual);
+        this->mainwindow->changePortedResFreq(newer);
         GenericCommand::redo();
     };
 
@@ -163,11 +163,11 @@ public:
       this->newer = newer;
     };
     void undo() override {
-        this->mainwindow->changePortedPortNumber(older, manual);
+        this->mainwindow->changePortedPortNumber(older);
         GenericCommand::undo();
     };
     void redo() override {
-        this->mainwindow->changePortedPortNumber(newer, manual);
+        this->mainwindow->changePortedPortNumber(newer);
         GenericCommand::redo();
     };
 
@@ -185,11 +185,11 @@ public:
       this->newer = newer;
     };
     void undo() override {
-        this->mainwindow->changePortedPortDiam(older, manual);
+        this->mainwindow->changePortedPortDiam(older);
         GenericCommand::undo();
     };
     void redo() override {
-        this->mainwindow->changePortedPortDiam(newer, manual);
+        this->mainwindow->changePortedPortDiam(newer);
         GenericCommand::redo();
     };
 
@@ -207,11 +207,11 @@ public:
       this->newer = newer;
     };
     void undo() override {
-        this->mainwindow->changePortedSlotPortActivation(older, manual);
+        this->mainwindow->changePortedSlotPortActivation(older);
         GenericCommand::undo();
     };
     void redo() override {
-        this->mainwindow->changePortedSlotPortActivation(newer, manual);
+        this->mainwindow->changePortedSlotPortActivation(newer);
         GenericCommand::redo();
     };
 
@@ -229,11 +229,11 @@ public:
       this->newer = newer;
     };
     void undo() override {
-        this->mainwindow->changePortedSlotWidth(older, manual);
+        this->mainwindow->changePortedSlotWidth(older);
         GenericCommand::undo();
     };
     void redo() override {
-        this->mainwindow->changePortedSlotWidth(newer, manual);
+        this->mainwindow->changePortedSlotWidth(newer);
         GenericCommand::redo();
     };
 
@@ -250,11 +250,11 @@ public:
     {};
 
     void undo() override {
-        this->mainwindow->changeBPSealedVolume(this->older, manual);
+        this->mainwindow->changeBPSealedVolume(this->older);
         GenericCommand::undo();
     };
     void redo() override {
-        this->mainwindow->changeBPSealedVolume(this->newer, manual);
+        this->mainwindow->changeBPSealedVolume(this->newer);
         GenericCommand::redo();
     };
 };
@@ -266,11 +266,11 @@ public:
         :PortedVolumeCommand(older, newer, parent)
     {};
     void undo() override {
-        this->mainwindow->changeBPPortedVolume(older, manual);
+        this->mainwindow->changeBPPortedVolume(older);
         GenericCommand::undo();
     };
     void redo() override {
-        this->mainwindow->changeBPPortedVolume(newer, manual);
+        this->mainwindow->changeBPPortedVolume(newer);
         GenericCommand::redo();
     };
 };
@@ -283,11 +283,11 @@ public:
     {};
 
     void undo() override {
-        this->mainwindow->changeBPPortedResFreq(older, manual);
+        this->mainwindow->changeBPPortedResFreq(older);
         GenericCommand::undo();
     };
     void redo() override {
-        this->mainwindow->changeBPPortedResFreq(newer, manual);
+        this->mainwindow->changeBPPortedResFreq(newer);
         GenericCommand::redo();
     };
 };
@@ -299,11 +299,11 @@ public:
         : PortedPortNumberCommand(older, newer, parent)
     {};
     void undo() override {
-        this->mainwindow->changeBPPortedPortNumber(older, manual);
+        this->mainwindow->changeBPPortedPortNumber(older);
         GenericCommand::undo();
     };
     void redo() override {
-        this->mainwindow->changeBPPortedPortNumber(newer, manual);
+        this->mainwindow->changeBPPortedPortNumber(newer);
         GenericCommand::redo();
     };
 };
@@ -315,11 +315,11 @@ public:
         : PortedPortDiamCommand(older, newer, parent)
     {};
     void undo() override {
-        this->mainwindow->changeBPPortedPortDiam(older, manual);
+        this->mainwindow->changeBPPortedPortDiam(older);
         GenericCommand::undo();
     };
     void redo() override {
-        this->mainwindow->changeBPPortedPortDiam(newer, manual);
+        this->mainwindow->changeBPPortedPortDiam(newer);
         GenericCommand::redo();
     };
 };
