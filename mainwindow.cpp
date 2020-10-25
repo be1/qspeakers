@@ -63,7 +63,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ly3->insertWidget(0, bandpassPlot);
 
     /* test db */
-    if (!SpeakerDb::exists() || (SpeakerDb::lastModified() < SpeakerDb::pkgInstalled())) {
+    if (!SpeakerDb::exists() || (SpeakerDb::lastModified() <= SpeakerDb::pkgInstalled())) {
         QFile pkg_db(SpeakerDb::pkgPath());
         if (SpeakerDb::merge(pkg_db)) qDebug() << "merged db";
     }

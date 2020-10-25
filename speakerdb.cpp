@@ -1,6 +1,7 @@
 #include "speakerdb.h"
 
 #include <iostream>
+#include <algorithm>
 #include <QDebug>
 #include <QString>
 #include <QList>
@@ -77,7 +78,7 @@ QList<QString> SpeakerDb::getModelsByVendor(const QString& vendor)
             list.append(mdl);
     }
 
-    qSort(list);
+    std::sort(list.begin(), list.end());
     return list;
 }
 
@@ -169,23 +170,27 @@ bool SpeakerDb::merge(QFile &with)
     temp.appendChild(troot);
 
     /* first way */
+    qDebug() << "looking " + with.fileName();
     for (int i = 0; i < withlist.size(); i++) {
         bool conflict = false;
         QDomNode s_ = withlist.at(i);
         QDomElement spk_ = s_.toElement();
         QString vnd_ = spk_.attribute("vendor");
         QString mdl_ = spk_.attribute("model");
-
+        qDebug() << "element " + with.fileName() + ": " + vnd_ + ":" + mdl_;
+        qDebug() << "looking " + file.fileName();
         for (int j = 0; j < speakerlist.size(); j++) {
             QDomNode s = speakerlist.at(j);
             QDomElement spk = s.toElement();
             QString vnd = spk.attribute("vendor");
             QString mdl = spk.attribute("model");
-
+            //qDebug() << "element " + file.fileName() + ": " + vnd + ":" + mdl;
             if ((vnd.toUpper() == vnd_.toUpper()) && (mdl.toUpper() == mdl_.toUpper())) {
+                qDebug() << "CONFLICT!";
                 conflict = true;
                 ret = true;
                 /* copy the element from user's db to the temporary xml */
+                qDebug() << "import " + vnd + ":" + mdl;
                 QDomElement t = spk.cloneNode(true).toElement();
                 t.normalize();
                 troot.appendChild(t);
@@ -197,6 +202,7 @@ bool SpeakerDb::merge(QFile &with)
             continue;
 
         /* no conflict, so append the new speaker */
+        qDebug() << "import " + vnd_ + ":" + mdl_;
         QDomElement t_ = spk_.cloneNode(true).toElement();
         t_.normalize();
         troot.appendChild(t_);
@@ -210,21 +216,24 @@ bool SpeakerDb::merge(QFile &with)
     QDomNodeList templist = temp.elementsByTagName("speaker");
 
     /* second way */
+    qDebug() << "looking " + file.fileName();
     for (int i = 0; i < speakerlist.size(); i++) {
-        bool already;
+        bool already = false;
         QDomNode s = speakerlist.at(i);
         QDomElement spk = s.toElement();
         QString vnd = spk.attribute("vendor");
         QString mdl = spk.attribute("model");
-
+        qDebug() << "element " + file.fileName() + ": " + vnd + ":" + mdl;
+        qDebug() << "looking " + with.fileName();
         for (int j = 0; j < templist.size(); j++) {
             QDomNode s_ = templist.at(j);
             QDomElement spk_ = s_.toElement();
             QString vnd_ = spk_.attribute("vendor");
             QString mdl_ = spk_.attribute("model");
-
+            //qDebug() << "element " + with.fileName() + ": " + vnd_ + ":" + mdl_;
             if ((vnd.toUpper() == vnd_.toUpper()) && (mdl.toUpper() == mdl_.toUpper())) {
                 already = true;
+                qDebug() << "ALREADY!";
                 break;
             }
         }
@@ -233,6 +242,7 @@ bool SpeakerDb::merge(QFile &with)
             continue;
 
         /* not already inserted, so append the old speaker */
+        qDebug() << "import " + vnd + ":" + mdl;
         QDomElement m = spk.cloneNode(true).toElement();
         m.normalize();
         mroot.appendChild(m);
@@ -252,6 +262,7 @@ bool SpeakerDb::merge(QFile &with)
 QDateTime SpeakerDb::lastModified()
 {
     QFileInfo info(getPath());
+    qDebug() << info.filePath() + ":" + info.lastModified().toString();
     return info.lastModified();
 }
 
@@ -260,13 +271,31 @@ QDateTime SpeakerDb::pkgInstalled()
     QFile pkg_db(getPkgDbPath());
     if (pkg_db.exists()) {
         QFileInfo info(PKG_DB);
+        qDebug() << info.filePath() + ": " + info.lastModified().toString();
         return info.lastModified();
     }
 
     /* necessary if app not 'prod' installed */
-    QFile cwd_db(DB_FILENAME);
+    QFile cwd_db("./" DB_FILENAME);
     if (cwd_db.exists()) {
-        QFileInfo info(DB_FILENAME);
+        QFileInfo info("./" DB_FILENAME);
+        qDebug() << info.filePath() + ": " + info.lastModified().toString();
+        return info.lastModified();
+    }
+
+    /* necessary if app not 'prod' installed, but in my qtchart branch */
+    QFile qtchart_db("../qtcharts/" DB_FILENAME);
+    if (qtchart_db.exists()) {
+        QFileInfo info("../qtcharts/" DB_FILENAME);
+        qDebug() << info.filePath() + ": " + info.lastModified().toString();
+        return info.lastModified();
+    }
+
+    /* necessary if app not 'prod' installed, but in my qspeakers source dir */
+    QFile source_db("../qspeakers/" DB_FILENAME);
+    if (source_db.exists()) {
+        QFileInfo info("../qspeakers/" DB_FILENAME);
+        qDebug() << info.filePath() + ":" + info.lastModified().toString();
         return info.lastModified();
     }
 
@@ -281,9 +310,19 @@ QString SpeakerDb::pkgPath()
         return getPkgDbPath();
 
     /* necessary if not 'prod' installed */
-    QFile cwd_db(DB_FILENAME);
+    QFile cwd_db("./" DB_FILENAME);
     if (cwd_db.exists())
-        return DB_FILENAME;
+        return "./" DB_FILENAME;
+
+    /* necessary if not 'prod' installed, but in qtcharts branch */
+    QFile qtchart_db("../qtcharts/" DB_FILENAME);
+    if (qtchart_db.exists())
+        return "../qtcharts/" DB_FILENAME;
+
+    /* necessary if not 'prod' installed, but in qspeakers source dir */
+    QFile source_db("../qspeakers/" DB_FILENAME);
+    if (source_db.exists())
+        return "../qspeakers/" DB_FILENAME;
 
     qWarning() << "no pkg db found, return empty path!";
     return QString();
@@ -380,7 +419,7 @@ QList<QString> SpeakerDb::getVendors(void)
         list.append(vnd);
     }
 
-    qSort(list);
+    std::sort(list.begin(), list.end());
     return list;
 }
 

@@ -13,6 +13,7 @@ TEMPLATE = app
 win32-g++:HOST=__mswin
 unix:HOST=__unix
 
+CONFIG(release, debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
 
 win32-g++:contains(QMAKE_HOST.arch, x86_64):{
     message("Host is 64bit")
