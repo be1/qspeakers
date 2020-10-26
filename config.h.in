@@ -5,6 +5,7 @@
 #define PREFIX \"$$PREFIX\"
 #define VERSION \"$$VERSION\"
 #define DATADIR \"$$DATADIR\"
+#define REVISION \"$$REVISION\"
 #define $$HOST
 
 #endif

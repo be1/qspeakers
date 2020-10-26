@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
     a.setOrganizationName("Herewe");
     a.setOrganizationDomain("herewe");
     a.setApplicationName("QSpeakers");
+    a.setApplicationVersion(VERSION " (r" REVISION ")");
 
     QString locale = QLocale::system().name();
     QTranslator qtTranslator;
@@ -28,8 +29,18 @@ int main(int argc, char *argv[])
 #endif
     a.installTranslator(&qspeakersTranslator);
 
-    if (argc > 1)
-        ImportExport::setSavePath(argv[argc - 1]);
+
+    QCommandLineParser parser;
+    parser.setApplicationDescription("Loudspeaker enclosure computation program.");
+    parser.addHelpOption();
+    parser.addVersionOption();
+    parser.addPositionalArgument("project", QCoreApplication::translate("main", "Project file to work on."));
+
+    parser.process(a);
+    const QStringList args = parser.positionalArguments();
+
+    if (args.length() > 0)
+        ImportExport::setSavePath(args.at(0));
 
     MainWindow w; /* must be created _after_ setSavePath */
 #ifdef __mswin
