@@ -7,7 +7,7 @@
 QT       += core gui xml widgets printsupport charts
 
 VERSION = 1.5.2
-REVISION = $$system(svnversion)
+REVISION = $$system(svnversion|grep '[[:digit:]]' || git rev-parse --short HEAD)
 TARGET = qspeakers
 TEMPLATE = app
 
