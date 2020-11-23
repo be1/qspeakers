@@ -94,7 +94,7 @@ void Optimizer::portedAlignModerate_Inf()
     /* use M4 Moderate alignment (see http://www.mzbinden.ch/ventedalignments/index.html) */
     double vb = (2.52 * speaker.getQts() - 0.35) * speaker.getVas() * sibling;
     double fb = 0.32 * sqrt((1.0/pow(speaker.getQts(), 2.0)) + 3.38) * speaker.getFs();
-    portedAlignVb_Fb(vb, fb, QObject::tr("applying Zbinden alignement"));
+    portedAlignVb_Fb(vb, fb, QObject::tr("applying Zbinden alignment"));
 }
 
 void Optimizer::portedAlignVb_Fb(double vb, double fb, const QString& title)

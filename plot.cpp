@@ -177,6 +177,11 @@ double Plot::getXmax() const
     return xmax;
 }
 
+QLineSeries* Plot::series() const
+{
+   return curve;
+}
+
 double Plot::getXmin() const
 {
     return xmin;

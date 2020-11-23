@@ -19,6 +19,7 @@ public:
     void draw3dbVLine();
     double getXmin() const;
     double getXmax() const;
+    QLineSeries* series() const;
 
 protected:
     void initializeScales();

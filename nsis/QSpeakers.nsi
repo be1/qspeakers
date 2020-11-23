@@ -75,11 +75,17 @@ Section "Install" SecInstall
 
   SetOutPath "$INSTDIR"
   
-  ; Add program, db and translations
+  ; Add program, db, translations and scad
   File /r ../release/qspeakers.exe
   File ../qspeakers.png
   File ../qspeakers_db.xml
   File /r ../locale
+  File ../sealedbox_template.scad
+  File ../sealedbox_cutting_template.scad
+  File ../portedbox_template.scad
+  File ../portedbox_cutting_template.scad
+  File ../bandpassbox_template.scad
+  File ../bandpassbox_cutting_template.scad
   
   ; Write the installation path into the registry
   WriteRegStr HKLM SOFTWARE\QSpeakers "Install_Dir" "$INSTDIR"
@@ -128,11 +134,17 @@ SectionEnd
 
 Section "Uninstall"
 
-  ; Remove db, translations and program
+  ; Remove db, translations, program and scad
   Delete "$INSTDIR\qspeakers_db.xml"
   Delete "$INSTDIR\locale\*.*"
   Delete "$INSTDIR\qspeakers.png"
   Delete "$INSTDIR\qspeakers.exe"
+  Delete "$INSTDIR\sealedbox_template.scad"
+  Delete "$INSTDIR\sealedbox_cutting_template.scad"
+  Delete "$INSTDIR\portedbox_template.scad"
+  Delete "$INSTDIR\portedbox_cutting_template.scad"
+  Delete "$INSTDIR\bandpassbox_template.scad"
+  Delete "$INSTDIR\bandpassbox_cutting_template.scad"
 
   ; Remove translation diretory
   RMDir	"$INSTDIR\locale"

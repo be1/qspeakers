@@ -46,6 +46,10 @@ public:
     void changeBPPortedResFreq(double val);
     void changeBPPortedPortNumber(double val);
     void changeBPPortedPortDiam(double val);
+    void exportPlot(const QString& outfileName, int tabindex);
+    void exportScad3D(const QString& outfileName, int tabindex);
+    void exportScad2D(const QString& outfileName, int tabindex);
+    void exportScad(const QString &scad, const QString& outfileName, int tabindex);
 signals:
     void currentSpeakerChanged(Speaker spk);
     void currentSealedBoxChanged(SealedBox box);
@@ -110,6 +114,10 @@ public slots:
     void onBandpassAlignment();
     void onBandpassOptimizeRequested(double s, double pa);
     void onBandpassOptimizeCancelled();
+
+    void onCurvePlot();
+    void on3DScadExport();
+    void on2DScadExport();
 
 protected:
     void linkMenus();

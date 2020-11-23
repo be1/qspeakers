@@ -18,8 +18,8 @@ public:
     static void removeByVendorAndModel(const QString& vendor, const QString& model);
     static Speaker getByVendorAndModel(const QString& vendor, const QString& model);
 
-    static QList<QString> getVendors(void);
-    static QList<QString> getModelsByVendor(const QString& vendor);
+    static QList<QString> getVendors(int *maxchars = nullptr);
+    static QList<QString> getModelsByVendor(const QString& vendor, int* maxchars = nullptr);
 
     static QList<Speaker> getByVendor(const QString& vendor);
     static QList<Speaker> getByFs(double min, double max);

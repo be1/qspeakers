@@ -5,8 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui xml widgets printsupport charts
-
-VERSION = 1.5.2
+CONFIG += c++11
+VERSION = 1.6
 REVISION = $$system(svnversion|grep '[[:digit:]]' || git describe --long --tags 2>/dev/null || echo "stable")
 TARGET = qspeakers
 TEMPLATE = app
@@ -100,38 +100,43 @@ unix {
     QMAKE_EXTRA_COMPILERS += manpage
 }
 
+translations.files = $${LOCALE_DIR}
+database.files = "qspeakers_db.xml"
+scad.files = sealedbox_template.scad portedbox_template.scad bandpassbox_template.scad \
+	sealedbox_cutting_template.scad portedbox_cutting_template.scad bandpassbox_cutting_template.scad
+
 unix {
     target.path = $$BINDIR
     manual.path = $$DATADIR/man/man1
     manual.files = $${MANPAGE}.gz
     manual.CONFIG = no_check_exist
     database.path = $$DATADIR/qspeakers
-    database.files = "qspeakers_db.xml"
     translations.path = $$DATADIR/$${TARGET}
-    translations.files = $${LOCALE_DIR}
     mime.path = $$DATADIR/mime/packages
     mime.files = application-x-$${TARGET}.xml
     desktop.path = $$DATADIR/applications
     desktop.files = $${TARGET}.desktop
     icon.path = $$DATADIR/pixmaps
     icon.files = qspeakers.png
+	scad.path = $$DATADIR/$${TARGET}
     INSTALLS += target \
+            icon \
             manual \
             database \
             translations \
             mime \
             desktop \
-            icon
+	    scad
 }
 
 win32-g++ {
     target.path = $$BINDIR
     database.path = $$DATADIR
-    database.files = qspeakers_db.xml
     translations.path = $$DATADIR/$${TARGET}
-    translations.files = $${LOCALE_DIR}
+	scad.path = $$DATADIR/$${TARGET}
     RC_ICONS += qspeakers.ico
     INSTALLS += target \
             database \
             translations \
+	    scad
 }

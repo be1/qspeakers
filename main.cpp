@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     a.setOrganizationName("Herewe");
     a.setOrganizationDomain("herewe");
     a.setApplicationName("QSpeakers");
-    a.setApplicationVersion(VERSION " (r" REVISION ")");
+    a.setApplicationVersion(VERSION " (" REVISION ")");
 
     QString locale = QLocale::system().name();
     QTranslator qtTranslator;

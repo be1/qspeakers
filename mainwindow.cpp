@@ -70,7 +70,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     /* fill speaker combos */
     ui->vendorComboBox->addItems(SpeakerDb::getVendors());
+    ui->vendorComboBox->setSizeAdjustPolicy(QComboBox::SizeAdjustPolicy::AdjustToContents);
     ui->modelComboBox->addItems(SpeakerDb::getModelsByVendor(ui->vendorComboBox->currentText()));
+    ui->modelComboBox->setSizeAdjustPolicy(QComboBox::SizeAdjustPolicy::AdjustToContents);
 
     /* undo history is empty */
     this->ui->actionUndo->setEnabled(false);
@@ -98,7 +100,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     if (currentTabIndex != 2) {
         /* index != 2 needs to deactivate the bandpass alignment menu */
-        ui->actionBandpass_alignement->setEnabled(false);
+        ui->actionBandpass_alignment->setEnabled(false);
     }
 
     syncUiFromCurrentSpeaker(currentSpeaker);
@@ -415,6 +417,217 @@ void MainWindow::onBandpassOptimizeCancelled()
     bandpassDialog = nullptr;
 }
 
+void MainWindow::onCurvePlot()
+{
+    QString home = getHome();
+    QString box = ui->tabWidget->currentWidget()->objectName().replace("Tab", "Box");
+    QString f = QString("QSpeakers %1 %2").arg(currentSpeaker.getModel()).arg(box);
+    f.replace(' ', '_');
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Export for Gnuplot"), home + QDir::separator() + f + ".dat", tr("Gnuplot data (*.dat)"));
+    exportPlot(fileName, currentTabIndex);
+}
+
+void MainWindow::on3DScadExport()
+{
+    QString home = getHome();
+    QString box = ui->tabWidget->currentWidget()->objectName().replace("Tab", "Box");
+    QString f = QString("QSpeakers %1 %2 3D").arg(currentSpeaker.getModel()).arg(box);
+    f.replace(' ', '_');
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Export for 3D OpenSCAD"), home + QDir::separator() + f + ".scad", tr("OpenSCAD script (*.scad)"));
+    exportScad3D(fileName, currentTabIndex);
+}
+
+void MainWindow::on2DScadExport()
+{
+   QString home = getHome();
+   QString box = ui->tabWidget->currentWidget()->objectName().replace("Tab", "Box");
+   QString f = QString("QSpeakers %1 %2 2D").arg(currentSpeaker.getModel()).arg(box);
+   f.replace(' ', '_');
+   QString fileName = QFileDialog::getSaveFileName(this, tr("Export for 2D OpenSCAD"), home + QDir::separator() + f + ".scad", tr("OpenSCAD script (*.scad)"));
+   exportScad2D(fileName, currentTabIndex);
+}
+
+void MainWindow::exportPlot(const QString& outfileName, int tabindex)
+{
+    QFile file(outfileName);
+    QString f("# QSpeakers plot: ");
+    f += currentSpeaker.getModel() + "\n";
+    f += "# freq., dB.\n";
+
+    QLineSeries* series;
+    switch (tabindex) {
+    case 0: /* closed box */
+        series = sealedPlot->series();
+        break;
+    case 1: /* vented box */
+        series = portedPlot->series();
+        break;
+    case 2: /* bandpass box */
+        series = bandpassPlot->series();
+        break;
+    default:
+        return;
+    }
+
+    QVector<QPointF> points = series->pointsVector();
+    int len = points.length();
+
+    QString line;
+    for (int i = 0; i < len; i++) {
+        line.clear();
+        QPointF p = points.at(i);
+        line += QString("%1 %2 ").arg(p.x()).arg(p.y());
+        line.chop(1);
+        line.append('\n');
+        f.append(line);
+    }
+
+    file.open(QIODevice::WriteOnly);
+    file.write(f.toUtf8());
+    file.close();
+}
+
+/* FIXME: should be taken from a popup before to export */
+#define MARGIN 5 /* cm */
+#define WOODTHICK 2 /* cm */
+#define SAWTHICK 0.1 /* cm */
+
+void MainWindow::exportScad(const QString& scad, const QString &outfileName, int tabindex)
+{
+    QFile templ(scad);
+    templ.open(QIODevice::ReadOnly);
+    QString s = templ.readAll();
+
+    s.replace("__MODEL__", currentSpeaker.getModel());
+    s.replace("__NUMBER__", QString::number(currentSpeakerNumber));
+    s.replace("__MARGIN__", QString::number(MARGIN));
+    s.replace("__DIAMETER__", QString::number(currentSpeaker.getDia() * 100));
+    s.replace("__WOODTHICK__", QString::number(WOODTHICK));
+    s.replace("__SAWTHICK__", QString::number(SAWTHICK));
+    if (tabindex == 0) {
+        s.replace("__SEALEDBOXVOLUME__", QString::number(currentSealedBox.getVolume()));
+    } else if (tabindex == 1) {
+        s.replace("__PORTEDBOXVOLUME__", QString::number(currentPortedBox.getBoxVolume()));
+        s.replace("__PORTEDBOXPORTNUMBER__", QString::number(currentPortedBox.getPortNum()));
+    } else if (tabindex == 2) {
+        s.replace("__SEALEDBOXVOLUME__", QString::number(currentBandPassBox.getSealedBoxVolume()));
+        s.replace("__PORTEDBOXVOLUME__", QString::number(currentBandPassBox.getPortedBoxVolume()));
+        s.replace("__PORTEDBOXPORTNUMBER__", QString::number(currentBandPassBox.getPortedBoxPortNum()));
+        s.replace("__PORTEDBOXPORTSLOTWIDTH__", "0"); /* not supported yet */
+        s.replace("__PORTEDBOXPORTSLOTHEIGHT__", "0"); /* not supported yet */
+    }
+
+    if (tabindex == 1) {
+        if (currentPortedBox.getSlotPortActivated()) {
+            s.replace("__PORTEDBOXPORTSLOTACTIVATED__", "true");
+            s.replace("__PORTEDBOXPORTSLOTWIDTH__", QString::number(currentPortedBox.getSlotWidth()));
+            s.replace("__PORTEDBOXPORTSLOTHEIGHT__", QString::number(currentPortedBox.getSlotHeight()));
+        } else {
+            s.replace("__PORTEDBOXPORTSLOTACTIVATED__", "false");
+            s.replace("__PORTEDBOXPORTSLOTWIDTH__", "0");
+            s.replace("__PORTEDBOXPORTSLOTHEIGHT__", "0");
+        }
+        s.replace("__PORTEDBOXPORTDIAMETER__", QString::number(currentPortedBox.getPortDiam()));
+        s.replace("__PORTEDBOXPORTLENGTH__", QString::number(currentPortedBox.getPortLen()));
+    } else if (tabindex == 2) {
+        s.replace("__PORTEDBOXPORTSLOTACTIVATED__", "false");
+        s.replace("__PORTEDBOXPORTDIAMETER__", QString::number(currentBandPassBox.getPortedBoxPortDiam()));
+        s.replace("__PORTEDBOXPORTLENGTH__", QString::number(currentBandPassBox.getPortedBoxPortLen()));
+    }
+
+    QFile f(outfileName);
+    f.open(QIODevice::WriteOnly);
+    f.write(s.toUtf8());
+    f.close();
+}
+
+void MainWindow::exportScad3D(const QString &outfileName, int tabindex)
+{
+    QFile file(outfileName);
+    QString scad;
+
+    switch (tabindex) {
+    case 0: /* closed box */
+        /* non-prod version: */
+        scad = "../qtcharts/sealedbox_template.scad";
+        if (!QFileInfo::exists(scad))
+#ifdef __mswin
+            scad = (QCoreApplication::applicationDirPath() + QDir::separator() + "sealedbox_template.scad");
+#else
+            scad = (DATADIR "/"  TARGET  "/sealedbox_template.scad");
+#endif
+        break;
+    case 1: /* vented box */
+        /* non-prod version: */
+        scad = "../qtcharts/portedbox_template.scad";
+        if (!QFileInfo::exists(scad))
+#ifdef __mswin
+            scad = (QCoreApplication::applicationDirPath() + QDir::separator() + "sealedbox_template.scad");
+#else
+            scad = (DATADIR "/"  TARGET  "/portedbox_template.scad");
+#endif
+        break;
+    case 2: /* bandpass box */
+        /* non-prod version: */
+        scad = "../qtcharts/bandpassbox_template.scad";
+        if (!QFileInfo::exists(scad))
+#ifdef __mswin
+            scad = (QCoreApplication::applicationDirPath() + QDir::separator() + "sealedbox_template.scad");
+#else
+            scad = (DATADIR "/"  TARGET  "/bandpassbox_template.scad");
+#endif
+        break;
+    default:
+        return;
+    }
+
+    exportScad(scad, outfileName, tabindex);
+}
+
+
+void MainWindow::exportScad2D(const QString &outfileName, int tabindex)
+{
+    QFile file(outfileName);
+    QString scad;
+
+    switch (tabindex) {
+    case 0: /* closed box */
+        /* non-prod version: */
+        scad = "../qtcharts/sealedbox_cutting_template.scad";
+        if (!QFileInfo::exists(scad))
+#ifdef __mswin
+            scad = (QCoreApplication::applicationDirPath() + QDir::separator() + "sealedbox_cutting_template.scad");
+#else
+            scad = (DATADIR "/"  TARGET  "/sealedbox_cutting_template.scad");
+#endif
+        break;
+    case 1: /* vented box */
+        /* non-prod version: */
+        scad = "../qtcharts/portedbox_cutting_template.scad";
+        if (!QFileInfo::exists(scad))
+#ifdef __mswin
+            scad = (QCoreApplication::applicationDirPath() + QDir::separator() + "sealedbox_cutting_template.scad");
+#else
+            scad = (DATADIR "/"  TARGET  "/portedbox_cutting_template.scad");
+#endif
+        break;
+    case 2: /* bandpass box */
+        /* non-prod version: */
+        scad = "../qtcharts/bandpassbox_cutting_template.scad";
+        if (!QFileInfo::exists(scad))
+#ifdef __mswin
+            scad = (QCoreApplication::applicationDirPath() + QDir::separator() + "sealedbox_cutting_template.scad");
+#else
+            scad = (DATADIR "/"  TARGET  "/bandpassbox_cutting_template.scad");
+#endif
+        break;
+    default:
+        return;
+    }
+
+    exportScad(scad, outfileName, tabindex);
+}
+
 void MainWindow::linkMenus()
 {
     connect(ui->actionProjectSave, SIGNAL(triggered()), this, SLOT(onProjectSave()));
@@ -439,7 +652,12 @@ void MainWindow::linkMenus()
     connect(ui->actionKeele_Hoge, SIGNAL(triggered()), this, SLOT(onAlignKeele_Hoge()));
 
     /* bandpass alignment */
-    connect(ui->actionBandpass_alignement, SIGNAL(triggered(bool)), this, SLOT(onBandpassAlignment()));
+    connect(ui->actionBandpass_alignment, SIGNAL(triggered()), this, SLOT(onBandpassAlignment()));
+
+    /* exports menu */
+    connect(ui->actionCurve_Plot, SIGNAL(triggered()), this, SLOT(onCurvePlot()));
+    connect(ui->action3D_OpenScad, SIGNAL(triggered()), this, SLOT(on3DScadExport()));
+    connect(ui->action2D_OpenScad, SIGNAL(triggered()), this, SLOT(on2DScadExport()));
 }
 
 void MainWindow::linkTabs()
@@ -502,7 +720,7 @@ void MainWindow::unlinkMenus()
     disconnect(ui->actionKeele_Hoge, SIGNAL(triggered()), this, SLOT(onAlignKeele_Hoge()));
 
     /* bandpass alignment */
-    disconnect(ui->actionBandpass_alignement, SIGNAL(triggered(bool)), this, SLOT(onBandpassAlignment()));
+    disconnect(ui->actionBandpass_alignment, SIGNAL(triggered(bool)), this, SLOT(onBandpassAlignment()));
 }
 
 void MainWindow::unlinkTabs()
@@ -810,7 +1028,7 @@ void MainWindow::onCurrentTabChanged(int tab)
     case 0:
     {
         setActivateActions(alignments, false);
-        ui->actionBandpass_alignement->setEnabled(false);
+        ui->actionBandpass_alignment->setEnabled(false);
 
         syncUiFromCurrentSealedBox(currentSealedBox);
         break;
@@ -818,7 +1036,7 @@ void MainWindow::onCurrentTabChanged(int tab)
     case 1:
     {
         setActivateActions(alignments, true);
-        ui->actionBandpass_alignement->setEnabled(false);
+        ui->actionBandpass_alignment->setEnabled(false);
 
         syncUiFromCurrentPortedBox(currentPortedBox);
         break;
@@ -826,7 +1044,7 @@ void MainWindow::onCurrentTabChanged(int tab)
     case 2:
     {
         setActivateActions(alignments, false);
-        ui->actionBandpass_alignement->setEnabled(true);
+        ui->actionBandpass_alignment->setEnabled(true);
 
         syncUiFromCurrentBandPassBox(currentBandPassBox);
         break;

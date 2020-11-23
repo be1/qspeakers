@@ -975,7 +975,7 @@
     </widget>
     <addaction name="actionEditOptimize"/>
     <addaction name="menuPorted_alignments"/>
-    <addaction name="actionBandpass_alignement"/>
+    <addaction name="actionBandpass_alignment"/>
     <addaction name="separator"/>
     <addaction name="actionUndo"/>
     <addaction name="actionRedo"/>
@@ -995,9 +995,18 @@
     <addaction name="actionSpeakerSearch"/>
     <addaction name="actionSpeakerRemove"/>
    </widget>
+   <widget class="QMenu" name="menuExports">
+    <property name="title">
+     <string>Exports</string>
+    </property>
+    <addaction name="actionCurve_Plot"/>
+    <addaction name="action3D_OpenScad"/>
+    <addaction name="action2D_OpenScad"/>
+   </widget>
    <addaction name="menuProject"/>
    <addaction name="menuSpeaker"/>
    <addaction name="menuEdit"/>
+   <addaction name="menuExports"/>
    <addaction name="menuAbout"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -1171,9 +1180,9 @@
     <string>Moderate alignment (infinite baffle)</string>
    </property>
   </action>
-  <action name="actionBandpass_alignement">
+  <action name="actionBandpass_alignment">
    <property name="text">
-    <string>Bandpass alignement</string>
+    <string>Bandpass alignment</string>
    </property>
   </action>
   <action name="actionUndo">
@@ -1204,6 +1213,21 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="action3D_OpenScad">
+   <property name="text">
+    <string>3D OpenScad</string>
+   </property>
+  </action>
+  <action name="action2D_OpenScad">
+   <property name="text">
+    <string>2D OpenScad</string>
+   </property>
+  </action>
+  <action name="actionCurve_Plot">
+   <property name="text">
+    <string>Curve Plot</string>
    </property>
   </action>
  </widget>

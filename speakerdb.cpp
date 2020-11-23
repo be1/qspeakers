@@ -54,8 +54,9 @@ QString SpeakerDb::getPkgDbPath()
 #endif
 }
 
-QList<QString> SpeakerDb::getModelsByVendor(const QString& vendor)
+QList<QString> SpeakerDb::getModelsByVendor(const QString& vendor, int *maxchars)
 {
+    int len = 0;
     QString path = getPath();
     QFile file(path);
     QDomDocument doc = getDoc();
@@ -76,7 +77,13 @@ QList<QString> SpeakerDb::getModelsByVendor(const QString& vendor)
         QString mdl = spk.attribute("model");
         if (vnd == vendor)
             list.append(mdl);
+
+        if (mdl.length() > len)
+            len = mdl.length();
     }
+
+    if (maxchars)
+        *maxchars = len;
 
     std::sort(list.begin(), list.end());
     return list;
@@ -398,8 +405,9 @@ QList<Speaker> SpeakerDb::getByVc(int min, int max)
     return getByValue("vc", min, max);
 }
 
-QList<QString> SpeakerDb::getVendors(void)
+QList<QString> SpeakerDb::getVendors(int* maxchars)
 {
+    int len = 0;
     QString path = getPath();
     QFile file(path);
     QDomDocument doc= getDoc();
@@ -422,7 +430,13 @@ QList<QString> SpeakerDb::getVendors(void)
             continue;
 
         list.append(vnd);
+
+        if (vnd.length() > len)
+            len = vnd.length();
     }
+
+    if (maxchars)
+        *maxchars = len;
 
     std::sort(list.begin(), list.end());
     return list;
