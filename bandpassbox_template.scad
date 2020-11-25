@@ -111,10 +111,10 @@ translate([internal_closed_box_width + (2 * wood_thick) + margin, 0, 0]) {
 	for (i = [1:ported_box_port_number]) {
 	    if (ported_box_port_slot_activated == false) {
 		/* circular ports, center is used */
-		port_hole(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, i * port_placing, wood_thick + ported_box_port_diameter / 2);
+		port_hole(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, i * port_placing, wood_thick + margin + ported_box_port_diameter / 2);
 	    } else {
 		/* slot ports, left corner is used */
-		port_hole(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, (i * port_placing) - (ported_box_port_slot_width / 2),wood_thick);
+		port_hole(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, (i * port_placing) - (ported_box_port_slot_width / 2), wood_thick);
 	    }
 	}
     }

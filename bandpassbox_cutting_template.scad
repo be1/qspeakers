@@ -99,7 +99,7 @@ module board_port(width, height, diam){
 	for (i = [1:ported_box_port_number]) {
 	    if (ported_box_port_slot_activated == false) {
 		/* circular ports, center is used */
-		port(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, i * port_placing, wood_thick + ported_box_port_diameter / 2);
+		port(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, i * port_placing, wood_thick + margin + ported_box_port_diameter / 2);
 	    } else {
 		/* slot ports, left corner is used */
 		port(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, (i * port_placing) - (ported_box_port_slot_width / 2),wood_thick);

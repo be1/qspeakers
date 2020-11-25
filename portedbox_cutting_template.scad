@@ -10,7 +10,7 @@ ported_box_port_diameter = __PORTEDBOXPORTDIAMETER__;
 ported_box_port_length = __PORTEDBOXPORTLENGTH__;
 
 internal_ported_box_width = loudspeaker_diameter + margin;  /* cm (x)*/
-internal_ported_box_height = max((loudspeaker_diameter + margin) * loudspeaker_number, 1.618 * internal_ported_box_width); /* cm (z)*/
+internal_ported_box_height = max((ported_box_port_diameter + margin) + ((loudspeaker_diameter + margin) * loudspeaker_number), 1.618 * internal_ported_box_width); /* cm (z)*/
 internal_ported_box_depth = internal_ported_box_volume * 1000 / (internal_ported_box_width * internal_ported_box_height); /* cm (y)*/
 
 saw_thick = __SAWTHICK__; /* saw cut thick in cm */
@@ -50,15 +50,17 @@ module board_speaker_port(width, height, diam){
 	for (i = [1:ported_box_port_number]) {
 	    if (ported_box_port_slot_activated == false) {
 		/* circular ports, center is used */
-		port(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, i * port_placing, wood_thick + ported_box_port_diameter / 2);
+		port(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, i * port_placing, wood_thick + margin + ported_box_port_diameter / 2);
 	    } else {
 		/* slot ports, left corner is used */
-		port(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, (i * port_placing) - (ported_box_port_slot_width / 2),wood_thick);
+		port(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, (i * port_placing) - (ported_box_port_slot_width / 2), wood_thick);
 	    }
 	}
 
         for (i = [0:loudspeaker_number-1]) {
-	    speaker(diam, width / 2, margin + (diam / 2) + ported_box_port_diameter + i * (diam + margin));
+	    if (ported_box_port_slot_activated == false) {
+		speaker(diam, width / 2, margin + (diam / 2) + (ported_box_port_diameter + margin) + i * (diam + margin));
+	    }
         }
     }
 }

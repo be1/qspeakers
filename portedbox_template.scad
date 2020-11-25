@@ -13,7 +13,7 @@ wood_thick = __WOODTHICK__; /* cm */
 wood_color = "wheat";
 
 internal_ported_box_width = loudspeaker_diameter + margin;  /* cm (x)*/
-internal_ported_box_height = max(ported_box_port_diameter + (loudspeaker_diameter + margin) * loudspeaker_number, 1.618 * internal_ported_box_width); /* cm (z)*/
+internal_ported_box_height = max((ported_box_port_diameter + margin) + ((loudspeaker_diameter + margin) * loudspeaker_number), 1.618 * internal_ported_box_width); /* cm (z)*/
 internal_ported_box_depth = internal_ported_box_volume * 1000 / (internal_ported_box_width * internal_ported_box_height); /* cm (y)*/
 
 vertical_center = (internal_ported_box_height + (2 * wood_thick)) / 2;
@@ -75,7 +75,7 @@ difference() {
     for (i = [1:ported_box_port_number]) {
 	if (ported_box_port_slot_activated == false) {
 	    /* circular ports, center is used */
-	    port_hole(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, i * port_placing, wood_thick + ported_box_port_diameter / 2);
+	    port_hole(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, i * port_placing, wood_thick + margin + ported_box_port_diameter / 2);
 	} else {
 	    /* slot ports, left corner is used */
 	    port_hole(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, (i * port_placing) - (ported_box_port_slot_width / 2),wood_thick);
@@ -84,6 +84,10 @@ difference() {
 
     /* loudpeakers distribution */
     for (i = [0:loudspeaker_number-1]) {
-	speaker_hole(loudspeaker_diameter, horizontal_center, margin + (loudspeaker_diameter / 2) + ported_box_port_diameter + i * (loudspeaker_diameter + margin));
+	if (ported_box_port_slot_activated == false) {
+		speaker_hole(loudspeaker_diameter, horizontal_center, margin + (loudspeaker_diameter / 2) + (ported_box_port_diameter + margin) + i * (loudspeaker_diameter + margin));
+	} else {
+		speaker_hole(loudspeaker_diameter, horizontal_center, margin + (loudspeaker_diameter / 2) + ported_box_port_slot_height + i * (loudspeaker_diameter + margin));
+	}
     }
 }

@@ -42,7 +42,7 @@ module closed_enclosure(width, height, depth)
 }
 
 difference() {
-    closed_enclosure(internal_closed_box_width, internal_closed_box_height,internal_closed_box_depth);
+    closed_enclosure(internal_closed_box_width, internal_closed_box_height, internal_closed_box_depth);
     for (i = [0:loudspeaker_number-1]) {
         speaker_hole(loudspeaker_diameter, horizontal_center, margin + (loudspeaker_diameter / 2) + i * (loudspeaker_diameter + margin));
     }
