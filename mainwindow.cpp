@@ -262,6 +262,7 @@ void MainWindow::syncUiFromCurrentSpeaker(const Speaker& spk)
     ui->numberSpinBox->setValue(currentSpeakerNumber);
 
     /* display speaker's values */
+    ui->splValueLabel->setNum(currentSpeaker.getSpl());
     ui->fsValueLabel->setNum(currentSpeaker.getFs());
     ui->qtsValueLabel->setNum(currentSpeaker.getQts());
     ui->vasValueLabel->setNum(currentSpeaker.getVas());
@@ -1192,6 +1193,7 @@ void MainWindow::changeModel(const QString& model)
 
 void MainWindow::onCurrentSpeakerChanged(const Speaker &spk)
 {
+    ui->splValueLabel->setNum(spk.getSpl());
     ui->fsValueLabel->setNum(spk.getFs());
     ui->qtsValueLabel->setNum(spk.getQts());
     ui->vasValueLabel->setNum(spk.getVas());
