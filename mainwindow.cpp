@@ -550,7 +550,7 @@ void MainWindow::exportScad3D(const QString &outfileName, int tabindex)
     switch (tabindex) {
     case 0: /* closed box */
         /* non-prod version: */
-        scad = "../qtcharts/sealedbox_template.scad";
+        scad = "../qspeakers/sealedbox_template.scad";
         if (!QFileInfo::exists(scad))
 #ifdef __mswin
             scad = (QCoreApplication::applicationDirPath() + QDir::separator() + "sealedbox_template.scad");
@@ -560,7 +560,7 @@ void MainWindow::exportScad3D(const QString &outfileName, int tabindex)
         break;
     case 1: /* vented box */
         /* non-prod version: */
-        scad = "../qtcharts/portedbox_template.scad";
+        scad = "../qspeakers/portedbox_template.scad";
         if (!QFileInfo::exists(scad))
 #ifdef __mswin
             scad = (QCoreApplication::applicationDirPath() + QDir::separator() + "sealedbox_template.scad");
@@ -570,7 +570,7 @@ void MainWindow::exportScad3D(const QString &outfileName, int tabindex)
         break;
     case 2: /* bandpass box */
         /* non-prod version: */
-        scad = "../qtcharts/bandpassbox_template.scad";
+        scad = "../qpseakers/bandpassbox_template.scad";
         if (!QFileInfo::exists(scad))
 #ifdef __mswin
             scad = (QCoreApplication::applicationDirPath() + QDir::separator() + "sealedbox_template.scad");
@@ -594,7 +594,7 @@ void MainWindow::exportScad2D(const QString &outfileName, int tabindex)
     switch (tabindex) {
     case 0: /* closed box */
         /* non-prod version: */
-        scad = "../qtcharts/sealedbox_cutting_template.scad";
+        scad = "../qpseakers/sealedbox_cutting_template.scad";
         if (!QFileInfo::exists(scad))
 #ifdef __mswin
             scad = (QCoreApplication::applicationDirPath() + QDir::separator() + "sealedbox_cutting_template.scad");
@@ -604,7 +604,7 @@ void MainWindow::exportScad2D(const QString &outfileName, int tabindex)
         break;
     case 1: /* vented box */
         /* non-prod version: */
-        scad = "../qtcharts/portedbox_cutting_template.scad";
+        scad = "../qpseakers/portedbox_cutting_template.scad";
         if (!QFileInfo::exists(scad))
 #ifdef __mswin
             scad = (QCoreApplication::applicationDirPath() + QDir::separator() + "sealedbox_cutting_template.scad");
@@ -614,7 +614,7 @@ void MainWindow::exportScad2D(const QString &outfileName, int tabindex)
         break;
     case 2: /* bandpass box */
         /* non-prod version: */
-        scad = "../qtcharts/bandpassbox_cutting_template.scad";
+        scad = "../qpseakers/bandpassbox_cutting_template.scad";
         if (!QFileInfo::exists(scad))
 #ifdef __mswin
             scad = (QCoreApplication::applicationDirPath() + QDir::separator() + "sealedbox_cutting_template.scad");

@@ -290,14 +290,6 @@ QDateTime SpeakerDb::pkgInstalled()
         return info.lastModified();
     }
 
-    /* necessary if app not 'prod' installed, but in my qtchart branch */
-    QFile qtchart_db("../qtcharts/" DB_FILENAME);
-    if (qtchart_db.exists()) {
-        QFileInfo info("../qtcharts/" DB_FILENAME);
-        qDebug() << info.filePath() + ": " + info.lastModified().toString();
-        return info.lastModified();
-    }
-
     /* necessary if app not 'prod' installed, but in my qspeakers source dir */
     QFile source_db("../qspeakers/" DB_FILENAME);
     if (source_db.exists()) {
@@ -320,11 +312,6 @@ QString SpeakerDb::pkgPath()
     QFile cwd_db("./" DB_FILENAME);
     if (cwd_db.exists())
         return "./" DB_FILENAME;
-
-    /* necessary if not 'prod' installed, but in qtcharts branch */
-    QFile qtchart_db("../qtcharts/" DB_FILENAME);
-    if (qtchart_db.exists())
-        return "../qtcharts/" DB_FILENAME;
 
     /* necessary if not 'prod' installed, but in qspeakers source dir */
     QFile source_db("../qspeakers/" DB_FILENAME);
