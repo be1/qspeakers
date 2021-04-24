@@ -21,7 +21,7 @@
     <item>
      <widget class="QGroupBox" name="loudspeakerGroupBox">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+       <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -39,6 +39,12 @@
        </item>
        <item>
         <widget class="QSpinBox" name="numberSpinBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimum">
           <number>1</number>
          </property>
@@ -88,7 +94,7 @@
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>40</width>
+           <width>10</width>
            <height>20</height>
           </size>
          </property>
@@ -128,7 +134,7 @@
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>40</width>
+           <width>10</width>
            <height>20</height>
           </size>
          </property>
@@ -168,7 +174,7 @@
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>40</width>
+           <width>10</width>
            <height>20</height>
           </size>
          </property>
@@ -201,7 +207,7 @@
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>40</width>
+           <width>10</width>
            <height>20</height>
           </size>
          </property>
@@ -241,7 +247,7 @@
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>40</width>
+           <width>10</width>
            <height>20</height>
           </size>
          </property>
@@ -281,7 +287,7 @@
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>40</width>
+           <width>10</width>
            <height>20</height>
           </size>
          </property>
@@ -321,7 +327,7 @@
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>40</width>
+           <width>10</width>
            <height>20</height>
           </size>
          </property>
@@ -984,7 +990,7 @@
      <x>0</x>
      <y>0</y>
      <width>1033</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuProject">
@@ -1227,7 +1233,7 @@
   </action>
   <action name="actionUndo">
    <property name="icon">
-    <iconset theme="undo">
+    <iconset theme="edit-undo">
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
@@ -1242,7 +1248,7 @@
   </action>
   <action name="actionRedo">
    <property name="icon">
-    <iconset theme="redo">
+    <iconset theme="edit-redo">
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
