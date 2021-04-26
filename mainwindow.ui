@@ -45,6 +45,12 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="minimumSize">
+          <size>
+           <width>42</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="minimum">
           <number>1</number>
          </property>
