@@ -347,7 +347,7 @@ bool MainWindow::print(QPrinter *printer)
     if (!painter.begin(printer))
         return false;
 
-    QRect page = printer->pageRect();
+    QRect page = printer->pageLayout().paintRectPixels(printer->resolution());
 
     qreal step = page.height() / 4.0;
 
@@ -924,7 +924,7 @@ void MainWindow::onProjectPrint()
     QPrinter printer;
     printer.setCreator("QSpeakers");
     printer.setDocName("qspeakers_project");
-    printer.setOrientation(QPrinter::Landscape);
+    printer.setPageOrientation(QPageLayout::Landscape);
     QPrintDialog dialog(&printer, this);
     if (dialog.exec() == QDialog::Accepted) {
         if (printer.isValid()) {
