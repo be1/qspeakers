@@ -6,7 +6,7 @@
 
 QT       += core gui xml widgets printsupport charts
 CONFIG += c++11
-VERSION = 1.6.1
+VERSION = 1.6.2
 REVISION = $$system(git describe --long --tags 2>/dev/null || echo "stable")
 TARGET = qspeakers
 TEMPLATE = app
@@ -116,8 +116,8 @@ unix {
     mime.files = application-x-$${TARGET}.xml
     desktop.path = $$DATADIR/applications
     desktop.files = $${TARGET}.desktop
-    icon.path = $$DATADIR/pixmaps
-    icon.files = qspeakers.png
+    icon.path = $$DATADIR/icons/hicolor/scalable/apps
+    icon.files = qspeakers.svg
 	scad.path = $$DATADIR/$${TARGET}
     INSTALLS += target \
             icon \

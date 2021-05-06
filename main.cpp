@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 #ifdef __mswin
     QString iconpath = QCoreApplication::applicationDirPath() + QDir::separator() + TARGET + ".png";
 #else
-    QString iconpath = QString(DATADIR "/pixmaps/" TARGET ".png");
+    QString iconpath = QString(DATADIR "/icons/hicolor/scalable/apps/" TARGET ".svg");
 #endif
 #if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
     if (QFileInfo::exists(iconpath))
