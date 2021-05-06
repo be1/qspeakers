@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=QSpeakers
 Name[fr]=QSpeakers
 GenericName=Loudspeaker Enclosure Design Tool
@@ -8,6 +7,7 @@ Comment=Simulate an optimizes common loudspeaker enclosures
 Comment[fr]=Simule et optimise des enceintes acoustiques classiques
 Keywords=do it yourself;diy;box;speaker;woofer;audio;simulation;acoustics
 Keywords[fr]=bricolage;diy;boîte;haut-parleur;boomer;audio;simulation;acoustique
+TryExec=qspeakers
 Exec=qspeakers %f
 Icon=qspeakers
 Terminal=false
