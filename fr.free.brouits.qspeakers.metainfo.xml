@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>fr.free.brouits.qspeakers</id>
+  
+  <name>qspeakers</name>
+  <summary>loudspeaker design software</summary>
+  
+  <metadata_license>FSFAP</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  
+  <description>
+    <p>
+      QSpeakers is a simple graphical program that simulates common acoustical enclosures behaviour to help designing loudspeaker systems, based on the loudspeaker driver&apos;s Thiele / Small parameters and the chosen enclosure type.
+    </p>
+    <p>
+      This software is mostly useful for do-it-yourself loudspeaker enthusiasts, acoustics teaching, and to a lesser extent, for loudspeaker engineering.
+    </p>
+  </description>
+  
+  <launchable type="desktop-id">qspeakers.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <image>http://brouits.free.fr/qspeakers/qspeakers.png</image>
+    </screenshot>
+  </screenshots>
+</component>
