@@ -608,6 +608,9 @@
             </item>
             <item>
              <widget class="QDoubleSpinBox" name="portedPortDiameterDoubleSpinBox">
+              <property name="decimals">
+               <number>1</number>
+              </property>
               <property name="minimum">
                <double>0.500000000000000</double>
               </property>
@@ -647,6 +650,9 @@
              <widget class="QDoubleSpinBox" name="portedPortSlotWidthDoubleSpinBox">
               <property name="enabled">
                <bool>false</bool>
+              </property>
+              <property name="decimals">
+               <number>1</number>
               </property>
              </widget>
             </item>
@@ -928,6 +934,9 @@
             </item>
             <item>
              <widget class="QDoubleSpinBox" name="bandPassPortDiameterDoubleSpinBox">
+              <property name="decimals">
+               <number>1</number>
+              </property>
               <property name="minimum">
                <double>0.500000000000000</double>
               </property>

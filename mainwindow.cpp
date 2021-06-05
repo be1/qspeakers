@@ -295,11 +295,14 @@ void MainWindow::syncUiFromCurrentPortedBox(const PortedBox& box)
     ui->portedResonancedoubleSpinBox->setValue(box.getResFreq());
     ui->portedPortsNumberSpinBox->setValue(box.getPortNum());
     ui->portedPortDiameterDoubleSpinBox->setValue(box.getPortDiam());
-    ui->portedPortSlotWidthButton->setChecked(box.getSlotPortActivated());
-    ui->portedPortSlotWidthButton->clicked(box.getSlotPortActivated());
+    bool slotPortActivated = box.getSlotPortActivated();
+    ui->portedPortSlotWidthButton->setChecked(slotPortActivated);
+    ui->portedPortSlotWidthButton->clicked(slotPortActivated);
+    ui->portedPortSlotWidthDoubleSpinBox->setEnabled(slotPortActivated);
+    ui->portedPortSlotHeightLineEdit->setEnabled(slotPortActivated);
     ui->portedPortSlotWidthDoubleSpinBox->setValue(box.getSlotWidth());
-    ui->portedPortSlotHeightLineEdit->setText(QString::number(box.getSlotHeight(), 'f', 2));
-    ui->portedPortLengthLineEdit->setText(QString::number(box.getPortLen(), 'f', 2));
+    ui->portedPortSlotHeightLineEdit->setText(QString::number(box.getSlotHeight(), 'f', 1));
+    ui->portedPortLengthLineEdit->setText(QString::number(box.getPortLen(), 'f', 1));
 
     System s(currentSpeaker, &box, currentSpeakerNumber);
     portedPlot->clear();
@@ -319,7 +322,7 @@ void MainWindow::syncUiFromCurrentBandPassBox(const BandPassBox& box)
     ui->bandPassPortedResonanceDoubleSpinBox->setValue(box.getPortedBoxResFreq());
     ui->bandPassPortsNumberSpinBox->setValue(box.getPortedBoxPortNum());
     ui->bandPassPortDiameterDoubleSpinBox->setValue(box.getPortedBoxPortDiam());
-    ui->bandPassPortLengthLineEdit->setText(QString::number(box.getPortedBoxPortLen(), 'f', 2));
+    ui->bandPassPortLengthLineEdit->setText(QString::number(box.getPortedBoxPortLen(), 'f', 1));
 
     System s(currentSpeaker, &box, currentSpeakerNumber);
     bandpassPlot->clear();
