@@ -2,8 +2,8 @@
 <component type="desktop-application">
   <id>fr.free.brouits.qspeakers</id>
   
-  <name>qspeakers</name>
-  <summary>loudspeaker design software</summary>
+  <name>QSpeakers</name>
+  <summary>Loudspeaker design software</summary>
   
   <metadata_license>FSFAP</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
@@ -23,4 +23,10 @@
       <image>http://brouits.free.fr/qspeakers/qspeakers.png</image>
     </screenshot>
   </screenshots>
+  <url type="homepage">http://brouits.free.fr/qspeakers/</url>
+  <developer_name>Benoît Rouits</developer_name>
+  <update_contact>brouits_AT_free.fr</update_contact>
+  <provides>
+    <binary>qspeakers</bonary>
+  </provides>
 </component>

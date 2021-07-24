@@ -119,6 +119,8 @@ unix {
     icon.path = $$DATADIR/icons/hicolor/scalable/apps
     icon.files = qspeakers.svg
 	scad.path = $$DATADIR/$${TARGET}
+    metainfo.path = $$DATADIR/metainfo
+    metainfo.files = fr.free.brouits.qspeakers.metainfo.xml
     INSTALLS += target \
             icon \
             manual \
@@ -126,7 +128,8 @@ unix {
             translations \
             mime \
             desktop \
-	    scad
+            scad \
+            metainfo
 }
 
 win32-g++ {
@@ -138,5 +141,5 @@ win32-g++ {
     INSTALLS += target \
             database \
             translations \
-	    scad
+            scad
 }
