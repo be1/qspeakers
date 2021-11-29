@@ -73,29 +73,43 @@ Speaker &Speaker::operator=(const Speaker &copy)
     return *this;
 }
 
-bool Speaker::operator!=(const Speaker& r) const
+/* https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/ */
+static bool almostEqualRelative(double a, double b, double maxRelDiff = DBL_EPSILON)
 {
+    double diff = fabs(a - b);
+    a = fabs(a);
+    b = fabs(b);
 
-    return fabs(this->fs - r.getFs()) > DBL_EPSILON ||
-            fabs(this->vas - r.getVas()) > DBL_EPSILON ||
-            fabs(this->re - r.getRe()) > DBL_EPSILON ||
-            fabs(this->qts - r.getQts()) > DBL_EPSILON ||
-            fabs(this->sd - r.getSd()) > DBL_EPSILON ||
-            fabs(this->xmax - r.getXmax()) > DBL_EPSILON ||
-            fabs(this->z - r.getZ()) > DBL_EPSILON ||
-            fabs(this->dia - r.getDia()) > DBL_EPSILON ||
-            fabs(this->le - r.getLe()) > DBL_EPSILON ||
-            fabs(this->qms - r.getQms()) > DBL_EPSILON ||
-            fabs(this->qes - r.getQes()) > DBL_EPSILON ||
-            fabs(this->pe - r.getPe()) > DBL_EPSILON ||
-            fabs(this->bl - r.getBL()) > DBL_EPSILON ||
-            fabs(this->spl - r.getSpl()) > DBL_EPSILON ||
-            this->vc != r.getVc();
+    double largest = (b > a) ? b : a;
+
+    if (diff <= largest * maxRelDiff)
+        return true;
+    return false;
 }
 
 bool Speaker::operator==(const Speaker& r) const
 {
-    return !(*this != r);
+
+    return almostEqualRelative(fs, r.getFs()) &&
+            almostEqualRelative(vas, r.getVas()) &&
+            almostEqualRelative(re, r.getRe()) &&
+            almostEqualRelative(qts, r.getQts()) &&
+            almostEqualRelative(sd, r.getSd()) &&
+            almostEqualRelative(xmax, r.getXmax()) &&
+            almostEqualRelative(z, r.getZ()) &&
+            almostEqualRelative(dia, r.getDia()) &&
+            almostEqualRelative(le, r.getLe()) &&
+            almostEqualRelative(qms, r.getQms()) &&
+            almostEqualRelative(qes, r.getQes()) &&
+            almostEqualRelative(pe, r.getPe()) &&
+            almostEqualRelative(bl, r.getBL()) &&
+            almostEqualRelative(spl, r.getSpl()) &&
+            vc == r.getVc();
+}
+
+bool Speaker::operator!=(const Speaker& r) const
+{
+    return !(*this == r);
 }
 
 bool Speaker::isValid() const
