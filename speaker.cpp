@@ -1,5 +1,7 @@
 #include "speaker.h"
 #include <QDebug>
+#include <cmath>
+#include <cfloat>
 
 Speaker::Speaker() :
     fs(0.0),
@@ -73,20 +75,21 @@ Speaker &Speaker::operator=(const Speaker &copy)
 
 bool Speaker::operator!=(const Speaker& r) const
 {
-    return this->fs != r.getFs() ||
-            this->vas != r.getVas() ||
-            this->re != r.getRe() ||
-            this->qts != r.getQts() ||
-            this->sd != r.getSd() ||
-            this->xmax != r.getXmax() ||
-            this->z != r.getZ() ||
-            this->dia != r.getDia() ||
-            this->le != r.getLe() ||
-            this->qms != r.getQms() ||
-            this->qes != r.getQes() ||
-            this->pe != r.getPe() ||
-            this->bl != r.getBL() ||
-            this->spl != r.getSpl() ||
+
+    return fabs(this->fs - r.getFs()) > DBL_EPSILON ||
+            fabs(this->vas - r.getVas()) > DBL_EPSILON ||
+            fabs(this->re - r.getRe()) > DBL_EPSILON ||
+            fabs(this->qts - r.getQts()) > DBL_EPSILON ||
+            fabs(this->sd - r.getSd()) > DBL_EPSILON ||
+            fabs(this->xmax - r.getXmax()) > DBL_EPSILON ||
+            fabs(this->z - r.getZ()) > DBL_EPSILON ||
+            fabs(this->dia - r.getDia()) > DBL_EPSILON ||
+            fabs(this->le - r.getLe()) > DBL_EPSILON ||
+            fabs(this->qms - r.getQms()) > DBL_EPSILON ||
+            fabs(this->qes - r.getQes()) > DBL_EPSILON ||
+            fabs(this->pe - r.getPe()) > DBL_EPSILON ||
+            fabs(this->bl - r.getBL()) > DBL_EPSILON ||
+            fabs(this->spl - r.getSpl()) > DBL_EPSILON ||
             this->vc != r.getVc();
 }
 
