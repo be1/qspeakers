@@ -7,8 +7,8 @@ BandpassDialog::BandpassDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connect(this, SIGNAL(accepted()), this, SLOT(onAccepted()));
-    connect(this, SIGNAL(rejected()), this, SLOT(onRejected()));
+    connect(this, &BandpassDialog::accepted, this, &BandpassDialog::onAccepted);
+    connect(this, &BandpassDialog::rejected, this, &BandpassDialog::onRejected);
 }
 
 BandpassDialog::~BandpassDialog()

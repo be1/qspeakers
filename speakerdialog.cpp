@@ -14,10 +14,10 @@ SpeakerDialog::SpeakerDialog(QWidget *parent) :
     /* do not enable 'ok' since model and vendor are empty */
     ui->speakerButtonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 
-    connect(this, SIGNAL(accepted()), this, SLOT(onSpeakerAccepted()));
-    connect(this, SIGNAL(rejected()), this, SLOT(onSpeakerRejected()));
-    connect(ui->vendorLineEdit, SIGNAL(textChanged(QString)), this, SLOT(onVendorTextChanged(QString)));
-    connect(ui->modelLineEdit, SIGNAL(textChanged(QString)), this, SLOT(onModelTextChanged(QString)));
+    connect(this, &SpeakerDialog::accepted, this, &SpeakerDialog::onSpeakerAccepted);
+    connect(this, &SpeakerDialog::rejected, this, &SpeakerDialog::onSpeakerRejected);
+    connect(ui->vendorLineEdit, &QLineEdit::textChanged, this, &SpeakerDialog::onVendorTextChanged);
+    connect(ui->modelLineEdit, &QLineEdit::textChanged, this, &SpeakerDialog::onModelTextChanged);
 }
 
 SpeakerDialog::SpeakerDialog(const Speaker &edit, QWidget *parent) :
@@ -48,10 +48,10 @@ SpeakerDialog::SpeakerDialog(const Speaker &edit, QWidget *parent) :
     ui->vendorLineEdit->setText(oldVendor);
     ui->modelLineEdit->setText(oldModel);
 
-    connect(this, SIGNAL(accepted()), this, SLOT(onSpeakerAccepted()));
-    connect(this, SIGNAL(rejected()), this, SLOT(onSpeakerRejected()));
-    connect(ui->vendorLineEdit, SIGNAL(textChanged(QString)), this, SLOT(onVendorTextChanged(QString)));
-    connect(ui->modelLineEdit, SIGNAL(textChanged(QString)), this, SLOT(onModelTextChanged(QString)));
+    connect(this, &SpeakerDialog::accepted, this, &SpeakerDialog::onSpeakerAccepted);
+    connect(this, &SpeakerDialog::rejected, this, &SpeakerDialog::onSpeakerRejected);
+    connect(ui->vendorLineEdit, &QLineEdit::textChanged, this, &SpeakerDialog::onVendorTextChanged);
+    connect(ui->modelLineEdit, &QLineEdit::textChanged, this, &SpeakerDialog::onModelTextChanged);
 }
 
 SpeakerDialog::~SpeakerDialog()

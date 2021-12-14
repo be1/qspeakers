@@ -392,8 +392,8 @@ QString MainWindow::getHome()
 void MainWindow::onBandpassAlignment()
 {
     bandpassDialog = new BandpassDialog(this);
-    connect(bandpassDialog, SIGNAL(optimizeRequested(double, double)), this, SLOT(onBandpassOptimizeRequested(double, double)));
-    connect(bandpassDialog, SIGNAL(optimizeCancelled()), this, SLOT(onBandpassOptimizeCancelled()));
+    connect(bandpassDialog, &BandpassDialog::optimizeRequested, this, &MainWindow::onBandpassOptimizeRequested);
+    connect(bandpassDialog, &BandpassDialog::optimizeCancelled, this, &MainWindow::onBandpassOptimizeCancelled);
     bandpassDialog->show();
 }
 
@@ -405,8 +405,8 @@ void MainWindow::onBandpassOptimizeRequested(double s, double pa)
         emit currentBandPassBoxChanged(currentBandPassBox);
     }
 
-    disconnect(bandpassDialog, SIGNAL(optimizeRequested(double,double)), this, SLOT(onBandpassOptimizeRequested(double,double)));
-    disconnect(bandpassDialog, SIGNAL(optimizeCancelled()), this, SLOT(onBandpassOptimizeCancelled()));
+    disconnect(bandpassDialog, &BandpassDialog::optimizeRequested, this, &MainWindow::onBandpassOptimizeRequested);
+    disconnect(bandpassDialog, &BandpassDialog::optimizeCancelled, this, &MainWindow::onBandpassOptimizeCancelled);
     bandpassDialog->close();
     bandpassDialog->deleteLater();
     bandpassDialog = nullptr;
@@ -414,8 +414,8 @@ void MainWindow::onBandpassOptimizeRequested(double s, double pa)
 
 void MainWindow::onBandpassOptimizeCancelled()
 {
-    disconnect(bandpassDialog, SIGNAL(optimizeRequested(double,double)), this, SLOT(onBandpassOptimizeRequested(double,double)));
-    disconnect(bandpassDialog, SIGNAL(optimizeCancelled()), this, SLOT(onBandpassOptimizeCancelled()));
+    disconnect(bandpassDialog, &BandpassDialog::optimizeRequested, this, &MainWindow::onBandpassOptimizeRequested);
+    disconnect(bandpassDialog, &BandpassDialog::optimizeCancelled, this, &MainWindow::onBandpassOptimizeCancelled);
     bandpassDialog->close();
     bandpassDialog->deleteLater();
     bandpassDialog = nullptr;
@@ -473,7 +473,7 @@ void MainWindow::exportPlot(const QString& outfileName, int tabindex)
         return;
     }
 
-    QVector<QPointF> points = series->pointsVector();
+    QList<QPointF> points = series->points();
     int len = points.length();
 
     QString line;
@@ -634,139 +634,139 @@ void MainWindow::exportScad2D(const QString &outfileName, int tabindex)
 
 void MainWindow::linkMenus()
 {
-    connect(ui->actionProjectSave, SIGNAL(triggered()), this, SLOT(onProjectSave()));
-    connect(ui->actionProjectQuit, SIGNAL(triggered()), this, SLOT(onProjectQuit()));
-    connect(ui->actionSpeakerNew, SIGNAL(triggered()), this, SLOT(onSpeakerNew()));
-    connect(ui->actionSpeakerModify, SIGNAL(triggered()), this, SLOT(onSpeakerModify()));
-    connect(ui->actionSpeakerRemove, SIGNAL(triggered()), this, SLOT(onSpeakerRemove()));
-    connect(ui->actionProjectExport, SIGNAL(triggered()), this, SLOT(onProjectExport()));
-    connect(ui->actionProjectImport, SIGNAL(triggered()), this, SLOT(onProjectImport()));
-    connect(ui->actionEditOptimize, SIGNAL(triggered()), this, SLOT(onEditOptimize()));
-    connect(ui->actionSpeakerSearch, SIGNAL(triggered()), this, SLOT(onSpeakerSearch()));
-    connect(ui->actionProjectPrint, SIGNAL(triggered()), this, SLOT(onProjectPrint()));
-    connect(ui->actionUndo, SIGNAL(triggered()), this, SLOT(onUndo()));
-    connect(ui->actionRedo, SIGNAL(triggered()), this, SLOT(onRedo()));
-    connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(onAboutAbout()));
+    connect(ui->actionProjectSave, &QAction::triggered, this, &MainWindow::onProjectSave);
+    connect(ui->actionProjectQuit, &QAction::triggered, this, &MainWindow::onProjectQuit);
+    connect(ui->actionSpeakerNew, &QAction::triggered, this, &MainWindow::onSpeakerNew);
+    connect(ui->actionSpeakerModify, &QAction::triggered, this, &MainWindow::onSpeakerModify);
+    connect(ui->actionSpeakerRemove, &QAction::triggered, this, &MainWindow::onSpeakerRemove);
+    connect(ui->actionProjectExport, &QAction::triggered, this, &MainWindow::onProjectExport);
+    connect(ui->actionProjectImport, &QAction::triggered, this, &MainWindow::onProjectImport);
+    connect(ui->actionEditOptimize, &QAction::triggered, this, &MainWindow::onEditOptimize);
+    connect(ui->actionSpeakerSearch, &QAction::triggered, this, &MainWindow::onSpeakerSearch);
+    connect(ui->actionProjectPrint, &QAction::triggered, this, &MainWindow::onProjectPrint);
+    connect(ui->actionUndo, &QAction::triggered, this, &MainWindow::onUndo);
+    connect(ui->actionRedo, &QAction::triggered, this, &MainWindow::onRedo);
+    connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::onAboutAbout);
 
     /* ported alignments sub-menu */
-    connect(ui->actionModerate_Inf, SIGNAL(triggered()), this, SLOT(onAlignModerate_Inf()));
-    connect(ui->actionLegendre, SIGNAL(triggered()), this, SLOT(onAlignLegendre()));
-    connect(ui->actionBessel, SIGNAL(triggered()), this, SLOT(onAlignBessel()));
-    connect(ui->actionBullock, SIGNAL(triggered()), this, SLOT(onAlignBullock()));
-    connect(ui->actionKeele_Hoge, SIGNAL(triggered()), this, SLOT(onAlignKeele_Hoge()));
+    connect(ui->actionModerate_Inf, &QAction::triggered, this, &MainWindow::onAlignModerate_Inf);
+    connect(ui->actionLegendre, &QAction::triggered, this, &MainWindow::onAlignLegendre);
+    connect(ui->actionBessel, &QAction::triggered, this, &MainWindow::onAlignBessel);
+    connect(ui->actionBullock, &QAction::triggered, this, &MainWindow::onAlignBullock);
+    connect(ui->actionKeele_Hoge, &QAction::triggered, this, &MainWindow::onAlignKeele_Hoge);
 
     /* bandpass alignment */
-    connect(ui->actionBandpass_alignment, SIGNAL(triggered()), this, SLOT(onBandpassAlignment()));
+    connect(ui->actionBandpass_alignment, &QAction::triggered, this, &MainWindow::onBandpassAlignment);
 
     /* exports menu */
-    connect(ui->actionCurve_Plot, SIGNAL(triggered()), this, SLOT(onCurvePlot()));
-    connect(ui->action3D_OpenScad, SIGNAL(triggered()), this, SLOT(on3DScadExport()));
-    connect(ui->action2D_OpenScad, SIGNAL(triggered()), this, SLOT(on2DScadExport()));
+    connect(ui->actionCurve_Plot, &QAction::triggered, this, &MainWindow::onCurvePlot);
+    connect(ui->action3D_OpenScad, &QAction::triggered, this, &MainWindow::on3DScadExport);
+    connect(ui->action2D_OpenScad, &QAction::triggered, this, &MainWindow::on2DScadExport);
 }
 
 void MainWindow::linkTabs()
 {
-    connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onCurrentTabChanged(int)));
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::onCurrentTabChanged);
 
     /* spk combos action */
-    connect(ui->vendorComboBox, SIGNAL(activated(QString)), this, SLOT(onVendorChanged(QString)));
-    connect(ui->modelComboBox, SIGNAL(activated(QString)), this, SLOT(onModelChanged(QString)));
+    connect(ui->vendorComboBox, &QComboBox::textActivated, this, &MainWindow::onVendorChanged);
+    connect(ui->modelComboBox, &QComboBox::textActivated, this, &MainWindow::onModelChanged);
 
     /* drivers number spin action */
-    connect(ui->numberSpinBox, SIGNAL(valueChanged(int)), this, SLOT(onNumberSpinChanged(int)));
+    connect(ui->numberSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onNumberSpinChanged);
 
-    connect(ui->sealedVolumeDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onSealedVolumeDoubleSpinChanged(double)));
+    connect(ui->sealedVolumeDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onSealedVolumeDoubleSpinChanged);
 
-    connect(ui->portedVolumeDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onPortedVolumeDoubleSpinChanged(double)));
-    connect(ui->portedResonancedoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onPortedResonanceDoubleSpinChanged(double)));
-    connect(ui->portedPortsNumberSpinBox, SIGNAL(valueChanged(int)), this, SLOT(onPortedPortsNumberSpinChanged(int)));
-    connect(ui->portedPortDiameterDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onPortedPortDiameterDoubleSpinChanged(double)));
-    connect(ui->portedPortSlotWidthButton, SIGNAL(clicked(bool)), this, SLOT(onPortedSlotPortActivated(bool)));
-    connect(ui->portedPortSlotWidthDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onPortedSlotWidthDoubleSpinChanged(double)));
+    connect(ui->portedVolumeDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onPortedVolumeDoubleSpinChanged);
+    connect(ui->portedResonancedoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onPortedResonanceDoubleSpinChanged);
+    connect(ui->portedPortsNumberSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onPortedPortsNumberSpinChanged);
+    connect(ui->portedPortDiameterDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onPortedPortDiameterDoubleSpinChanged);
+    connect(ui->portedPortSlotWidthButton, &QPushButton::clicked, this, &MainWindow::onPortedSlotPortActivated);
+    connect(ui->portedPortSlotWidthDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onPortedSlotWidthDoubleSpinChanged);
 
-    connect(ui->bandPassSealedVolumeDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onBandPassSealedVolumeDoubleSpinChanged(double)));
-    connect(ui->bandPassPortedVolumeDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onBandPassPortedVolumeDoubleSpinChanged(double)));
-    connect(ui->bandPassPortedResonanceDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onBandPassPortedResonanceDoubleSpinChanged(double)));
-    connect(ui->bandPassPortsNumberSpinBox, SIGNAL(valueChanged(int)), this, SLOT(onBandPassPortNumSpinChanged(int)));
-    connect(ui->bandPassPortDiameterDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onBandPassPortDiameterDoubleSpinChanged(double)));
+    connect(ui->bandPassSealedVolumeDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassSealedVolumeDoubleSpinChanged);
+    connect(ui->bandPassPortedVolumeDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassPortedVolumeDoubleSpinChanged);
+    connect(ui->bandPassPortedResonanceDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassPortedResonanceDoubleSpinChanged);
+    connect(ui->bandPassPortsNumberSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onBandPassPortNumSpinChanged);
+    connect(ui->bandPassPortDiameterDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassPortDiameterDoubleSpinChanged);
 }
 
 void MainWindow::linkInternals()
 {
-    connect(this, SIGNAL(currentSpeakerChanged(Speaker)), this, SLOT(onCurrentSpeakerChanged(const Speaker&)));
-    connect(this, SIGNAL(currentSealedBoxChanged(SealedBox)), this, SLOT(onCurrentSealedBoxChanged(const SealedBox&)));
-    connect(this, SIGNAL(currentPortedBoxChanged(PortedBox)), this, SLOT(onCurrentPortedBoxChanged(const PortedBox&)));
-    connect(this, SIGNAL(currentBandPassBoxChanged(BandPassBox)), this, SLOT(onCurrentBandPassBoxChanged(const BandPassBox&)));
+    connect(this, &MainWindow::currentSpeakerChanged, this, &MainWindow::onCurrentSpeakerChanged);
+    connect(this, &MainWindow::currentSealedBoxChanged, this, &MainWindow::onCurrentSealedBoxChanged);
+    connect(this, &MainWindow::currentPortedBoxChanged, this, &MainWindow::onCurrentPortedBoxChanged);
+    connect(this, &MainWindow::currentBandPassBoxChanged, this, &MainWindow::onCurrentBandPassBoxChanged);
 
-    connect(this->commandStack, SIGNAL(canUndoChanged(bool)), ui->actionUndo, SLOT(setEnabled(bool)));
-    connect(this->commandStack, SIGNAL(canRedoChanged(bool)), ui->actionRedo, SLOT(setEnabled(bool)));
+    connect(this->commandStack, &QUndoStack::canUndoChanged, ui->actionUndo, &QAction::setEnabled);
+    connect(this->commandStack, &QUndoStack::canRedoChanged, ui->actionRedo, &QAction::setEnabled);
 }
 
 void MainWindow::unlinkMenus()
 {
-    disconnect(ui->actionProjectSave, SIGNAL(triggered()), this, SLOT(onProjectSave()));
-    disconnect(ui->actionProjectQuit, SIGNAL(triggered()), this, SLOT(onProjectQuit()));
-    disconnect(ui->actionSpeakerNew, SIGNAL(triggered()), this, SLOT(onSpeakerNew()));
-    disconnect(ui->actionSpeakerModify, SIGNAL(triggered()), this, SLOT(onSpeakerModify()));
-    disconnect(ui->actionSpeakerRemove, SIGNAL(triggered()), this, SLOT(onSpeakerRemove()));
-    disconnect(ui->actionProjectExport, SIGNAL(triggered()), this, SLOT(onProjectExport()));
-    disconnect(ui->actionProjectImport, SIGNAL(triggered()), this, SLOT(onProjectImport()));
-    disconnect(ui->actionEditOptimize, SIGNAL(triggered()), this, SLOT(onEditOptimize()));
-    disconnect(ui->actionSpeakerSearch, SIGNAL(triggered()), this, SLOT(onSpeakerSearch()));
-    disconnect(ui->actionProjectPrint, SIGNAL(triggered()), this, SLOT(onProjectPrint()));
-    disconnect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(onAboutAbout()));
+    disconnect(ui->actionProjectSave, &QAction::triggered, this, &MainWindow::onProjectSave);
+    disconnect(ui->actionProjectQuit, &QAction::triggered, this, &MainWindow::onProjectQuit);
+    disconnect(ui->actionSpeakerNew, &QAction::triggered, this, &MainWindow::onSpeakerNew);
+    disconnect(ui->actionSpeakerModify, &QAction::triggered, this, &MainWindow::onSpeakerModify);
+    disconnect(ui->actionSpeakerRemove, &QAction::triggered, this, &MainWindow::onSpeakerRemove);
+    disconnect(ui->actionProjectExport, &QAction::triggered, this, &MainWindow::onProjectExport);
+    disconnect(ui->actionProjectImport, &QAction::triggered, this, &MainWindow::onProjectImport);
+    disconnect(ui->actionEditOptimize, &QAction::triggered, this, &MainWindow::onEditOptimize);
+    disconnect(ui->actionSpeakerSearch, &QAction::triggered, this, &MainWindow::onSpeakerSearch);
+    disconnect(ui->actionProjectPrint, &QAction::triggered, this, &MainWindow::onProjectPrint);
+    disconnect(ui->actionAbout, &QAction::triggered, this, &MainWindow::onAboutAbout);
 
     /* ported alignments sub-menu */
-    disconnect(ui->actionModerate_Inf, SIGNAL(triggered()), this, SLOT(onAlignModerate_Inf()));
-    disconnect(ui->actionLegendre, SIGNAL(triggered()), this, SLOT(onAlignLegendre()));
-    disconnect(ui->actionBessel, SIGNAL(triggered()), this, SLOT(onAlignBessel()));
-    disconnect(ui->actionBullock, SIGNAL(triggered()), this, SLOT(onAlignBullock()));
-    disconnect(ui->actionKeele_Hoge, SIGNAL(triggered()), this, SLOT(onAlignKeele_Hoge()));
+    disconnect(ui->actionModerate_Inf, &QAction::triggered, this, &MainWindow::onAlignModerate_Inf);
+    disconnect(ui->actionLegendre, &QAction::triggered, this, &MainWindow::onAlignLegendre);
+    disconnect(ui->actionBessel, &QAction::triggered, this, &MainWindow::onAlignBessel);
+    disconnect(ui->actionBullock, &QAction::triggered, this, &MainWindow::onAlignBullock);
+    disconnect(ui->actionKeele_Hoge, &QAction::triggered, this, &MainWindow::onAlignKeele_Hoge);
 
     /* bandpass alignment */
-    disconnect(ui->actionBandpass_alignment, SIGNAL(triggered(bool)), this, SLOT(onBandpassAlignment()));
+    disconnect(ui->actionBandpass_alignment, &QAction::triggered, this, &MainWindow::onBandpassAlignment);
 }
 
 void MainWindow::unlinkTabs()
 {
-    disconnect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onCurrentTabChanged(int)));
+    disconnect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::onCurrentTabChanged);
 
     /* spk combos action */
-    disconnect(ui->vendorComboBox, SIGNAL(activated(QString)), this, SLOT(onVendorChanged(QString)));
-    disconnect(ui->modelComboBox, SIGNAL(activated(QString)), this, SLOT(onModelChanged(QString)));
+    disconnect(ui->vendorComboBox, &QComboBox::textActivated, this, &MainWindow::onVendorChanged);
+    disconnect(ui->modelComboBox, &QComboBox::textActivated, this, &MainWindow::onModelChanged);
 
-    disconnect(ui->numberSpinBox, SIGNAL(valueChanged(int)), this, SLOT(onNumberSpinChanged(int)));
+    disconnect(ui->numberSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onNumberSpinChanged);
 
-    disconnect(ui->sealedVolumeDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onSealedVolumeDoubleSpinChanged(double)));
+    disconnect(ui->sealedVolumeDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onSealedVolumeDoubleSpinChanged);
 
-    disconnect(ui->portedVolumeDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onPortedVolumeDoubleSpinChanged(double)));
-    disconnect(ui->portedResonancedoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onPortedResonanceDoubleSpinChanged(double)));
-    disconnect(ui->portedPortsNumberSpinBox, SIGNAL(valueChanged(int)), this, SLOT(onPortedPortsNumberSpinChanged(int)));
-    disconnect(ui->portedPortDiameterDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onPortedPortDiameterDoubleSpinChanged(double)));
-    disconnect(ui->portedPortSlotWidthButton, SIGNAL(clicked(bool)), this, SLOT(onPortedSlotPortActivated(bool)));
-    disconnect(ui->portedPortSlotWidthDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onPortedSlotWidthDoubleSpinChanged(double)));
+    disconnect(ui->portedVolumeDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onPortedVolumeDoubleSpinChanged);
+    disconnect(ui->portedResonancedoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onPortedResonanceDoubleSpinChanged);
+    disconnect(ui->portedPortsNumberSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onPortedPortsNumberSpinChanged);
+    disconnect(ui->portedPortDiameterDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onPortedPortDiameterDoubleSpinChanged);
+    disconnect(ui->portedPortSlotWidthButton, &QPushButton::clicked, this, &MainWindow::onPortedSlotPortActivated);
+    disconnect(ui->portedPortSlotWidthDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onPortedSlotWidthDoubleSpinChanged);
 
-    disconnect(ui->bandPassSealedVolumeDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onBandPassSealedVolumeDoubleSpinChanged(double)));
-    disconnect(ui->bandPassPortedVolumeDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onBandPassPortedVolumeDoubleSpinChanged(double)));
-    disconnect(ui->bandPassPortedResonanceDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onBandPassPortedResonanceDoubleSpinChanged(double)));
-    disconnect(ui->bandPassPortsNumberSpinBox, SIGNAL(valueChanged(int)), this, SLOT(onBandPassPortNumSpinChanged(int)));
-    disconnect(ui->bandPassPortDiameterDoubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onBandPassPortDiameterDoubleSpinChanged(double)));
+    disconnect(ui->bandPassSealedVolumeDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassSealedVolumeDoubleSpinChanged);
+    disconnect(ui->bandPassPortedVolumeDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassPortedVolumeDoubleSpinChanged);
+    disconnect(ui->bandPassPortedResonanceDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassPortedResonanceDoubleSpinChanged);
+    disconnect(ui->bandPassPortsNumberSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onBandPassPortNumSpinChanged);
+    disconnect(ui->bandPassPortDiameterDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassPortDiameterDoubleSpinChanged);
 }
 
 void MainWindow::unlinkInternals()
 {
-    disconnect(this, SIGNAL(currentSpeakerChanged(Speaker)), this, SLOT(onCurrentSpeakerChanged(const Speaker&)));
-    disconnect(this, SIGNAL(currentSealedBoxChanged(SealedBox)), this, SLOT(onCurrentSealedBoxChanged(const SealedBox&)));
-    disconnect(this, SIGNAL(currentPortedBoxChanged(PortedBox)), this, SLOT(onCurrentPortedBoxChanged(const PortedBox&)));
-    disconnect(this, SIGNAL(currentBandPassBoxChanged(BandPassBox)), this, SLOT(onCurrentBandPassBoxChanged(const BandPassBox&)));
+    disconnect(this, &MainWindow::currentSpeakerChanged, this, &MainWindow::onCurrentSpeakerChanged);
+    disconnect(this, &MainWindow::currentSealedBoxChanged, this, &MainWindow::onCurrentSealedBoxChanged);
+    disconnect(this, &MainWindow::currentPortedBoxChanged, this, &MainWindow::onCurrentPortedBoxChanged);
+    disconnect(this, &MainWindow::currentBandPassBoxChanged, this, &MainWindow::onCurrentBandPassBoxChanged);
 }
 
 void MainWindow::onSpeakerNew()
 {
     isModifying = false;
     spkDialog = new SpeakerDialog(this);
-    connect(spkDialog, SIGNAL(speakerInserted(Speaker)), this, SLOT(onSpeakerInserted(Speaker)));
-    connect(spkDialog, SIGNAL(speakerCancelled()), this, SLOT(onSpeakerCancelled()));
+    connect(spkDialog, &SpeakerDialog::speakerInserted, this, &MainWindow::onSpeakerInserted);
+    connect(spkDialog, &SpeakerDialog::speakerCancelled, this, &MainWindow::onSpeakerCancelled);
     spkDialog->show();
 }
 
@@ -807,8 +807,8 @@ void MainWindow::onSpeakerModify()
 {
     isModifying = true;
     spkDialog = new SpeakerDialog(currentSpeaker, this);
-    connect(spkDialog, SIGNAL(speakerInserted(Speaker)), this, SLOT(onSpeakerInserted(Speaker)));
-    connect(spkDialog, SIGNAL(speakerCancelled()), this, SLOT(onSpeakerCancelled()));
+    connect(spkDialog, &SpeakerDialog::speakerInserted, this, &MainWindow::onSpeakerInserted);
+    connect(spkDialog, &SpeakerDialog::speakerCancelled, this,&MainWindow:: onSpeakerCancelled);
     spkDialog->show();
 }
 
@@ -834,8 +834,8 @@ void MainWindow::onSpeakerInserted(Speaker spk)
     /* spk has been inserted or modified: remove anyway notInDbSpeaker */
     notInDbSpeaker = nullptr;
 
-    disconnect(spkDialog, SIGNAL(speakerInserted(Speaker)), this, SLOT(onSpeakerInserted(Speaker)));
-    disconnect(spkDialog, SIGNAL(speakerCancelled()), this, SLOT(onSpeakerCancelled()));
+    disconnect(spkDialog, &SpeakerDialog::speakerInserted, this, &MainWindow::onSpeakerInserted);
+    disconnect(spkDialog, &SpeakerDialog::speakerCancelled, this, &MainWindow::onSpeakerCancelled);
     spkDialog->close();
     spkDialog->deleteLater();
     spkDialog = nullptr;
@@ -843,8 +843,8 @@ void MainWindow::onSpeakerInserted(Speaker spk)
 
 void MainWindow::onSpeakerCancelled()
 {
-    disconnect(spkDialog, SIGNAL(speakerInserted(Speaker)), this, SLOT(onSpeakerInserted(Speaker)));
-    disconnect(spkDialog, SIGNAL(speakerCancelled()), this, SLOT(onSpeakerCancelled()));
+    disconnect(spkDialog, &SpeakerDialog::speakerInserted, this, &MainWindow::onSpeakerInserted);
+    disconnect(spkDialog, &SpeakerDialog::speakerCancelled, this, &MainWindow::onSpeakerCancelled);
     spkDialog->close();
     spkDialog->deleteLater();
     spkDialog = nullptr;
@@ -917,8 +917,8 @@ void MainWindow::onAlignBullock()
 void MainWindow::onSpeakerSearch()
 {
     searchDialog = new SearchDialog(this);
-    connect(searchDialog, SIGNAL(searchRequested(const QString&, double, double)), this, SLOT(onSearchRequested(const QString&, double, double)));
-    connect(searchDialog, SIGNAL(searchCancelled()), this, SLOT(onSearchCancelled()));
+    connect(searchDialog, &SearchDialog::searchRequested, this, &MainWindow::onSearchRequested);
+    connect(searchDialog,&SearchDialog::searchCancelled, this, &MainWindow::onSearchCancelled);
     searchDialog->show();
 }
 
@@ -965,23 +965,23 @@ void MainWindow::onAboutAbout()
 
 void MainWindow::onSearchRequested(const QString& param, double min, double max)
 {
-    disconnect(searchDialog, SIGNAL(searchRequested(const QString&, double, double)), this, SLOT(onSearchRequested(const QString&, double, double)));
-    disconnect(searchDialog, SIGNAL(searchCancelled()), this, SLOT(onSearchCancelled()));
+    disconnect(searchDialog, &SearchDialog::searchRequested, this, &MainWindow::onSearchRequested);
+    disconnect(searchDialog, &SearchDialog::searchCancelled, this, &MainWindow::onSearchCancelled);
     searchDialog->close();
     searchDialog->deleteLater();
     searchDialog = nullptr;
 
     QList<Speaker> speakers = SpeakerDb::getByValue(param, min, max);
     listDialog = new ListDialog(speakers, this);
-    connect(listDialog, SIGNAL(speakerItemSelected(QString, const Speaker&)), this, SLOT(onSpeakerItemSelected(QString, const Speaker&)));
-    connect(listDialog, SIGNAL(speakerItemCancelled()), this, SLOT(onSpeakerItemCancelled()));
+    connect(listDialog, &ListDialog::speakerItemSelected, this, &MainWindow::onSpeakerItemSelected);
+    connect(listDialog, &ListDialog::speakerItemCancelled, this, &MainWindow::onSpeakerItemCancelled);
     listDialog->show();
 }
 
 void MainWindow::onSearchCancelled()
 {
-    disconnect(searchDialog, SIGNAL(searchRequested(const QString&, double, double)), this, SLOT(onSearchRequested(const QString&, double, double)));
-    disconnect(searchDialog, SIGNAL(searchCancelled()), this, SLOT(onSearchCancelled()));
+    disconnect(searchDialog, &SearchDialog::searchRequested, this, &MainWindow::onSearchRequested);
+    disconnect(searchDialog, &SearchDialog::searchCancelled, this, &MainWindow::onSearchCancelled);
     searchDialog->close();
     searchDialog->deleteLater();
     searchDialog = nullptr;
@@ -995,8 +995,8 @@ void MainWindow::onSpeakerItemSelected(QString title, const Speaker& speaker)
         syncUiFromCurrentSpeaker(speaker);
     }
 
-    disconnect(listDialog, SIGNAL(speakerItemSelected(QString, const Speaker&)), this, SLOT(onSpeakerItemSelected(QString, const Speaker&)));
-    disconnect(listDialog, SIGNAL(speakerItemCancelled()), this, SLOT(onSpeakerItemCancelled()));
+    disconnect(listDialog, &ListDialog::speakerItemSelected, this, &MainWindow::onSpeakerItemSelected);
+    disconnect(listDialog, &ListDialog::speakerItemCancelled, this, &MainWindow::onSpeakerItemCancelled);
     listDialog->close();
     listDialog->deleteLater();
     listDialog = nullptr;
@@ -1004,8 +1004,8 @@ void MainWindow::onSpeakerItemSelected(QString title, const Speaker& speaker)
 
 void MainWindow::onSpeakerItemCancelled()
 {
-    disconnect(listDialog, SIGNAL(speakerItemSelected(QString,const Speaker&)), this, SLOT(onSpeakerItemSelected(QString,const Speaker&)));
-    disconnect(listDialog, SIGNAL(speakerItemCancelled()), this, SLOT(onSpeakerItemCancelled()));
+    disconnect(listDialog, &ListDialog::speakerItemSelected, this, &MainWindow::onSpeakerItemSelected);
+    disconnect(listDialog, &ListDialog::speakerItemCancelled, this, &MainWindow::onSpeakerItemCancelled);
     listDialog->close();
     listDialog->deleteLater();
     listDialog = nullptr;

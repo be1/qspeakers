@@ -13,8 +13,8 @@ SearchDialog::SearchDialog(QWidget *parent) :
 
     ui->searchComboBox->addItems(params);
 
-    connect(this, SIGNAL(accepted()), this, SLOT(onAccepted()));
-    connect(this, SIGNAL(rejected()), this, SLOT(onRejected()));
+    connect(this, &SearchDialog::accepted, this, &SearchDialog::onAccepted);
+    connect(this, &SearchDialog::rejected, this, &SearchDialog::onRejected);
 }
 
 SearchDialog::~SearchDialog()

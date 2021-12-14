@@ -16,7 +16,9 @@ QString ImportExport::getSavePath(void)
         return ImportExport::savePath;
     }
 
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+    QString prefix = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+#elif QT_VERSION >= QT_VERSION_CHECK(5,0,0)
     QString prefix = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 #else
     QString prefix = QDesktopServices::storageLocation(QDesktopServices::DataLocation);

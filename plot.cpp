@@ -1,7 +1,9 @@
 #include "plot.h"
 #include <QtCharts/QtCharts>
 
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 using namespace QtCharts;
+#endif
 
 Plot::Plot(QWidget *parent) :
     QChartView(parent),

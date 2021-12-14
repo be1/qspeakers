@@ -52,8 +52,8 @@ ListDialog::ListDialog(const QList<Speaker> &speakers, QWidget *parent) :
     ui->setupUi(this);
 
     setSpeakerItems(speakers);
-    connect(this, SIGNAL(accepted()), this, SLOT(onAccepted()));
-    connect(this, SIGNAL(rejected()), this, SLOT(onRejected()));
+    connect(this, &ListDialog::accepted, this, &ListDialog::onAccepted);
+    connect(this, &ListDialog::rejected, this, &ListDialog::onRejected);
 }
 
 ListDialog::~ListDialog()

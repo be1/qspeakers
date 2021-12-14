@@ -1,5 +1,6 @@
 #include "speaker.h"
 #include <QDebug>
+#include <QLocale>
 #include <cmath>
 #include <cfloat>
 

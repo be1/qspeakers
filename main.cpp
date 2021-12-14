@@ -16,8 +16,13 @@ int main(int argc, char *argv[])
 
     QString locale = QLocale::system().name();
     QTranslator qtTranslator;
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+    qtTranslator.load("qt_" + locale,
+            QLibraryInfo::path(QLibraryInfo::TranslationsPath));
+#else
     qtTranslator.load("qt_" + locale,
             QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+#endif
     a.installTranslator(&qtTranslator);
 
     QTranslator qspeakersTranslator;
