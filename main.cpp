@@ -17,22 +17,24 @@ int main(int argc, char *argv[])
     QString locale = QLocale::system().name();
     QTranslator qtTranslator;
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-    qtTranslator.load("qt_" + locale,
-            QLibraryInfo::path(QLibraryInfo::TranslationsPath));
+    if (qtTranslator.load(QLocale::system(), u"qtbase"_qs, u"_"_qs,
+                          QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
+        a.installTranslator(&qtTranslator);
 #else
     qtTranslator.load("qt_" + locale,
             QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-#endif
     a.installTranslator(&qtTranslator);
+#endif
 
     QTranslator qspeakersTranslator;
-    if (!qspeakersTranslator.load(TARGET "_" + locale, "locale"))
+    if (qspeakersTranslator.load(TARGET "_" + locale, "locale"))
+        a.installTranslator(&qspeakersTranslator);
 #ifdef __mswin
-        qspeakersTranslator.load(TARGET "_" + locale, QCoreApplication::applicationDirPath() + QDir::separator() + "locale");
+    else if (qspeakersTranslator.load(TARGET "_" + locale, QCoreApplication::applicationDirPath() + QDir::separator() + "locale"))
 #else
-        qspeakersTranslator.load(TARGET "_" + locale, DATADIR "/" TARGET "/locale");
+    else if (qspeakersTranslator.load(TARGET "_" + locale, DATADIR "/" TARGET "/locale"))
 #endif
-    a.installTranslator(&qspeakersTranslator);
+        a.installTranslator(&qspeakersTranslator);
 
 
     QCommandLineParser parser;
