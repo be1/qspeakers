@@ -139,6 +139,10 @@ void MainWindow::onProjectExport()
     QString home = MainWindow::getHome();
     QString fileName = QFileDialog::getSaveFileName(this, tr("Export File"), home + tr("/untitled.qsp"), tr("QSpeakers project (*.qsp)"));
 
+    /* user cancelled */
+    if (fileName.isEmpty())
+        return;
+
     QFile file(fileName);
     ImportExport::exportProject(file, currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, currentSpeakerNumber, currentTabIndex);
 }
@@ -428,6 +432,11 @@ void MainWindow::onCurvePlot()
     QString f = QString("QSpeakers %1 %2").arg(currentSpeaker.getModel()).arg(box);
     f.replace(' ', '_');
     QString fileName = QFileDialog::getSaveFileName(this, tr("Export for Gnuplot"), home + QDir::separator() + f + ".dat", tr("Gnuplot data (*.dat)"));
+
+    /* user cancelled */
+    if (fileName.isEmpty())
+        return;
+
     exportPlot(fileName, currentTabIndex);
 }
 
@@ -438,6 +447,11 @@ void MainWindow::on3DScadExport()
     QString f = QString("QSpeakers %1 %2 3D").arg(currentSpeaker.getModel()).arg(box);
     f.replace(' ', '_');
     QString fileName = QFileDialog::getSaveFileName(this, tr("Export for 3D OpenSCAD"), home + QDir::separator() + f + ".scad", tr("OpenSCAD script (*.scad)"));
+
+    /* user cancelled */
+    if (fileName.isEmpty())
+        return;
+
     exportScad3D(fileName, currentTabIndex);
 }
 
@@ -448,6 +462,11 @@ void MainWindow::on2DScadExport()
    QString f = QString("QSpeakers %1 %2 2D").arg(currentSpeaker.getModel()).arg(box);
    f.replace(' ', '_');
    QString fileName = QFileDialog::getSaveFileName(this, tr("Export for 2D OpenSCAD"), home + QDir::separator() + f + ".scad", tr("OpenSCAD script (*.scad)"));
+
+    /* user cancelled */
+    if (fileName.isEmpty())
+        return;
+
    exportScad2D(fileName, currentTabIndex);
 }
 
