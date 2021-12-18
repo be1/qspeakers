@@ -9,10 +9,11 @@ Plot::Plot(QWidget *parent) :
     QChartView(parent),
     xmin(10.0),
     xmax(1000.0),
-    pointerLabel(nullptr),
     vLine(nullptr),
-    vLabel(nullptr)
+    vLine3db(nullptr),
+    vLabel3db(nullptr)
 {
+    setCursor(Qt::CrossCursor);
     initializeChart();
     initializeCurve();
     initializeScales();
@@ -22,10 +23,11 @@ Plot::Plot(QString title, QWidget *parent) :
     QChartView(parent),
     xmin(10.0),
     xmax(1000.0),
-    pointerLabel(nullptr),
     vLine(nullptr),
-    vLabel(nullptr)
+    vLine3db(nullptr),
+    vLabel3db(nullptr)
 {
+    setCursor(Qt::CrossCursor);
     initializeChart(title);
     initializeCurve();
     initializeScales();
@@ -37,8 +39,8 @@ Plot::~Plot()
     delete curve;
     delete chart;
     delete vLine;
-    delete vLabel;
-    delete pointerLabel;
+    delete vLine3db;
+    delete vLabel3db;
 }
 
 void Plot::appendPointF(const QPointF &pointf)
@@ -82,22 +84,20 @@ void Plot::draw3dbVLine()
     QPointF value2 = QPoint(x, y2);
     QPointF point2 = chart->mapToPosition(value2);
     QLineF line (point1, point2);
-    if (vLine) {
-        this->scene()->removeItem(vLine);
-        delete vLine;
-        vLine = nullptr;
+    if (vLine3db) {
+        this->scene()->removeItem(vLine3db);
+        delete vLine3db;
     }
-    vLine = this->scene()->addLine(line, QPen(Qt::DashLine));
+    vLine3db = this->scene()->addLine(line, QPen(Qt::DashLine));
 
-    if (vLabel) {
-        this->scene()->removeItem(vLabel);
-        delete vLabel;
-        vLabel = nullptr;
+    if (vLabel3db) {
+        this->scene()->removeItem(vLabel3db);
+        delete vLabel3db;
     }
     QString label = QString(tr("%1 dB at %2 Hz")).arg(-3.0).arg(round(x));
-    vLabel = this->scene()->addSimpleText(label);
+    vLabel3db = this->scene()->addSimpleText(label);
     QPointF pos = chart->mapToPosition(value1);
-    vLabel->setPos(pos);
+    vLabel3db->setPos(pos);
 }
 
 void Plot::resizeEvent(QResizeEvent *event)
@@ -106,41 +106,65 @@ void Plot::resizeEvent(QResizeEvent *event)
     draw3dbVLine();
 }
 
-void Plot::mousePressEvent(QMouseEvent *event)
+bool Plot::viewportEvent(QEvent *event)
 {
-    if (!pointerLabel) {
-        QPoint pos = event->pos();
-        QPointF val = chart->mapToValue(pos);
-        double y = curveYfromX(val.x());
-        QString label = QString(tr("%1 dB at %2 Hz")).arg(round(y)).arg(round(val.x()));
-        pointerLabel = this->scene()->addSimpleText(label);
-        pointerLabel->setPos(pos.x() - pointerLabel->boundingRect().width(), pos.y() - pointerLabel->boundingRect().height());
-        event->accept();
+    switch (event->type()) {
+        case QEvent::ToolTip:
+            return false;
+        default:
+            break;
     }
+
+    return QChartView::viewportEvent(event);
 }
 
 void Plot::mouseMoveEvent(QMouseEvent *event)
 {
-    if (pointerLabel) {
-        QPoint pos = event->pos();
-        QPointF val = chart->mapToValue(pos);
-        double y = curveYfromX(val.x());
-        QString label = QString(tr("%1 dB at %2 Hz")).arg(round(y)).arg(round(val.x()));
-        pointerLabel->setText(label);
-        pointerLabel->setPos(pos.x() - pointerLabel->boundingRect().width(), pos.y() - pointerLabel->boundingRect().height());
-        event->accept();
-    }
+    if (event->buttons() != Qt::LeftButton)
+        return;
+
+    QPoint pos = event->pos();
+    QPointF val = chart->mapToValue(pos);
+    double y = curveYfromX(val.x());
+    QString label = QString(tr("%1 dB at %2 Hz")).arg(round(y)).arg(round(val.x()));
+
+    QToolTip::showText(event->globalPos(), label, this, QRect(), 10000);
+
+    drawVLine(pos);
+
+    event->accept();
+}
+
+void Plot::mousePressEvent(QMouseEvent *event)
+{
+
+    if (event->buttons() != Qt::LeftButton)
+        return;
+
+    QPoint pos = event->pos();
+
+    QPointF val = chart->mapToValue(pos);
+    double y = curveYfromX(val.x());
+    QString label = QString(tr("%1 dB at %2 Hz")).arg(round(y)).arg(round(val.x()));
+
+    QToolTip::showText(event->globalPos(), label, this, QRect(), 10000);
+
+    drawVLine(pos);
+
+    event->accept();
 }
 
 void Plot::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (pointerLabel) {
-        this->scene()->removeItem(pointerLabel);
-        delete pointerLabel;
-        pointerLabel = nullptr;
-        event->accept();
+    if (vLine) {
+        this->scene()->removeItem(vLine);
+        delete vLine;
+        vLine = nullptr;
     }
+
+    event->accept();
 }
+
 double Plot::curveXfromY(double y)
 {
     double x = 1.0;
@@ -172,6 +196,27 @@ double Plot::curveYfromX(double x)
     }
 
     return y;
+}
+
+void Plot::drawVLine(QPoint pos)
+{
+    QPointF val = chart->mapToValue(pos);
+
+    /* redraw dashed vertical line */
+    double x = val.x();
+    QValueAxis* yaxis0 = qobject_cast<QValueAxis*>(chart->axes(Qt::Vertical, curve).at(0));
+    double ymin = yaxis0->min();
+    double ymax = yaxis0->max();
+    QPointF value1(x, ymin);
+    QPointF point1 = chart->mapToPosition(value1);
+    QPointF value2(x, ymax);
+    QPointF point2 = chart->mapToPosition(value2);
+    QLineF line (point1, point2);
+    if (vLine) {
+        this->scene()->removeItem(vLine);
+        delete vLine;
+    }
+    vLine = this->scene()->addLine(line, QPen(Qt::DashLine));
 }
 
 double Plot::getXmax() const

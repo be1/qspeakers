@@ -26,11 +26,13 @@ protected:
     void initializeChart(const QString& title = nullptr);
     void initializeCurve();
     void resizeEvent(QResizeEvent *event);
-    void mousePressEvent(QMouseEvent *event);
+    bool viewportEvent(QEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent* event);
+    void mouseReleaseEvent(QMouseEvent* event);
     double curveXfromY(double y);
     double curveYfromX(double x);
+    void drawVLine(QPoint pos);
 private:
     QLineSeries *curve;
     QChart *chart;
@@ -38,7 +40,8 @@ private:
     double xmax;
     QGraphicsSimpleTextItem *pointerLabel;
     QGraphicsLineItem *vLine;
-    QGraphicsSimpleTextItem *vLabel;
+    QGraphicsLineItem *vLine3db;
+    QGraphicsSimpleTextItem *vLabel3db;
 };
 
 #endif // PLOT_H
