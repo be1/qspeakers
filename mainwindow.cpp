@@ -45,8 +45,14 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    /* insert QChartView plotters in ui */
+    /* setup maximums of spinbox */
+    ui->numberSpinBox->setMaximum(std::numeric_limits<int>::max());
+    ui->sealedVolumeDoubleSpinBox->setMaximum(std::numeric_limits<double>::max());
+    ui->portedVolumeDoubleSpinBox->setMaximum(std::numeric_limits<double>::max());
+    ui->bandPassSealedVolumeDoubleSpinBox->setMaximum(std::numeric_limits<double>::max());
+    ui->bandPassPortedVolumeDoubleSpinBox->setMaximum(std::numeric_limits<double>::max());
 
+    /* insert QChartView plotters in ui */
     QHBoxLayout *ly1 = new QHBoxLayout(ui->sealedVolumePlotWidget);
     sealedPlot = new Plot(tr("Sealed volume frequency response"), ui->sealedVolumePlotWidget);
     sealedPlot->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Ignored);
