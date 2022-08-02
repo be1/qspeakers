@@ -368,7 +368,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="sealedTab">
        <attribute name="title">
@@ -935,7 +935,50 @@
              </widget>
             </item>
             <item>
-             <spacer name="bandPassPortHorizontalSpacer">
+             <spacer name="bandPassPortHorizontalSpacer1">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="bandpassPortSlotWidthButton">
+              <property name="text">
+               <string>Slot port</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="bandpassPortSlotWidthDoubleSpinBox"/>
+            </item>
+            <item>
+             <widget class="QLabel" name="bandpassPortSlotMultLabel">
+              <property name="text">
+               <string>x</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="bandpassPortSlotHeightLineEdit"/>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>cm</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="bandpassPortHorizontalSpacer2">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>

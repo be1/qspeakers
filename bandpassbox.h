@@ -19,15 +19,22 @@ public:
     void setPortedBoxPortNum(unsigned int val);
     void setPortedBoxPortLen(double len);
     void setPortedBoxPortDiam(double diam);
+    void setPortedBoxSlotWidth(double width);
     void setPortedBoxResFreq(double freq);
+    void setPortedBoxSlotPortActivated(bool enable);
+
     void updatePortedBoxPorts(double sd, double xmax);
     void updatePortedBoxPortsLength();
+    void updatePortedBoxSlots();
 
     double getSealedBoxVolume(void) const;
     double getPortedBoxVolume(void) const;
     unsigned int getPortedBoxPortNum(void) const;
     double getPortedBoxPortLen(void) const;
     double getPortedBoxPortDiam(void) const;
+    bool getPortedBoxSlotPortActivated(void) const;
+    double getPortedBoxSlotWidth() const;
+    double getPortedBoxSlotHeight() const;
     double getPortedBoxResFreq(void) const;
 
     QDomElement toDomElement(QDomDocument& doc) const;   

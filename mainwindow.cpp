@@ -56,6 +56,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->bandPassPortedVolumeDoubleSpinBox->setMaximum(std::numeric_limits<double>::max());
     ui->bandPassPortsNumberSpinBox->setMaximum(std::numeric_limits<int>::max());
     ui->bandPassPortDiameterDoubleSpinBox->setMaximum(std::numeric_limits<double>::max());
+    ui->bandpassPortSlotWidthDoubleSpinBox->setMaximum(std::numeric_limits<double>::max());
 
     /* insert QChartView plotters in ui */
     QHBoxLayout *ly1 = new QHBoxLayout(ui->sealedVolumePlotWidget);
@@ -337,6 +338,13 @@ void MainWindow::syncUiFromCurrentBandPassBox(const BandPassBox& box)
     ui->bandPassPortedResonanceDoubleSpinBox->setValue(box.getPortedBoxResFreq());
     ui->bandPassPortsNumberSpinBox->setValue(box.getPortedBoxPortNum());
     ui->bandPassPortDiameterDoubleSpinBox->setValue(box.getPortedBoxPortDiam());
+    bool slotPortActivated = box.getPortedBoxSlotPortActivated();
+    ui->bandpassPortSlotWidthButton->setChecked(slotPortActivated);
+    ui->bandpassPortSlotWidthButton->clicked(slotPortActivated);
+    ui->bandpassPortSlotWidthDoubleSpinBox->setEnabled(slotPortActivated);
+    ui->bandpassPortSlotHeightLineEdit->setEnabled(slotPortActivated);
+    ui->bandpassPortSlotWidthDoubleSpinBox->setValue(box.getPortedBoxSlotWidth());
+    ui->bandpassPortSlotHeightLineEdit->setText(QString::number(box.getPortedBoxSlotHeight(), 'f', 1));
     ui->bandPassPortLengthLineEdit->setText(QString::number(box.getPortedBoxPortLen(), 'f', 1));
 
     System s(currentSpeaker, &box, currentSpeakerNumber);
@@ -719,6 +727,8 @@ void MainWindow::linkTabs()
     connect(ui->bandPassPortedResonanceDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassPortedResonanceDoubleSpinChanged);
     connect(ui->bandPassPortsNumberSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onBandPassPortNumSpinChanged);
     connect(ui->bandPassPortDiameterDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassPortDiameterDoubleSpinChanged);
+    connect(ui->bandpassPortSlotWidthButton, &QPushButton::clicked, this, &MainWindow::onBandPassSlotPortActivated);
+    connect(ui->bandpassPortSlotWidthDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassSlotWidthDoubleSpinChanged);
 }
 
 void MainWindow::linkInternals()
@@ -781,6 +791,8 @@ void MainWindow::unlinkTabs()
     disconnect(ui->bandPassPortedResonanceDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassPortedResonanceDoubleSpinChanged);
     disconnect(ui->bandPassPortsNumberSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onBandPassPortNumSpinChanged);
     disconnect(ui->bandPassPortDiameterDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassPortDiameterDoubleSpinChanged);
+    disconnect(ui->bandpassPortSlotWidthButton, &QPushButton::clicked, this, &MainWindow::onBandPassSlotPortActivated);
+    disconnect(ui->bandpassPortSlotWidthDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassSlotWidthDoubleSpinChanged);
 }
 
 void MainWindow::unlinkInternals()
@@ -1421,6 +1433,33 @@ void MainWindow::changeBPPortedPortDiam(double val)
     currentBandPassBox.setPortedBoxPortDiam(val);
     currentBandPassBox.updatePortedBoxPortsLength();
     syncUiFromCurrentBandPassBox(currentBandPassBox);
+}
+
+void MainWindow::onBandPassSlotPortActivated(bool checked)
+{
+    BPPortedSlotPortCommand* com = new BPPortedSlotPortCommand (this->currentBandPassBox.getPortedBoxSlotPortActivated(), checked, this);
+    this->commandStack->push(com);
+}
+
+void MainWindow::changeBPPortedSlotPortActivation(bool checked)
+{
+    currentBandPassBox.setPortedBoxSlotPortActivated(checked);
+    ui->bandpassPortSlotWidthDoubleSpinBox->setEnabled(checked);
+    ui->bandpassPortSlotHeightLineEdit->setEnabled(checked);
+
+    syncUiFromCurrentBandPassBox(currentBandPassBox);
+}
+
+void MainWindow::changeBPPortedSlotWidth(double val)
+{
+    currentBandPassBox.setPortedBoxSlotWidth(val);
+    syncUiFromCurrentBandPassBox(currentBandPassBox);
+}
+
+void MainWindow::onBandPassSlotWidthDoubleSpinChanged(double val)
+{
+    BPPortedSlotWidthCommand* com = new BPPortedSlotWidthCommand (currentBandPassBox.getPortedBoxSlotWidth(), val, this);
+    this->commandStack->push(com);
 }
 
 void MainWindow::onCurrentBandPassBoxChanged(const BandPassBox &box)

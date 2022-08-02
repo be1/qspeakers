@@ -46,6 +46,8 @@ public:
     void changeBPPortedResFreq(double val);
     void changeBPPortedPortNumber(double val);
     void changeBPPortedPortDiam(double val);
+    void changeBPPortedSlotPortActivation(bool checked);
+    void changeBPPortedSlotWidth(double val);
     void exportPlot(const QString& outfileName, int tabindex);
     void exportScad3D(const QString& outfileName, int tabindex);
     void exportScad2D(const QString& outfileName, int tabindex);
@@ -104,6 +106,9 @@ public slots:
     void onBandPassPortedResonanceDoubleSpinChanged(double val);
     void onBandPassPortNumSpinChanged(int val);
     void onBandPassPortDiameterDoubleSpinChanged(double val);
+    void onBandPassSlotWidthDoubleSpinChanged(double val);
+    void onBandPassSlotPortActivated(bool checked);
+
 
     void onAlignModerate_Inf();
     void onAlignLegendre();

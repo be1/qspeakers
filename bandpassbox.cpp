@@ -33,9 +33,19 @@ void BandPassBox::setPortedBoxPortDiam(double diam)
     portedBox.setPortDiam(diam);
 }
 
+void BandPassBox::setPortedBoxSlotWidth(double width)
+{
+    portedBox.setSlotWidth(width);
+}
+
 void BandPassBox::setPortedBoxResFreq(double freq)
 {
     portedBox.setResFreq(freq);
+}
+
+void BandPassBox::setPortedBoxSlotPortActivated(bool enable)
+{
+    portedBox.setSlotPortActivated(enable);
 }
 
 void BandPassBox::updatePortedBoxPorts(double sd, double xmax)
@@ -46,6 +56,11 @@ void BandPassBox::updatePortedBoxPorts(double sd, double xmax)
 void BandPassBox::updatePortedBoxPortsLength()
 {
     portedBox.updatePortsLength();
+}
+
+void BandPassBox::updatePortedBoxSlots()
+{
+    portedBox.updateSlots();
 }
 
 double BandPassBox::getSealedBoxVolume() const
@@ -71,6 +86,21 @@ double BandPassBox::getPortedBoxPortLen() const
 double BandPassBox::getPortedBoxPortDiam() const
 {
     return portedBox.getPortDiam();
+}
+
+bool BandPassBox::getPortedBoxSlotPortActivated() const
+{
+    return portedBox.getSlotPortActivated();
+}
+
+double BandPassBox::getPortedBoxSlotWidth() const
+{
+    return portedBox.getSlotWidth();
+}
+
+double BandPassBox::getPortedBoxSlotHeight() const
+{
+    return portedBox.getSlotHeight();
 }
 
 double BandPassBox::getPortedBoxResFreq(void) const
@@ -122,7 +152,13 @@ void BandPassBox::render(QPainter *painter, const QRectF &area) const
 
     params[0] = QObject::tr("Sealed Vol. %1 L").arg(getSealedBoxVolume());
     params[1] = QObject::tr("Ported Vol. %1 L").arg(getPortedBoxVolume());
-    params[2] = QObject::tr("Port Diam. %1 cm").arg(getPortedBoxPortDiam());
+
+    if (!getPortedBoxSlotPortActivated()) {
+        params[2] = QObject::tr("Port Diam. %1 cm").arg(getPortedBoxPortDiam());
+    } else {
+        params[2] = QObject::tr("Slot port %1 x %2 cm").arg(QString::number(getPortedBoxSlotWidth(), 'f', 2), QString::number(getPortedBoxSlotHeight(), 'f', 2));
+    }
+
     params[3] = QObject::tr("Port Len. %1 cm").arg(QString::number(getPortedBoxPortLen(), 'f', 2));
     params[4] = QObject::tr("Port Num. %1").arg(getPortedBoxPortNum());
     params[5] = QObject::tr("Fb %1 Hz").arg(getPortedBoxResFreq());

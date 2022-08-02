@@ -215,7 +215,7 @@ public:
         GenericCommand::redo();
     };
 
-private:
+protected:
     bool older;
     bool newer;
 };
@@ -237,7 +237,7 @@ public:
         GenericCommand::redo();
     };
 
-private:
+protected:
     double older;
     double newer;
 };
@@ -320,6 +320,39 @@ public:
     };
     void redo() override {
         this->mainwindow->changeBPPortedPortDiam(newer);
+        GenericCommand::redo();
+    };
+};
+
+class BPPortedSlotPortCommand: public PortedSlotPortCommand
+{
+public:
+    BPPortedSlotPortCommand(bool older, bool newer, QObject* parent)
+        : PortedSlotPortCommand(older, newer, parent)
+    {};
+    void undo() override {
+        this->mainwindow->changeBPPortedSlotPortActivation(older);
+        GenericCommand::undo();
+    };
+    void redo() override {
+        this->mainwindow->changeBPPortedSlotPortActivation(newer);
+        GenericCommand::redo();
+    };
+};
+
+class BPPortedSlotWidthCommand: public PortedSlotWidthCommand
+{
+public:
+    BPPortedSlotWidthCommand(double older, double newer, QObject* parent)
+        : PortedSlotWidthCommand(older, newer, parent)
+    {};
+    void undo() override {
+        this->mainwindow->changeBPPortedSlotWidth(older);
+        GenericCommand::undo();
+    };
+
+    void redo() override {
+        this->mainwindow->changeBPPortedSlotWidth(newer);
         GenericCommand::redo();
     };
 };
