@@ -69,7 +69,6 @@ void Plot::setUseOpenGL(bool enable)
 
 void Plot::initializeCurve() {
     curve = new QLineSeries(chart);
-    //curve->setUseOpenGL(true);
     chart->addSeries(curve);
 }
 
@@ -81,7 +80,7 @@ void Plot::draw3dbVLine()
 
     QPointF value1(x, y1);
     QPointF point1 = chart->mapToPosition(value1);
-    QPointF value2 = QPoint(x, y2);
+    QPointF value2 = QPointF(x, y2);
     QPointF point2 = chart->mapToPosition(value2);
     QLineF line (point1, point2);
     if (vLine3db) {
@@ -94,7 +93,7 @@ void Plot::draw3dbVLine()
         this->scene()->removeItem(vLabel3db);
         delete vLabel3db;
     }
-    QString label = QString(tr("%1 dB at %2 Hz")).arg(-3.0).arg(round(x));
+    QString label = QString(tr("%1 dB at %2 Hz")).arg(-3.0).arg(x);
     vLabel3db = this->scene()->addSimpleText(label);
     QPointF pos = chart->mapToPosition(value1);
     vLabel3db->setPos(pos);
@@ -126,7 +125,7 @@ void Plot::mouseMoveEvent(QMouseEvent *event)
     QPoint pos = event->pos();
     QPointF val = chart->mapToValue(pos);
     double y = curveYfromX(val.x());
-    QString label = QString(tr("%1 dB at %2 Hz")).arg(round(y)).arg(round(val.x()));
+    QString label = QString(tr("%1 dB at %2 Hz")).arg(y).arg(val.x());
 
     QToolTip::showText(event->globalPos(), label, this, QRect(), 10000);
 
