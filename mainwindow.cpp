@@ -58,20 +58,27 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->bandPassPortDiameterDoubleSpinBox->setMaximum(std::numeric_limits<double>::max());
     ui->bandpassPortSlotWidthDoubleSpinBox->setMaximum(std::numeric_limits<double>::max());
 
+    /* fix minimum width */
+    setMinimumWidth(800);
+    ui->menuBar->setMinimumWidth(800);
+
     /* insert QChartView plotters in ui */
     QHBoxLayout *ly1 = new QHBoxLayout(ui->sealedVolumePlotWidget);
     sealedPlot = new Plot(tr("Sealed volume frequency response"), ui->sealedVolumePlotWidget);
-    sealedPlot->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Ignored);
+    sealedPlot->setMinimumSize(400, 300);
+    //sealedPlot->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Expanding);
     ly1->insertWidget(0, sealedPlot);
 
     QHBoxLayout *ly2 = new QHBoxLayout(ui->portedPlotWidget);
     portedPlot = new Plot(tr("Ported volume frequency response"), ui->portedPlotWidget);
-    portedPlot->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Ignored);
+    portedPlot->setMinimumSize(400, 300);
+    //portedPlot->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Expanding);
     ly2->insertWidget(0, portedPlot);
 
     QHBoxLayout *ly3 = new QHBoxLayout(ui->bandpassPlotWidget);
     bandpassPlot = new Plot(tr("Bandpass volumes frequency response"), ui->bandpassPlotWidget);
-    bandpassPlot->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Ignored);
+    bandpassPlot->setMinimumSize(400, 300);
+    //bandpassPlot->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Expanding);
     ly3->insertWidget(0, bandpassPlot);
 
     /* test db */
