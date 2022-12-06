@@ -20,6 +20,7 @@
   <launchable type="desktop-id">qspeakers.desktop</launchable>
   <screenshots>
     <screenshot type="default">
+      <caption>The main window</caption>
       <image>http://brouits.free.fr/qspeakers/qspeakers.png</image>
     </screenshot>
   </screenshots>
@@ -28,5 +29,12 @@
   <update_contact>brouits_AT_free.fr</update_contact>
   <provides>
     <binary>qspeakers</binary>
+    <mediatype>application/x-qspeakers</mediatype>
   </provides>
+
+  <releases>
+    <release version="1.6.4" date="2022-10-25" type="stable" />
+  </releases>
+
+  <content_rating type="oars-1.0" />
 </component>
