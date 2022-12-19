@@ -156,11 +156,14 @@ void MainWindow::onProjectSave()
 void MainWindow::onProjectExport()
 {
     QString home = MainWindow::getHome();
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Export File"), home + tr("/untitled.qsp"), tr("QSpeakers project (*.qsp)"));
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Export File"), home + QDir::separator() + tr("untitled.qsp"), tr("QSpeakers project (*.qsp)"));
 
     /* user cancelled */
     if (fileName.isEmpty())
         return;
+
+    if (!fileName.endsWith(".qsp"))
+        fileName += ".qsp";
 
     QFile file(fileName);
     ImportExport::exportProject(file, currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, currentSpeakerNumber, currentTabIndex);
@@ -1009,7 +1012,7 @@ void MainWindow::onAboutAbout()
                        tr("QSpeakers version " VERSION "\n\n"
                                                        "This program simulates common acoustical enclosures behaviour to help designing loudspeaker systems.\n\n"
                                                        "This program is free software, copyright (C) 2014 Benoit Rouits <brouits@free.fr> and released under the GNU General Public Lisence "
-                                                       "version 3. It is delivered as is in the hope it can be useful, but with no warranty of correctness."));
+                                                       "version 3. It is delivered as is in the hope it can be useful, but with no warranty at all."));
 }
 
 void MainWindow::onSearchRequested(const QString& param, double min, double max)
