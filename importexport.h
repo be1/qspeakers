@@ -12,20 +12,20 @@ class ImportExport
 {
 public:
     /* save the project state into a unique dotfile */
-    static void saveProject(const Speaker& speaker, const SealedBox& sbox, const PortedBox& pbox, const BandPassBox& bpbox, int number = 1, int tab = 0);
+    static bool saveProject(const Speaker& speaker, const SealedBox& sbox, const PortedBox& pbox, const BandPassBox& bpbox, int number = 1, int tab = 0);
 
     /* restore the saved project from the dotfile */
-    static void restoreProject(Speaker& speaker, SealedBox& sbox, PortedBox& pbox, BandPassBox& bpbox, int *number, int *tab);
+    static bool restoreProject(Speaker& speaker, SealedBox& sbox, PortedBox& pbox, BandPassBox& bpbox, int *number, int *tab);
 
     /* in: speaker, sbox, pbox, bpbox, number, tab
      * out: file
      */
-    static void exportProject(QFile& file, const Speaker& speaker, const SealedBox& sbox, const PortedBox& pbox, const BandPassBox& bpbox, int number = 1, int tab = 0);
+    static bool exportProject(QFile& file, const Speaker& speaker, const SealedBox& sbox, const PortedBox& pbox, const BandPassBox& bpbox, int number = 1, int tab = 0);
 
     /* in: file
      * out: speaker, sbox, pbox, bpbox
      */
-    static void importProject(Speaker& speaker, SealedBox& sbox, PortedBox& pbox, BandPassBox& bpbox, int *number, int *tab, QFile &file);
+    static bool importProject(Speaker& speaker, SealedBox& sbox, PortedBox& pbox, BandPassBox& bpbox, int *number, int *tab, QFile &file);
 
     static void setSavePath(const QString& path);
     static QString getSavePath(void);

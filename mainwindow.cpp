@@ -15,6 +15,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "config.h"
+
 #include "speaker.h"
 #include "speakerdb.h"
 #include "importexport.h"
@@ -44,6 +46,21 @@ MainWindow::MainWindow(QWidget *parent) :
     commandStack(new QUndoStack(this))
 {
     ui->setupUi(this);
+
+    /* setup recently opened menu */
+    for (int i = 0; i < MaxRecentFiles; ++i) {
+        recentFileActs[i] = new QAction(this);
+        recentFileActs[i]->setVisible(false);
+        connect(recentFileActs[i], &QAction::triggered, this, &MainWindow::onOpenRecentActionTriggered);
+    }
+
+    QMenu* sub = new QMenu(tr("Recently opened"), ui->menuProject);
+    ui->menuProject->insertMenu(ui->actionProjectSave, sub);
+
+    for (int i = 0; i < MaxRecentFiles; ++i)
+        sub->addAction(recentFileActs[i]);
+
+    updateRecentFileActions();
 
     /* setup maximums of spinbox */
     ui->numberSpinBox->setMaximum(std::numeric_limits<int>::max());
@@ -148,9 +165,20 @@ MainWindow::~MainWindow()
 
 void MainWindow::onProjectSave()
 {
-    projectSaved = true;
 
-    ImportExport::saveProject(currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, currentSpeakerNumber, currentTabIndex);
+    if(ImportExport::saveProject(currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, currentSpeakerNumber, currentTabIndex)) {
+        projectSaved = true;
+
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+        QString prefix = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+#elif QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+        QString prefix = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+#else
+        QString prefix = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+#endif
+        if (!ImportExport::getSavePath().startsWith(prefix))
+            setRecentFile(ImportExport::getSavePath(), true);
+    }
 }
 
 void MainWindow::onProjectExport()
@@ -166,7 +194,9 @@ void MainWindow::onProjectExport()
         fileName += ".qsp";
 
     QFile file(fileName);
-    ImportExport::exportProject(file, currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, currentSpeakerNumber, currentTabIndex);
+    if(ImportExport::exportProject(file, currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, currentSpeakerNumber, currentTabIndex)) {
+        setRecentFile(fileName, true);
+    }
 }
 
 void MainWindow::onProjectImport()
@@ -187,6 +217,62 @@ void MainWindow::onProjectImport()
     if (fileName.isEmpty())
         return;
 
+    if (!loadFile(fileName)) {
+        QMessageBox::warning(this, tr("Warning"), tr("Could not open project!"));
+    }
+}
+
+void MainWindow::onOpenRecentActionTriggered()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (action) {
+        if (!loadFile(action->data().toString())) {
+            QMessageBox::warning(this, tr("Warning"), tr("Could not open project!"));
+        }
+    }
+}
+
+QString MainWindow::strippedName(const QString& fullFileName)
+{
+    return QFileInfo(fullFileName).fileName();
+}
+
+void MainWindow::updateRecentFileActions()
+{
+    QSettings settings(SETTINGS_DOMAIN, SETTINGS_APP);
+    QStringList files = settings.value("recentFileList").toStringList();
+
+    int numRecentFiles = qMin(files.size(), (int)MaxRecentFiles);
+
+    for (int i = 0; i < numRecentFiles; ++i) {
+        QString text = tr("&%1 %2").arg(i + 1).arg(strippedName(files[i]));
+        recentFileActs[i]->setText(text);
+        recentFileActs[i]->setData(files[i]);
+        recentFileActs[i]->setVisible(true);
+    }
+
+    for (int j = numRecentFiles; j < MaxRecentFiles; ++j)
+        recentFileActs[j]->setVisible(false);
+}
+
+void MainWindow::setRecentFile(const QString& fileName, bool ok)
+{
+    QSettings settings(SETTINGS_DOMAIN, SETTINGS_APP);
+    QStringList files = settings.value("recentFileList").toStringList();
+    files.removeAll(fileName);
+
+    if (ok)
+        files.prepend(fileName);
+
+    while (files.size() > MaxRecentFiles)
+        files.removeLast();
+
+    settings.setValue("recentFileList", files);
+    updateRecentFileActions();
+}
+
+bool MainWindow::loadFile(const QString& fileName)
+{
     /* clear undo history */
     this->commandStack->clear();
 
@@ -194,7 +280,17 @@ void MainWindow::onProjectImport()
     unlinkTabs();
 
     QFile file(fileName);
-    ImportExport::importProject(currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, &currentSpeakerNumber, &currentTabIndex, file);
+    if (!ImportExport::importProject(currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, &currentSpeakerNumber, &currentTabIndex, file)) {
+        setRecentFile(fileName, false);
+
+        linkInternals();
+        linkTabs();
+
+        return false;
+    }
+
+    setRecentFile(fileName, true);
+
     ImportExport::setSavePath(fileName);
     setWindowFilePath(ImportExport::getSavePath());
 
@@ -210,6 +306,8 @@ void MainWindow::onProjectImport()
 
     if (notInDbSpeaker)
         onSpeakerModify();
+
+    return true;
 }
 
 void MainWindow::onProjectQuit()

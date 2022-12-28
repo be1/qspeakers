@@ -62,6 +62,7 @@ public slots:
     void onProjectSave();
     void onProjectExport();
     void onProjectImport();
+    void onOpenRecentActionTriggered();
     void onProjectQuit();
     void onSpeakerNew();
     void onSpeakerRemove();
@@ -125,6 +126,10 @@ public slots:
     void on2DScadExport();
 
 protected:
+    QString strippedName(const QString& fullFileName);
+    void updateRecentFileActions();
+    void setRecentFile(const QString& fileName, bool ok);
+    bool loadFile(const QString& fileName);
     void linkMenus();
     void linkTabs();
     void linkInternals();
@@ -167,6 +172,9 @@ private:
 
     const Speaker *notInDbSpeaker;
     QUndoStack *commandStack;
+
+    enum { MaxRecentFiles = 5 };
+    QAction *recentFileActs[MaxRecentFiles];
 };
 
 #endif // MAINWINDOW_H

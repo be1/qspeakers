@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1080</width>
+    <width>1300</width>
     <height>720</height>
    </rect>
   </property>
@@ -931,6 +931,14 @@
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1300</width>
+     <height>27</height>
+    </rect>
+   </property>
    <widget class="QMenu" name="menuProject">
     <property name="title">
      <string>Project</string>
@@ -1212,6 +1220,11 @@
   <action name="actionCurve_Plot">
    <property name="text">
     <string>Curve Plot</string>
+   </property>
+  </action>
+  <action name="actionOpenRecent">
+   <property name="text">
+    <string>Open recent</string>
    </property>
   </action>
  </widget>

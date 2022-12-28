@@ -1,6 +1,9 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#define SETTINGS_DOMAIN \"Herewe\"
+#define SETTINGS_APP \"QSpeakers\"
+
 #define TARGET \"$$TARGET\"
 #define PREFIX \"$$PREFIX\"
 #define VERSION \"$$VERSION\"
