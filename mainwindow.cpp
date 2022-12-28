@@ -115,8 +115,13 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->actionRedo->setEnabled(false);
 
     /* restore last saved project... */
-    ImportExport::restoreProject(currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, &currentSpeakerNumber, &currentTabIndex);
-    projectSaved = true;
+    if (ImportExport::restoreProject(currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, &currentSpeakerNumber, &currentTabIndex))
+        projectSaved = true;
+    else {
+        projectSaved = false;
+        currentSpeakerNumber = 1;
+        currentTabIndex = 0;
+    }
 
     /* on first run, no speaker. reset to the speaker of the combos if needed */
     if (!currentSpeaker.isValid()) {
