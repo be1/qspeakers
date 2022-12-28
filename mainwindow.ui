@@ -1222,11 +1222,6 @@
     <string>Curve Plot</string>
    </property>
   </action>
-  <action name="actionOpenRecent">
-   <property name="text">
-    <string>Open recent</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
