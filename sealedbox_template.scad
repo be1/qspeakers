@@ -1,14 +1,14 @@
 /* loudspeaker __MODEL__ */
 loudspeaker_number = __NUMBER__;
-margin = __MARGIN__; /* cm */
-loudspeaker_diameter = __DIAMETER__; /* cm */
+margin = __MARGIN__; /* mm */
+loudspeaker_diameter = __DIAMETER__; /* mm */
 internal_closed_box_volume = __SEALEDBOXVOLUME__; /* dm³ (Liter) */
-wood_thick = __WOODTHICK__; /* cm */
+wood_thick = __WOODTHICK__; /* mm */
 wood_color = "wheat";
 
-internal_closed_box_width = loudspeaker_diameter + margin;  /* cm (x)*/
-internal_closed_box_height = max((loudspeaker_diameter + margin) * loudspeaker_number, 1.618 * internal_closed_box_width); /* cm (z)*/
-internal_closed_box_depth = internal_closed_box_volume * 1000 / (internal_closed_box_width * internal_closed_box_height); /* cm (y)*/
+internal_closed_box_width = loudspeaker_diameter + margin;  /* mm (x)*/
+internal_closed_box_height = max((loudspeaker_diameter + margin) * loudspeaker_number, 1.618 * internal_closed_box_width); /* mm (z)*/
+internal_closed_box_depth = internal_closed_box_volume * 1000000 / (internal_closed_box_width * internal_closed_box_height); /* mm (y)*/
 
 vertical_center = (internal_closed_box_height + (2 * wood_thick)) / 2;
 horizontal_center = (internal_closed_box_width + (2 * wood_thick)) / 2;

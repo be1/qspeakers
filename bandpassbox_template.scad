@@ -1,29 +1,29 @@
 /* loudspeaker __MODEL__ */
 loudspeaker_number = __NUMBER__;
-margin = __MARGIN__; /* cm */
-loudspeaker_diameter = __DIAMETER__; /* cm */
+margin = __MARGIN__; /* mm */
+loudspeaker_diameter = __DIAMETER__; /* mm */
 internal_closed_box_volume = __SEALEDBOXVOLUME__; /* dm³ (Liter) */
 internal_ported_box_volume = __PORTEDBOXVOLUME__; /* dm³ (Liter) */
-wood_thick = __WOODTHICK__; /* cm */
+wood_thick = __WOODTHICK__; /* mm */
 wood_color = "wheat";
 
 /* sealed box dimensions */
-internal_closed_box_width = loudspeaker_diameter + margin;  /* cm (x)*/
-internal_closed_box_height = max((loudspeaker_diameter + margin) * loudspeaker_number, 1.618 * internal_closed_box_width); /* cm (z)*/
-internal_closed_box_depth = internal_closed_box_volume * 1000 / (internal_closed_box_width * internal_closed_box_height); /* cm (y)*/
+internal_closed_box_width = loudspeaker_diameter + margin;  /* mm (x)*/
+internal_closed_box_height = max((loudspeaker_diameter + margin) * loudspeaker_number, 1.618 * internal_closed_box_width); /* mm (z)*/
+internal_closed_box_depth = internal_closed_box_volume * 1000000 / (internal_closed_box_width * internal_closed_box_height); /* mm (y)*/
 
 /* ported box dimensions */
-internal_ported_box_width = internal_closed_box_width;  /* cm (x)*/
-internal_ported_box_height = internal_closed_box_height; /* cm (z)*/
-internal_ported_box_depth = internal_ported_box_volume * 1000 / (internal_ported_box_width * internal_ported_box_height); /* cm (y)*/
+internal_ported_box_width = internal_closed_box_width;  /* mm (x)*/
+internal_ported_box_height = internal_closed_box_height; /* mm (z)*/
+internal_ported_box_depth = internal_ported_box_volume * 1000000 / (internal_ported_box_width * internal_ported_box_height); /* mm (y)*/
 
 /* other ported enclosure declarations */
 ported_box_port_number = __PORTEDBOXPORTNUMBER__;
 ported_box_port_slot_activated = __PORTEDBOXPORTSLOTACTIVATED__;
-ported_box_port_slot_width = __PORTEDBOXPORTSLOTWIDTH__;
-ported_box_port_slot_height = __PORTEDBOXPORTSLOTHEIGHT__;
-ported_box_port_diameter = __PORTEDBOXPORTDIAMETER__;
-ported_box_port_length = __PORTEDBOXPORTLENGTH__;
+ported_box_port_slot_width = __PORTEDBOXPORTSLOTWIDTH__; /* mm */
+ported_box_port_slot_height = __PORTEDBOXPORTSLOTHEIGHT__; /* mm */
+ported_box_port_diameter = __PORTEDBOXPORTDIAMETER__; /* mm */
+ported_box_port_length = __PORTEDBOXPORTLENGTH__; /* mm */
 
 vertical_center = (internal_closed_box_height + (2 * wood_thick)) / 2;
 horizontal_center = (internal_closed_box_width + (2 * wood_thick)) / 2;

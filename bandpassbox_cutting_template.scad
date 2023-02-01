@@ -1,15 +1,15 @@
 /* loudspeaker __MODEL__ */
 loudspeaker_number = __NUMBER__;
-margin = __MARGIN__; /* cm */
-loudspeaker_diameter = __DIAMETER__; /* cm */
+margin = __MARGIN__; /* mm */
+loudspeaker_diameter = __DIAMETER__; /* mm */
 internal_closed_box_volume = __SEALEDBOXVOLUME__; /* dm³ (Liter) */
 
-internal_closed_box_width = loudspeaker_diameter + margin;  /* cm (x)*/
-internal_closed_box_height = max((loudspeaker_diameter + margin) * loudspeaker_number, 1.618 * internal_closed_box_width); /* cm (z)*/
-internal_closed_box_depth = internal_closed_box_volume * 1000 / (internal_closed_box_width * internal_closed_box_height); /* cm (y)*/
+internal_closed_box_width = loudspeaker_diameter + margin;  /* mm (x)*/
+internal_closed_box_height = max((loudspeaker_diameter + margin) * loudspeaker_number, 1.618 * internal_closed_box_width); /* mm (z)*/
+internal_closed_box_depth = internal_closed_box_volume * 1000000 / (internal_closed_box_width * internal_closed_box_height); /* mm (y)*/
 
-saw_thick = __SAWTHICK__; /* saw cut thick in cm */
-wood_thick = __WOODTHICK__;  /* board thick in cm */
+saw_thick = __SAWTHICK__; /* saw cut thick in mm */
+wood_thick = __WOODTHICK__;  /* board thick in mm */
 
 vertical_center = (internal_closed_box_height + (2 * wood_thick)) / 2;
 horizontal_center = (internal_closed_box_width + (2 * wood_thick)) / 2;
@@ -33,12 +33,12 @@ module board_speaker(width, height, diam){
 }
 
 /* boards */
-front_width = internal_closed_box_width + (2 * wood_thick); /* cm */
-front_height = internal_closed_box_height + (2 * wood_thick); /* cm */
-side_depth = internal_closed_box_depth; /* cm */
-side_height = internal_closed_box_height; /* cm */
-top_width = front_width; /* cm */
-top_depth = side_depth; /* cm */
+front_width = internal_closed_box_width + (2 * wood_thick); /* mm */
+front_height = internal_closed_box_height + (2 * wood_thick); /* mm */
+side_depth = internal_closed_box_depth; /* mm */
+side_height = internal_closed_box_height; /* mm */
+top_width = front_width; /* mm */
+top_depth = side_depth; /* mm */
 
 /* two times */
 for (i = [0:1]) {
@@ -68,14 +68,14 @@ for (i = [0:1]) {
 internal_ported_box_volume = __PORTEDBOXVOLUME__; /* dm³ (Liter) */
 ported_box_port_number = __PORTEDBOXPORTNUMBER__;
 ported_box_port_slot_activated = __PORTEDBOXPORTSLOTACTIVATED__;
-ported_box_port_slot_width = __PORTEDBOXPORTSLOTWIDTH__;
-ported_box_port_slot_height = __PORTEDBOXPORTSLOTHEIGHT__;
-ported_box_port_diameter = __PORTEDBOXPORTDIAMETER__;
-ported_box_port_length = __PORTEDBOXPORTLENGTH__;
+ported_box_port_slot_width = __PORTEDBOXPORTSLOTWIDTH__; /* mm */
+ported_box_port_slot_height = __PORTEDBOXPORTSLOTHEIGHT__; /* mm */
+ported_box_port_diameter = __PORTEDBOXPORTDIAMETER__; /* mm */
+ported_box_port_length = __PORTEDBOXPORTLENGTH__; /* mm */
 
-internal_ported_box_width = internal_closed_box_width;  /* cm (x)*/
-internal_ported_box_height = internal_closed_box_height; /* cm (z) */
-internal_ported_box_depth = internal_ported_box_volume * 1000 / (internal_ported_box_width * internal_ported_box_height); /* cm (y)*/
+internal_ported_box_width = internal_closed_box_width;  /* mm (x)*/
+internal_ported_box_height = internal_closed_box_height; /* mm (z) */
+internal_ported_box_depth = internal_ported_box_volume * 1000000 / (internal_ported_box_width * internal_ported_box_height); /* mm (y)*/
 
 module port(diam, slot, width, height, x, y)
 {
@@ -109,12 +109,12 @@ module board_port(width, height, diam){
 }
 
 /* boards */
-ported_front_width = front_width; /* cm */
-ported_front_height = front_height; /* cm */
-ported_side_depth = internal_ported_box_depth; /* cm */
-ported_side_height = internal_ported_box_height; /* cm */
-ported_top_width = front_width; /* cm */
-ported_top_depth = ported_side_depth; /* cm */
+ported_front_width = front_width; /* mm */
+ported_front_height = front_height; /* mm */
+ported_side_depth = internal_ported_box_depth; /* mm */
+ported_side_height = internal_ported_box_height; /* mm */
+ported_top_width = front_width; /* mm */
+ported_top_depth = ported_side_depth; /* mm */
 
 /* two times */
 if (true) {
@@ -123,7 +123,7 @@ for (i = [2:3]) {
 	/* one board with port */
         translate([0, 0, 0]) 
 	    board_port(ported_front_width, ported_front_height, ported_box_port_diameter);
-        
+
         /* two side boards */
         for (j = [0:1]) {
             translate([2 * (front_width + saw_thick) + j * (side_depth + saw_thick), 0, 0])

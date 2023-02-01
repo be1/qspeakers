@@ -643,9 +643,9 @@ void MainWindow::exportPlot(const QString& outfileName, int tabindex)
 }
 
 /* FIXME: should be taken from a popup before to export */
-#define MARGIN 5 /* cm */
-#define WOODTHICK 2 /* cm */
-#define SAWTHICK 0.1 /* cm */
+#define MARGIN 50 /* mm */
+#define WOODTHICK 20 /* mm */
+#define SAWTHICK 1 /* mm */
 
 void MainWindow::exportScad(const QString& scad, const QString &outfileName, int tabindex)
 {
@@ -656,7 +656,7 @@ void MainWindow::exportScad(const QString& scad, const QString &outfileName, int
     s.replace("__MODEL__", currentSpeaker.getModel());
     s.replace("__NUMBER__", QString::number(currentSpeakerNumber));
     s.replace("__MARGIN__", QString::number(MARGIN));
-    s.replace("__DIAMETER__", QString::number(currentSpeaker.getDia() * 100));
+    s.replace("__DIAMETER__", QString::number(currentSpeaker.getDia() * 1000)); /* mm */
     s.replace("__WOODTHICK__", QString::number(WOODTHICK));
     s.replace("__SAWTHICK__", QString::number(SAWTHICK));
     if (tabindex == 0) {
@@ -668,26 +668,32 @@ void MainWindow::exportScad(const QString& scad, const QString &outfileName, int
         s.replace("__SEALEDBOXVOLUME__", QString::number(currentBandPassBox.getSealedBoxVolume()));
         s.replace("__PORTEDBOXVOLUME__", QString::number(currentBandPassBox.getPortedBoxVolume()));
         s.replace("__PORTEDBOXPORTNUMBER__", QString::number(currentBandPassBox.getPortedBoxPortNum()));
-        s.replace("__PORTEDBOXPORTSLOTWIDTH__", "0"); /* not supported yet */
-        s.replace("__PORTEDBOXPORTSLOTHEIGHT__", "0"); /* not supported yet */
     }
 
     if (tabindex == 1) {
         if (currentPortedBox.getSlotPortActivated()) {
             s.replace("__PORTEDBOXPORTSLOTACTIVATED__", "true");
-            s.replace("__PORTEDBOXPORTSLOTWIDTH__", QString::number(currentPortedBox.getSlotWidth()));
-            s.replace("__PORTEDBOXPORTSLOTHEIGHT__", QString::number(currentPortedBox.getSlotHeight()));
+            s.replace("__PORTEDBOXPORTSLOTWIDTH__", QString::number(currentPortedBox.getSlotWidth() * 10)); /* mm */
+            s.replace("__PORTEDBOXPORTSLOTHEIGHT__", QString::number(currentPortedBox.getSlotHeight() * 10)); /* mm */
         } else {
             s.replace("__PORTEDBOXPORTSLOTACTIVATED__", "false");
             s.replace("__PORTEDBOXPORTSLOTWIDTH__", "0");
             s.replace("__PORTEDBOXPORTSLOTHEIGHT__", "0");
         }
-        s.replace("__PORTEDBOXPORTDIAMETER__", QString::number(currentPortedBox.getPortDiam()));
-        s.replace("__PORTEDBOXPORTLENGTH__", QString::number(currentPortedBox.getPortLen()));
+        s.replace("__PORTEDBOXPORTDIAMETER__", QString::number(currentPortedBox.getPortDiam() * 10)); /* mm */
+        s.replace("__PORTEDBOXPORTLENGTH__", QString::number(currentPortedBox.getPortLen() * 10)); /* mm */
     } else if (tabindex == 2) {
-        s.replace("__PORTEDBOXPORTSLOTACTIVATED__", "false");
-        s.replace("__PORTEDBOXPORTDIAMETER__", QString::number(currentBandPassBox.getPortedBoxPortDiam()));
-        s.replace("__PORTEDBOXPORTLENGTH__", QString::number(currentBandPassBox.getPortedBoxPortLen()));
+        if (currentBandPassBox.getPortedBoxSlotPortActivated()) {
+            s.replace("__PORTEDBOXPORTSLOTACTIVATED__", "true");
+            s.replace("__PORTEDBOXPORTSLOTWIDTH__", QString::number(currentBandPassBox.getPortedBoxSlotWidth() * 10)); /* mm */
+            s.replace("__PORTEDBOXPORTSLOTHEIGHT__", QString::number(currentBandPassBox.getPortedBoxSlotHeight() * 10)); /* mm */
+        } else {
+            s.replace("__PORTEDBOXPORTSLOTACTIVATED__", "false");
+            s.replace("__PORTEDBOXPORTSLOTWIDTH__", "0");
+            s.replace("__PORTEDBOXPORTSLOTHEIGHT__", "0");
+        }
+        s.replace("__PORTEDBOXPORTDIAMETER__", QString::number(currentBandPassBox.getPortedBoxPortDiam() * 10)); /* mm */
+        s.replace("__PORTEDBOXPORTLENGTH__", QString::number(currentBandPassBox.getPortedBoxPortLen() * 10)); /* mm */
     }
 
     QFile f(outfileName);
@@ -724,7 +730,7 @@ void MainWindow::exportScad3D(const QString &outfileName, int tabindex)
         break;
     case 2: /* bandpass box */
         /* non-prod version: */
-        scad = "../qpseakers/bandpassbox_template.scad";
+        scad = "../qspeakers/bandpassbox_template.scad";
         if (!QFileInfo::exists(scad))
 #ifdef __mswin
             scad = (QCoreApplication::applicationDirPath() + QDir::separator() + "sealedbox_template.scad");
@@ -748,7 +754,7 @@ void MainWindow::exportScad2D(const QString &outfileName, int tabindex)
     switch (tabindex) {
     case 0: /* closed box */
         /* non-prod version: */
-        scad = "../qpseakers/sealedbox_cutting_template.scad";
+        scad = "../qspeakers/sealedbox_cutting_template.scad";
         if (!QFileInfo::exists(scad))
 #ifdef __mswin
             scad = (QCoreApplication::applicationDirPath() + QDir::separator() + "sealedbox_cutting_template.scad");
@@ -758,7 +764,7 @@ void MainWindow::exportScad2D(const QString &outfileName, int tabindex)
         break;
     case 1: /* vented box */
         /* non-prod version: */
-        scad = "../qpseakers/portedbox_cutting_template.scad";
+        scad = "../qspeakers/portedbox_cutting_template.scad";
         if (!QFileInfo::exists(scad))
 #ifdef __mswin
             scad = (QCoreApplication::applicationDirPath() + QDir::separator() + "sealedbox_cutting_template.scad");
@@ -768,7 +774,7 @@ void MainWindow::exportScad2D(const QString &outfileName, int tabindex)
         break;
     case 2: /* bandpass box */
         /* non-prod version: */
-        scad = "../qpseakers/bandpassbox_cutting_template.scad";
+        scad = "../qspeakers/bandpassbox_cutting_template.scad";
         if (!QFileInfo::exists(scad))
 #ifdef __mswin
             scad = (QCoreApplication::applicationDirPath() + QDir::separator() + "sealedbox_cutting_template.scad");

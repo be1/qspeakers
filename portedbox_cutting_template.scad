@@ -1,20 +1,20 @@
 loudspeaker_number = __NUMBER__;
-margin = __MARGIN__; /* cm */
-loudspeaker_diameter = __DIAMETER__; /* cm */
+margin = __MARGIN__; /* mm */
+loudspeaker_diameter = __DIAMETER__; /* mm */
 internal_ported_box_volume = __PORTEDBOXVOLUME__; /* dm³ (Liter) */
 ported_box_port_number = __PORTEDBOXPORTNUMBER__;
 ported_box_port_slot_activated = __PORTEDBOXPORTSLOTACTIVATED__;
-ported_box_port_slot_width = __PORTEDBOXPORTSLOTWIDTH__;
-ported_box_port_slot_height = __PORTEDBOXPORTSLOTHEIGHT__;
-ported_box_port_diameter = __PORTEDBOXPORTDIAMETER__;
-ported_box_port_length = __PORTEDBOXPORTLENGTH__;
+ported_box_port_slot_width = __PORTEDBOXPORTSLOTWIDTH__; /* mm */
+ported_box_port_slot_height = __PORTEDBOXPORTSLOTHEIGHT__; /* mm */
+ported_box_port_diameter = __PORTEDBOXPORTDIAMETER__; /* mm */
+ported_box_port_length = __PORTEDBOXPORTLENGTH__; /* mm */
 
-internal_ported_box_width = loudspeaker_diameter + margin;  /* cm (x)*/
-internal_ported_box_height = max((ported_box_port_diameter + margin) + ((loudspeaker_diameter + margin) * loudspeaker_number), 1.618 * internal_ported_box_width); /* cm (z)*/
-internal_ported_box_depth = internal_ported_box_volume * 1000 / (internal_ported_box_width * internal_ported_box_height); /* cm (y)*/
+internal_ported_box_width = loudspeaker_diameter + margin;  /* mm (x)*/
+internal_ported_box_height = max((ported_box_port_diameter + margin) + ((loudspeaker_diameter + margin) * loudspeaker_number), 1.618 * internal_ported_box_width); /* mm (z)*/
+internal_ported_box_depth = internal_ported_box_volume * 1000000 / (internal_ported_box_width * internal_ported_box_height); /* mm (y)*/
 
-saw_thick = __SAWTHICK__; /* saw cut thick in cm */
-wood_thick = __WOODTHICK__;  /* board thick in cm */
+saw_thick = __SAWTHICK__; /* saw cut thick in mm */
+wood_thick = __WOODTHICK__;  /* board thick in mm */
 
 vertical_center = (internal_ported_box_height + (2 * wood_thick)) / 2;
 horizontal_center = (internal_ported_box_width + (2 * wood_thick)) / 2;
@@ -60,18 +60,20 @@ module board_speaker_port(width, height, diam){
         for (i = [0:loudspeaker_number-1]) {
 	    if (ported_box_port_slot_activated == false) {
 		speaker(diam, width / 2, margin + (diam / 2) + (ported_box_port_diameter + margin) + i * (diam + margin));
-	    }
+            } else {
+                speaker(diam, width / 2, margin + (diam / 2) + ported_box_port_slot_height + i * (diam + margin));
+            }
         }
     }
 }
 
 /* boards */
-front_width = internal_ported_box_width + (2 * wood_thick); /* cm */
-front_height = internal_ported_box_height + (2 * wood_thick); /* cm */
-side_depth = internal_ported_box_depth; /* cm */
-side_height = internal_ported_box_height; /* cm */
-top_width = front_width; /* cm */
-top_depth = side_depth; /* cm */
+front_width = internal_ported_box_width + (2 * wood_thick); /* mm */
+front_height = internal_ported_box_height + (2 * wood_thick); /* mm */
+side_depth = internal_ported_box_depth; /* mm */
+side_height = internal_ported_box_height; /* mm */
+top_width = front_width; /* mm */
+top_depth = side_depth; /* mm */
 
 /* two times */
 for (i = [0:1]) {
