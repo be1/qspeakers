@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     a.setOrganizationName("Herewe");
-    a.setOrganizationDomain("herewe");
+    //a.setOrganizationDomain("herewe");
     a.setApplicationName("QSpeakers");
     a.setApplicationVersion(VERSION " (" REVISION ")");
 
