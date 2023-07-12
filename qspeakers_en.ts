@@ -288,7 +288,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="1080"/>
-        <location filename="mainwindow.cpp" line="1109"/>
+        <location filename="mainwindow.cpp" line="1120"/>
         <source>About QSpeakers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -438,11 +438,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1227"/>
-        <source>Open recent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="mainwindow.ui" line="1169"/>
         <source>Zbinden M4</source>
         <translation type="unfinished"></translation>
@@ -548,109 +543,109 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="187"/>
+        <location filename="mainwindow.cpp" line="192"/>
         <source>Export File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="187"/>
-        <location filename="mainwindow.cpp" line="214"/>
+        <location filename="mainwindow.cpp" line="192"/>
+        <location filename="mainwindow.cpp" line="219"/>
         <source>QSpeakers project (*.qsp)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="187"/>
+        <location filename="mainwindow.cpp" line="192"/>
         <source>untitled.qsp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="206"/>
-        <location filename="mainwindow.cpp" line="326"/>
+        <location filename="mainwindow.cpp" line="211"/>
+        <location filename="mainwindow.cpp" line="331"/>
         <source>Project not saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="207"/>
+        <location filename="mainwindow.cpp" line="212"/>
         <source>The current project has not been saved. Continue anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="214"/>
+        <location filename="mainwindow.cpp" line="219"/>
         <source>Import File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="221"/>
-        <location filename="mainwindow.cpp" line="230"/>
+        <location filename="mainwindow.cpp" line="226"/>
+        <location filename="mainwindow.cpp" line="235"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="221"/>
-        <location filename="mainwindow.cpp" line="230"/>
+        <location filename="mainwindow.cpp" line="226"/>
+        <location filename="mainwindow.cpp" line="235"/>
         <source>Could not open project!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="248"/>
+        <location filename="mainwindow.cpp" line="253"/>
         <source>&amp;%1 %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="327"/>
+        <location filename="mainwindow.cpp" line="332"/>
         <source>The current project has not been saved. Exit anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="561"/>
+        <location filename="mainwindow.cpp" line="566"/>
         <source>Export for Gnuplot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="561"/>
+        <location filename="mainwindow.cpp" line="566"/>
         <source>Gnuplot data (*.dat)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="576"/>
+        <location filename="mainwindow.cpp" line="581"/>
         <source>Export for 3D OpenSCAD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="576"/>
-        <location filename="mainwindow.cpp" line="591"/>
+        <location filename="mainwindow.cpp" line="581"/>
+        <location filename="mainwindow.cpp" line="596"/>
         <source>OpenSCAD script (*.scad)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="591"/>
+        <location filename="mainwindow.cpp" line="596"/>
         <source>Export for 2D OpenSCAD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="928"/>
+        <location filename="mainwindow.cpp" line="939"/>
         <source>Removal confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="929"/>
+        <location filename="mainwindow.cpp" line="940"/>
         <source>Do you really want to remove this loudspeaker from the database?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1110"/>
+        <location filename="mainwindow.cpp" line="1121"/>
         <source>QSpeakers version </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1246"/>
-        <location filename="mainwindow.cpp" line="1303"/>
+        <location filename="mainwindow.cpp" line="1257"/>
+        <location filename="mainwindow.cpp" line="1314"/>
         <source>Unsaved speaker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1247"/>
-        <location filename="mainwindow.cpp" line="1304"/>
+        <location filename="mainwindow.cpp" line="1258"/>
+        <location filename="mainwindow.cpp" line="1315"/>
         <source>This speaker is not present in the database. Would you like to insert it before to continue?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -790,97 +785,102 @@
 <context>
     <name>SpeakerDialog</name>
     <message>
-        <location filename="speakerdialog.ui" line="22"/>
+        <location filename="speakerdialog.ui" line="14"/>
+        <source>Loudspeaker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="speakerdialog.ui" line="32"/>
         <source>Vendor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="29"/>
+        <location filename="speakerdialog.ui" line="39"/>
         <source>speaker vendor name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="36"/>
+        <location filename="speakerdialog.ui" line="46"/>
         <source>Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="43"/>
+        <location filename="speakerdialog.ui" line="53"/>
         <source>speaker name or reference number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="50"/>
+        <location filename="speakerdialog.ui" line="60"/>
         <source>Fs (Hz)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="67"/>
+        <location filename="speakerdialog.ui" line="77"/>
         <source>Qts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="81"/>
+        <location filename="speakerdialog.ui" line="91"/>
         <source>Vas (L)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="98"/>
+        <location filename="speakerdialog.ui" line="108"/>
         <source>Dia (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="115"/>
+        <location filename="speakerdialog.ui" line="125"/>
         <source>Z (Ohm)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="129"/>
+        <location filename="speakerdialog.ui" line="139"/>
         <source>Sd (m²)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="143"/>
+        <location filename="speakerdialog.ui" line="153"/>
         <source>Re (Ohm)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="157"/>
+        <location filename="speakerdialog.ui" line="167"/>
         <source>Le (mH)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="171"/>
+        <location filename="speakerdialog.ui" line="181"/>
         <source>Xmax (mm)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="185"/>
+        <location filename="speakerdialog.ui" line="195"/>
         <source>Qms</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="199"/>
+        <location filename="speakerdialog.ui" line="209"/>
         <source>Qes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="213"/>
+        <location filename="speakerdialog.ui" line="223"/>
         <source>Spl (dB)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="230"/>
+        <location filename="speakerdialog.ui" line="240"/>
         <source>Pe (W)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="247"/>
+        <location filename="speakerdialog.ui" line="257"/>
         <source>BL (Tm)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="speakerdialog.ui" line="261"/>
+        <location filename="speakerdialog.ui" line="271"/>
         <source>Voice Coil</source>
         <translation type="unfinished"></translation>
     </message>
