@@ -1,4 +1,5 @@
 #include <QDebug>
+#include <QObject>
 
 #include "bandpassbox.h"
 
