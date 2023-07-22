@@ -105,7 +105,7 @@
      <item row="7" column="0">
       <widget class="QLabel" name="diaLabel">
        <property name="text">
-        <string>Dia (m)</string>
+        <string>Dia cutout (m)</string>
        </property>
       </widget>
      </item>
@@ -268,7 +268,7 @@
      <item row="2" column="0">
       <widget class="QLabel" name="vcLabel">
        <property name="text">
-        <string>Voice Coil</string>
+        <string>Voice Coil (#)</string>
        </property>
       </widget>
      </item>

@@ -826,7 +826,7 @@
     </message>
     <message>
         <location filename="speakerdialog.ui" line="108"/>
-        <source>Dia (m)</source>
+        <source>Dia cutout (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -881,7 +881,7 @@
     </message>
     <message>
         <location filename="speakerdialog.ui" line="271"/>
-        <source>Voice Coil</source>
+        <source>Voice Coil (#)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

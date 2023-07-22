@@ -68,21 +68,26 @@ private:
     QString vendor;
     QString model;
 
-    double fs; // Hz
-    double vas; // L
-    double re; // Ohm
-    double qts; // unitless
-    double sd; // m² (emissive surface)
-    double xmax; // mm
-    double z; // Ohm
-    double le; // mH
-    double qms; // unitless
-    double qes; // unitless
-    double spl; // dB (sensitivity)
-    double pe; // W (maxpower in normal use)
+    // TSPs
+    double fs; // Hz (resonance frequency)
+    double vas; // L (equivalent volume of air)
+    double re; // Ohm (DC resistance)
+    double qts; // unitless (total Q)
+    double sd; // m² (effective piston area)
+    double z; // Ohm (nominal impedance)
+    double qms; // unitless (mechanical Q)
+    double qes; // unitless (electrical Q)
+    double spl; // dB (sensitivity at 1W power input, in 1m distance)
+
+    // Voice coil parameters
+    double pe; // W (max power in normal use)
+    double le; // mH (voice coil inductance)
+    double xmax; // mm (linear excursion)
     double bl; // Tm (force factor)
-    double dia; // m (diameter)
     int vc; // number of voice coils
+
+    // Mechanical data
+    double dia; // m (cutout diameter)
 };
 
 Q_DECLARE_METATYPE(Speaker)
