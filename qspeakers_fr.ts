@@ -828,7 +828,7 @@
     <message>
         <location filename="speakerdialog.ui" line="108"/>
         <source>Dia (m)</source>
-        <translation>Dia (m)</translation>
+        <translation>Diamètre de découpe (m)</translation>
     </message>
     <message>
         <location filename="speakerdialog.ui" line="125"/>
@@ -882,8 +882,8 @@
     </message>
     <message>
         <location filename="speakerdialog.ui" line="271"/>
-        <source>Voice Coil</source>
-        <translation>Nb de voix</translation>
+        <source>Voice Coil (#)</source>
+        <translation>Nb de voix (#)</translation>
     </message>
 </context>
 <context>

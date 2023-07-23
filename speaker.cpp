@@ -10,16 +10,16 @@ Speaker::Speaker() :
     re(0.0),
     qts(0.0),
     sd(0.0),
-    xmax(0.0),
     z(0.0),
-    le(0.0),
     qms(0.0),
     qes(0.0),
     spl(0.0),
     pe(0.0),
+    le(0.0),
+    xmax(0.0),
     bl(0.0),
-    dia(0.0),
-    vc(1)
+    vc(1),
+    dia(0.0)
 {
 }
 
@@ -30,16 +30,16 @@ Speaker::Speaker(const Speaker &copy)
     this->re = copy.getRe();
     this->qts = copy.getQts();
     this->sd = copy.getSd();
-    this->xmax = copy.getXmax();
     this->z = copy.getZ();
-    this->dia = copy.getDia();
-    this->bl = copy.getBL();
-    this->le = copy.getLe();
-    this->pe = copy.getPe();
-    this->qes = copy.getQes();
     this->qms = copy.getQms();
+    this->qes = copy.getQes();
     this->spl = copy.getSpl();
+    this->pe = copy.getPe();
+    this->le = copy.getLe();
+    this->xmax = copy.getXmax();
+    this->bl = copy.getBL();
     this->vc = copy.getVc();
+    this->dia = copy.getDia();
 
     this->vendor = copy.getVendor();
     this->model = copy.getModel();
@@ -57,16 +57,16 @@ Speaker &Speaker::operator=(const Speaker &copy)
     this->re = copy.getRe();
     this->qts = copy.getQts();
     this->sd = copy.getSd();
-    this->xmax = copy.getXmax();
     this->z = copy.getZ();
-    this->dia = copy.getDia();
-    this->bl = copy.getBL();
-    this->le = copy.getLe();
-    this->pe = copy.getPe();
-    this->qes = copy.getQes();
     this->qms = copy.getQms();
+    this->qes = copy.getQes();
     this->spl = copy.getSpl();
+    this->pe = copy.getPe();
+    this->le = copy.getLe();
+    this->xmax = copy.getXmax();
+    this->bl = copy.getBL();
     this->vc = copy.getVc();
+    this->dia = copy.getDia();
 
     this->vendor = copy.getVendor();
     this->model = copy.getModel();
@@ -96,15 +96,15 @@ bool Speaker::operator==(const Speaker& r) const
             almostEqualRelative(re, r.getRe()) &&
             almostEqualRelative(qts, r.getQts()) &&
             almostEqualRelative(sd, r.getSd()) &&
-            almostEqualRelative(xmax, r.getXmax()) &&
             almostEqualRelative(z, r.getZ()) &&
-            almostEqualRelative(dia, r.getDia()) &&
-            almostEqualRelative(le, r.getLe()) &&
             almostEqualRelative(qms, r.getQms()) &&
             almostEqualRelative(qes, r.getQes()) &&
-            almostEqualRelative(pe, r.getPe()) &&
-            almostEqualRelative(bl, r.getBL()) &&
             almostEqualRelative(spl, r.getSpl()) &&
+            almostEqualRelative(pe, r.getPe()) &&
+            almostEqualRelative(le, r.getLe()) &&
+            almostEqualRelative(xmax, r.getXmax()) &&
+            almostEqualRelative(bl, r.getBL()) &&
+            almostEqualRelative(dia, r.getDia()) &&
             vc == r.getVc();
 }
 
