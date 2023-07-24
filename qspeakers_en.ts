@@ -634,18 +634,22 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1121"/>
-        <source>QSpeakers version </source>
+        <source>QSpeakers version %1 (%2)
+
+This program simulates common acoustical enclosures behaviour to help designing loudspeaker systems.
+
+This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free.fr&gt; and released under the GNU General Public Lisence version 3. It is delivered as is in the hope it can be useful, but with no warranty at all.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1257"/>
-        <location filename="mainwindow.cpp" line="1314"/>
+        <location filename="mainwindow.cpp" line="1260"/>
+        <location filename="mainwindow.cpp" line="1317"/>
         <source>Unsaved speaker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1258"/>
-        <location filename="mainwindow.cpp" line="1315"/>
+        <location filename="mainwindow.cpp" line="1261"/>
+        <location filename="mainwindow.cpp" line="1318"/>
         <source>This speaker is not present in the database. Would you like to insert it before to continue?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -761,6 +765,11 @@
     <message>
         <location filename="optimizer.cpp" line="133"/>
         <source>applying bandpass box alignment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="40"/>
+        <source>Loudspeaker enclosure computation program.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -888,7 +897,7 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="main.cpp" line="44"/>
+        <location filename="main.cpp" line="43"/>
         <source>Project file to work on.</source>
         <translation type="unfinished"></translation>
     </message>

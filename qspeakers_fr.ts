@@ -11,7 +11,7 @@
     <message>
         <location filename="bandpassdialog.ui" line="59"/>
         <source>Curve ripple (0.7 = 0dB)</source>
-        <translation>Oscillation de la courbe(0.7 = 0dB)</translation>
+        <translation>Oscillation de la courbe (0.7 = 0dB)</translation>
     </message>
 </context>
 <context>
@@ -635,18 +635,26 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1121"/>
-        <source>QSpeakers version </source>
-        <translation>QSpeakers version </translation>
+        <source>QSpeakers version %1 (%2)
+
+This program simulates common acoustical enclosures behaviour to help designing loudspeaker systems.
+
+This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free.fr&gt; and released under the GNU General Public Lisence version 3. It is delivered as is in the hope it can be useful, but with no warranty at all.</source>
+        <translation>QSpeakers version %1 (%2)
+
+Ce programme simule le comportement d&apos;enceintes acoustiques connues afin d&apos;aider à la conception de systèmes de haut-parleurs.
+
+Ce programme est un logiciel libre, copyright (C) 2014 Benoît Rouits &lt;brouits@free.fr&gt; et est livré sous la Licence Publique Générale GNU version 3.Il est livré tel-quel dans l&apos;espoir de pouvoir être utile mais sans aucune garantie.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1257"/>
-        <location filename="mainwindow.cpp" line="1314"/>
+        <location filename="mainwindow.cpp" line="1260"/>
+        <location filename="mainwindow.cpp" line="1317"/>
         <source>Unsaved speaker</source>
         <translation>Haut-parleur non enregistré</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1258"/>
-        <location filename="mainwindow.cpp" line="1315"/>
+        <location filename="mainwindow.cpp" line="1261"/>
+        <location filename="mainwindow.cpp" line="1318"/>
         <source>This speaker is not present in the database. Would you like to insert it before to continue?</source>
         <translation>Ce haut-parleur n&apos;est pas présent dans la base de données. Voulez-vous l&apos;insérer avant de continuer ?</translation>
     </message>
@@ -763,6 +771,11 @@
         <location filename="optimizer.cpp" line="133"/>
         <source>applying bandpass box alignment</source>
         <translation>application de l&apos;alignement de l&apos;enceinte passe-bande</translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="40"/>
+        <source>Loudspeaker enclosure computation program.</source>
+        <translation>Programme de calcul d&apos;enceintes acoustiques.</translation>
     </message>
 </context>
 <context>
@@ -890,7 +903,7 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="main.cpp" line="44"/>
+        <location filename="main.cpp" line="43"/>
         <source>Project file to work on.</source>
         <translation>Fichier du projet sur lequel travailler.</translation>
     </message>

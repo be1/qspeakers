@@ -10,7 +10,6 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     a.setOrganizationName("Herewe");
-    //a.setOrganizationDomain("herewe");
     a.setApplicationName("QSpeakers");
     a.setApplicationVersion(VERSION " (" REVISION ")");
 
@@ -38,7 +37,7 @@ int main(int argc, char *argv[])
 
 
     QCommandLineParser parser;
-    parser.setApplicationDescription("Loudspeaker enclosure computation program.");
+    parser.setApplicationDescription(QObject::tr("Loudspeaker enclosure computation program."));
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addPositionalArgument("project", QCoreApplication::translate("main", "Project file to work on."));
