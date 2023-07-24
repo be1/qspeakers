@@ -673,35 +673,35 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="bandpassbox.cpp" line="153"/>
+        <location filename="bandpassbox.cpp" line="154"/>
         <source>Sealed Vol. %1 L</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="154"/>
+        <location filename="bandpassbox.cpp" line="155"/>
         <source>Ported Vol. %1 L</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="157"/>
+        <location filename="bandpassbox.cpp" line="158"/>
         <location filename="portedbox.cpp" line="197"/>
         <source>Port Diam. %1 cm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="162"/>
+        <location filename="bandpassbox.cpp" line="163"/>
         <location filename="portedbox.cpp" line="201"/>
         <source>Port Len. %1 cm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="163"/>
+        <location filename="bandpassbox.cpp" line="164"/>
         <location filename="portedbox.cpp" line="202"/>
         <source>Port Num. %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="164"/>
+        <location filename="bandpassbox.cpp" line="165"/>
         <location filename="portedbox.cpp" line="203"/>
         <source>Fb %1 Hz</source>
         <translation type="unfinished"></translation>
@@ -713,13 +713,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="159"/>
+        <location filename="bandpassbox.cpp" line="160"/>
         <location filename="portedbox.cpp" line="199"/>
         <source>Slot port %1 x %2 cm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="system.cpp" line="83"/>
+        <location filename="system.cpp" line="84"/>
         <source>Driver(s) number: </source>
         <translation type="unfinished"></translation>
     </message>

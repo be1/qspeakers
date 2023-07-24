@@ -674,35 +674,35 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="bandpassbox.cpp" line="153"/>
+        <location filename="bandpassbox.cpp" line="154"/>
         <source>Sealed Vol. %1 L</source>
         <translation>Vol. Clos %1 L</translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="154"/>
+        <location filename="bandpassbox.cpp" line="155"/>
         <source>Ported Vol. %1 L</source>
         <translation>Vol. avec évent %1 L</translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="157"/>
+        <location filename="bandpassbox.cpp" line="158"/>
         <location filename="portedbox.cpp" line="197"/>
         <source>Port Diam. %1 cm</source>
         <translation>Diam. Évent %1 cm</translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="162"/>
+        <location filename="bandpassbox.cpp" line="163"/>
         <location filename="portedbox.cpp" line="201"/>
         <source>Port Len. %1 cm</source>
         <translation>Long. Évent %1 cm</translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="163"/>
+        <location filename="bandpassbox.cpp" line="164"/>
         <location filename="portedbox.cpp" line="202"/>
         <source>Port Num. %1</source>
         <translation>Nombre Évent %1</translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="164"/>
+        <location filename="bandpassbox.cpp" line="165"/>
         <location filename="portedbox.cpp" line="203"/>
         <source>Fb %1 Hz</source>
         <translation>Fb %1 Hz</translation>
@@ -714,13 +714,13 @@
         <translation>Vol. %1 L</translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="159"/>
+        <location filename="bandpassbox.cpp" line="160"/>
         <location filename="portedbox.cpp" line="199"/>
         <source>Slot port %1 x %2 cm</source>
         <translation>Évent laminaire %1 x %2 cm</translation>
     </message>
     <message>
-        <location filename="system.cpp" line="83"/>
+        <location filename="system.cpp" line="84"/>
         <source>Driver(s) number: </source>
         <translation>Nombre de haut-parleur(s) : </translation>
     </message>
@@ -827,8 +827,9 @@
     </message>
     <message>
         <location filename="speakerdialog.ui" line="108"/>
-        <source>Dia (m)</source>
-        <translation>Diamètre de découpe (m)</translation>
+        <source>Dia cutout (m)</source>
+        <oldsource>Dia (m)</oldsource>
+        <translation>Dia découpe (m)</translation>
     </message>
     <message>
         <location filename="speakerdialog.ui" line="125"/>
