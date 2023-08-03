@@ -115,7 +115,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->actionRedo->setEnabled(false);
 
     /* restore last saved project... */
-    if (ImportExport::restoreProject(currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, &currentSpeakerNumber, &currentTabIndex))
+    if (loadFile(ImportExport::getSavePath()))
         projectSaved = true;
     else {
         projectSaved = false;
@@ -251,7 +251,7 @@ void MainWindow::updateRecentFileActions()
 
     for (int i = 0; i < numRecentFiles; ++i) {
         QString text("&%1 %2");
-		text = text.arg(i + 1).arg(strippedName(files[i]));
+        text = text.arg(i + 1).arg(strippedName(files[i]));
         recentFileActs[i]->setText(text);
         recentFileActs[i]->setData(files[i]);
         recentFileActs[i]->setVisible(true);
@@ -295,7 +295,15 @@ bool MainWindow::loadFile(const QString& fileName)
         return false;
     }
 
-    setRecentFile(fileName, true);
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+    QString prefix = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+#elif QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+    QString prefix = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+#else
+    QString prefix = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+#endif
+    if (!fileName.startsWith(prefix))
+        setRecentFile(fileName, true);
 
     ImportExport::setSavePath(fileName);
     setWindowFilePath(ImportExport::getSavePath());
@@ -1121,11 +1129,11 @@ void MainWindow::onAboutAbout()
     QMessageBox::about(this, tr("About QSpeakers"),
                        tr("QSpeakers version %1 (%2)\n\n"
                           "This program simulates common acoustical enclosures "
-						  "behaviour to help designing loudspeaker systems.\n\n"
+                          "behaviour to help designing loudspeaker systems.\n\n"
                           "This program is free software, copyright (C) 2014 "
-						  "Benoit Rouits <brouits@free.fr> and released under the "
-						  "GNU General Public Lisence version 3. It is delivered "
-						  "as is in the hope it can be useful, but with no warranty at all.").arg(VERSION, REVISION));
+                          "Benoit Rouits <brouits@free.fr> and released under the "
+                          "GNU General Public Lisence version 3. It is delivered "
+                          "as is in the hope it can be useful, but with no warranty at all.").arg(VERSION, REVISION));
 }
 
 void MainWindow::onSearchRequested(const QString& param, double min, double max)
