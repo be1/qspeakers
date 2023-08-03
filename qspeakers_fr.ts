@@ -4,12 +4,17 @@
 <context>
     <name>BandpassDialog</name>
     <message>
-        <location filename="bandpassdialog.ui" line="42"/>
+        <location filename="bandpassdialog.ui" line="14"/>
+        <source>Alignment</source>
+        <translation>Alignement</translation>
+    </message>
+    <message>
+        <location filename="bandpassdialog.ui" line="28"/>
         <source>Curve gain (dB)</source>
         <translation>Gain de la courbe(dB)</translation>
     </message>
     <message>
-        <location filename="bandpassdialog.ui" line="59"/>
+        <location filename="bandpassdialog.ui" line="57"/>
         <source>Curve ripple (0.7 = 0dB)</source>
         <translation>Oscillation de la courbe (0.7 = 0dB)</translation>
     </message>
@@ -289,7 +294,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="1080"/>
-        <location filename="mainwindow.cpp" line="1120"/>
+        <location filename="mainwindow.cpp" line="1121"/>
         <source>About QSpeakers</source>
         <translation>À propos de QSpeakers</translation>
     </message>
@@ -561,7 +566,7 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="211"/>
-        <location filename="mainwindow.cpp" line="331"/>
+        <location filename="mainwindow.cpp" line="332"/>
         <source>Project not saved</source>
         <translation>Projet non enregistré</translation>
     </message>
@@ -588,53 +593,48 @@
         <translation>Impossible d&apos;ouvrir le projet !</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="253"/>
-        <source>&amp;%1 %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="332"/>
+        <location filename="mainwindow.cpp" line="333"/>
         <source>The current project has not been saved. Exit anyway?</source>
         <translation>Le projet actuel n&apos;a pas été enregistré. Quitter malgré tout ?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="566"/>
+        <location filename="mainwindow.cpp" line="567"/>
         <source>Export for Gnuplot</source>
         <translation>Exporter pour Gnuplot</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="566"/>
+        <location filename="mainwindow.cpp" line="567"/>
         <source>Gnuplot data (*.dat)</source>
         <translation>Données Gnuplot (*.dat)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="581"/>
+        <location filename="mainwindow.cpp" line="582"/>
         <source>Export for 3D OpenSCAD</source>
         <translation>Export 3D pour OpenSCAD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="581"/>
-        <location filename="mainwindow.cpp" line="596"/>
+        <location filename="mainwindow.cpp" line="582"/>
+        <location filename="mainwindow.cpp" line="597"/>
         <source>OpenSCAD script (*.scad)</source>
         <translation>Script OpenSCAD (*.scad)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="596"/>
+        <location filename="mainwindow.cpp" line="597"/>
         <source>Export for 2D OpenSCAD</source>
         <translation>Export 2D pour OpenSCAD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="939"/>
+        <location filename="mainwindow.cpp" line="940"/>
         <source>Removal confirmation</source>
         <translation>Confirmation de la suppression</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="940"/>
+        <location filename="mainwindow.cpp" line="941"/>
         <source>Do you really want to remove this loudspeaker from the database?</source>
         <translation>Voulez-vous vraiment retirer ce haut-parleur de la base de données ?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1121"/>
+        <location filename="mainwindow.cpp" line="1122"/>
         <source>QSpeakers version %1 (%2)
 
 This program simulates common acoustical enclosures behaviour to help designing loudspeaker systems.
@@ -647,14 +647,14 @@ Ce programme simule le comportement d&apos;enceintes acoustiques connues afin d&
 Ce programme est un logiciel libre, copyright (C) 2014 Benoît Rouits &lt;brouits@free.fr&gt; et est livré sous la Licence Publique Générale GNU version 3.Il est livré tel-quel dans l&apos;espoir de pouvoir être utile mais sans aucune garantie.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1260"/>
-        <location filename="mainwindow.cpp" line="1317"/>
+        <location filename="mainwindow.cpp" line="1261"/>
+        <location filename="mainwindow.cpp" line="1318"/>
         <source>Unsaved speaker</source>
         <translation>Haut-parleur non enregistré</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1261"/>
-        <location filename="mainwindow.cpp" line="1318"/>
+        <location filename="mainwindow.cpp" line="1262"/>
+        <location filename="mainwindow.cpp" line="1319"/>
         <source>This speaker is not present in the database. Would you like to insert it before to continue?</source>
         <translation>Ce haut-parleur n&apos;est pas présent dans la base de données. Voulez-vous l&apos;insérer avant de continuer ?</translation>
     </message>
