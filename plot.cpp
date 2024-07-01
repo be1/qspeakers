@@ -127,7 +127,11 @@ void Plot::mouseMoveEvent(QMouseEvent *event)
     double y = curveYfromX(val.x());
     QString label = QString(tr("%1 dB at %2 Hz")).arg(y).arg(val.x());
 
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QToolTip::showText(event->globalPos(), label, this, QRect(), 10000);
+#else
+    QToolTip::showText(event->globalPosition().toPoint(), label, this, QRect(), 10000);
+#endif
 
     drawVLine(pos);
 
@@ -146,8 +150,11 @@ void Plot::mousePressEvent(QMouseEvent *event)
     double y = curveYfromX(val.x());
     QString label = QString(tr("%1 dB at %2 Hz")).arg(round(y)).arg(round(val.x()));
 
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QToolTip::showText(event->globalPos(), label, this, QRect(), 10000);
-
+#else
+    QToolTip::showText(event->globalPosition().toPoint(), label, this, QRect(), 10000);
+#endif
     drawVLine(pos);
 
     event->accept();
