@@ -25,6 +25,9 @@
     </screenshot>
   </screenshots>
   <url type="homepage">http://brouits.free.fr/qspeakers/</url>
+  <url type="donation">https://paypal.me/brouits</url>
+  <url type="vcs-browser">https://github.com/be1/qspeakers</url>
+  <url type="bugtracker">https://github.com/be1/qspeakers/issues</url>
   <developer_name>Benoît Rouits</developer_name>
   <update_contact>brouits_AT_free.fr</update_contact>
   <provides>
