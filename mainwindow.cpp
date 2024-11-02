@@ -30,7 +30,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    projectSaved(false),
+    projectSaved(true),
     isModifying(false),
     spkDialog(nullptr),
     fileDialog(nullptr),
@@ -118,7 +118,7 @@ MainWindow::MainWindow(QWidget *parent) :
     if (loadFile(ImportExport::getSavePath()))
         projectSaved = true;
     else {
-        projectSaved = false;
+        //projectSaved = false;
         currentSpeakerNumber = 1;
         currentTabIndex = 0;
     }
@@ -308,8 +308,6 @@ bool MainWindow::loadFile(const QString& fileName)
     ImportExport::setSavePath(fileName);
     setWindowFilePath(ImportExport::getSavePath());
 
-    ui->tabWidget->setCurrentIndex(currentTabIndex);
-
     syncUiFromCurrentSpeaker(currentSpeaker);
     syncUiFromCurrentSealedBox(currentSealedBox);
     syncUiFromCurrentPortedBox(currentPortedBox);
@@ -317,6 +315,8 @@ bool MainWindow::loadFile(const QString& fileName)
 
     linkInternals();
     linkTabs();
+
+    ui->tabWidget->setCurrentIndex(currentTabIndex);
 
     if (notInDbSpeaker)
         onSpeakerModify();
@@ -502,21 +502,15 @@ bool MainWindow::print(QPrinter *printer)
     if (ui->tabWidget->currentWidget() == ui->sealedTab) {
         System s(currentSpeaker, &currentSealedBox, currentSpeakerNumber);
         s.render(&painter, QRectF(page.left(), page.top(), page.width(), step));
-        //sealedPlot->setUseOpenGL(false);
         sealedPlot->render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() - step));
-        //sealedPlot->setUseOpenGL(true);
     } else if (ui->tabWidget->currentWidget() == ui->portedTab) {
         System s(currentSpeaker, &currentPortedBox, currentSpeakerNumber);
         s.render(&painter, QRectF(page.left(), page.top(), page.width(), step));
-        //portedPlot->setUseOpenGL(false);
         portedPlot->render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() - step));
-        //portedPlot->setUseOpenGL(true);
     } else {
         System s(currentSpeaker, &currentBandPassBox, currentSpeakerNumber);
         s.render(&painter, QRectF(page.left(), page.top(), page.width(), step));
-        //bandpassPlot->setUseOpenGL(false);
         bandpassPlot->render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() - step));
-        //bandpassPlot->setUseOpenGL(true);
     }
 
     painter.end();
@@ -1193,9 +1187,6 @@ void MainWindow::setActivateActions(QList<QAction*> actions, bool enable)
 
 void MainWindow::onCurrentTabChanged(int tab)
 {
-    if (tab == currentTabIndex)
-        return;
-
     this->commandStack->clear();
 
     QList<QAction*> alignments = ui->menuPorted_alignments->actions();
