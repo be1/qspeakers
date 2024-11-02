@@ -644,7 +644,7 @@ This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free
 
 Ce programme simule le comportement d&apos;enceintes acoustiques connues afin d&apos;aider à la conception de systèmes de haut-parleurs.
 
-Ce programme est un logiciel libre, copyright (C) 2014 Benoît Rouits &lt;brouits@free.fr&gt; et est livré sous la Licence Publique Générale GNU version 3.Il est livré tel-quel dans l&apos;espoir de pouvoir être utile mais sans aucune garantie.</translation>
+Ce programme est un logiciel libre, copyright (C) 2014 Benoît Rouits &lt;brouits@free.fr&gt; et est livré sous la Licence Publique Générale GNU version 3. Il est livré tel-quel dans l&apos;espoir de pouvoir être utile mais sans aucune garantie.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1261"/>
