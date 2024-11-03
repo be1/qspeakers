@@ -1,5 +1,5 @@
-- about frequency response formulae:
-http://www.diysubwoofers.org/
+- about frequency response:
+Formulæ are in system.cpp, function response()
 
 - about rectangular ports:
 I deduced the function [1.1-log10(x+1.1)*0.35]*circPortLen where x = L/l, from the analysis of Francis Brooke. https://sites.google.com/site/francisaudio69/
