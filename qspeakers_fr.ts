@@ -69,7 +69,6 @@
     <message>
         <location filename="mainwindow.ui" line="179"/>
         <source>Vas:</source>
-        <oldsource>Vas</oldsource>
         <translation>Vas :</translation>
     </message>
     <message>
@@ -294,7 +293,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="1080"/>
-        <location filename="mainwindow.cpp" line="1121"/>
+        <location filename="mainwindow.cpp" line="1123"/>
         <source>About QSpeakers</source>
         <translation>À propos de QSpeakers</translation>
     </message>
@@ -566,7 +565,7 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="211"/>
-        <location filename="mainwindow.cpp" line="332"/>
+        <location filename="mainwindow.cpp" line="340"/>
         <source>Project not saved</source>
         <translation>Projet non enregistré</translation>
     </message>
@@ -593,58 +592,56 @@
         <translation>Impossible d&apos;ouvrir le projet !</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="333"/>
+        <location filename="mainwindow.cpp" line="341"/>
         <source>The current project has not been saved. Exit anyway?</source>
         <translation>Le projet actuel n&apos;a pas été enregistré. Quitter malgré tout ?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="567"/>
+        <location filename="mainwindow.cpp" line="569"/>
         <source>Export for Gnuplot</source>
         <translation>Exporter pour Gnuplot</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="567"/>
+        <location filename="mainwindow.cpp" line="569"/>
         <source>Gnuplot data (*.dat)</source>
         <translation>Données Gnuplot (*.dat)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="582"/>
+        <location filename="mainwindow.cpp" line="584"/>
         <source>Export for 3D OpenSCAD</source>
         <translation>Export 3D pour OpenSCAD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="582"/>
-        <location filename="mainwindow.cpp" line="597"/>
+        <location filename="mainwindow.cpp" line="584"/>
+        <location filename="mainwindow.cpp" line="599"/>
         <source>OpenSCAD script (*.scad)</source>
         <translation>Script OpenSCAD (*.scad)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="597"/>
+        <location filename="mainwindow.cpp" line="599"/>
         <source>Export for 2D OpenSCAD</source>
         <translation>Export 2D pour OpenSCAD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="940"/>
+        <location filename="mainwindow.cpp" line="942"/>
         <source>Removal confirmation</source>
         <translation>Confirmation de la suppression</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="941"/>
+        <location filename="mainwindow.cpp" line="943"/>
         <source>Do you really want to remove this loudspeaker from the database?</source>
         <translation>Voulez-vous vraiment retirer ce haut-parleur de la base de données ?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1122"/>
+        <location filename="mainwindow.cpp" line="1124"/>
         <source>QSpeakers version %1 (%2)
 
 This program simulates common acoustical enclosures behaviour to help designing loudspeaker systems.
 
-This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free.fr&gt; and released under the GNU General Public Lisence version 3. It is delivered as is in the hope it can be useful, but with no warranty at all.</source>
-        <translation>QSpeakers version %1 (%2)
+This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free.fr&gt; and released under the GNU General Public Lisence version 3. It is delivered as is in the hope it can be useful, but with no warranty at all.
 
-Ce programme simule le comportement d&apos;enceintes acoustiques connues afin d&apos;aider à la conception de systèmes de haut-parleurs.
-
-Ce programme est un logiciel libre, copyright (C) 2014 Benoît Rouits &lt;brouits@free.fr&gt; et est livré sous la Licence Publique Générale GNU version 3. Il est livré tel-quel dans l&apos;espoir de pouvoir être utile mais sans aucune garantie.</translation>
+To help further development of QSpeakers, please consider making a donation on https://paypal.me/brouits or providing formulæ for interesting plots</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1261"/>
@@ -662,19 +659,19 @@ Ce programme est un logiciel libre, copyright (C) 2014 Benoît Rouits &lt;brouit
 <context>
     <name>Plot</name>
     <message>
-        <location filename="plot.cpp" line="250"/>
+        <location filename="plot.cpp" line="257"/>
         <source>Frequency [Hz]</source>
         <translation>Fréquence [Hz]</translation>
     </message>
     <message>
-        <location filename="plot.cpp" line="258"/>
+        <location filename="plot.cpp" line="265"/>
         <source>Sound pressure [dB]</source>
         <translation>Pression sonore [dB]</translation>
     </message>
     <message>
         <location filename="plot.cpp" line="96"/>
         <location filename="plot.cpp" line="128"/>
-        <location filename="plot.cpp" line="147"/>
+        <location filename="plot.cpp" line="151"/>
         <source>%1 dB at %2 Hz</source>
         <translation>%1 dB à %2 Hz</translation>
     </message>
@@ -841,7 +838,6 @@ Ce programme est un logiciel libre, copyright (C) 2014 Benoît Rouits &lt;brouit
     <message>
         <location filename="speakerdialog.ui" line="108"/>
         <source>Dia cutout (m)</source>
-        <oldsource>Dia (m)</oldsource>
         <translation>Dia découpe (m)</translation>
     </message>
     <message>

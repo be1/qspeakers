@@ -69,7 +69,6 @@
     <message>
         <location filename="mainwindow.ui" line="179"/>
         <source>Vas:</source>
-        <oldsource>Vas</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -293,7 +292,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="1080"/>
-        <location filename="mainwindow.cpp" line="1121"/>
+        <location filename="mainwindow.cpp" line="1123"/>
         <source>About QSpeakers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -565,7 +564,7 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="211"/>
-        <location filename="mainwindow.cpp" line="332"/>
+        <location filename="mainwindow.cpp" line="340"/>
         <source>Project not saved</source>
         <translation type="unfinished"></translation>
     </message>
@@ -592,53 +591,55 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="333"/>
+        <location filename="mainwindow.cpp" line="341"/>
         <source>The current project has not been saved. Exit anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="567"/>
+        <location filename="mainwindow.cpp" line="569"/>
         <source>Export for Gnuplot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="567"/>
+        <location filename="mainwindow.cpp" line="569"/>
         <source>Gnuplot data (*.dat)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="582"/>
+        <location filename="mainwindow.cpp" line="584"/>
         <source>Export for 3D OpenSCAD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="582"/>
-        <location filename="mainwindow.cpp" line="597"/>
+        <location filename="mainwindow.cpp" line="584"/>
+        <location filename="mainwindow.cpp" line="599"/>
         <source>OpenSCAD script (*.scad)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="597"/>
+        <location filename="mainwindow.cpp" line="599"/>
         <source>Export for 2D OpenSCAD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="940"/>
+        <location filename="mainwindow.cpp" line="942"/>
         <source>Removal confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="941"/>
+        <location filename="mainwindow.cpp" line="943"/>
         <source>Do you really want to remove this loudspeaker from the database?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1122"/>
+        <location filename="mainwindow.cpp" line="1124"/>
         <source>QSpeakers version %1 (%2)
 
 This program simulates common acoustical enclosures behaviour to help designing loudspeaker systems.
 
-This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free.fr&gt; and released under the GNU General Public Lisence version 3. It is delivered as is in the hope it can be useful, but with no warranty at all.</source>
+This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free.fr&gt; and released under the GNU General Public Lisence version 3. It is delivered as is in the hope it can be useful, but with no warranty at all.
+
+To help further development of QSpeakers, please consider making a donation on https://paypal.me/brouits or providing formulæ for interesting plots</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -657,19 +658,19 @@ This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free
 <context>
     <name>Plot</name>
     <message>
-        <location filename="plot.cpp" line="250"/>
+        <location filename="plot.cpp" line="257"/>
         <source>Frequency [Hz]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="plot.cpp" line="258"/>
+        <location filename="plot.cpp" line="265"/>
         <source>Sound pressure [dB]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="plot.cpp" line="96"/>
         <location filename="plot.cpp" line="128"/>
-        <location filename="plot.cpp" line="147"/>
+        <location filename="plot.cpp" line="151"/>
         <source>%1 dB at %2 Hz</source>
         <translation type="unfinished"></translation>
     </message>
