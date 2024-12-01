@@ -79,6 +79,9 @@ MainWindow::MainWindow(QWidget *parent) :
     setMinimumWidth(800);
     ui->menuBar->setMinimumWidth(800);
 
+    ui->mainToolBar->setFloatable(false);
+    ui->mainToolBar->setMovable(false);
+
     /* insert QChartView plotters in ui */
     QHBoxLayout *ly1 = new QHBoxLayout(ui->sealedVolumePlotWidget);
     sealedPlot = new Plot(tr("Sealed volume frequency response"), ui->sealedVolumePlotWidget);
