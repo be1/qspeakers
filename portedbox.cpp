@@ -1,7 +1,7 @@
 #include <QLocale>
 #include <QDebug>
 
-#include <math.h>
+#include <cmath>
 
 #include "portedbox.h"
 
@@ -92,7 +92,7 @@ double PortedBox::getSlotWidth() const
 double PortedBox::getSlotHeight() const
 {
     /* width is manual, height is computed from eq. diam. */
-    return double ((int)((PI * pow(portDiam, 2.0)) / (4.0 * slotWidth) * 100) / 100.0);
+    return double ((int)((M_PI * pow(portDiam, 2.0)) / (4.0 * slotWidth) * 100) / 100.0);
 }
 
 double PortedBox::getResFreq() const
@@ -114,7 +114,7 @@ void PortedBox::updateSlots()
 {
     /* compute square slot */
     double diam = getPortDiam();
-    double s = sqrt(PI * pow(diam, 2.0) / 4.0);
+    double s = sqrt(M_PI * pow(diam, 2.0) / 4.0);
 
     /* consider "width" over "height" and reset if too small */
     if (slotWidth == 0.0)

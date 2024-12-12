@@ -1,7 +1,7 @@
 #include <QDebug>
 #include <QObject>
 
-#include <math.h>
+#include <cmath>
 
 #include "system.h"
 

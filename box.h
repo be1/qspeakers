@@ -6,8 +6,6 @@
 #include <QRectF>
 #include <QPainter>
 
-#define PI 3.1415927
-
 #define BOX_SEALED 0
 #define BOX_PORTED 1
 #define BOX_BANDPASS 2
