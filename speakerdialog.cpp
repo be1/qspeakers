@@ -100,6 +100,8 @@ void SpeakerDialog::onSpeakerAccepted()
     spk.setBL(ui->blDoubleSpinBox->value());
     spk.setVc(ui->vcSpinBox->value());
 
+    spk.computeEmptyParams();
+
 
     if (oldVendor.isNull() || oldModel.isNull()) {
         SpeakerDb::insertOrReplace(vendor, model, spk);

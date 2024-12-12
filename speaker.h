@@ -41,6 +41,8 @@ public:
     void setDia(double val);
     void setVc(int val);
 
+    void computeEmptyParams(void);
+
     QString getVendor() const;
     QString getModel() const;
 

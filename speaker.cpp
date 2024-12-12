@@ -203,6 +203,35 @@ void Speaker::setVc(int val)
     vc = val;
 }
 
+void Speaker::computeEmptyParams()
+{
+    if ((qes && qms) || (qes && qts) || (qms && qts)) {
+        if (!qts) {
+            qDebug() << "computing qts";
+            qts = (qes * qms) / (qes + qms);
+        } else if (!qms && qts != qes) {
+            qDebug() << "computing qms";
+            qms = - (qts * qes) / (qts - qes);
+        } else if (!qes && qts != qms) {
+            qDebug() << "computing qes";
+            qes = - (qts * qms) / (qts - qms);
+        }
+    }
+
+    if (fs && re && qes && vas && sd) {
+        if (!bl) {
+            qDebug() << "computing bl";
+            const double rho = 1.204; // Kg/m³ @ +20° Celsius
+            const double c = 343.5; // m/s @ +20° Celsius
+
+            double mms = 1. / (pow(2. * M_PI * fs, 2) * ((vas / 1000.) / (rho * pow(c, 2.) * pow(sd, 2.))));
+            bl = sqrt(2 * M_PI * fs * re * mms / qes);
+        }
+    }
+
+    //FIXME other computations
+}
+
 QString Speaker::getVendor() const
 {
     return vendor;
