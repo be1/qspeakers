@@ -1,4 +1,3 @@
-#include <iostream>
 #include <QtCore>
 #include <QDebug>
 #include <QMessageBox>
@@ -22,6 +21,7 @@
 #include "importexport.h"
 #include "plot.h"
 #include "searchdialog.h"
+#include "propertiesdialog.h"
 #include "listdialog.h"
 #include "system.h"
 #include "optimizer.h"
@@ -35,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     spkDialog(nullptr),
     fileDialog(nullptr),
     searchDialog(nullptr),
+    propertiesDialog(nullptr),
     listDialog(nullptr),
     bandpassDialog(nullptr),
     currentSpeakerNumber(0),
@@ -174,7 +175,7 @@ MainWindow::~MainWindow()
 void MainWindow::onProjectSave()
 {
 
-    if(ImportExport::saveProject(currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, currentSpeakerNumber, currentTabIndex)) {
+    if(ImportExport::saveProject(projectProperties, currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, currentSpeakerNumber, currentTabIndex)) {
         projectSaved = true;
 
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
@@ -202,7 +203,7 @@ void MainWindow::onProjectExport()
         fileName += ".qsp";
 
     QFile file(fileName);
-    if(ImportExport::exportProject(file, currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, currentSpeakerNumber, currentTabIndex)) {
+    if(ImportExport::exportProject(file, projectProperties, currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, currentSpeakerNumber, currentTabIndex)) {
         setRecentFile(fileName, true);
     }
 }
@@ -289,7 +290,7 @@ bool MainWindow::loadFile(const QString& fileName)
     unlinkTabs();
 
     QFile file(fileName);
-    if (!ImportExport::importProject(currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, &currentSpeakerNumber, &currentTabIndex, file)) {
+    if (!ImportExport::importProject(projectProperties, currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, &currentSpeakerNumber, &currentTabIndex, file)) {
         setRecentFile(fileName, false);
 
         linkInternals();
@@ -500,21 +501,34 @@ bool MainWindow::print(QPrinter *printer)
 
     QRect page = printer->pageLayout().paintRectPixels(printer->resolution());
 
-    qreal step = page.height() / 4.0;
+    qreal textheight = painter.fontMetrics().height();
+    qreal step = 0;
+
+    QTextOption option(Qt::AlignHCenter);
+    painter.drawText(QRectF(page.left(), page.top(), page.width(), page.height()), projectProperties.title, option);
+    step += textheight;
 
     if (ui->tabWidget->currentWidget() == ui->sealedTab) {
         System s(currentSpeaker, &currentSealedBox, currentSpeakerNumber);
-        s.render(&painter, QRectF(page.left(), page.top(), page.width(), step));
-        sealedPlot->render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() - step));
+        s.render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() / 4.));
+        step += page.height() / 4.;
+        sealedPlot->render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() / 2.));
+        step += page.height() / 2.;
     } else if (ui->tabWidget->currentWidget() == ui->portedTab) {
         System s(currentSpeaker, &currentPortedBox, currentSpeakerNumber);
-        s.render(&painter, QRectF(page.left(), page.top(), page.width(), step));
-        portedPlot->render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() - step));
+        s.render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() / 4.));
+        step += page.height() / 4.;
+        portedPlot->render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() / 2.));
+        step += page.height() / 2.;
     } else {
         System s(currentSpeaker, &currentBandPassBox, currentSpeakerNumber);
-        s.render(&painter, QRectF(page.left(), page.top(), page.width(), step));
-        bandpassPlot->render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() - step));
+        s.render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() / 4.));
+        step += page.height() / 4.;
+        bandpassPlot->render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() / 2.));
+        step += page.height() / 2.;
     }
+
+    painter.drawText(QRectF(page.left(), page.top() + step, page.width(), page.height() - step), projectProperties.note);
 
     painter.end();
     return true;
@@ -708,6 +722,37 @@ void MainWindow::exportScad(const QString& scad, const QString &outfileName, int
     f.close();
 }
 
+void MainWindow::onProjectProperties()
+{
+    propertiesDialog = new PropertiesDialog(this);
+    propertiesDialog->setTitle(projectProperties.title);
+    propertiesDialog->setNote(projectProperties.note);
+    connect(propertiesDialog, &QDialog::accepted, this, &MainWindow::onPropertiesAccepted);
+    connect(propertiesDialog,&QDialog::rejected, this, &MainWindow::onPropertiesRejected);
+    propertiesDialog->show();
+}
+
+void MainWindow::onPropertiesRejected()
+{
+    disconnect(propertiesDialog, &QDialog::accepted, this, &MainWindow::onPropertiesAccepted);
+    disconnect(propertiesDialog, &QDialog::rejected, this, &MainWindow::onPropertiesRejected);
+    propertiesDialog->close();
+    propertiesDialog->deleteLater();
+    propertiesDialog = nullptr;
+}
+
+void MainWindow::onPropertiesAccepted()
+{
+    projectProperties.title = propertiesDialog->getTitle();
+    projectProperties.note = propertiesDialog->getNote();
+
+    disconnect(propertiesDialog, &QDialog::accepted, this, &MainWindow::onPropertiesAccepted);
+    disconnect(propertiesDialog, &QDialog::rejected, this, &MainWindow::onPropertiesRejected);
+    propertiesDialog->close();
+    propertiesDialog->deleteLater();
+    propertiesDialog = nullptr;
+}
+
 void MainWindow::exportScad3D(const QString &outfileName, int tabindex)
 {
     QFile file(outfileName);
@@ -797,6 +842,7 @@ void MainWindow::exportScad2D(const QString &outfileName, int tabindex)
 
 void MainWindow::linkMenus()
 {
+    connect(ui->actionProjectProperties, &QAction::triggered, this, &MainWindow::onProjectProperties);
     connect(ui->actionProjectSave, &QAction::triggered, this, &MainWindow::onProjectSave);
     connect(ui->actionProjectQuit, &QAction::triggered, this, &MainWindow::onProjectQuit);
     connect(ui->actionSpeakerNew, &QAction::triggered, this, &MainWindow::onSpeakerNew);
@@ -869,6 +915,7 @@ void MainWindow::linkInternals()
 
 void MainWindow::unlinkMenus()
 {
+    disconnect(ui->actionProjectProperties, &QAction::triggered, this, &MainWindow::onProjectProperties);
     disconnect(ui->actionProjectSave, &QAction::triggered, this, &MainWindow::onProjectSave);
     disconnect(ui->actionProjectQuit, &QAction::triggered, this, &MainWindow::onProjectQuit);
     disconnect(ui->actionSpeakerNew, &QAction::triggered, this, &MainWindow::onSpeakerNew);

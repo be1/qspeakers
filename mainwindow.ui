@@ -936,15 +936,16 @@
      <x>0</x>
      <y>0</y>
      <width>1300</width>
-     <height>27</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuProject">
     <property name="title">
      <string>Project</string>
     </property>
-    <addaction name="actionProjectSave"/>
+    <addaction name="actionProjectProperties"/>
     <addaction name="separator"/>
+    <addaction name="actionProjectSave"/>
     <addaction name="actionProjectImport"/>
     <addaction name="actionProjectExport"/>
     <addaction name="actionProjectPrint"/>
@@ -1220,6 +1221,11 @@
   <action name="actionCurve_Plot">
    <property name="text">
     <string>Curve Plot</string>
+   </property>
+  </action>
+  <action name="actionProjectProperties">
+   <property name="text">
+    <string>Properties</string>
    </property>
   </action>
  </widget>

@@ -3,8 +3,6 @@
 
 #include <QDialog>
 
-#include "speaker.h"
-
 namespace Ui {
 class SearchDialog;
 }

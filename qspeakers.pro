@@ -6,7 +6,7 @@
 
 QT       += core gui xml widgets printsupport charts
 CONFIG += c++11
-VERSION = 1.6.10
+VERSION = 1.7
 REVISION = $$system(git describe --long --tags 2>/dev/null || echo "stable")
 TARGET = qspeakers
 TEMPLATE = app
@@ -38,6 +38,8 @@ QMAKE_SUBSTITUTES += config
 
 SOURCES += main.cpp \
     mainwindow.cpp \
+    projectproperties.cpp \
+    propertiesdialog.cpp \
     speakerdialog.cpp \
     speakerdb.cpp \
     speaker.cpp \
@@ -54,6 +56,8 @@ SOURCES += main.cpp \
     bandpassdialog.cpp
 
 HEADERS  += mainwindow.h \
+    projectproperties.h \
+    propertiesdialog.h \
     speakerdialog.h \
     speakerdb.h \
     speaker.h \
@@ -71,6 +75,7 @@ HEADERS  += mainwindow.h \
     undocommands.h
 
 FORMS    += mainwindow.ui \
+    propertiesdialog.ui \
     speakerdialog.ui \
     listdialog.ui \
     searchdialog.ui \

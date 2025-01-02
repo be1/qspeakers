@@ -5,6 +5,8 @@
 #include <QFileDialog>
 #include <QPrinter>
 
+#include "projectproperties.h"
+#include "propertiesdialog.h"
 #include "speakerdialog.h"
 #include "searchdialog.h"
 #include "listdialog.h"
@@ -59,6 +61,7 @@ signals:
     void currentBandPassBoxChanged(BandPassBox box);
 
 public slots:
+    void onProjectProperties();
     void onProjectSave();
     void onProjectExport();
     void onProjectImport();
@@ -75,6 +78,9 @@ public slots:
     void onUndo();
     void onRedo();
     void onAboutAbout();
+
+    void onPropertiesAccepted();
+    void onPropertiesRejected();
 
     void onSearchRequested(const QString& param, double min, double max);
     void onSearchCancelled();
@@ -153,6 +159,7 @@ private:
     SpeakerDialog *spkDialog;
     QFileDialog *fileDialog;
     SearchDialog *searchDialog;
+    PropertiesDialog *propertiesDialog;
     ListDialog *listDialog;
     BandpassDialog *bandpassDialog;
 
@@ -175,6 +182,8 @@ private:
 
     enum { MaxRecentFiles = 5 };
     QAction *recentFileActs[MaxRecentFiles];
+
+    ProjectProperties projectProperties;
 };
 
 #endif // MAINWINDOW_H

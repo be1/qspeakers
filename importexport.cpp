@@ -32,25 +32,25 @@ QString ImportExport::getSavePath(void)
     return path;
 }
 
-bool ImportExport::saveProject(const Speaker &speaker, const SealedBox &sbox, const PortedBox &pbox, const BandPassBox &bpbox, int number, int tab)
+bool ImportExport::saveProject(const ProjectProperties& props, const Speaker &speaker, const SealedBox &sbox, const PortedBox &pbox, const BandPassBox &bpbox, int number, int tab)
 {
     QString path = ImportExport::getSavePath();
 
     qDebug() << "exporting" << path;
     QFile file(path);
     /* do not test if it exists, just override it */
-    return exportProject(file, speaker, sbox, pbox, bpbox, number, tab);
+    return exportProject(file, props, speaker, sbox, pbox, bpbox, number, tab);
 }
 
-bool ImportExport::restoreProject(Speaker &speaker, SealedBox &sbox, PortedBox &pbox, BandPassBox &bpbox, int* number, int* tab)
+bool ImportExport::restoreProject(ProjectProperties &props, Speaker &speaker, SealedBox &sbox, PortedBox &pbox, BandPassBox &bpbox, int* number, int* tab)
 {
     QString path = ImportExport::getSavePath();
     qDebug() << "importing" << path;
     QFile file(path);
-    return importProject(speaker, sbox, pbox, bpbox, number, tab, file);
+    return importProject(props, speaker, sbox, pbox, bpbox, number, tab, file);
 }
 
-bool ImportExport::exportProject(QFile &file, const Speaker &speaker, const SealedBox &sbox, const PortedBox &pbox, const BandPassBox &bpbox, int number, int tab)
+bool ImportExport::exportProject(QFile &file, const ProjectProperties& props, const Speaker &speaker, const SealedBox &sbox, const PortedBox &pbox, const BandPassBox &bpbox, int number, int tab)
 {
     QDomDocument xml("QSpeakersProject");
     QDomElement root = xml.createElement("project");
@@ -76,6 +76,9 @@ bool ImportExport::exportProject(QFile &file, const Speaker &speaker, const Seal
     xstate.setAttribute("tab", tab);
     root.appendChild(xstate);
 
+    QDomElement xprops = props.toDomElement(xml);
+    root.appendChild(xprops);
+
     if (!file.open(QIODevice::WriteOnly))
         return false;
 
@@ -88,7 +91,7 @@ bool ImportExport::exportProject(QFile &file, const Speaker &speaker, const Seal
     return true;
 }
 
-bool ImportExport::importProject(Speaker &speaker, SealedBox &sbox, PortedBox &pbox, BandPassBox &bpbox, int *number, int *tab, QFile &file)
+bool ImportExport::importProject(ProjectProperties& props, Speaker &speaker, SealedBox &sbox, PortedBox &pbox, BandPassBox &bpbox, int *number, int *tab, QFile &file)
 {
     QDomDocument doc("QSpeakersProject");
 
@@ -108,11 +111,13 @@ bool ImportExport::importProject(Speaker &speaker, SealedBox &sbox, PortedBox &p
     QDomElement root = doc.firstChildElement("project");
 
     QDomNodeList speakers = root.elementsByTagName("speaker");
-    /* for now, only one speaker is considered */
-    QDomElement spk = speakers.at(0).toElement();
+    if (!speakers.isEmpty()) {
+        /* for now, only one speaker is considered */
+        QDomElement spk = speakers.at(0).toElement();
 
-    if (!spk.isNull())
-        speaker.fromDomElement(spk);
+        if (!spk.isNull())
+            speaker.fromDomElement(spk);
+    }
 
     /* crawl 1st level boxes */
     QDomElement box = root.firstChildElement("box");
@@ -143,6 +148,11 @@ bool ImportExport::importProject(Speaker &speaker, SealedBox &sbox, PortedBox &p
         else
             *tab = state.attribute("tab", "0").toInt();
     }
+
+    props.clear();
+    QDomNodeList xprops = root.elementsByTagName("properties");
+    if (!xprops.isEmpty())
+        props.fromDomElement(xprops.at(0).toElement());
 
     return true;
 }
