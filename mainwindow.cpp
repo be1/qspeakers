@@ -878,8 +878,13 @@ void MainWindow::linkTabs()
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::onCurrentTabChanged);
 
     /* spk combos action */
+#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
     connect(ui->vendorComboBox, &QComboBox::textActivated, this, &MainWindow::onVendorChanged);
     connect(ui->modelComboBox, &QComboBox::textActivated, this, &MainWindow::onModelChanged);
+#else
+    connect(ui->vendorComboBox, QOverload<const QString&>::of(&QComboBox::activated), this, &MainWindow::onVendorChanged);
+    connect(ui->modelComboBox, QOverload<const QString&>::of(&QComboBox::activated), this, &MainWindow::onModelChanged);
+#endif
 
     /* drivers number spin action */
     connect(ui->numberSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onNumberSpinChanged);
@@ -944,8 +949,13 @@ void MainWindow::unlinkTabs()
     disconnect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::onCurrentTabChanged);
 
     /* spk combos action */
+#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
     disconnect(ui->vendorComboBox, &QComboBox::textActivated, this, &MainWindow::onVendorChanged);
     disconnect(ui->modelComboBox, &QComboBox::textActivated, this, &MainWindow::onModelChanged);
+#else
+    disconnect(ui->vendorComboBox, QOverload<const QString&>::of(&QComboBox::activated), this, &MainWindow::onVendorChanged);
+    disconnect(ui->modelComboBox, QOverload<const QString&>::of(&QComboBox::activated), this, &MainWindow::onModelChanged);
+#endif
 
     disconnect(ui->numberSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onNumberSpinChanged);
 
