@@ -1187,8 +1187,7 @@ void MainWindow::onAboutAbout()
                           "This program is free software, copyright (C) 2014 "
                           "Benoit Rouits <brouits@free.fr> and released under the "
                           "GNU General Public Lisence version 3. It is delivered "
-                          "as is in the hope it can be useful, but with no warranty at all.\n\n"
-                          "To help further development of QSpeakers, please consider making a donation on https://paypal.me/brouits or providing formulæ for interesting plots").arg(VERSION, REVISION));
+                          "as is in the hope it can be useful, but with NO WARRANTY at all.").arg(VERSION, REVISION));
 }
 
 void MainWindow::onSearchRequested(const QString& param, double min, double max)
