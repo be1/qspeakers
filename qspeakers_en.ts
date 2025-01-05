@@ -812,6 +812,51 @@ This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free
         <source>Loudspeaker enclosure computation program.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="speaker.cpp" line="383"/>
+        <source>Spl: %1 dB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="speaker.cpp" line="384"/>
+        <source>Fs: %1 Hz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="speaker.cpp" line="385"/>
+        <source>Qts: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="speaker.cpp" line="386"/>
+        <source>Vas: %1 L</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="speaker.cpp" line="387"/>
+        <source>Dia: %1 m</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="speaker.cpp" line="388"/>
+        <source>Xmax: %1 mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="speaker.cpp" line="389"/>
+        <source>Z: %1 Ohm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="speaker.cpp" line="390"/>
+        <source>Re: %1 Ohm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="speaker.cpp" line="391"/>
+        <source>Vc: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SearchDialog</name>
