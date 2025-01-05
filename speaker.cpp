@@ -380,15 +380,15 @@ void Speaker::render(QPainter *painter, const QRectF &area)
 
     QString params[PARAMLEN];
 
-    params[0] = QString::fromUtf8("Spl: %1 dB").arg(getSpl());
-    params[1] = QString::fromUtf8("Fs: %1 Hz").arg(getFs());
-    params[2] = QString::fromUtf8("Qts: %1").arg(getQts());
-    params[3] = QString::fromUtf8("Vas: %1 L").arg(getVas());
-    params[4] = QString::fromUtf8("Dia: %1 m").arg(getDia());
-    params[5] = QString::fromUtf8("Xmax: %1 mm").arg(getXmax());
-    params[6] = QString::fromUtf8("Z: %1 Ohm").arg(getZ());
-    params[7] = QString::fromUtf8("Re: %1 Ohm").arg(getRe());
-    params[8] = QString::fromUtf8("Vc: %1").arg(getVc());
+    params[0] = QObject::tr("Spl: %1 dB").arg(getSpl());
+    params[1] = QObject::tr("Fs: %1 Hz").arg(getFs());
+    params[2] = QObject::tr("Qts: %1").arg(getQts());
+    params[3] = QObject::tr("Vas: %1 L").arg(getVas());
+    params[4] = QObject::tr("Dia: %1 m").arg(getDia());
+    params[5] = QObject::tr("Xmax: %1 mm").arg(getXmax());
+    params[6] = QObject::tr("Z: %1 Ohm").arg(getZ());
+    params[7] = QObject::tr("Re: %1 Ohm").arg(getRe());
+    params[8] = QObject::tr("Vc: %1").arg(getVc());
 
     const int margins = 13; /* pixels */
     qreal tab = area.left() + margins;
@@ -407,10 +407,12 @@ void Speaker::render(QPainter *painter, const QRectF &area)
     for (int i = 0; i < PARAMLEN; i++) {
         where.setRect(tab, area.top() + area.height() / 2., realwidth / PARAMLEN, area.height() / 2.);
         text = params[i];
-        option.setAlignment(Qt::AlignVCenter|Qt::AlignLeft);
+
         QFont font;
         font.setBold(false);
         painter->setFont(font);
+
+        option.setAlignment(Qt::AlignVCenter|Qt::AlignLeft);
         painter->drawText(where, text, option);
         tab += realwidth / PARAMLEN;
     }
