@@ -292,7 +292,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="1081"/>
-        <location filename="mainwindow.cpp" line="1173"/>
+        <location filename="mainwindow.cpp" line="1183"/>
         <source>About QSpeakers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -627,35 +627,33 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="992"/>
+        <location filename="mainwindow.cpp" line="1002"/>
         <source>Removal confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="993"/>
+        <location filename="mainwindow.cpp" line="1003"/>
         <source>Do you really want to remove this loudspeaker from the database?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1174"/>
+        <location filename="mainwindow.cpp" line="1184"/>
         <source>QSpeakers version %1 (%2)
 
 This program simulates common acoustical enclosures behaviour to help designing loudspeaker systems.
 
-This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free.fr&gt; and released under the GNU General Public Lisence version 3. It is delivered as is in the hope it can be useful, but with no warranty at all.
-
-To help further development of QSpeakers, please consider making a donation on https://paypal.me/brouits or providing formulæ for interesting plots</source>
+This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free.fr&gt; and released under the GNU General Public Lisence version 3. It is delivered as is in the hope it can be useful, but with NO WARRANTY at all.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1311"/>
-        <location filename="mainwindow.cpp" line="1368"/>
+        <location filename="mainwindow.cpp" line="1320"/>
+        <location filename="mainwindow.cpp" line="1377"/>
         <source>Unsaved speaker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1312"/>
-        <location filename="mainwindow.cpp" line="1369"/>
+        <location filename="mainwindow.cpp" line="1321"/>
+        <location filename="mainwindow.cpp" line="1378"/>
         <source>This speaker is not present in the database. Would you like to insert it before to continue?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -747,8 +745,18 @@ To help further development of QSpeakers, please consider making a donation on h
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="system.cpp" line="84"/>
+        <location filename="system.cpp" line="80"/>
         <source>Driver(s) number: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="system.cpp" line="89"/>
+        <source>Loudspeaker:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="system.cpp" line="96"/>
+        <source>Enclosure:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
