@@ -400,7 +400,7 @@ void Speaker::render(QPainter *painter, const QRectF &area)
     painter->drawText(where, text, option);
 
     for (int i = 0; i < PARAMLEN; i++) {
-        where.setRect(tab, area.top() + area.height() / 2, area.width() / PARAMLEN, area.height() / 2);
+        where.setRect(tab, area.top() + area.height() / 2., area.width() / PARAMLEN, area.height() / 2.);
         text = params[i];
         option.setAlignment(Qt::AlignVCenter|Qt::AlignLeft);
         painter->drawText(where, text, option);

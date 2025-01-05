@@ -72,26 +72,28 @@ double System::response(double f)
 
 void System::render(QPainter *painter, const QRectF& area)
 {
-    qreal x1, y1, x2, y2;
-    qreal w, h;
-    area.getCoords(&x1, &y1, &x2, &y2);
-    w = x2 - x1;
-    h = y2 - y1;
-    qreal ytab = h / 3.0;
-
-    QRectF a(x1, y1, w, ytab);
+    qreal textHeight = painter->fontMetrics().height();
+    QTextOption option(Qt::AlignLeft);
+    QRectF elementArea(area);
+    const int elements = 2;
 
     QString text = QObject::tr("Driver(s) number: ") + QString::number(sibling);
-    QTextOption option(Qt::AlignLeft);
-    painter->drawText(a, text, option);
+    painter->drawText(area, text, option);
 
-    y1 += ytab;
-    a.setY(y1);
-    a.setHeight(ytab);
-    speaker.render(painter, a);
+    elementArea.moveTop(elementArea.y() + textHeight); /* start after first line */
+    elementArea.setHeight((area.height() - textHeight) / elements);
+    elementArea.setHeight(elementArea.height() - 2 * textHeight); /* each element has 2 header lines */
 
-    y1 += ytab;
-    a.setY(y1);
-    a.setHeight(ytab);
-    box->render(painter, a);
+    /* elements */
+    elementArea.moveTop(elementArea.y() + textHeight); /* blank line */
+    painter->drawText(elementArea, QObject::tr("Loudspeaker:"), option);
+    elementArea.moveTop(elementArea.y() + textHeight);
+    speaker.render(painter, elementArea);
+
+    elementArea.moveTop(elementArea.y() + elementArea.height());
+
+    elementArea.moveTop(elementArea.y() + textHeight); /* blank line */
+    painter->drawText(elementArea, QObject::tr("Enclosure:"), option);
+    elementArea.moveTop(elementArea.y() + textHeight);
+    box->render(painter, elementArea);
 }
