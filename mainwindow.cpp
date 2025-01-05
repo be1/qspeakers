@@ -500,11 +500,11 @@ bool MainWindow::print(QPrinter *printer)
         return false;
 
     QRect page = printer->pageLayout().paintRectPixels(printer->resolution());
+    QMargins margins = printer->pageLayout().marginsPixels(printer->resolution());
+    qreal realwidth = page.width() - 2 * margins.left();
 
     qreal textheight = painter.fontMetrics().height();
     qreal step = 0;
-
-    QTextOption option(Qt::AlignHCenter);
 
     QFont font;
     font.setBold(true);
@@ -514,26 +514,27 @@ bool MainWindow::print(QPrinter *printer)
     pen.setCosmetic(true);
     painter.setPen(pen);
 
-    painter.drawText(QRectF(page.left(), page.top(), page.width(), page.height()), projectProperties.title, option);
+    QTextOption option(Qt::AlignHCenter);
+    painter.drawText(QRectF(page.left(), page.top(), realwidth, page.height()), projectProperties.title, option);
     step += textheight;
 
     if (ui->tabWidget->currentWidget() == ui->sealedTab) {
         System s(currentSpeaker, &currentSealedBox, currentSpeakerNumber);
-        s.render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() / 4.));
+        s.render(&painter, QRectF(page.left(), page.top() + step, realwidth, page.height() / 4.));
         step += page.height() / 4.;
-        sealedPlot->render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() / 2.));
+        sealedPlot->render(&painter, QRectF(page.left(), page.top() + step, realwidth, page.height() / 2.));
         step += page.height() / 2.;
     } else if (ui->tabWidget->currentWidget() == ui->portedTab) {
         System s(currentSpeaker, &currentPortedBox, currentSpeakerNumber);
-        s.render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() / 4.));
+        s.render(&painter, QRectF(page.left(), page.top() + step, realwidth, page.height() / 4.));
         step += page.height() / 4.;
-        portedPlot->render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() / 2.));
+        portedPlot->render(&painter, QRectF(page.left(), page.top() + step, realwidth, page.height() / 2.));
         step += page.height() / 2.;
     } else {
         System s(currentSpeaker, &currentBandPassBox, currentSpeakerNumber);
-        s.render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() / 4.));
+        s.render(&painter, QRectF(page.left(), page.top() + step, realwidth, page.height() / 4.));
         step += page.height() / 4.;
-        bandpassPlot->render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() / 2.));
+        bandpassPlot->render(&painter, QRectF(page.left(), page.top() + step, realwidth, page.height() / 2.));
         step += page.height() / 2.;
     }
 

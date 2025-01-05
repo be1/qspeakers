@@ -10,6 +10,8 @@
 #define BOX_PORTED 1
 #define BOX_BANDPASS 2
 
+#define BOX_RENDER_MARGINS 13
+
 class Box
 {
 public:

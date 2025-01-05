@@ -52,7 +52,7 @@ void SealedBox::render(QPainter *painter, const QRectF &area) const
     painter->setFont(font);
 
     QString text = QObject::tr("Vol. %1 L").arg(getVolume());
-    QRectF where(area.left(), area.top(), area.width(), area.height());
+    QRectF where(area.left() + BOX_RENDER_MARGINS, area.top(), area.width() - 2 * BOX_RENDER_MARGINS, area.height());
     QTextOption option(Qt::AlignVCenter|Qt::AlignLeft);
     painter->drawText(where, text, option);
 

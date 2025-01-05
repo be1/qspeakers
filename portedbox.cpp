@@ -187,7 +187,8 @@ void PortedBox::render(QPainter *painter, const QRectF &area) const
 #define PORTED_PARAMS 5
 
     QString params[PORTED_PARAMS];
-    qreal tab = area.left();
+    qreal tab = area.left() + BOX_RENDER_MARGINS;
+    qreal realwidth = area.width() - 2 * BOX_RENDER_MARGINS;
 
     painter->drawRoundedRect(area.toRect(), 5, 5);
 
@@ -207,10 +208,10 @@ void PortedBox::render(QPainter *painter, const QRectF &area) const
 
     for (int i = 0; i < PORTED_PARAMS; i++) {
         QString text = params[i];
-        QRectF where(tab, area.top(), area.width() / PORTED_PARAMS, area.height());
+        QRectF where(tab, area.top(), realwidth / PORTED_PARAMS, area.height());
         QTextOption option(Qt::AlignVCenter|Qt::AlignLeft);
         painter->drawText(where, text, option);
-        tab += area.width() / PORTED_PARAMS;
+        tab += realwidth / PORTED_PARAMS;
     }
 
     painter->setFont(orig);

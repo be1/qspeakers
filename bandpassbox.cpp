@@ -146,7 +146,8 @@ void BandPassBox::render(QPainter *painter, const QRectF &area) const
     QFont orig = painter->font();
 
     QString params[6];
-    qreal tab = area.left();
+    qreal tab = area.left() + BOX_RENDER_MARGINS;
+    qreal realwidth = area.width() - 2 * BOX_RENDER_MARGINS;
 
     painter->drawRoundedRect(area.toRect(), 5, 5);
 
@@ -169,10 +170,10 @@ void BandPassBox::render(QPainter *painter, const QRectF &area) const
 
     for (int i = 0; i < 6; i++) {
         QString text = params[i];
-        QRectF where(tab, area.top(), area.width() / 6, area.height());
+        QRectF where(tab, area.top(), realwidth / 6, area.height());
         QTextOption option(Qt::AlignVCenter|Qt::AlignLeft);
         painter->drawText(where, text, option);
-        tab += area.width() / 6;
+        tab += realwidth / 6;
     }
 
     painter->setFont(orig);

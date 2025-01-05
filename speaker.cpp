@@ -391,25 +391,29 @@ void Speaker::render(QPainter *painter, const QRectF &area)
     params[8] = QString::fromUtf8("Re: %1 Ohm").arg(getRe());
     params[9] = QString::fromUtf8("Vc: %1").arg(getVc());
 
-    qreal tab = area.left();
+    const int margins = 13; /* pixels */
+    qreal tab = area.left() + margins;
+    qreal realwidth = area.width() - 2 * margins;
 
     QString text = getVendor() + " " + getModel();
-    QRectF where(area.left(), area.top(), area.width(), area.height() / 2);
+    QRectF where(tab, area.top(), realwidth, area.height() / 2);
+
     QTextOption option(Qt::AlignCenter);
     QFont font;
     font.setBold(true);
     painter->setFont(font);
+
     painter->drawText(where, text, option);
 
     for (int i = 0; i < PARAMLEN; i++) {
-        where.setRect(tab, area.top() + area.height() / 2., area.width() / PARAMLEN, area.height() / 2.);
+        where.setRect(tab, area.top() + area.height() / 2., realwidth / PARAMLEN, area.height() / 2.);
         text = params[i];
         option.setAlignment(Qt::AlignVCenter|Qt::AlignLeft);
         QFont font;
         font.setBold(false);
         painter->setFont(font);
         painter->drawText(where, text, option);
-        tab += area.width() / PARAMLEN;
+        tab += realwidth / PARAMLEN;
     }
 
     painter->setFont(orig);
