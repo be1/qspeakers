@@ -194,11 +194,11 @@ void PortedBox::render(QPainter *painter, const QRectF &area) const
 
     params[0] = QObject::tr("Vol. %1 L").arg(getBoxVolume());
     if (!slotActivated) {
-        params[1] = QObject::tr("Port Diam. %1 cm").arg(getPortDiam());
+        params[1] = QObject::tr("Port Diam. %1 cm").arg(QString::number(getPortDiam(), 'f', 1));
     } else {
-        params[1] = QObject::tr("Slot port %1 x %2 cm").arg(QString::number(getSlotWidth(), 'f', 2), QString::number(getSlotHeight(), 'f', 2));
+        params[1] = QObject::tr("Slot port %1 x %2 cm").arg(QString::number(getSlotWidth(), 'f', 1), QString::number(getSlotHeight(), 'f', 1));
     }
-    params[2] = QObject::tr("Port Len. %1 cm").arg(QString::number(getPortLen(), 'f', 2));
+    params[2] = QObject::tr("Port Len. %1 cm").arg(QString::number(getPortLen(), 'f', 1));
     params[3] = QObject::tr("Port Num. %1").arg(QString::number(getPortNum()));
     params[4] = QObject::tr("Fb %1 Hz").arg(QString::number(getResFreq()));
 

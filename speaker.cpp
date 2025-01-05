@@ -376,7 +376,7 @@ void Speaker::render(QPainter *painter, const QRectF &area)
 
     painter->drawRoundedRect(area.toRect(), 5, 5);
 
-#define PARAMLEN 10
+#define PARAMLEN 9
 
     QString params[PARAMLEN];
 
@@ -385,11 +385,10 @@ void Speaker::render(QPainter *painter, const QRectF &area)
     params[2] = QString::fromUtf8("Qts: %1").arg(getQts());
     params[3] = QString::fromUtf8("Vas: %1 L").arg(getVas());
     params[4] = QString::fromUtf8("Dia: %1 m").arg(getDia());
-    params[5] = QString::fromUtf8("Sd: %1 m²").arg(getSd());
-    params[6] = QString::fromUtf8("Xmax: %1 mm").arg(getXmax());
-    params[7] = QString::fromUtf8("Z: %1 Ohm").arg(getZ());
-    params[8] = QString::fromUtf8("Re: %1 Ohm").arg(getRe());
-    params[9] = QString::fromUtf8("Vc: %1").arg(getVc());
+    params[5] = QString::fromUtf8("Xmax: %1 mm").arg(getXmax());
+    params[6] = QString::fromUtf8("Z: %1 Ohm").arg(getZ());
+    params[7] = QString::fromUtf8("Re: %1 Ohm").arg(getRe());
+    params[8] = QString::fromUtf8("Vc: %1").arg(getVc());
 
     const int margins = 13; /* pixels */
     qreal tab = area.left() + margins;

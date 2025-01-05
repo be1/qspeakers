@@ -155,12 +155,12 @@ void BandPassBox::render(QPainter *painter, const QRectF &area) const
     params[1] = QObject::tr("Ported Vol. %1 L").arg(getPortedBoxVolume());
 
     if (!getPortedBoxSlotPortActivated()) {
-        params[2] = QObject::tr("Port Diam. %1 cm").arg(getPortedBoxPortDiam());
+        params[2] = QObject::tr("Port Diam. %1 cm").arg(QString::number(getPortedBoxPortDiam(), 'f', 1));
     } else {
-        params[2] = QObject::tr("Slot port %1 x %2 cm").arg(QString::number(getPortedBoxSlotWidth(), 'f', 2), QString::number(getPortedBoxSlotHeight(), 'f', 2));
+        params[2] = QObject::tr("Slot port %1 x %2 cm").arg(QString::number(getPortedBoxSlotWidth(), 'f', 1), QString::number(getPortedBoxSlotHeight(), 'f', 1));
     }
 
-    params[3] = QObject::tr("Port Len. %1 cm").arg(QString::number(getPortedBoxPortLen(), 'f', 2));
+    params[3] = QObject::tr("Port Len. %1 cm").arg(QString::number(getPortedBoxPortLen(), 'f', 1));
     params[4] = QObject::tr("Port Num. %1").arg(getPortedBoxPortNum());
     params[5] = QObject::tr("Fb %1 Hz").arg(getPortedBoxResFreq());
 
