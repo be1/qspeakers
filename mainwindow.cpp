@@ -119,10 +119,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->actionRedo->setEnabled(false);
 
     /* restore last saved project... */
-    if (loadFile(ImportExport::getSavePath()))
-        projectSaved = true;
-    else {
-        //projectSaved = false;
+    if (!loadFile(ImportExport::getSavePath())) {
+        /* on error, set default values */
         currentSpeakerNumber = 1;
         currentTabIndex = 0;
     }
@@ -325,6 +323,7 @@ bool MainWindow::loadFile(const QString& fileName)
     if (notInDbSpeaker)
         onSpeakerModify();
 
+    projectSaved = true;
     return true;
 }
 
@@ -413,6 +412,8 @@ void MainWindow::syncUiFromCurrentSpeaker(const Speaker& spk)
     ui->vcValueLabel->setNum(currentSpeaker.getVc());
 
     linkTabs();
+
+    projectSaved = false;
 }
 
 void MainWindow::syncUiFromCurrentSealedBox(const SealedBox& box)
@@ -428,6 +429,8 @@ void MainWindow::syncUiFromCurrentSealedBox(const SealedBox& box)
     }
     sealedPlot->draw3dbVLine();
     linkTabs();
+
+    projectSaved = false;
 }
 
 void MainWindow::syncUiFromCurrentPortedBox(const PortedBox& box)
@@ -454,6 +457,8 @@ void MainWindow::syncUiFromCurrentPortedBox(const PortedBox& box)
     }
     portedPlot->draw3dbVLine();
     linkTabs();
+
+    projectSaved = false;
 }
 
 void MainWindow::syncUiFromCurrentBandPassBox(const BandPassBox& box)
@@ -481,6 +486,8 @@ void MainWindow::syncUiFromCurrentBandPassBox(const BandPassBox& box)
     }
     bandpassPlot->draw3dbVLine();
     linkTabs();
+
+    projectSaved = false;
 }
 
 void MainWindow::setCurrentSpeaker(const Speaker &spk)
@@ -1314,7 +1321,6 @@ void MainWindow::changeSpeakerNumber(int number) {
         return;
     }
 
-    projectSaved = false;
     syncUiFromCurrentSealedBox(currentSealedBox);
     syncUiFromCurrentPortedBox(currentPortedBox);
     syncUiFromCurrentBandPassBox(currentBandPassBox);
@@ -1447,7 +1453,6 @@ void MainWindow::onCurrentSpeakerChanged(const Speaker &spk)
         return;
     }
 
-    projectSaved = false;
     syncUiFromCurrentSealedBox(currentSealedBox);
     syncUiFromCurrentPortedBox(currentPortedBox);
     syncUiFromCurrentBandPassBox(currentBandPassBox);
@@ -1470,7 +1475,6 @@ void MainWindow::onCurrentSealedBoxChanged(const SealedBox &box)
     if (!currentSpeaker.isValid())
         return;
 
-    projectSaved = false;
     syncUiFromCurrentSealedBox(box);
 }
 
@@ -1525,6 +1529,7 @@ void MainWindow::changePortedPortDiam(double val)
     currentPortedBox.setPortDiam(val);
     currentPortedBox.updateSlots();
     currentPortedBox.updatePortsLength();
+
     syncUiFromCurrentPortedBox(currentPortedBox);
 }
 
@@ -1553,6 +1558,7 @@ void MainWindow::onPortedSlotWidthDoubleSpinChanged(double val)
 void MainWindow::changePortedSlotWidth(double val)
 {
     currentPortedBox.setSlotWidth(val);
+
     syncUiFromCurrentPortedBox(currentPortedBox);
 }
 
@@ -1561,7 +1567,6 @@ void MainWindow::onCurrentPortedBoxChanged(const PortedBox &box)
     if (!currentSpeaker.isValid())
         return;
 
-    projectSaved = false;
     syncUiFromCurrentPortedBox(box);
 }
 
@@ -1662,6 +1667,5 @@ void MainWindow::onCurrentBandPassBoxChanged(const BandPassBox &box)
     if (!currentSpeaker.isValid())
         return;
 
-    projectSaved = false;
     syncUiFromCurrentBandPassBox(box);
 }
