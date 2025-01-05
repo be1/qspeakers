@@ -292,7 +292,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="1081"/>
-        <location filename="mainwindow.cpp" line="1183"/>
+        <location filename="mainwindow.cpp" line="1203"/>
         <source>About QSpeakers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -552,92 +552,92 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="196"/>
+        <location filename="mainwindow.cpp" line="194"/>
         <source>Export File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="196"/>
-        <location filename="mainwindow.cpp" line="223"/>
+        <location filename="mainwindow.cpp" line="194"/>
+        <location filename="mainwindow.cpp" line="221"/>
         <source>QSpeakers project (*.qsp)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="196"/>
+        <location filename="mainwindow.cpp" line="194"/>
         <source>untitled.qsp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="215"/>
-        <location filename="mainwindow.cpp" line="344"/>
+        <location filename="mainwindow.cpp" line="213"/>
+        <location filename="mainwindow.cpp" line="343"/>
         <source>Project not saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="216"/>
+        <location filename="mainwindow.cpp" line="214"/>
         <source>The current project has not been saved. Continue anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="223"/>
+        <location filename="mainwindow.cpp" line="221"/>
         <source>Import File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="230"/>
-        <location filename="mainwindow.cpp" line="239"/>
+        <location filename="mainwindow.cpp" line="228"/>
+        <location filename="mainwindow.cpp" line="237"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="230"/>
-        <location filename="mainwindow.cpp" line="239"/>
+        <location filename="mainwindow.cpp" line="228"/>
+        <location filename="mainwindow.cpp" line="237"/>
         <source>Could not open project!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="345"/>
+        <location filename="mainwindow.cpp" line="344"/>
         <source>The current project has not been saved. Exit anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="586"/>
+        <location filename="mainwindow.cpp" line="606"/>
         <source>Export for Gnuplot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="586"/>
+        <location filename="mainwindow.cpp" line="606"/>
         <source>Gnuplot data (*.dat)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="601"/>
+        <location filename="mainwindow.cpp" line="621"/>
         <source>Export for 3D OpenSCAD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="601"/>
-        <location filename="mainwindow.cpp" line="616"/>
+        <location filename="mainwindow.cpp" line="621"/>
+        <location filename="mainwindow.cpp" line="636"/>
         <source>OpenSCAD script (*.scad)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="616"/>
+        <location filename="mainwindow.cpp" line="636"/>
         <source>Export for 2D OpenSCAD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1002"/>
+        <location filename="mainwindow.cpp" line="1022"/>
         <source>Removal confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1003"/>
+        <location filename="mainwindow.cpp" line="1023"/>
         <source>Do you really want to remove this loudspeaker from the database?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1184"/>
+        <location filename="mainwindow.cpp" line="1204"/>
         <source>QSpeakers version %1 (%2)
 
 This program simulates common acoustical enclosures behaviour to help designing loudspeaker systems.
@@ -646,14 +646,14 @@ This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1320"/>
-        <location filename="mainwindow.cpp" line="1377"/>
+        <location filename="mainwindow.cpp" line="1339"/>
+        <location filename="mainwindow.cpp" line="1396"/>
         <source>Unsaved speaker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1321"/>
-        <location filename="mainwindow.cpp" line="1378"/>
+        <location filename="mainwindow.cpp" line="1340"/>
+        <location filename="mainwindow.cpp" line="1397"/>
         <source>This speaker is not present in the database. Would you like to insert it before to continue?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -700,62 +700,70 @@ This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free
     <name>QObject</name>
     <message>
         <location filename="bandpassbox.cpp" line="154"/>
-        <source>Sealed Vol. %1 L</source>
+        <source>Sealed Volume: %1 L</source>
+        <oldsource>Sealed Vol. %1 L</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="bandpassbox.cpp" line="155"/>
-        <source>Ported Vol. %1 L</source>
+        <source>Ported Volume: %1 L</source>
+        <oldsource>Ported Vol. %1 L</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="bandpassbox.cpp" line="158"/>
         <location filename="portedbox.cpp" line="197"/>
-        <source>Port Diam. %1 cm</source>
+        <source>Port Diameter: %1 cm</source>
+        <oldsource>Port Diam. %1 cm</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="bandpassbox.cpp" line="163"/>
         <location filename="portedbox.cpp" line="201"/>
-        <source>Port Len. %1 cm</source>
+        <source>Port Length: %1 cm</source>
+        <oldsource>Port Len. %1 cm</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="bandpassbox.cpp" line="164"/>
         <location filename="portedbox.cpp" line="202"/>
-        <source>Port Num. %1</source>
+        <source>Port #: %1</source>
+        <oldsource>Port Num. %1</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="bandpassbox.cpp" line="165"/>
         <location filename="portedbox.cpp" line="203"/>
-        <source>Fb %1 Hz</source>
+        <source>Fb: %1 Hz</source>
+        <oldsource>Fb %1 Hz</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="portedbox.cpp" line="195"/>
-        <location filename="sealedbox.cpp" line="51"/>
-        <source>Vol. %1 L</source>
+        <location filename="sealedbox.cpp" line="54"/>
+        <source>Volume: %1 L</source>
+        <oldsource>Vol. %1 L</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="bandpassbox.cpp" line="160"/>
         <location filename="portedbox.cpp" line="199"/>
-        <source>Slot port %1 x %2 cm</source>
+        <source>Slot port: %1 x %2 cm</source>
+        <oldsource>Slot port %1 x %2 cm</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="system.cpp" line="80"/>
+        <location filename="system.cpp" line="82"/>
         <source>Driver(s) number: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="system.cpp" line="89"/>
+        <location filename="system.cpp" line="97"/>
         <source>Loudspeaker:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="system.cpp" line="96"/>
+        <location filename="system.cpp" line="104"/>
         <source>Enclosure:</source>
         <translation type="unfinished"></translation>
     </message>
