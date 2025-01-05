@@ -143,8 +143,7 @@ void BandPassBox::fromDomElement(const QDomElement &e)
 
 void BandPassBox::render(QPainter *painter, const QRectF &area) const
 {
-    if (!painter)
-        return;
+    QFont orig = painter->font();
 
     QString params[6];
     qreal tab = area.left();
@@ -164,6 +163,10 @@ void BandPassBox::render(QPainter *painter, const QRectF &area) const
     params[4] = QObject::tr("Port Num. %1").arg(getPortedBoxPortNum());
     params[5] = QObject::tr("Fb %1 Hz").arg(getPortedBoxResFreq());
 
+    QFont font;
+    font.setBold(false);
+    painter->setFont(font);
+
     for (int i = 0; i < 6; i++) {
         QString text = params[i];
         QRectF where(tab, area.top(), area.width() / 6, area.height());
@@ -171,4 +174,6 @@ void BandPassBox::render(QPainter *painter, const QRectF &area) const
         painter->drawText(where, text, option);
         tab += area.width() / 6;
     }
+
+    painter->setFont(orig);
 }

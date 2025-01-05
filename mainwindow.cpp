@@ -505,6 +505,15 @@ bool MainWindow::print(QPrinter *printer)
     qreal step = 0;
 
     QTextOption option(Qt::AlignHCenter);
+
+    QFont font;
+    font.setBold(true);
+    painter.setFont(font);
+
+    QPen pen;
+    pen.setCosmetic(true);
+    painter.setPen(pen);
+
     painter.drawText(QRectF(page.left(), page.top(), page.width(), page.height()), projectProperties.title, option);
     step += textheight;
 
@@ -527,6 +536,9 @@ bool MainWindow::print(QPrinter *printer)
         bandpassPlot->render(&painter, QRectF(page.left(), page.top() + step, page.width(), page.height() / 2.));
         step += page.height() / 2.;
     }
+
+    font.setBold(false);
+    painter.setFont(font);
 
     painter.drawText(QRectF(page.left(), page.top() + step, page.width(), page.height() - step), projectProperties.note);
 

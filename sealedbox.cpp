@@ -42,14 +42,19 @@ void SealedBox::fromDomElement(const QDomElement &e)
 }
 
 void SealedBox::render(QPainter *painter, const QRectF &area) const
-{    
-    if (!painter)
-        return;
+{
+    QFont orig = painter->font();
 
     painter->drawRoundedRect(area.toRect(), 5, 5);
+
+    QFont font;
+    font.setBold(false);
+    painter->setFont(font);
 
     QString text = QObject::tr("Vol. %1 L").arg(getVolume());
     QRectF where(area.left(), area.top(), area.width(), area.height());
     QTextOption option(Qt::AlignVCenter|Qt::AlignLeft);
     painter->drawText(where, text, option);
+
+    painter->setFont(orig);
 }

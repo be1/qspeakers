@@ -181,9 +181,8 @@ void PortedBox::fromDomElement(const QDomElement &e)
 }
 
 void PortedBox::render(QPainter *painter, const QRectF &area) const
-{    
-    if (!painter)
-        return;
+{
+    QFont orig = painter->font();
 
 #define PORTED_PARAMS 5
 
@@ -202,6 +201,10 @@ void PortedBox::render(QPainter *painter, const QRectF &area) const
     params[3] = QObject::tr("Port Num. %1").arg(QString::number(getPortNum()));
     params[4] = QObject::tr("Fb %1 Hz").arg(QString::number(getResFreq()));
 
+    QFont font;
+    font.setBold(false);
+    painter->setFont(font);
+
     for (int i = 0; i < PORTED_PARAMS; i++) {
         QString text = params[i];
         QRectF where(tab, area.top(), area.width() / PORTED_PARAMS, area.height());
@@ -209,4 +212,6 @@ void PortedBox::render(QPainter *painter, const QRectF &area) const
         painter->drawText(where, text, option);
         tab += area.width() / PORTED_PARAMS;
     }
+
+    painter->setFont(orig);
 }

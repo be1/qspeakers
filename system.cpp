@@ -72,13 +72,21 @@ double System::response(double f)
 
 void System::render(QPainter *painter, const QRectF& area)
 {
+    QFont orig = painter->font();
+
     qreal textHeight = painter->fontMetrics().height();
     QTextOption option(Qt::AlignLeft);
     QRectF elementArea(area);
     const int elements = 2;
 
     QString text = QObject::tr("Driver(s) number: ") + QString::number(sibling);
+
+    QFont font;
+    font.setBold(false);
+    painter->setFont(font);
     painter->drawText(area, text, option);
+    font.setBold(true);
+    painter->setFont(font);
 
     elementArea.moveTop(elementArea.y() + textHeight); /* start after first line */
     elementArea.setHeight((area.height() - textHeight) / elements);
@@ -96,4 +104,6 @@ void System::render(QPainter *painter, const QRectF& area)
     painter->drawText(elementArea, QObject::tr("Enclosure:"), option);
     elementArea.moveTop(elementArea.y() + textHeight);
     box->render(painter, elementArea);
+
+    painter->setFont(orig);
 }

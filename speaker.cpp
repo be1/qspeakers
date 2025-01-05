@@ -372,8 +372,7 @@ void Speaker::fromDomElement(const QDomElement &el)
 
 void Speaker::render(QPainter *painter, const QRectF &area)
 {
-    if (!painter)
-        return;
+    QFont orig = painter->font();
 
     painter->drawRoundedRect(area.toRect(), 5, 5);
 
@@ -397,13 +396,21 @@ void Speaker::render(QPainter *painter, const QRectF &area)
     QString text = getVendor() + " " + getModel();
     QRectF where(area.left(), area.top(), area.width(), area.height() / 2);
     QTextOption option(Qt::AlignCenter);
+    QFont font;
+    font.setBold(true);
+    painter->setFont(font);
     painter->drawText(where, text, option);
 
     for (int i = 0; i < PARAMLEN; i++) {
         where.setRect(tab, area.top() + area.height() / 2., area.width() / PARAMLEN, area.height() / 2.);
         text = params[i];
         option.setAlignment(Qt::AlignVCenter|Qt::AlignLeft);
+        QFont font;
+        font.setBold(false);
+        painter->setFont(font);
         painter->drawText(where, text, option);
         tab += area.width() / PARAMLEN;
     }
+
+    painter->setFont(orig);
 }
