@@ -151,18 +151,18 @@ void BandPassBox::render(QPainter *painter, const QRectF &area) const
 
     painter->drawRoundedRect(area.toRect(), 5, 5);
 
-    params[0] = QObject::tr("Sealed Vol. %1 L").arg(getSealedBoxVolume());
-    params[1] = QObject::tr("Ported Vol. %1 L").arg(getPortedBoxVolume());
+    params[0] = QObject::tr("Sealed Volume: %1 L").arg(getSealedBoxVolume());
+    params[1] = QObject::tr("Ported Volume: %1 L").arg(getPortedBoxVolume());
 
     if (!getPortedBoxSlotPortActivated()) {
-        params[2] = QObject::tr("Port Diam. %1 cm").arg(QString::number(getPortedBoxPortDiam(), 'f', 1));
+        params[2] = QObject::tr("Port Diameter: %1 cm").arg(QString::number(getPortedBoxPortDiam(), 'f', 1));
     } else {
-        params[2] = QObject::tr("Slot port %1 x %2 cm").arg(QString::number(getPortedBoxSlotWidth(), 'f', 1), QString::number(getPortedBoxSlotHeight(), 'f', 1));
+        params[2] = QObject::tr("Slot port: %1 x %2 cm").arg(QString::number(getPortedBoxSlotWidth(), 'f', 1), QString::number(getPortedBoxSlotHeight(), 'f', 1));
     }
 
-    params[3] = QObject::tr("Port Len. %1 cm").arg(QString::number(getPortedBoxPortLen(), 'f', 1));
-    params[4] = QObject::tr("Port Num. %1").arg(getPortedBoxPortNum());
-    params[5] = QObject::tr("Fb %1 Hz").arg(getPortedBoxResFreq());
+    params[3] = QObject::tr("Port Length: %1 cm").arg(QString::number(getPortedBoxPortLen(), 'f', 1));
+    params[4] = QObject::tr("Port #: %1").arg(getPortedBoxPortNum());
+    params[5] = QObject::tr("Fb: %1 Hz").arg(getPortedBoxResFreq());
 
     QFont font;
     font.setBold(false);

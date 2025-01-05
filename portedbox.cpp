@@ -192,15 +192,15 @@ void PortedBox::render(QPainter *painter, const QRectF &area) const
 
     painter->drawRoundedRect(area.toRect(), 5, 5);
 
-    params[0] = QObject::tr("Vol. %1 L").arg(getBoxVolume());
+    params[0] = QObject::tr("Volume: %1 L").arg(getBoxVolume());
     if (!slotActivated) {
-        params[1] = QObject::tr("Port Diam. %1 cm").arg(QString::number(getPortDiam(), 'f', 1));
+        params[1] = QObject::tr("Port Diameter: %1 cm").arg(QString::number(getPortDiam(), 'f', 1));
     } else {
-        params[1] = QObject::tr("Slot port %1 x %2 cm").arg(QString::number(getSlotWidth(), 'f', 1), QString::number(getSlotHeight(), 'f', 1));
+        params[1] = QObject::tr("Slot port: %1 x %2 cm").arg(QString::number(getSlotWidth(), 'f', 1), QString::number(getSlotHeight(), 'f', 1));
     }
-    params[2] = QObject::tr("Port Len. %1 cm").arg(QString::number(getPortLen(), 'f', 1));
-    params[3] = QObject::tr("Port Num. %1").arg(QString::number(getPortNum()));
-    params[4] = QObject::tr("Fb %1 Hz").arg(QString::number(getResFreq()));
+    params[2] = QObject::tr("Port Length: %1 cm").arg(QString::number(getPortLen(), 'f', 1));
+    params[3] = QObject::tr("Port #: %1").arg(QString::number(getPortNum()));
+    params[4] = QObject::tr("Fb: %1 Hz").arg(QString::number(getResFreq()));
 
     QFont font;
     font.setBold(false);
