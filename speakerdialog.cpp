@@ -61,17 +61,17 @@ SpeakerDialog::~SpeakerDialog()
 
 void SpeakerDialog::onVendorTextChanged(QString text)
 {
-    if (text.isNull() || text.isEmpty())
+    if (text.isEmpty())
         ui->speakerButtonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
-    else if (!ui->modelLineEdit->text().isNull() && !ui->modelLineEdit->text().isEmpty())
+    else if (!ui->modelLineEdit->text().isEmpty())
         ui->speakerButtonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
 }
 
 void SpeakerDialog::onModelTextChanged(QString text)
 {
-    if (text.isNull() || text.isEmpty())
+    if (text.isEmpty())
         ui->speakerButtonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
-    else if (!ui->vendorLineEdit->text().isNull() && !ui->vendorLineEdit->text().isEmpty())
+    else if (!ui->vendorLineEdit->text().isEmpty())
         ui->speakerButtonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
 }
 
@@ -103,7 +103,7 @@ void SpeakerDialog::onSpeakerAccepted()
     spk.computeEmptyParams();
 
 
-    if (oldVendor.isNull() || oldModel.isNull()) {
+    if (oldVendor.isEmpty() || oldModel.isEmpty()) {
         SpeakerDb::insertOrReplace(vendor, model, spk);
     } else {
         SpeakerDb::insertOrReplace(oldVendor, oldModel, spk);
