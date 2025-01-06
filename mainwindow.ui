@@ -316,6 +316,9 @@
             </item>
             <item>
              <widget class="QDoubleSpinBox" name="sealedVolumeDoubleSpinBox">
+              <property name="decimals">
+               <number>3</number>
+              </property>
               <property name="minimum">
                <double>0.010000000000000</double>
               </property>
@@ -400,6 +403,9 @@
             </item>
             <item>
              <widget class="QDoubleSpinBox" name="portedVolumeDoubleSpinBox">
+              <property name="decimals">
+               <number>3</number>
+              </property>
               <property name="minimum">
                <double>0.010000000000000</double>
               </property>
@@ -666,6 +672,9 @@
             </item>
             <item>
              <widget class="QDoubleSpinBox" name="bandPassSealedVolumeDoubleSpinBox">
+              <property name="decimals">
+               <number>3</number>
+              </property>
               <property name="minimum">
                <double>0.010000000000000</double>
               </property>
@@ -720,6 +729,9 @@
             </item>
             <item>
              <widget class="QDoubleSpinBox" name="bandPassPortedVolumeDoubleSpinBox">
+              <property name="decimals">
+               <number>3</number>
+              </property>
               <property name="minimum">
                <double>0.010000000000000</double>
               </property>
