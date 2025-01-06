@@ -151,8 +151,8 @@ void BandPassBox::render(QPainter *painter, const QRectF &area) const
 
     painter->drawRoundedRect(area.toRect(), 5, 5);
 
-    params[0] = QObject::tr("Sealed Volume: %1 L").arg(getSealedBoxVolume());
-    params[1] = QObject::tr("Ported Volume: %1 L").arg(getPortedBoxVolume());
+    params[0] = QObject::tr("Sealed Volume: %1 L").arg(QString::number(getSealedBoxVolume(), 'f', 3));
+    params[1] = QObject::tr("Ported Volume: %1 L").arg(QString::number(getPortedBoxVolume(), 'f', 3));
 
     if (!getPortedBoxSlotPortActivated()) {
         params[2] = QObject::tr("Port Diameter: %1 cm").arg(QString::number(getPortedBoxPortDiam(), 'f', 1));

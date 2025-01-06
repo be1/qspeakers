@@ -192,7 +192,7 @@ void PortedBox::render(QPainter *painter, const QRectF &area) const
 
     painter->drawRoundedRect(area.toRect(), 5, 5);
 
-    params[0] = QObject::tr("Volume: %1 L").arg(getBoxVolume());
+    params[0] = QObject::tr("Volume: %1 L").arg(QString::number(getBoxVolume(), 'f', 3));
     if (!slotActivated) {
         params[1] = QObject::tr("Port Diameter: %1 cm").arg(QString::number(getPortDiam(), 'f', 1));
     } else {
