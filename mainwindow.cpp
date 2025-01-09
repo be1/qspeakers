@@ -763,6 +763,9 @@ void MainWindow::onPropertiesRejected()
 
 void MainWindow::onPropertiesAccepted()
 {
+    if (projectProperties.title != propertiesDialog->getTitle() || projectProperties.note != propertiesDialog->getNote())
+        projectSaved = false;
+
     projectProperties.title = propertiesDialog->getTitle();
     projectProperties.note = propertiesDialog->getNote();
 
