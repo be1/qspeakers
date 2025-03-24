@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     QString locale = QLocale::system().name();
     QTranslator qtTranslator;
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
-    if (qtTranslator.load(QLocale::system(), u"qtbase"_qs, u"_"_qs,
+    if (qtTranslator.load(QLocale::system(), "qtbase", "_",
                           QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
         a.installTranslator(&qtTranslator);
 #else

@@ -10,6 +10,7 @@ VERSION = 1.7.1
 REVISION = $$system(git describe --long --tags 2>/dev/null || echo "stable")
 TARGET = qspeakers
 TEMPLATE = app
+QMAKE_CXXFLAGS += -Wall -Wextra -pedantic
 
 win32-g++:HOST=__mswin
 unix:HOST=__unix
