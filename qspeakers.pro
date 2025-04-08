@@ -126,7 +126,7 @@ unix {
     icon.files = qspeakers.svg
 	scad.path = $$DATADIR/$${TARGET}
     metainfo.path = $$DATADIR/metainfo
-    metainfo.files = fr.free.brouits.qspeakers.metainfo.xml
+    metainfo.files = rocks.noise.QSpeakers.metainfo.xml
     INSTALLS += target \
             icon \
             manual \
