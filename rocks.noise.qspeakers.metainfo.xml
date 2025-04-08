@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>rocks.noise.QSpeakers</id>
+  <id>rocks.noise.qspeakers</id>
   <replaces>
     <id>fr.free.brouits.qspeakers</id>
   </replaces>
