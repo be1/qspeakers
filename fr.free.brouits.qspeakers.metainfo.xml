@@ -37,8 +37,8 @@
   <launchable type="desktop-id">qspeakers.desktop</launchable>
   <icon type="stock">qspeakers</icon>
   <branding>
-    <color type="primary" scheme_preference="light">#faa298</color>
-    <color type="primary" scheme_preference="dark">#7f2c22</color>
+    <color type="primary" scheme_preference="light">#bab0ab</color>
+    <color type="primary" scheme_preference="dark">#6a604b</color>
   </branding>
   <screenshots>
     <screenshot type="default">
