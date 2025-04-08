@@ -4,6 +4,23 @@
   
   <name>QSpeakers</name>
   <summary>Loudspeaker design software</summary>
+
+  <categories>
+    <category>Science</category>
+    <category>Education</category>
+    <category>Physics</category>
+  </categories>
+
+  <keywords>
+    <keyword>do it yourself</keyword>
+    <keyword>diy</keyword>
+    <keyword>box</keyword>
+    <keyword>loudspeaker</keyword>
+    <keyword>woofer</keyword>
+    <keyword>audio</keyword>
+    <keyword>simulation</keyword>
+    <keyword>acoustics</keyword>
+  </keywords>
   
   <metadata_license>FSFAP</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
@@ -18,6 +35,11 @@
   </description>
   
   <launchable type="desktop-id">qspeakers.desktop</launchable>
+  <icon type="stock">qspeakers</icon>
+  <branding>
+    <color type="primary" scheme_preference="light">#faa298</color>
+    <color type="primary" scheme_preference="dark">#7f2c22</color>
+  </branding>
   <screenshots>
     <screenshot type="default">
       <caption>The main window</caption>
@@ -28,8 +50,9 @@
   <url type="donation">https://paypal.me/brouits</url>
   <url type="vcs-browser">https://github.com/be1/qspeakers</url>
   <url type="bugtracker">https://github.com/be1/qspeakers/issues</url>
-  <developer_name>Benoît Rouits</developer_name>
-  <update_contact>brouits_AT_free.fr</update_contact>
+  <developer id="rocks.noise.ben">
+    <name>Benoît Rouits</name>
+  </developer>
   <provides>
     <binary>qspeakers</binary>
     <mediatype>application/x-qspeakers</mediatype>
