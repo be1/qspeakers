@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>fr.free.brouits.qspeakers</id>
+  <id>rocks.noise.QSpeakers</id>
+  <replaces>
+    <id>fr.free.brouits.qspeakers</id>
+  </replaces>
   
   <name>QSpeakers</name>
   <summary>Loudspeaker design software</summary>
@@ -54,6 +57,7 @@
     <name>Benoît Rouits</name>
   </developer>
   <provides>
+    <id>fr.free.brouits.qspeakers</id>
     <binary>qspeakers</binary>
     <mediatype>application/x-qspeakers</mediatype>
   </provides>
