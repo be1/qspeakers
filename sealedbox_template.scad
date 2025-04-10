@@ -7,8 +7,10 @@ wood_thick = __WOODTHICK__; /* mm */
 wood_color = "wheat";
 
 internal_closed_box_width = loudspeaker_diameter + margin;  /* mm (x)*/
-internal_closed_box_height = max((loudspeaker_diameter + margin) * loudspeaker_number, 1.618 * internal_closed_box_width); /* mm (z)*/
-internal_closed_box_depth = internal_closed_box_volume * 1000000 / (internal_closed_box_width * internal_closed_box_height); /* mm (y)*/
+internal_closed_box_golden = max((loudspeaker_diameter + margin) * loudspeaker_number, 1.618 * internal_closed_box_width); /* mm (z)*/
+internal_closed_box_alt = internal_closed_box_volume * 1000000 / (internal_closed_box_width * internal_closed_box_golden); /* mm (y)*/
+internal_closed_box_height = max(internal_closed_box_golden, internal_closed_box_alt); /* mm (z) */
+internal_closed_box_depth = min(internal_closed_box_golden, internal_closed_box_alt); /* mm (y) */
 
 vertical_center = (internal_closed_box_height + (2 * wood_thick)) / 2;
 horizontal_center = (internal_closed_box_width + (2 * wood_thick)) / 2;

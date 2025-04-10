@@ -11,8 +11,10 @@ ported_box_port_diameter = __PORTEDBOXPORTDIAMETER__; /* mm */
 ported_box_port_length = __PORTEDBOXPORTLENGTH__; /* mm */
 
 internal_ported_box_width = loudspeaker_diameter + margin;  /* mm (x)*/
-internal_ported_box_height = max((ported_box_port_diameter + margin) + ((loudspeaker_diameter + margin) * loudspeaker_number), 1.618 * internal_ported_box_width); /* mm (z)*/
-internal_ported_box_depth = internal_ported_box_volume * 1000000 / (internal_ported_box_width * internal_ported_box_height); /* mm (y)*/
+internal_ported_box_golden = max((ported_box_port_diameter + margin) + ((loudspeaker_diameter + margin) * loudspeaker_number), 1.618 * internal_ported_box_width); /* mm (z)*/
+internal_ported_box_alt = internal_ported_box_volume * 1000000 / (internal_ported_box_width * internal_ported_box_golden); /* mm (y)*/
+internal_ported_box_height = max(internal_ported_box_golden, internal_ported_box_alt);
+internal_ported_box_depth = min(internal_ported_box_golden, internal_ported_box_alt);
 
 saw_thick = __SAWTHICK__; /* saw cut thick in mm */
 wood_thick = __WOODTHICK__;  /* board thick in mm */
