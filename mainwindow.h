@@ -51,9 +51,9 @@ public:
     void changeBPPortedSlotPortActivation(bool checked);
     void changeBPPortedSlotWidth(double val);
     void exportPlot(const QString& outfileName, int tabindex);
-    void exportScad3D(const QString& outfileName, int tabindex);
-    void exportScad2D(const QString& outfileName, int tabindex);
-    void exportScad(const QString &scad, const QString& outfileName, int tabindex);
+    void exportScad3D(const QString& outfileName, int tabindex, qreal margin, qreal thick);
+    void exportScad2D(const QString& outfileName, int tabindex, qreal margin, qreal thick, qreal saw);
+    void exportScad(const QString &scad, const QString& outfileName, int tabindex, qreal maring, qreal thick, qreal saw);
 signals:
     void currentSpeakerChanged(Speaker spk);
     void currentSealedBoxChanged(SealedBox box);

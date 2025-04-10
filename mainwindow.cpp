@@ -25,6 +25,7 @@
 #include "listdialog.h"
 #include "system.h"
 #include "optimizer.h"
+#include "scaddialog.h"
 #include "undocommands.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -614,6 +615,16 @@ void MainWindow::onCurvePlot()
 
 void MainWindow::on3DScadExport()
 {
+    bool ok = false;
+    QList<qreal> vals = ScadDialog::getValues(2, this, &ok);
+    if (!ok)
+        return;
+
+    Q_ASSERT(vals.size() == 2);
+
+    qreal margin = vals.at(0); /* loudspeaker margin */
+    qreal thick = vals.at(1); /* wood thick */
+
     QString home = getHome();
     QString box = ui->tabWidget->currentWidget()->objectName().replace("Tab", "Box");
     QString f = QString("QSpeakers %1 %2 %3 3D").arg(currentSpeaker.getVendor()).arg(currentSpeaker.getModel()).arg(box);
@@ -624,11 +635,22 @@ void MainWindow::on3DScadExport()
     if (fileName.isEmpty())
         return;
 
-    exportScad3D(fileName, currentTabIndex);
+    exportScad3D(fileName, currentTabIndex, margin, thick);
 }
 
 void MainWindow::on2DScadExport()
 {
+    bool ok = false;
+    QList<qreal> vals = ScadDialog::getValues(3, this, &ok);
+    if (!ok)
+        return;
+
+    Q_ASSERT(vals.size() == 3);
+
+    qreal margin = vals.at(0); /* loudspeaker margin */
+    qreal thick = vals.at(1); /* wood thick */
+    qreal saw = vals.at(2); /* saw thick */
+
    QString home = getHome();
    QString box = ui->tabWidget->currentWidget()->objectName().replace("Tab", "Box");
    QString f = QString("QSpeakers %1 %2 %3 2D").arg(currentSpeaker.getVendor()).arg(currentSpeaker.getModel()).arg(box);
@@ -639,7 +661,7 @@ void MainWindow::on2DScadExport()
     if (fileName.isEmpty())
         return;
 
-   exportScad2D(fileName, currentTabIndex);
+   exportScad2D(fileName, currentTabIndex, margin, thick, saw);
 }
 
 void MainWindow::exportPlot(const QString& outfileName, int tabindex)
@@ -682,12 +704,7 @@ void MainWindow::exportPlot(const QString& outfileName, int tabindex)
     file.close();
 }
 
-/* FIXME: should be taken from a popup before to export */
-#define MARGIN 50 /* mm */
-#define WOODTHICK 20 /* mm */
-#define SAWTHICK 1 /* mm */
-
-void MainWindow::exportScad(const QString& scad, const QString &outfileName, int tabindex)
+void MainWindow::exportScad(const QString& scad, const QString &outfileName, int tabindex, qreal margin, qreal thick, qreal saw)
 {
     QFile templ(scad);
     templ.open(QIODevice::ReadOnly);
@@ -696,10 +713,10 @@ void MainWindow::exportScad(const QString& scad, const QString &outfileName, int
     s.replace("__VENDOR__", currentSpeaker.getVendor());
     s.replace("__MODEL__", currentSpeaker.getModel());
     s.replace("__NUMBER__", QString::number(currentSpeakerNumber));
-    s.replace("__MARGIN__", QString::number(MARGIN));
+    s.replace("__MARGIN__", QString::number(margin));
     s.replace("__DIAMETER__", QString::number(currentSpeaker.getDia() * 1000)); /* mm */
-    s.replace("__WOODTHICK__", QString::number(WOODTHICK));
-    s.replace("__SAWTHICK__", QString::number(SAWTHICK));
+    s.replace("__WOODTHICK__", QString::number(thick));
+    s.replace("__SAWTHICK__", QString::number(saw));
     if (tabindex == 0) {
         s.replace("__SEALEDBOXVOLUME__", QString::number(currentSealedBox.getVolume()));
     } else if (tabindex == 1) {
@@ -777,7 +794,7 @@ void MainWindow::onPropertiesAccepted()
     propertiesDialog = nullptr;
 }
 
-void MainWindow::exportScad3D(const QString &outfileName, int tabindex)
+void MainWindow::exportScad3D(const QString &outfileName, int tabindex, qreal margin, qreal thick)
 {
     QFile file(outfileName);
     QString scad;
@@ -817,11 +834,11 @@ void MainWindow::exportScad3D(const QString &outfileName, int tabindex)
         return;
     }
 
-    exportScad(scad, outfileName, tabindex);
+    exportScad(scad, outfileName, tabindex, margin, thick, 0);
 }
 
 
-void MainWindow::exportScad2D(const QString &outfileName, int tabindex)
+void MainWindow::exportScad2D(const QString &outfileName, int tabindex, qreal margin, qreal thick, qreal saw)
 {
     QFile file(outfileName);
     QString scad;
@@ -861,7 +878,7 @@ void MainWindow::exportScad2D(const QString &outfileName, int tabindex)
         return;
     }
 
-    exportScad(scad, outfileName, tabindex);
+    exportScad(scad, outfileName, tabindex, margin, thick, saw);
 }
 
 void MainWindow::linkMenus()
@@ -1673,3 +1690,4 @@ void MainWindow::onCurrentBandPassBoxChanged(const BandPassBox &box)
 
     syncUiFromCurrentBandPassBox(box);
 }
+// vim:sw=4:ts=4:et

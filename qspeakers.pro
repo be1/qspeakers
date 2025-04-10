@@ -6,7 +6,7 @@
 
 QT       += core gui xml widgets printsupport charts
 CONFIG += c++17
-VERSION = 1.7.1
+VERSION = 1.8
 REVISION = $$system(git describe --long --tags 2>/dev/null || echo "stable")
 TARGET = qspeakers
 TEMPLATE = app
@@ -54,7 +54,8 @@ SOURCES += main.cpp \
     searchdialog.cpp \
     system.cpp \
     optimizer.cpp \
-    bandpassdialog.cpp
+    bandpassdialog.cpp \
+    scaddialog.cpp
 
 HEADERS  += mainwindow.h \
     projectproperties.h \
@@ -73,6 +74,7 @@ HEADERS  += mainwindow.h \
     system.h \
     optimizer.h \
     bandpassdialog.h \
+    scaddialog.h \
     undocommands.h
 
 FORMS    += mainwindow.ui \
