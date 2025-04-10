@@ -601,7 +601,7 @@ void MainWindow::onCurvePlot()
 {
     QString home = getHome();
     QString box = ui->tabWidget->currentWidget()->objectName().replace("Tab", "Box");
-    QString f = QString("QSpeakers %1 %2").arg(currentSpeaker.getModel()).arg(box);
+    QString f = QString("QSpeakers %1 %2 %3").arg(currentSpeaker.getVendor()).arg(currentSpeaker.getModel()).arg(box);
     f.replace(' ', '_');
     QString fileName = QFileDialog::getSaveFileName(this, tr("Export for Gnuplot"), home + QDir::separator() + f + ".dat", tr("Gnuplot data (*.dat)"));
 
@@ -616,7 +616,7 @@ void MainWindow::on3DScadExport()
 {
     QString home = getHome();
     QString box = ui->tabWidget->currentWidget()->objectName().replace("Tab", "Box");
-    QString f = QString("QSpeakers %1 %2 3D").arg(currentSpeaker.getModel()).arg(box);
+    QString f = QString("QSpeakers %1 %2 %3 3D").arg(currentSpeaker.getVendor()).arg(currentSpeaker.getModel()).arg(box);
     f.replace(' ', '_');
     QString fileName = QFileDialog::getSaveFileName(this, tr("Export for 3D OpenSCAD"), home + QDir::separator() + f + ".scad", tr("OpenSCAD script (*.scad)"));
 
@@ -631,7 +631,7 @@ void MainWindow::on2DScadExport()
 {
    QString home = getHome();
    QString box = ui->tabWidget->currentWidget()->objectName().replace("Tab", "Box");
-   QString f = QString("QSpeakers %1 %2 2D").arg(currentSpeaker.getModel()).arg(box);
+   QString f = QString("QSpeakers %1 %2 %3 2D").arg(currentSpeaker.getVendor()).arg(currentSpeaker.getModel()).arg(box);
    f.replace(' ', '_');
    QString fileName = QFileDialog::getSaveFileName(this, tr("Export for 2D OpenSCAD"), home + QDir::separator() + f + ".scad", tr("OpenSCAD script (*.scad)"));
 
@@ -646,7 +646,7 @@ void MainWindow::exportPlot(const QString& outfileName, int tabindex)
 {
     QFile file(outfileName);
     QString f("# QSpeakers plot: ");
-    f += currentSpeaker.getModel() + "\n";
+    f += currentSpeaker.getVendor() + " " + currentSpeaker.getModel() + "\n";
     f += "# freq., dB.\n";
 
     QLineSeries* series;
@@ -693,6 +693,7 @@ void MainWindow::exportScad(const QString& scad, const QString &outfileName, int
     templ.open(QIODevice::ReadOnly);
     QString s = templ.readAll();
 
+    s.replace("__VENDOR__", currentSpeaker.getVendor());
     s.replace("__MODEL__", currentSpeaker.getModel());
     s.replace("__NUMBER__", QString::number(currentSpeakerNumber));
     s.replace("__MARGIN__", QString::number(MARGIN));

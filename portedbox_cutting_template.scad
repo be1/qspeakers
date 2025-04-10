@@ -1,3 +1,4 @@
+/* loudspeaker __VENDOR__ __MODEL__ */
 loudspeaker_number = __NUMBER__;
 margin = __MARGIN__; /* mm */
 loudspeaker_diameter = __DIAMETER__; /* mm */
