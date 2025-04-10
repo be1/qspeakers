@@ -57,7 +57,7 @@ SOURCES += main.cpp \
     bandpassdialog.cpp \
     scaddialog.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS += mainwindow.h \
     projectproperties.h \
     propertiesdialog.h \
     speakerdialog.h \
@@ -77,7 +77,7 @@ HEADERS  += mainwindow.h \
     scaddialog.h \
     undocommands.h
 
-FORMS    += mainwindow.ui \
+FORMS += mainwindow.ui \
     propertiesdialog.ui \
     speakerdialog.ui \
     listdialog.ui \
@@ -116,7 +116,7 @@ scad.files = sealedbox_template.scad portedbox_template.scad bandpassbox_templat
 unix {
     target.path = $$BINDIR
     manual.path = $$DATADIR/man/man1
-    manual.files = $${MANPAGE}.gz
+    manual.files = $$OUT_PWD/$${MANPAGE}.gz
     manual.CONFIG = no_check_exist
     database.path = $$DATADIR/qspeakers
     translations.path = $$DATADIR/$${TARGET}
@@ -126,7 +126,7 @@ unix {
     desktop.files = $${TARGET}.desktop
     icon.path = $$DATADIR/icons/hicolor/scalable/apps
     icon.files = qspeakers.svg
-	scad.path = $$DATADIR/$${TARGET}
+    scad.path = $$DATADIR/$${TARGET}
     metainfo.path = $$DATADIR/metainfo
     metainfo.files = rocks.noise.qspeakers.metainfo.xml
     INSTALLS += target \
@@ -144,7 +144,7 @@ win32-g++ {
     target.path = $$BINDIR
     database.path = $$DATADIR
     translations.path = $$DATADIR/$${TARGET}
-	scad.path = $$DATADIR/$${TARGET}
+    scad.path = $$DATADIR/$${TARGET}
     RC_ICONS += qspeakers.ico
     INSTALLS += target \
             database \
