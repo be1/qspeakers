@@ -108,7 +108,7 @@ unix {
     QMAKE_EXTRA_COMPILERS += manpage
 }
 
-translations.files = $${LOCALE_DIR}
+translations.files = $$OUT_PWD/$${LOCALE_DIR}
 database.files = "qspeakers_db.xml"
 scad.files = sealedbox_template.scad portedbox_template.scad bandpassbox_template.scad \
 	sealedbox_cutting_template.scad portedbox_cutting_template.scad bandpassbox_cutting_template.scad
