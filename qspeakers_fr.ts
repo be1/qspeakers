@@ -184,7 +184,7 @@
     <message>
         <location filename="mainwindow.ui" line="637"/>
         <source>Bandpass enclosure</source>
-        <translation>Caisson de basse</translation>
+        <translation>Caisson passe-bande</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="640"/>
@@ -293,7 +293,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="1093"/>
-        <location filename="mainwindow.cpp" line="1224"/>
+        <location filename="mainwindow.cpp" line="1226"/>
         <source>About QSpeakers</source>
         <translation>À propos de QSpeakers</translation>
     </message>
@@ -490,7 +490,7 @@
     <message>
         <location filename="mainwindow.ui" line="1190"/>
         <source>Bandpass alignment</source>
-        <translation>Alignement caisson de basse</translation>
+        <translation>Alignement caisson passe-bande</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1158"/>
@@ -550,7 +550,7 @@
     <message>
         <location filename="mainwindow.cpp" line="101"/>
         <source>Bandpass volumes frequency response</source>
-        <translation>Réponse fréquentielle du caisson de basse</translation>
+        <translation>Réponse fréquentielle du caisson passe-bande</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="195"/>
@@ -638,7 +638,7 @@
         <translation>Voulez-vous vraiment retirer ce haut-parleur de la base de données ?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1225"/>
+        <location filename="mainwindow.cpp" line="1227"/>
         <source>QSpeakers version %1 (%2)
 
 This program simulates common acoustical enclosures behaviour to help designing loudspeaker systems.
@@ -647,14 +647,14 @@ This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1360"/>
-        <location filename="mainwindow.cpp" line="1417"/>
+        <location filename="mainwindow.cpp" line="1362"/>
+        <location filename="mainwindow.cpp" line="1419"/>
         <source>Unsaved speaker</source>
         <translation>Haut-parleur non enregistré</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1361"/>
-        <location filename="mainwindow.cpp" line="1418"/>
+        <location filename="mainwindow.cpp" line="1363"/>
+        <location filename="mainwindow.cpp" line="1420"/>
         <source>This speaker is not present in the database. Would you like to insert it before to continue?</source>
         <translation>Ce haut-parleur n&apos;est pas présent dans la base de données. Voulez-vous l&apos;insérer avant de continuer ?</translation>
     </message>
@@ -746,19 +746,29 @@ This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free
         <translation>Évent laminaire : %1 x %2 cm</translation>
     </message>
     <message>
-        <location filename="system.cpp" line="82"/>
-        <source>Driver(s) number: </source>
-        <translation>Nombre de haut-parleur(s) : </translation>
+        <location filename="system.cpp" line="92"/>
+        <source>Loudspeaker(s): </source>
+        <translation>Haut-parleur(s) : </translation>
     </message>
     <message>
-        <location filename="system.cpp" line="97"/>
-        <source>Loudspeaker:</source>
-        <translation>Haut-parleur :</translation>
+        <location filename="system.cpp" line="99"/>
+        <source>sealed</source>
+        <translation>close</translation>
     </message>
     <message>
-        <location filename="system.cpp" line="104"/>
-        <source>Enclosure:</source>
-        <translation>Enceinte :</translation>
+        <location filename="system.cpp" line="99"/>
+        <source>ported</source>
+        <translation>à évent</translation>
+    </message>
+    <message>
+        <location filename="system.cpp" line="99"/>
+        <source>bandpass</source>
+        <translation>passe-bande</translation>
+    </message>
+    <message>
+        <location filename="system.cpp" line="100"/>
+        <source>Enclosure: </source>
+        <translation>Enceinte : </translation>
     </message>
     <message>
         <location filename="optimizer.cpp" line="46"/>

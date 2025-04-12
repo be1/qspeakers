@@ -1191,7 +1191,9 @@ void MainWindow::onProjectPrint()
 {
     QPrinter printer;
     printer.setCreator("QSpeakers");
-    printer.setDocName("qspeakers_project");
+    printer.setDocName("QSpeakers Project");
+    QString box = ui->tabWidget->currentWidget()->objectName().replace("Tab", "Box");
+    printer.setOutputFileName("QSpeakers_" + currentSpeaker.getVendor() + "_" + currentSpeaker.getModel() + "_" + box + ".pdf");
     printer.setPageOrientation(QPageLayout::Landscape);
     QPrintDialog dialog(&printer, this);
     if (dialog.exec() == QDialog::Accepted) {

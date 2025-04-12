@@ -292,7 +292,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="1093"/>
-        <location filename="mainwindow.cpp" line="1224"/>
+        <location filename="mainwindow.cpp" line="1226"/>
         <source>About QSpeakers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -637,7 +637,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1225"/>
+        <location filename="mainwindow.cpp" line="1227"/>
         <source>QSpeakers version %1 (%2)
 
 This program simulates common acoustical enclosures behaviour to help designing loudspeaker systems.
@@ -646,14 +646,14 @@ This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1360"/>
-        <location filename="mainwindow.cpp" line="1417"/>
+        <location filename="mainwindow.cpp" line="1362"/>
+        <location filename="mainwindow.cpp" line="1419"/>
         <source>Unsaved speaker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1361"/>
-        <location filename="mainwindow.cpp" line="1418"/>
+        <location filename="mainwindow.cpp" line="1363"/>
+        <location filename="mainwindow.cpp" line="1420"/>
         <source>This speaker is not present in the database. Would you like to insert it before to continue?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -753,18 +753,29 @@ This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="system.cpp" line="82"/>
-        <source>Driver(s) number: </source>
+        <location filename="system.cpp" line="92"/>
+        <source>Loudspeaker(s): </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="system.cpp" line="97"/>
-        <source>Loudspeaker:</source>
+        <location filename="system.cpp" line="99"/>
+        <source>sealed</source>
+        <oldsource>Sealed</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="system.cpp" line="104"/>
-        <source>Enclosure:</source>
+        <location filename="system.cpp" line="99"/>
+        <source>ported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="system.cpp" line="99"/>
+        <source>bandpass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="system.cpp" line="100"/>
+        <source>Enclosure: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>

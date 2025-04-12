@@ -151,8 +151,8 @@ void BandPassBox::render(QPainter *painter, const QRectF &area) const
 
     painter->drawRoundedRect(area.toRect(), 5, 5);
 
-    params[0] = QObject::tr("Sealed Volume: %1 L").arg(QString::number(getSealedBoxVolume(), 'f', 3));
-    params[1] = QObject::tr("Ported Volume: %1 L").arg(QString::number(getPortedBoxVolume(), 'f', 3));
+    params[0] = QObject::tr("Sealed Volume: %1 L").arg(QString::number(getSealedBoxVolume(), 'f', 2));
+    params[1] = QObject::tr("Ported Volume: %1 L").arg(QString::number(getPortedBoxVolume(), 'f', 2));
 
     if (!getPortedBoxSlotPortActivated()) {
         params[2] = QObject::tr("Port Diameter: %1 cm").arg(QString::number(getPortedBoxPortDiam(), 'f', 1));
@@ -170,10 +170,11 @@ void BandPassBox::render(QPainter *painter, const QRectF &area) const
 
     for (int i = 0; i < 6; i++) {
         QString text = params[i];
-        QRectF where(tab, area.top(), realwidth / 6, area.height());
         QTextOption option(Qt::AlignVCenter|Qt::AlignLeft);
+        qreal textwidth = painter->boundingRect(QRect(0, 0, realwidth, 0), text, option).width() + BOX_RENDER_MARGINS;
+        QRectF where(tab, area.top(), qMax(realwidth / 6, textwidth), area.height());
         painter->drawText(where, text, option);
-        tab += realwidth / 6;
+        tab += where.width();
     }
 
     painter->setFont(orig);

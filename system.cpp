@@ -79,12 +79,7 @@ void System::render(QPainter *painter, const QRectF& area)
     QRectF elementArea(area);
     const int elements = 2;
 
-    QString text = QObject::tr("Driver(s) number: ") + QString::number(sibling);
-
     QFont font;
-    font.setBold(false);
-    painter->setFont(font);
-    painter->drawText(area, text, option);
     font.setBold(true);
     painter->setFont(font);
 
@@ -94,14 +89,15 @@ void System::render(QPainter *painter, const QRectF& area)
 
     /* elements */
     elementArea.moveTop(elementArea.y() + textHeight); /* blank line */
-    painter->drawText(elementArea, QObject::tr("Loudspeaker:"), option);
+    painter->drawText(elementArea, QObject::tr("Loudspeaker(s): ") + QString::number(sibling), option);
     elementArea.moveTop(elementArea.y() + textHeight);
     speaker.render(painter, elementArea);
 
     elementArea.moveTop(elementArea.y() + elementArea.height());
 
     elementArea.moveTop(elementArea.y() + textHeight); /* blank line */
-    painter->drawText(elementArea, QObject::tr("Enclosure:"), option);
+    QString boxstr = type == BOX_SEALED ? QObject::tr("sealed") : type == BOX_PORTED ? QObject::tr("ported") : QObject::tr("bandpass");
+    painter->drawText(elementArea, QObject::tr("Enclosure: ") + boxstr, option);
     elementArea.moveTop(elementArea.y() + textHeight);
     box->render(painter, elementArea);
 

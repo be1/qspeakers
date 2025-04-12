@@ -192,7 +192,7 @@ void PortedBox::render(QPainter *painter, const QRectF &area) const
 
     painter->drawRoundedRect(area.toRect(), 5, 5);
 
-    params[0] = QObject::tr("Volume: %1 L").arg(QString::number(getBoxVolume(), 'f', 3));
+    params[0] = QObject::tr("Volume: %1 L").arg(QString::number(getBoxVolume(), 'f', 2));
     if (!slotActivated) {
         params[1] = QObject::tr("Port Diameter: %1 cm").arg(QString::number(getPortDiam(), 'f', 1));
     } else {
@@ -208,10 +208,11 @@ void PortedBox::render(QPainter *painter, const QRectF &area) const
 
     for (int i = 0; i < PORTED_PARAMS; i++) {
         QString text = params[i];
-        QRectF where(tab, area.top(), realwidth / PORTED_PARAMS, area.height());
         QTextOption option(Qt::AlignVCenter|Qt::AlignLeft);
+        qreal textwidth = painter->boundingRect(QRect(0, 0, realwidth, 0), text, option).width() + BOX_RENDER_MARGINS;
+        QRectF where(tab, area.top(), qMax(realwidth / PORTED_PARAMS, textwidth), area.height());
         painter->drawText(where, text, option);
-        tab += realwidth / PORTED_PARAMS;
+        tab += where.width();
     }
 
     painter->setFont(orig);
