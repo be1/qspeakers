@@ -212,7 +212,7 @@ void MainWindow::onProjectImport()
     if (!projectSaved) {
         QMessageBox::StandardButton pressed =
                 QMessageBox::question(this, tr("Project not saved"),
-                                      tr("The current project has not been saved. Continue anyway?"),
+                                      tr("Current project has not been saved. Continue anyway?"),
                                       QMessageBox::Yes|QMessageBox::No);
         if (pressed == QMessageBox::No)
             return;
@@ -232,6 +232,15 @@ void MainWindow::onProjectImport()
 
 void MainWindow::onOpenRecentActionTriggered()
 {
+    if (!projectSaved) {
+        QMessageBox::StandardButton pressed =
+                QMessageBox::question(this, tr("Project not saved"),
+                                      tr("Current project has not been saved. Continue anyway?"),
+                                      QMessageBox::Yes|QMessageBox::No);
+        if (pressed == QMessageBox::No)
+            return;
+    }
+
     QAction *action = qobject_cast<QAction *>(sender());
     if (action) {
         if (!loadFile(action->data().toString())) {
@@ -321,8 +330,10 @@ bool MainWindow::loadFile(const QString& fileName)
 
     ui->tabWidget->setCurrentIndex(currentTabIndex);
 
+    /*
     if (notInDbSpeaker)
         onSpeakerModify();
+    */
 
     projectSaved = true;
     return true;
@@ -1360,7 +1371,9 @@ void MainWindow::onVendorChanged(QString vendor)
 
         QMessageBox::StandardButton pressed =
                 QMessageBox::question(this, tr("Unsaved speaker"),
-                                      tr("This speaker is not present in the database. Would you like to insert it before to continue?"),
+                                      tr("Speaker driver") + " " +
+                                      notInDbSpeaker->getModel() + " " +
+                                      tr("is not present in the database. Do you want to insert it before to continue?"),
                                       QMessageBox::Yes|QMessageBox::No);
         if (pressed == QMessageBox::Yes) {
             SpeakerDb::insertOrReplace(notInDbSpeaker->getVendor(), notInDbSpeaker->getModel(), *notInDbSpeaker);
@@ -1417,7 +1430,9 @@ void MainWindow::onModelChanged(QString model)
 
         QMessageBox::StandardButton pressed =
                 QMessageBox::question(this, tr("Unsaved speaker"),
-                                      tr("This speaker is not present in the database. Would you like to insert it before to continue?"),
+                                      tr("Speaker driver") + " " +
+                                      notInDbSpeaker->getModel() + " " +
+                                      tr("is not present in the database. Do you want to insert it before to continue?"),
                                       QMessageBox::Yes|QMessageBox::No);
         if (pressed == QMessageBox::Yes) {
             SpeakerDb::insertOrReplace(notInDbSpeaker->getVendor(), notInDbSpeaker->getModel(), *notInDbSpeaker);
