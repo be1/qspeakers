@@ -575,7 +575,8 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="215"/>
-        <source>The current project has not been saved. Continue anyway?</source>
+        <source>Current project has not been saved. Continue anyway?</source>
+        <oldsource>The current project has not been saved. Continue anyway?</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -647,14 +648,20 @@ This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1362"/>
-        <location filename="mainwindow.cpp" line="1419"/>
+        <location filename="mainwindow.cpp" line="1421"/>
         <source>Unsaved speaker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1363"/>
-        <location filename="mainwindow.cpp" line="1420"/>
-        <source>This speaker is not present in the database. Would you like to insert it before to continue?</source>
+        <location filename="mainwindow.cpp" line="1422"/>
+        <source>Speaker driver</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1365"/>
+        <location filename="mainwindow.cpp" line="1424"/>
+        <source>is not present in the database. Do you want to insert it before to continue?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
