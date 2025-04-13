@@ -11,7 +11,7 @@
     <message>
         <location filename="bandpassdialog.ui" line="28"/>
         <source>Curve gain (dB)</source>
-        <translation>Gain de la courbe(dB)</translation>
+        <translation>Gain de la courbe (dB)</translation>
     </message>
     <message>
         <location filename="bandpassdialog.ui" line="57"/>
