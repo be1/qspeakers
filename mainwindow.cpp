@@ -1371,9 +1371,7 @@ void MainWindow::onVendorChanged(QString vendor)
 
         QMessageBox::StandardButton pressed =
                 QMessageBox::question(this, tr("Unsaved speaker"),
-                                      tr("Speaker driver") + " " +
-                                      notInDbSpeaker->getModel() + " " +
-                                      tr("is not present in the database. Do you want to insert it before to continue?"),
+                                      tr("Speaker driver %1 is not present in the database. Do you want to insert it before to continue?").arg(notInDbSpeaker->getModel()),
                                       QMessageBox::Yes|QMessageBox::No);
         if (pressed == QMessageBox::Yes) {
             SpeakerDb::insertOrReplace(notInDbSpeaker->getVendor(), notInDbSpeaker->getModel(), *notInDbSpeaker);
@@ -1430,9 +1428,7 @@ void MainWindow::onModelChanged(QString model)
 
         QMessageBox::StandardButton pressed =
                 QMessageBox::question(this, tr("Unsaved speaker"),
-                                      tr("Speaker driver") + " " +
-                                      notInDbSpeaker->getModel() + " " +
-                                      tr("is not present in the database. Do you want to insert it before to continue?"),
+                                      tr("Speaker driver %1 is not present in the database. Do you want to insert it before to continue?").arg(notInDbSpeaker->getModel()),
                                       QMessageBox::Yes|QMessageBox::No);
         if (pressed == QMessageBox::Yes) {
             SpeakerDb::insertOrReplace(notInDbSpeaker->getVendor(), notInDbSpeaker->getModel(), *notInDbSpeaker);
