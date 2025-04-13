@@ -34,35 +34,35 @@ module speaker(diam, x, y){
 module port(diam, slot, width, height, x, y)
 {
     if (slot == true) {
-	translate([x, y, 0]) {
-	    square(size = [width, height], center = false);
-	}
+        translate([x, y, 0]) {
+            square(size = [width, height], center = false);
+        }
     } else {
-	translate([x, y, 0]) {
-	    circle($fn=360, d=diam, true);
-	}
+        translate([x, y, 0]) {
+            circle($fn=360, d=diam, true);
+        }
     }
 }
 
 module board_speaker_port(width, height, diam){
     difference() {
-	board(width, height);
+        board(width, height);
 
-	/* calculate ports distribition */
-	port_placing = (internal_ported_box_width + (2 * wood_thick)) / (ported_box_port_number + 1);
-	for (i = [1:ported_box_port_number]) {
-	    if (ported_box_port_slot_activated == false) {
-		/* circular ports, center is used */
-		port(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, i * port_placing, wood_thick + margin + ported_box_port_diameter / 2);
-	    } else {
-		/* slot ports, left corner is used */
-		port(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, (i * port_placing) - (ported_box_port_slot_width / 2), wood_thick);
-	    }
-	}
+        /* calculate ports distribition */
+        port_placing = (internal_ported_box_width + (2 * wood_thick)) / (ported_box_port_number + 1);
+        for (i = [1:ported_box_port_number]) {
+            if (ported_box_port_slot_activated == false) {
+                /* circular ports, center is used */
+                port(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, i * port_placing, wood_thick + margin + ported_box_port_diameter / 2);
+            } else {
+                /* slot ports, left corner is used */
+                port(ported_box_port_diameter, ported_box_port_slot_activated, ported_box_port_slot_width, ported_box_port_slot_height, (i * port_placing) - (ported_box_port_slot_width / 2), wood_thick);
+            }
+        }
 
         for (i = [0:loudspeaker_number-1]) {
-	    if (ported_box_port_slot_activated == false) {
-		speaker(diam, width / 2, margin + (diam / 2) + (ported_box_port_diameter + margin) + i * (diam + margin));
+            if (ported_box_port_slot_activated == false) {
+                speaker(diam, width / 2, margin + (diam / 2) + (ported_box_port_diameter + margin) + i * (diam + margin));
             } else {
                 speaker(diam, width / 2, margin + (diam / 2) + ported_box_port_slot_height + i * (diam + margin));
             }
@@ -83,21 +83,21 @@ for (i = [0:1]) {
     translate([0, i*(max(front_height,front_width,side_depth,side_height) + saw_thick), 0]) {
         /* one board with speaker */
         translate([0, 0, 0]) 
-	    board_speaker_port(front_width, front_height, loudspeaker_diameter);
-        
+            board_speaker_port(front_width, front_height, loudspeaker_diameter);
+
         /* one back board */
         translate([1 * (front_width + saw_thick), 0, 0])
             board(front_width, front_height);
-        
+
         /* two side boards */
-	for (j = [0:1]) {
-	    translate([2 * (front_width + saw_thick) + j * (side_depth + saw_thick), 0, 0])
+        for (j = [0:1]) {
+            translate([2 * (front_width + saw_thick) + j * (side_depth + saw_thick), 0, 0])
                 board(side_depth, side_height);
         }
-        
+
         /* two top/bottom boards */
-	for (j = [0:1]) {
-	    translate([j * (top_width + saw_thick) + (2 * (side_depth + saw_thick)) + (2 * (front_width + saw_thick)), 0, 0])
+        for (j = [0:1]) {
+            translate([j * (top_width + saw_thick) + (2 * (side_depth + saw_thick)) + (2 * (front_width + saw_thick)), 0, 0])
                 board(top_width, top_depth);
         }
     }

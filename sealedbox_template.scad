@@ -25,6 +25,7 @@ module speaker_hole(diameter, x, z)
         }
     }
 }
+
 module closed_enclosure(width, height, depth)
 {
 

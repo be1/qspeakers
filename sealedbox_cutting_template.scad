@@ -48,20 +48,20 @@ for (i = [0:1]) {
         /* one board with speaker */
         translate([0, 0, 0]) 
             board_speaker(front_width, front_height, loudspeaker_diameter);
-        
+
         /* one back board */
         translate([1 * (front_width + saw_thick), 0, 0])
             board(front_width, front_height);
-        
+
         /* two side boards */
-	for (j = [0:1]) {
-	    translate([2 * (front_width + saw_thick) + j * (side_depth + saw_thick), 0, 0])
+        for (j = [0:1]) {
+            translate([2 * (front_width + saw_thick) + j * (side_depth + saw_thick), 0, 0])
                 board(side_depth, side_height);
         }
-        
+
         /* two top/bottom boards */
-	for (j = [0:1]) {
-	    translate([j * (top_width + saw_thick) + (2 * (side_depth + saw_thick)) + (2 * (front_width + saw_thick)), 0, 0])
+        for (j = [0:1]) {
+            translate([j * (top_width + saw_thick) + (2 * (side_depth + saw_thick)) + (2 * (front_width + saw_thick)), 0, 0])
                 board(top_width, top_depth);
         }
     }
