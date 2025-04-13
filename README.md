@@ -2,15 +2,19 @@
 Loudspeaker enclosure designer, open-source, portable, written in c++/Qt, for Linux and some other platforms.
 Note that stable versions of QSpeakers are officially in Debian GNU/Linux and Ubuntu Linux.
 
-![screenshot](http://brouits.free.fr/qspeakers/qspeakers.png)
+![screenshot](http://brouits.free.fr/qspeakers/qspeakers.png "QSpeakers Main Window")
 
 ## Pre-requisites
-Install Qt5 and QtCharts libraries and development files.
+Install Qt5 or Qt6 (and QtCharts) libraries and development files, and translation tools.
+In Debian or Ubuntu, for Qt6, this should install all the needed requirements:
+```
+sudo apt install qmake6 qt6-base-dev qt6-charts-dev qt6-tools-dev-tools
+```
 
 ## Build
-You can use QtCreator to build the program. You can also use `qmake` in commandline:
+You can use QtCreator to build the program. You can also use `qmake6` in commandline:
 ```
-qmake -config release && make
+qmake6 -config release && make
 sudo make install
 ```
 
