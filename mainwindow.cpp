@@ -112,8 +112,10 @@ MainWindow::MainWindow(QWidget *parent) :
     /* fill speaker combos */
     ui->vendorComboBox->addItems(SpeakerDb::getVendors());
     ui->vendorComboBox->setSizeAdjustPolicy(QComboBox::SizeAdjustPolicy::AdjustToContents);
+    ui->vendorComboBox->view()->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     ui->modelComboBox->addItems(SpeakerDb::getModelsByVendor(ui->vendorComboBox->currentText()));
     ui->modelComboBox->setSizeAdjustPolicy(QComboBox::SizeAdjustPolicy::AdjustToContents);
+    ui->modelComboBox->view()->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
     /* undo history is empty */
     this->ui->actionUndo->setEnabled(false);
