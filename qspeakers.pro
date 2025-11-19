@@ -6,7 +6,7 @@
 
 QT       += core gui xml widgets printsupport charts
 CONFIG += c++17
-VERSION = 1.9
+VERSION = 1.8.5
 REVISION = $$system(git describe --long --tags 2>/dev/null || echo "stable")
 TARGET = qspeakers
 TEMPLATE = app

@@ -138,7 +138,7 @@
     <message>
         <location filename="mainwindow.ui" line="437"/>
         <source>Enclosure filter resonance (Fb)</source>
-        <translation>Résonnance de l&apos;enceinte (Fb)</translation>
+        <translation>Résonance de l&apos;enceinte (Fb)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="474"/>
@@ -214,7 +214,7 @@
     <message>
         <location filename="mainwindow.ui" line="796"/>
         <source>Ported enclosure filter resonance</source>
-        <translation>Résonnance de l&apos;enceinte à évent</translation>
+        <translation>Résonance de l&apos;enceinte à évent</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="833"/>
