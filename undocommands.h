@@ -384,4 +384,52 @@ public:
     }
 };
 
+class PortedQualityCommand: public GenericCommand
+{
+public:
+    PortedQualityCommand(int older, int newer, QObject *parent)
+        : GenericCommand(parent) {
+      this->older = older;
+      this->newer = newer;
+    }
+
+    void undo() override {
+        this->mainwindow->changePortedQualityLossFactor(older);
+        GenericCommand::undo();
+    }
+
+    void redo() override {
+        this->mainwindow->changePortedQualityLossFactor(newer);
+        GenericCommand::redo();
+    }
+
+private:
+    int older;
+    int newer;
+};
+
+class BPQualityCommand: public GenericCommand
+{
+public:
+    BPQualityCommand(int older, int newer, QObject *parent)
+        : GenericCommand(parent) {
+      this->older = older;
+      this->newer = newer;
+    }
+
+    void undo() override {
+        this->mainwindow->changeBPQualityLossFactor(older);
+        GenericCommand::undo();
+    }
+
+    void redo() override {
+        this->mainwindow->changeBPQualityLossFactor(newer);
+        GenericCommand::redo();
+    }
+
+private:
+    int older;
+    int newer;
+};
+
 #endif // UNDOCOMMANDS_H

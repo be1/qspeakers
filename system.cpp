@@ -5,8 +5,8 @@
 
 #include "system.h"
 
-#define Q 7 /* common ported box resonance quality loss */
-#define QL 10000 /* common box losses */
+#define QLVented 7       /* common ported box resonance quality loss (now unused) */
+#define QLBandpass 10000 /* common bandpass box quality loss (now unused) */
 
 System::System(const Speaker& s, const SealedBox *b, unsigned int number) :
     speaker(s),
@@ -46,10 +46,9 @@ double System::response(double f)
     } else if (type == BOX_PORTED) {
         PortedBox *b = (PortedBox *)box;
         double A = pow(b->getResFreq() / speaker.getFs(), 2.0);
-        double B = A / speaker.getQts() + b->getResFreq() / (Q * speaker.getFs() * speaker.getQts());
-        double C = 1.0 + A + (speaker.getVas() * sibling / b->getBoxVolume()) + b->getResFreq() /
-                (Q * speaker.getFs() * speaker.getQts());
-        double D = 1.0 / speaker.getQts() + b->getResFreq() / (Q * speaker.getFs());
+        double B = A / speaker.getQts() + b->getResFreq() / (b->getLossQualityFactor() * speaker.getFs() * speaker.getQts());
+        double C = 1.0 + A + (speaker.getVas() * sibling / b->getBoxVolume()) + b->getResFreq() / (b->getLossQualityFactor() * speaker.getFs() * speaker.getQts());
+        double D = 1.0 / speaker.getQts() + b->getResFreq() / (b->getLossQualityFactor() * speaker.getFs());
         double fn2 = pow(f / speaker.getFs(), 2.0);
         double fn4 = pow(fn2, 2.0);
         double db = 10 * log10(pow(fn4, 2.0) / (pow(fn4 - C * fn2 + A, 2.0) + fn2 * pow(D * fn2 - B, 2.0)));
@@ -57,10 +56,10 @@ double System::response(double f)
     } else {
         BandPassBox *b = (BandPassBox *)box;
         double A = pow(1.0 / (b->getPortedBoxResFreq()), 2.0) * pow(f, 4.0);
-        double B = ((1 / QL + (speaker.getFs() / b->getPortedBoxResFreq()) / speaker.getQts()) / b->getPortedBoxResFreq()) * pow(f, 3.0);
+        double B = ((1 / b->getLossQualityFactor() + (speaker.getFs() / b->getPortedBoxResFreq()) / speaker.getQts()) / b->getPortedBoxResFreq()) * pow(f, 3.0);
         double C = (((1 + speaker.getVas() * sibling / b->getSealedBoxVolume() + speaker.getVas() * sibling / b->getPortedBoxVolume()) *
-                     speaker.getFs() / b->getPortedBoxResFreq() + (1 / speaker.getQts()) / QL) * speaker.getFs() / b->getPortedBoxResFreq() + 1) * pow(f, 2.0);
-        double D = ((1 / speaker.getQts() + (speaker.getFs() / b->getPortedBoxResFreq()) / QL * (speaker.getVas() * sibling / b->getSealedBoxVolume() + 1)) *
+                     speaker.getFs() / b->getPortedBoxResFreq() + (1 / speaker.getQts()) / b->getLossQualityFactor()) * speaker.getFs() / b->getPortedBoxResFreq() + 1) * pow(f, 2.0);
+        double D = ((1 / speaker.getQts() + (speaker.getFs() / b->getPortedBoxResFreq()) / b->getLossQualityFactor() * (speaker.getVas() * sibling / b->getSealedBoxVolume() + 1)) *
                     speaker.getFs()) * f;
         double E = (speaker.getVas() * sibling / b->getSealedBoxVolume() + 1) * pow(speaker.getFs(), 2);
         double G = A - C + E;

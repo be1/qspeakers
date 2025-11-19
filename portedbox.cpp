@@ -5,10 +5,16 @@
 
 #include "portedbox.h"
 
-PortedBox::PortedBox(double volume, double resfreq, unsigned int portnum, double portdiam, double portlen) :
-    box(volume)
+PortedBox::PortedBox(double volume,
+                     double resfreq,
+                     unsigned int portnum,
+                     double portdiam,
+                     double portlen,
+                     double qloss)
+    : box(volume)
 {
     setResFreq(resfreq);
+    qLossFactor = qloss;
     portNum = portnum;
     setPortDiam(portdiam);
     setPortLen(portlen);
@@ -43,6 +49,11 @@ void PortedBox::setSlotWidth(double width)
 void PortedBox::setResFreq(double value)
 {
     resFreq = double ((int)(value * 100) / 100.0);
+}
+
+void PortedBox::setLossQualityFactor(double newQualityFactor)
+{
+    qLossFactor = newQualityFactor;
 }
 
 void PortedBox::setSlotPortActivated(bool enable)
@@ -100,6 +111,11 @@ double PortedBox::getResFreq() const
     return resFreq;
 }
 
+double PortedBox::getLossQualityFactor() const
+{
+    return qLossFactor;
+}
+
 void PortedBox::updatePorts(double sd, double xmax)
 {
     /* compute minimum port diameter and optionaly set it */
@@ -139,6 +155,7 @@ QDomElement PortedBox::toDomElement(QDomDocument& doc) const
 
     e.setAttribute("type", "ported");
     e.setAttribute("res", c.toString(resFreq));
+    e.setAttribute("ql", c.toString(qLossFactor));
 
     QDomElement b = box.toDomElement(doc);
     e.appendChild(b);
@@ -167,6 +184,7 @@ void PortedBox::fromDomElement(const QDomElement &e)
     }
 
     resFreq = c.toDouble(e.attribute("res"));
+    qLossFactor = c.toDouble(e.attribute("ql"));
 
     QDomElement b = e.elementsByTagName("box").at(0).toElement();
     box.fromDomElement(b);

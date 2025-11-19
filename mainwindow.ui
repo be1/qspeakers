@@ -87,7 +87,7 @@
        <item>
         <spacer name="horizontalSpacer">
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Orientation::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -289,15 +289,15 @@
           <item>
            <layout class="QHBoxLayout" name="sealedHorizontalLayout1">
             <property name="sizeConstraint">
-             <enum>QLayout::SetDefaultConstraint</enum>
+             <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
             </property>
             <item>
-             <spacer name="sealedVolumeLeftHorizontalSapcer">
+             <spacer name="sealedVolumeHorizontalSapcerStart">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeType">
-               <enum>QSizePolicy::Expanding</enum>
+               <enum>QSizePolicy::Policy::Expanding</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -332,12 +332,12 @@
              </widget>
             </item>
             <item>
-             <spacer name="sealedVolumeRightHorizontalSpacer">
+             <spacer name="sealedVolumeHorizontalSpacerEnd">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeType">
-               <enum>QSizePolicy::Expanding</enum>
+               <enum>QSizePolicy::Policy::Expanding</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -379,12 +379,12 @@
           <item>
            <layout class="QHBoxLayout" name="portedHorizontalLayout1">
             <property name="sizeConstraint">
-             <enum>QLayout::SetDefaultConstraint</enum>
+             <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
             </property>
             <item>
-             <spacer name="portedLeftHorizontalSpacer">
+             <spacer name="portedHorizontalSpacerStart">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -419,9 +419,9 @@
              </widget>
             </item>
             <item>
-             <spacer name="portedMiddleHorizontalSpacer">
+             <spacer name="portedHorizontalSpacerMiddle">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -439,7 +439,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QDoubleSpinBox" name="portedResonancedoubleSpinBox">
+             <widget class="QDoubleSpinBox" name="portedResonanceDoubleSpinBox">
               <property name="minimum">
                <double>1.000000000000000</double>
               </property>
@@ -456,9 +456,42 @@
              </widget>
             </item>
             <item>
-             <spacer name="portedRightHorizontalSpacer">
+             <spacer name="portedHorizontalSpacerMiddle2">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="portedQualityLossFactorLabel">
+              <property name="text">
+               <string>Enclosure quality loss factor (Ql)</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="portedQualityLossFactorSpinBox">
+              <property name="minimum">
+               <number>1</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="value">
+               <number>7</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="portedHorizontalSpacerEnd">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -526,7 +559,7 @@
             <item>
              <spacer name="portedPortHorizontalSpacer1">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -580,7 +613,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label">
+             <widget class="QLabel" name="portedPortSlotWidthHeightUnitLabel">
               <property name="text">
                <string>cm</string>
               </property>
@@ -589,7 +622,7 @@
             <item>
              <spacer name="portedPortHorizontalSpacer2">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -648,12 +681,12 @@
           <item>
            <layout class="QHBoxLayout" name="bandPassHorizontalLayout1">
             <property name="sizeConstraint">
-             <enum>QLayout::SetDefaultConstraint</enum>
+             <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
             </property>
             <item>
              <spacer name="bandPassSealedVolumeLeftHorizontalSapcer">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -690,7 +723,7 @@
             <item>
              <spacer name="bandPassSealedVolumeRightHorizontalSpacer">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -705,12 +738,12 @@
           <item>
            <layout class="QHBoxLayout" name="bandPassHorizontalLayout2">
             <property name="sizeConstraint">
-             <enum>QLayout::SetDefaultConstraint</enum>
+             <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
             </property>
             <item>
-             <spacer name="bandPassPortedLeftHorizontalSpacer">
+             <spacer name="bandPassPortedHorizontalSpacerStart">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -747,7 +780,7 @@
             <item>
              <spacer name="bandPassPortedHorizontalSpacerMiddle">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -782,9 +815,42 @@
              </widget>
             </item>
             <item>
-             <spacer name="bandPassPortedRightHorizontalSpacer">
+             <spacer name="bandPassPortedHorizontalSpacerMiddle2">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="bandPassQualityLossFactorLabel">
+              <property name="text">
+               <string>Bandpass enclosure quality loss factor</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="bandPassQualityLossFactorSpinBox">
+              <property name="minimum">
+               <number>1</number>
+              </property>
+              <property name="maximum">
+               <number>10000</number>
+              </property>
+              <property name="value">
+               <number>1000</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="bandPassPortedHorizontalSpacerEnd">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -852,7 +918,7 @@
             <item>
              <spacer name="bandPassPortHorizontalSpacer1">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -886,7 +952,7 @@
              <widget class="QLineEdit" name="bandpassPortSlotHeightLineEdit"/>
             </item>
             <item>
-             <widget class="QLabel" name="label_3">
+             <widget class="QLabel" name="bandpassPortSlotWidthHeightUnitLabel">
               <property name="text">
                <string>cm</string>
               </property>
@@ -895,7 +961,7 @@
             <item>
              <spacer name="bandpassPortHorizontalSpacer2">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -1192,8 +1258,7 @@
   </action>
   <action name="actionUndo">
    <property name="icon">
-    <iconset theme="edit-undo">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="edit-undo"/>
    </property>
    <property name="text">
     <string>Undo</string>
@@ -1207,8 +1272,7 @@
   </action>
   <action name="actionRedo">
    <property name="icon">
-    <iconset theme="edit-redo">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="edit-redo"/>
    </property>
    <property name="text">
     <string>Redo</string>

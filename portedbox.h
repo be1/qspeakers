@@ -12,13 +12,14 @@
 class PortedBox : public Box
 {
 public:
-    PortedBox(double volume = 0.01, double resfreq = 1, unsigned int portnum = 1, double portdiam = 0, double portlen = 0);
+    PortedBox(double volume = 0.01, double resfreq = 1, unsigned int portnum = 1, double portdiam = 0, double portlen = 0, double qloss = 7.0);
     void setBoxVolume(double vol);
     void setPortNum(unsigned int value);
     void setPortLen(double len);
     void setPortDiam(double diam);
     void setSlotWidth(double width);
     void setResFreq(double value);
+    void setLossQualityFactor(double newQualityFactor);
     void setSlotPortActivated(bool enable);
 
     double getBoxVolume(void) const;
@@ -29,6 +30,7 @@ public:
     double getSlotWidth() const;
     double getSlotHeight() const;
     double getResFreq() const;
+    double getLossQualityFactor() const;
 
     void updateSlots();
     void updatePorts(double sd, double xmax);
@@ -36,11 +38,12 @@ public:
 
     QDomElement toDomElement(QDomDocument& doc) const;
     void fromDomElement(const QDomElement& e);
-    void render(QPainter *painter, const QRectF& area) const;
+    void render(QPainter *painter, const QRectF &area) const;
 
 private:
     SealedBox box;
     double resFreq;
+    double qLossFactor;
 
     unsigned int portNum;
     double portLen;

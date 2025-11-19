@@ -29,9 +29,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    QUndoStack* getCommandStack() {
-        return this->commandStack;
-    };
+    QUndoStack *getCommandStack() { return this->commandStack; }
 
     void changeSpeakerNumber(int number);
     void changeVendor(const QString &vendor, const Speaker& oldspeaker);
@@ -39,6 +37,7 @@ public:
     void changeSealedVolume(double val);
     void changePortedVolume(double val);
     void changePortedResFreq(double val);
+    void changePortedQualityLossFactor(double val);
     void changePortedPortNumber(unsigned int val);
     void changePortedPortDiam(double val);
     void changePortedSlotPortActivation(bool checked);
@@ -46,6 +45,7 @@ public:
     void changeBPSealedVolume(double val);
     void changeBPPortedVolume(double val);
     void changeBPPortedResFreq(double val);
+    void changeBPQualityLossFactor(double val);
     void changeBPPortedPortNumber(double val);
     void changeBPPortedPortDiam(double val);
     void changeBPPortedSlotPortActivation(bool checked);
@@ -103,6 +103,7 @@ public slots:
 
     void onPortedVolumeDoubleSpinChanged(double val);
     void onPortedResonanceDoubleSpinChanged(double val);
+    void onPortedQualityLossFactorSpinBoxChanged(int val);
     void onPortedPortsNumberSpinChanged(int val);
     void onPortedPortDiameterDoubleSpinChanged(double val);
     void onPortedSlotWidthDoubleSpinChanged(double val);
@@ -111,6 +112,7 @@ public slots:
     void onBandPassSealedVolumeDoubleSpinChanged(double val);
     void onBandPassPortedVolumeDoubleSpinChanged(double val);
     void onBandPassPortedResonanceDoubleSpinChanged(double val);
+    void onBandPassQualityLossFactorSpinBoxChanged(int val);
     void onBandPassPortNumSpinChanged(int val);
     void onBandPassPortDiameterDoubleSpinChanged(double val);
     void onBandPassSlotWidthDoubleSpinChanged(double val);

@@ -12,8 +12,15 @@
 class BandPassBox : public Box
 {
 public:
-    BandPassBox(double svol = 0.1, double pvol = 0.01, double pfreq = 1, unsigned int pnum = 1, double plen = 0, double pdiam = 0);
+    BandPassBox(double svol = 0.1,
+                double pvol = 0.01,
+                double pfreq = 1,
+                unsigned int pnum = 1,
+                double plen = 0,
+                double pdiam = 0,
+                double qloss = 10000.0);
 
+    void setLossQualityFactor(double qloss);
     void setSealedBoxVolume(double vol);
     void setPortedBoxVolume(double vol);
     void setPortedBoxPortNum(unsigned int val);
@@ -27,6 +34,7 @@ public:
     void updatePortedBoxPortsLength();
     void updatePortedBoxSlots();
 
+    double getLossQualityFactor(void) const;
     double getSealedBoxVolume(void) const;
     double getPortedBoxVolume(void) const;
     unsigned int getPortedBoxPortNum(void) const;
@@ -36,12 +44,14 @@ public:
     double getPortedBoxSlotWidth() const;
     double getPortedBoxSlotHeight() const;
     double getPortedBoxResFreq(void) const;
+    double getPortedBoxLossQualityFactor(void) const;
 
     QDomElement toDomElement(QDomDocument& doc) const;   
     void fromDomElement(const QDomElement &e);
     void render(QPainter *painter, const QRectF& area) const;
 
 private:
+    qreal qLossFactor;
     SealedBox sealedBox;
     PortedBox portedBox;
 };

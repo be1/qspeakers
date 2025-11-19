@@ -1,12 +1,19 @@
 #include <QDebug>
 #include <QObject>
+#include <QLocale>
 
 #include "bandpassbox.h"
 
-BandPassBox::BandPassBox(double svol, double pvol, double pfreq, unsigned int pnum, double plen, double pdiam) :
+BandPassBox::BandPassBox(double svol, double pvol, double pfreq, unsigned int pnum, double plen, double pdiam, double qloss) :
     sealedBox(svol),
     portedBox(pvol, pfreq, pnum, plen, pdiam)
 {
+    qLossFactor = qloss;
+}
+
+void BandPassBox::setLossQualityFactor(double newQualityFactor)
+{
+    qLossFactor = newQualityFactor;
 }
 
 void BandPassBox::setSealedBoxVolume(double vol)
@@ -64,6 +71,11 @@ void BandPassBox::updatePortedBoxSlots()
     portedBox.updateSlots();
 }
 
+double BandPassBox::getLossQualityFactor() const
+{
+    return qLossFactor;
+}
+
 double BandPassBox::getSealedBoxVolume() const
 {
     return sealedBox.getVolume();
@@ -111,14 +123,17 @@ double BandPassBox::getPortedBoxResFreq(void) const
 
 QDomElement BandPassBox::toDomElement(QDomDocument &doc) const
 {
+    QLocale c(QLocale::C);
+
     QDomElement e = Box::toDomElement(doc);
     e.setAttribute("type", "bandpass");
+    e.setAttribute("ql", c.toString(qLossFactor));
 
-    QDomElement b = sealedBox.toDomElement(doc);
-    e.appendChild(b);
+    QDomElement s = sealedBox.toDomElement(doc);
+    e.appendChild(s);
 
-    QDomElement c = portedBox.toDomElement(doc);
-    e.appendChild(c);
+    QDomElement p = portedBox.toDomElement(doc);
+    e.appendChild(p);
 
     return e;
 }
@@ -130,6 +145,9 @@ void BandPassBox::fromDomElement(const QDomElement &e)
         qWarning() << __func__ << "wrong box type! (not bandpass, giving up)";
         return;
     }
+
+    QLocale c(QLocale::C);
+    qLossFactor = c.toDouble(e.attribute("ql"));
 
     QDomElement b = e.firstChildElement("box");
     while (!b.isNull()) {

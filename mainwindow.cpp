@@ -451,7 +451,8 @@ void MainWindow::syncUiFromCurrentPortedBox(const PortedBox& box)
 {
     unlinkTabs();
     ui->portedVolumeDoubleSpinBox->setValue(box.getBoxVolume());
-    ui->portedResonancedoubleSpinBox->setValue(box.getResFreq());
+    ui->portedResonanceDoubleSpinBox->setValue(box.getResFreq());
+    ui->portedQualityLossFactorSpinBox->setValue(box.getLossQualityFactor());
     ui->portedPortsNumberSpinBox->setValue(box.getPortNum());
     ui->portedPortDiameterDoubleSpinBox->setValue(box.getPortDiam());
     bool slotPortActivated = box.getSlotPortActivated();
@@ -481,6 +482,7 @@ void MainWindow::syncUiFromCurrentBandPassBox(const BandPassBox& box)
     ui->bandPassSealedVolumeDoubleSpinBox->setValue(box.getSealedBoxVolume());
     ui->bandPassPortedVolumeDoubleSpinBox->setValue(box.getPortedBoxVolume());
     ui->bandPassPortedResonanceDoubleSpinBox->setValue(box.getPortedBoxResFreq());
+    ui->bandPassQualityLossFactorSpinBox->setValue(box.getLossQualityFactor());
     ui->bandPassPortsNumberSpinBox->setValue(box.getPortedBoxPortNum());
     ui->bandPassPortDiameterDoubleSpinBox->setValue(box.getPortedBoxPortDiam());
     bool slotPortActivated = box.getPortedBoxSlotPortActivated();
@@ -946,7 +948,8 @@ void MainWindow::linkTabs()
     connect(ui->sealedVolumeDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onSealedVolumeDoubleSpinChanged);
 
     connect(ui->portedVolumeDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onPortedVolumeDoubleSpinChanged);
-    connect(ui->portedResonancedoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onPortedResonanceDoubleSpinChanged);
+    connect(ui->portedResonanceDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onPortedResonanceDoubleSpinChanged);
+    connect(ui->portedQualityLossFactorSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onPortedQualityLossFactorSpinBoxChanged);
     connect(ui->portedPortsNumberSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onPortedPortsNumberSpinChanged);
     connect(ui->portedPortDiameterDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onPortedPortDiameterDoubleSpinChanged);
     connect(ui->portedPortSlotWidthButton, &QPushButton::clicked, this, &MainWindow::onPortedSlotPortActivated);
@@ -955,6 +958,7 @@ void MainWindow::linkTabs()
     connect(ui->bandPassSealedVolumeDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassSealedVolumeDoubleSpinChanged);
     connect(ui->bandPassPortedVolumeDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassPortedVolumeDoubleSpinChanged);
     connect(ui->bandPassPortedResonanceDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassPortedResonanceDoubleSpinChanged);
+    connect(ui->bandPassQualityLossFactorSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onBandPassQualityLossFactorSpinBoxChanged);
     connect(ui->bandPassPortsNumberSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onBandPassPortNumSpinChanged);
     connect(ui->bandPassPortDiameterDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassPortDiameterDoubleSpinChanged);
     connect(ui->bandpassPortSlotWidthButton, &QPushButton::clicked, this, &MainWindow::onBandPassSlotPortActivated);
@@ -964,6 +968,7 @@ void MainWindow::linkTabs()
 void MainWindow::linkInternals()
 {
     connect(this, &MainWindow::currentSpeakerChanged, this, &MainWindow::onCurrentSpeakerChanged);
+
     connect(this, &MainWindow::currentSealedBoxChanged, this, &MainWindow::onCurrentSealedBoxChanged);
     connect(this, &MainWindow::currentPortedBoxChanged, this, &MainWindow::onCurrentPortedBoxChanged);
     connect(this, &MainWindow::currentBandPassBoxChanged, this, &MainWindow::onCurrentBandPassBoxChanged);
@@ -1016,7 +1021,8 @@ void MainWindow::unlinkTabs()
     disconnect(ui->sealedVolumeDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onSealedVolumeDoubleSpinChanged);
 
     disconnect(ui->portedVolumeDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onPortedVolumeDoubleSpinChanged);
-    disconnect(ui->portedResonancedoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onPortedResonanceDoubleSpinChanged);
+    disconnect(ui->portedResonanceDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onPortedResonanceDoubleSpinChanged);
+    disconnect(ui->portedQualityLossFactorSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onPortedQualityLossFactorSpinBoxChanged);
     disconnect(ui->portedPortsNumberSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onPortedPortsNumberSpinChanged);
     disconnect(ui->portedPortDiameterDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onPortedPortDiameterDoubleSpinChanged);
     disconnect(ui->portedPortSlotWidthButton, &QPushButton::clicked, this, &MainWindow::onPortedSlotPortActivated);
@@ -1025,6 +1031,7 @@ void MainWindow::unlinkTabs()
     disconnect(ui->bandPassSealedVolumeDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassSealedVolumeDoubleSpinChanged);
     disconnect(ui->bandPassPortedVolumeDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassPortedVolumeDoubleSpinChanged);
     disconnect(ui->bandPassPortedResonanceDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassPortedResonanceDoubleSpinChanged);
+    disconnect(ui->bandPassQualityLossFactorSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onBandPassQualityLossFactorSpinBoxChanged);
     disconnect(ui->bandPassPortsNumberSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::onBandPassPortNumSpinChanged);
     disconnect(ui->bandPassPortDiameterDoubleSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &MainWindow::onBandPassPortDiameterDoubleSpinChanged);
     disconnect(ui->bandpassPortSlotWidthButton, &QPushButton::clicked, this, &MainWindow::onBandPassSlotPortActivated);
@@ -1533,10 +1540,25 @@ void MainWindow::onPortedResonanceDoubleSpinChanged(double val)
     this->commandStack->push(com);
 }
 
+void MainWindow::onPortedQualityLossFactorSpinBoxChanged(int val)
+{
+    PortedQualityCommand* com = new PortedQualityCommand (currentPortedBox.getLossQualityFactor(), val, this);
+    this->commandStack->push(com);
+
+    currentPortedBox.setLossQualityFactor(val);
+    syncUiFromCurrentPortedBox(currentPortedBox);
+}
+
 void MainWindow::changePortedResFreq(double val)
 {
     currentPortedBox.setResFreq(val);
     currentPortedBox.updatePorts(currentSpeaker.getSd() * currentSpeakerNumber, currentSpeaker.getXmax());
+    syncUiFromCurrentPortedBox(currentPortedBox);
+}
+
+void MainWindow::changePortedQualityLossFactor(double val)
+{
+    currentPortedBox.setLossQualityFactor(val);
     syncUiFromCurrentPortedBox(currentPortedBox);
 }
 
@@ -1637,10 +1659,22 @@ void MainWindow::onBandPassPortedResonanceDoubleSpinChanged(double val)
     this->commandStack->push(com);
 }
 
+void MainWindow::onBandPassQualityLossFactorSpinBoxChanged(int val)
+{
+    BPQualityCommand *com = new BPQualityCommand(currentBandPassBox.getLossQualityFactor(), val, this);
+    this->commandStack->push(com);
+}
+
 void MainWindow::changeBPPortedResFreq(double val)
 {
     currentBandPassBox.setPortedBoxResFreq(val);
     currentBandPassBox.updatePortedBoxPorts(currentSpeaker.getSd() * currentSpeakerNumber, currentSpeaker.getXmax());
+    syncUiFromCurrentBandPassBox(currentBandPassBox);
+}
+
+void MainWindow::changeBPQualityLossFactor(double val)
+{
+    currentBandPassBox.setLossQualityFactor(val);
     syncUiFromCurrentBandPassBox(currentBandPassBox);
 }
 
