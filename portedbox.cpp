@@ -183,8 +183,12 @@ void PortedBox::fromDomElement(const QDomElement &e)
         return;
     }
 
+    bool ok = false;
+
     resFreq = c.toDouble(e.attribute("res"));
-    qLossFactor = c.toDouble(e.attribute("ql"));
+    qLossFactor = c.toDouble(e.attribute("ql"), &ok);
+    if (!ok)
+        qLossFactor = 7.;
 
     QDomElement b = e.elementsByTagName("box").at(0).toElement();
     box.fromDomElement(b);

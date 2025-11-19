@@ -147,7 +147,12 @@ void BandPassBox::fromDomElement(const QDomElement &e)
     }
 
     QLocale c(QLocale::C);
-    qLossFactor = c.toDouble(e.attribute("ql"));
+
+    bool ok = false;
+
+    qLossFactor = c.toDouble(e.attribute("ql"), &ok);
+    if (!ok)
+        qLossFactor = 10000;
 
     QDomElement b = e.firstChildElement("box");
     while (!b.isNull()) {
