@@ -1248,9 +1248,9 @@ void MainWindow::onAboutAbout()
                           "This program simulates common acoustical enclosures "
                           "behaviour to help designing loudspeaker systems.\n\n"
                           "This program is free software, copyright (C) 2014 "
-                          "Benoit Rouits <brouits@free.fr> and released under the "
-                          "GNU General Public Lisence version 3. It is delivered "
-                          "as is in the hope it can be useful, but with NO WARRANTY at all.").arg(VERSION, REVISION));
+                          "Benoît Rouits <brouits@free.fr> and released under the "
+                          "GNU General Public License version 3. It is delivered "
+                          "as is in the hope it can be useful, but with NO WARRANTY AT ALL.").arg(VERSION, REVISION));
 }
 
 void MainWindow::onSearchRequested(const QString& param, double min, double max)

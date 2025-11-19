@@ -62,7 +62,7 @@
     <message>
         <location filename="mainwindow.ui" line="148"/>
         <location filename="mainwindow.ui" line="454"/>
-        <location filename="mainwindow.ui" line="780"/>
+        <location filename="mainwindow.ui" line="813"/>
         <source>Hz</source>
         <translation>Hz</translation>
     </message>
@@ -75,8 +75,8 @@
         <location filename="mainwindow.ui" line="193"/>
         <location filename="mainwindow.ui" line="330"/>
         <location filename="mainwindow.ui" line="417"/>
-        <location filename="mainwindow.ui" line="686"/>
-        <location filename="mainwindow.ui" line="743"/>
+        <location filename="mainwindow.ui" line="719"/>
+        <location filename="mainwindow.ui" line="776"/>
         <source>L</source>
         <translation>L</translation>
     </message>
@@ -141,309 +141,319 @@
         <translation>Résonnance de l&apos;enceinte (Fb)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="488"/>
-        <location filename="mainwindow.ui" line="814"/>
+        <location filename="mainwindow.ui" line="474"/>
+        <source>Enclosure quality loss factor (Ql)</source>
+        <translation>Facteur de qualité dû aux pertes de l&apos;enceinte (Ql)</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="521"/>
+        <location filename="mainwindow.ui" line="880"/>
         <source>Number of ports</source>
         <translation>Nombre d&apos;évents</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="505"/>
-        <location filename="mainwindow.ui" line="831"/>
+        <location filename="mainwindow.ui" line="538"/>
+        <location filename="mainwindow.ui" line="897"/>
         <source>Port diameter</source>
         <translation>Diamètre d&apos;évent</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="522"/>
-        <location filename="mainwindow.ui" line="585"/>
-        <location filename="mainwindow.ui" line="625"/>
-        <location filename="mainwindow.ui" line="848"/>
-        <location filename="mainwindow.ui" line="891"/>
-        <location filename="mainwindow.ui" line="931"/>
+        <location filename="mainwindow.ui" line="555"/>
+        <location filename="mainwindow.ui" line="618"/>
+        <location filename="mainwindow.ui" line="658"/>
+        <location filename="mainwindow.ui" line="914"/>
+        <location filename="mainwindow.ui" line="957"/>
+        <location filename="mainwindow.ui" line="997"/>
         <source>cm</source>
         <translation>cm</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="542"/>
-        <location filename="mainwindow.ui" line="868"/>
+        <location filename="mainwindow.ui" line="575"/>
+        <location filename="mainwindow.ui" line="934"/>
         <source>Slot port</source>
         <translation>Laminaire</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="562"/>
-        <location filename="mainwindow.ui" line="881"/>
+        <location filename="mainwindow.ui" line="595"/>
+        <location filename="mainwindow.ui" line="947"/>
         <source>x</source>
         <translatorcomment>multiply sign</translatorcomment>
         <translation>x</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="605"/>
-        <location filename="mainwindow.ui" line="911"/>
+        <location filename="mainwindow.ui" line="638"/>
+        <location filename="mainwindow.ui" line="977"/>
         <source>Port length</source>
         <translation>Longueur d&apos;évent</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="637"/>
+        <location filename="mainwindow.ui" line="670"/>
         <source>Bandpass enclosure</source>
         <translation>Caisson passe-bande</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="640"/>
+        <location filename="mainwindow.ui" line="673"/>
         <source>4th order filter</source>
         <translation>filtre du quatrième ordre</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="643"/>
+        <location filename="mainwindow.ui" line="676"/>
         <source>Enclosure for subwoofer, mostly used in 2:1, 5:1 and 7:1 systems.</source>
         <translation>Enceinte pour subwoofer, souvent utilisée pour les systèmes 2:1, 5:1 et 7:1.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="669"/>
+        <location filename="mainwindow.ui" line="702"/>
         <source>Sealed enclosure volume</source>
         <translation>Volume de l&apos;enceinte close</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="726"/>
+        <location filename="mainwindow.ui" line="759"/>
         <source>Ported enclosure volume</source>
         <translation>Volume de l&apos;enceinte à évent</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="763"/>
+        <location filename="mainwindow.ui" line="796"/>
         <source>Ported enclosure filter resonance</source>
         <translation>Résonnance de l&apos;enceinte à évent</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="956"/>
+        <location filename="mainwindow.ui" line="833"/>
+        <source>Bandpass enclosure quality loss factor</source>
+        <translation>Facteur de qualité dû aux pertes du caisson</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1022"/>
         <source>Project</source>
         <translation>Projet</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="969"/>
+        <location filename="mainwindow.ui" line="1035"/>
         <source>Edit</source>
         <translation>Éditer</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="973"/>
+        <location filename="mainwindow.ui" line="1039"/>
         <source>Ported alignments</source>
         <translation>Alignements avec évent</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="990"/>
+        <location filename="mainwindow.ui" line="1056"/>
         <source>About</source>
         <translation>À propos</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="996"/>
+        <location filename="mainwindow.ui" line="1062"/>
         <source>Speaker</source>
         <translation>Haut-parleur</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1005"/>
+        <location filename="mainwindow.ui" line="1071"/>
         <source>Exports</source>
         <translation>Exports</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1044"/>
+        <location filename="mainwindow.ui" line="1110"/>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1049"/>
+        <location filename="mainwindow.ui" line="1115"/>
         <source>Save</source>
         <translation>Enregistrer</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1055"/>
+        <location filename="mainwindow.ui" line="1121"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1066"/>
+        <location filename="mainwindow.ui" line="1132"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1071"/>
+        <location filename="mainwindow.ui" line="1137"/>
         <source>Print</source>
         <translation>Imprimer</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1074"/>
+        <location filename="mainwindow.ui" line="1140"/>
         <source>Print the current project</source>
         <translation>Imprime le projet</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1077"/>
+        <location filename="mainwindow.ui" line="1143"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1082"/>
+        <location filename="mainwindow.ui" line="1148"/>
         <source>Quit</source>
         <translation>Quitter</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1085"/>
+        <location filename="mainwindow.ui" line="1151"/>
         <source>Quit the application</source>
         <translation>Quitte l&apos;application</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1088"/>
+        <location filename="mainwindow.ui" line="1154"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1093"/>
-        <location filename="mainwindow.cpp" line="1237"/>
+        <location filename="mainwindow.ui" line="1159"/>
+        <location filename="mainwindow.cpp" line="1246"/>
         <source>About QSpeakers</source>
         <translation>À propos de QSpeakers</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1096"/>
+        <location filename="mainwindow.ui" line="1162"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1101"/>
+        <location filename="mainwindow.ui" line="1167"/>
         <source>New</source>
         <translation>Nouveau</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1104"/>
+        <location filename="mainwindow.ui" line="1170"/>
         <source>New speaker parameters</source>
         <translation>Nouveau haut-parleur</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1107"/>
+        <location filename="mainwindow.ui" line="1173"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1112"/>
+        <location filename="mainwindow.ui" line="1178"/>
         <source>Search</source>
         <translation>Rechercher</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1115"/>
+        <location filename="mainwindow.ui" line="1181"/>
         <source>Search a speaker</source>
         <translation>Recherche un haut-parleur</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1120"/>
+        <location filename="mainwindow.ui" line="1186"/>
         <source>Optimize</source>
         <translation>Optimiser</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1123"/>
+        <location filename="mainwindow.ui" line="1189"/>
         <source>Optimize frequency response</source>
         <translation>Optimise la réponse en fréquence</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1126"/>
+        <location filename="mainwindow.ui" line="1192"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1131"/>
+        <location filename="mainwindow.ui" line="1197"/>
         <source>Modify</source>
         <translation>Modifier</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1134"/>
+        <location filename="mainwindow.ui" line="1200"/>
         <source>Modify the current speaker</source>
         <translation>Modifie le haut-parleur</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1137"/>
+        <location filename="mainwindow.ui" line="1203"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1142"/>
+        <location filename="mainwindow.ui" line="1208"/>
         <source>Remove</source>
         <translation>Retirer</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1145"/>
+        <location filename="mainwindow.ui" line="1211"/>
         <source>Remove the current speaker</source>
         <translation>Retire le haut-parleur</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1150"/>
+        <location filename="mainwindow.ui" line="1216"/>
         <source>Bessel</source>
         <translation>Bessel</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1153"/>
+        <location filename="mainwindow.ui" line="1219"/>
         <source>Linear phase and fast transient response alignment</source>
         <translation>Alignement à phase linéaire et réponse en transitoire rapide</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1161"/>
+        <location filename="mainwindow.ui" line="1227"/>
         <source>Extended bass response with minimum ripple</source>
         <translation>Réponse étendue en grave avec un minimum d&apos;oscillation</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1169"/>
+        <location filename="mainwindow.ui" line="1235"/>
         <source>Boom box butterworth 4th order alignment</source>
         <translation>Alignement Butterworth du 4è ordre «Boom box»</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1177"/>
+        <location filename="mainwindow.ui" line="1243"/>
         <source>Super boom box butterworth 4th order alignment</source>
         <translation>Alignement Butterworth du 4è ordre «Super boom box»</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1199"/>
+        <location filename="mainwindow.ui" line="1264"/>
         <source>Undo</source>
         <translation>Défaire</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1202"/>
+        <location filename="mainwindow.ui" line="1267"/>
         <source>Undo action</source>
         <translation>Défaire</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1205"/>
+        <location filename="mainwindow.ui" line="1270"/>
         <source>Ctrl+U</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1214"/>
+        <location filename="mainwindow.ui" line="1278"/>
         <source>Redo</source>
         <translation>Refaire</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1217"/>
+        <location filename="mainwindow.ui" line="1281"/>
         <source>Redo action</source>
         <translation>Refaire</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1220"/>
+        <location filename="mainwindow.ui" line="1284"/>
         <source>Ctrl+R</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1225"/>
+        <location filename="mainwindow.ui" line="1289"/>
         <source>3D OpenScad</source>
         <translation>OpenScad 3D</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1230"/>
+        <location filename="mainwindow.ui" line="1294"/>
         <source>2D OpenScad</source>
         <translation>OpenScad 2D</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1235"/>
+        <location filename="mainwindow.ui" line="1299"/>
         <source>Curve Plot</source>
         <translation>Courbe</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1240"/>
+        <location filename="mainwindow.ui" line="1304"/>
         <source>Properties</source>
         <translation>Propriétés</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1182"/>
+        <location filename="mainwindow.ui" line="1248"/>
         <source>Zbinden M4</source>
         <translation>M4 Zbinden</translation>
     </message>
@@ -483,52 +493,52 @@
         <translation>Vc :</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1185"/>
+        <location filename="mainwindow.ui" line="1251"/>
         <source>Moderate alignment (infinite baffle)</source>
         <translation>Alignement modéré (sur baffle infini)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1190"/>
+        <location filename="mainwindow.ui" line="1256"/>
         <source>Bandpass alignment</source>
         <translation>Alignement caisson passe-bande</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1158"/>
+        <location filename="mainwindow.ui" line="1224"/>
         <source>Legendre</source>
         <translation>Legendre</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1038"/>
+        <location filename="mainwindow.ui" line="1104"/>
         <source>Open...</source>
         <translation>Ouvrir...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1041"/>
+        <location filename="mainwindow.ui" line="1107"/>
         <source>Open a speaker project</source>
         <translation>Ouvre un projet</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1052"/>
+        <location filename="mainwindow.ui" line="1118"/>
         <source>Save the current project</source>
         <translation>Enregistre le projet</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1060"/>
+        <location filename="mainwindow.ui" line="1126"/>
         <source>Save copy...</source>
         <translation>Enregistrer une copie...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1063"/>
+        <location filename="mainwindow.ui" line="1129"/>
         <source>Save the current project in a copy</source>
         <translation>Enregistre une copie du projet</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1166"/>
+        <location filename="mainwindow.ui" line="1232"/>
         <source>Hoge BB4</source>
         <translation>BB4 Hoge</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1174"/>
+        <location filename="mainwindow.ui" line="1240"/>
         <source>Bullock SBB4</source>
         <translation>SBB4 Bullock</translation>
     </message>
@@ -553,112 +563,116 @@
         <translation>Réponse fréquentielle du caisson passe-bande</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="195"/>
+        <location filename="mainwindow.cpp" line="197"/>
         <source>Export File</source>
         <translation>Exporter le fichier</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="195"/>
-        <location filename="mainwindow.cpp" line="222"/>
+        <location filename="mainwindow.cpp" line="197"/>
+        <location filename="mainwindow.cpp" line="224"/>
         <source>QSpeakers project (*.qsp)</source>
         <translation>Projet QSpeakers (*.qsp)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="195"/>
+        <location filename="mainwindow.cpp" line="197"/>
         <source>untitled.qsp</source>
         <translation>sans_nom.qsp</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="214"/>
-        <location filename="mainwindow.cpp" line="237"/>
-        <location filename="mainwindow.cpp" line="355"/>
+        <location filename="mainwindow.cpp" line="216"/>
+        <location filename="mainwindow.cpp" line="239"/>
+        <location filename="mainwindow.cpp" line="357"/>
         <source>Project not saved</source>
         <translation>Projet non enregistré</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="215"/>
-        <location filename="mainwindow.cpp" line="238"/>
+        <location filename="mainwindow.cpp" line="217"/>
+        <location filename="mainwindow.cpp" line="240"/>
         <source>Current project has not been saved. Continue anyway?</source>
         <translation>Le projet actuel n&apos;a pas été enregistré. Continuer quand-même ?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="222"/>
+        <location filename="mainwindow.cpp" line="224"/>
         <source>Import File</source>
         <translation>Importer un fichier</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="229"/>
-        <location filename="mainwindow.cpp" line="247"/>
+        <location filename="mainwindow.cpp" line="231"/>
+        <location filename="mainwindow.cpp" line="249"/>
         <source>Warning</source>
         <translation>Attention</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="229"/>
-        <location filename="mainwindow.cpp" line="247"/>
+        <location filename="mainwindow.cpp" line="231"/>
+        <location filename="mainwindow.cpp" line="249"/>
         <source>Could not open project!</source>
         <translation>Impossible d&apos;ouvrir le projet !</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="356"/>
+        <location filename="mainwindow.cpp" line="358"/>
         <source>The current project has not been saved. Exit anyway?</source>
         <translation>Le projet actuel n&apos;a pas été enregistré. Quitter malgré tout ?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="618"/>
+        <location filename="mainwindow.cpp" line="622"/>
         <source>Export for Gnuplot</source>
         <translation>Exporter pour Gnuplot</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="618"/>
+        <location filename="mainwindow.cpp" line="622"/>
         <source>Gnuplot data (*.dat)</source>
         <translation>Données Gnuplot (*.dat)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="643"/>
+        <location filename="mainwindow.cpp" line="647"/>
         <source>Export for 3D OpenSCAD</source>
         <translation>Export 3D pour OpenSCAD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="643"/>
-        <location filename="mainwindow.cpp" line="669"/>
+        <location filename="mainwindow.cpp" line="647"/>
+        <location filename="mainwindow.cpp" line="673"/>
         <source>OpenSCAD script (*.scad)</source>
         <translation>Script OpenSCAD (*.scad)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="669"/>
+        <location filename="mainwindow.cpp" line="673"/>
         <source>Export for 2D OpenSCAD</source>
         <translation>Export 2D pour OpenSCAD</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1054"/>
+        <location filename="mainwindow.cpp" line="1063"/>
         <source>Removal confirmation</source>
         <translation>Confirmation de la suppression</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1055"/>
+        <location filename="mainwindow.cpp" line="1064"/>
         <source>Do you really want to remove this loudspeaker from the database?</source>
         <translation>Voulez-vous vraiment retirer ce haut-parleur de la base de données ?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1238"/>
+        <location filename="mainwindow.cpp" line="1247"/>
         <source>QSpeakers version %1 (%2)
 
 This program simulates common acoustical enclosures behaviour to help designing loudspeaker systems.
 
-This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free.fr&gt; and released under the GNU General Public Lisence version 3. It is delivered as is in the hope it can be useful, but with NO WARRANTY at all.</source>
-        <translation type="unfinished"></translation>
+This program is free software, copyright (C) 2014 Benoît Rouits &lt;brouits@free.fr&gt; and released under the GNU General Public License version 3. It is delivered as is in the hope it can be useful, but with NO WARRANTY AT ALL.</source>
+        <translation>QSpeakers version %1 (%2)
+
+Ce programme simule le comportement d&apos;enceintes acoustiques classiques dans le but d&apos;aider à la conception de systèmes de haut-parleurs.
+
+Ce programme est un logiciel libre, copyright (C) 2014 Benoît Rouits &lt;brouits@free.fr&gt; et publié sous la license Générale Publique GNU version 3. Il est délivré tel quel dans l&apos;espoir d&apos;être utile, mais SANS AUCUNE GARANTIE.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1373"/>
-        <location filename="mainwindow.cpp" line="1430"/>
+        <location filename="mainwindow.cpp" line="1382"/>
+        <location filename="mainwindow.cpp" line="1439"/>
         <source>Unsaved speaker</source>
         <translation>Haut-parleur non enregistré</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1374"/>
-        <location filename="mainwindow.cpp" line="1431"/>
+        <location filename="mainwindow.cpp" line="1383"/>
+        <location filename="mainwindow.cpp" line="1440"/>
         <source>Speaker driver %1 is not present in the database. Do you want to insert it before to continue?</source>
-        <translation>Le haut-parleur %1 n'est pas présent dans la base de données. Voulez-vous l'insérer avant de continuer ?</translation>
+        <translation>Le haut-parleur %1 n&apos;est pas présent dans la base de données. Voulez-vous l&apos;insérer avant de continuer ?</translation>
     </message>
 </context>
 <context>
@@ -702,73 +716,73 @@ This program is free software, copyright (C) 2014 Benoit Rouits &lt;brouits@free
 <context>
     <name>QObject</name>
     <message>
-        <location filename="bandpassbox.cpp" line="154"/>
+        <location filename="bandpassbox.cpp" line="177"/>
         <source>Sealed Volume: %1 L</source>
         <translation>Volume Clos : %1 L</translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="155"/>
+        <location filename="bandpassbox.cpp" line="178"/>
         <source>Ported Volume: %1 L</source>
         <translation>Volume avec évent : %1 L</translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="158"/>
-        <location filename="portedbox.cpp" line="197"/>
+        <location filename="bandpassbox.cpp" line="181"/>
+        <location filename="portedbox.cpp" line="219"/>
         <source>Port Diameter: %1 cm</source>
         <translation>Diamètre Évent : %1 cm</translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="163"/>
-        <location filename="portedbox.cpp" line="201"/>
+        <location filename="bandpassbox.cpp" line="186"/>
+        <location filename="portedbox.cpp" line="223"/>
         <source>Port Length: %1 cm</source>
         <translation>Longueur Évent : %1 cm</translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="164"/>
-        <location filename="portedbox.cpp" line="202"/>
+        <location filename="bandpassbox.cpp" line="187"/>
+        <location filename="portedbox.cpp" line="224"/>
         <source>Port #: %1</source>
         <translation>Nombre Évent(s) : %1</translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="165"/>
-        <location filename="portedbox.cpp" line="203"/>
+        <location filename="bandpassbox.cpp" line="188"/>
+        <location filename="portedbox.cpp" line="225"/>
         <source>Fb: %1 Hz</source>
         <translation>Fb : %1 Hz</translation>
     </message>
     <message>
-        <location filename="portedbox.cpp" line="195"/>
+        <location filename="portedbox.cpp" line="217"/>
         <location filename="sealedbox.cpp" line="54"/>
         <source>Volume: %1 L</source>
         <translation>Volume : %1 L</translation>
     </message>
     <message>
-        <location filename="bandpassbox.cpp" line="160"/>
-        <location filename="portedbox.cpp" line="199"/>
+        <location filename="bandpassbox.cpp" line="183"/>
+        <location filename="portedbox.cpp" line="221"/>
         <source>Slot port: %1 x %2 cm</source>
         <translation>Évent laminaire : %1 x %2 cm</translation>
     </message>
     <message>
-        <location filename="system.cpp" line="92"/>
+        <location filename="system.cpp" line="91"/>
         <source>Loudspeaker(s): </source>
         <translation>Haut-parleur(s) : </translation>
     </message>
     <message>
-        <location filename="system.cpp" line="99"/>
+        <location filename="system.cpp" line="98"/>
         <source>sealed</source>
         <translation>close</translation>
     </message>
     <message>
-        <location filename="system.cpp" line="99"/>
+        <location filename="system.cpp" line="98"/>
         <source>ported</source>
         <translation>à évent</translation>
     </message>
     <message>
-        <location filename="system.cpp" line="99"/>
+        <location filename="system.cpp" line="98"/>
         <source>bandpass</source>
         <translation>passe-bande</translation>
     </message>
     <message>
-        <location filename="system.cpp" line="100"/>
+        <location filename="system.cpp" line="99"/>
         <source>Enclosure: </source>
         <translation>Enceinte : </translation>
     </message>
