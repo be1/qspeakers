@@ -28,7 +28,7 @@ unix {
 }
 
 win32-g++ {
-    isEmpty(PREFIX): PREFIX = "C:/Program Files/QSpeakers"
+    isEmpty(PREFIX): PREFIX = "nsis"
     isEmpty(BINDIR): BINDIR = $$PREFIX
     isEmpty(DATADIR): DATADIR = $$PREFIX
 }
@@ -84,7 +84,8 @@ FORMS += mainwindow.ui \
     searchdialog.ui \
     bandpassdialog.ui
 
-isEmpty(QMAKE_LRELEASE):QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease
+#isEmpty(QMAKE_LRELEASE):QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease
+isEmpty(QMAKE_LRELEASE):QMAKE_LRELEASE = lrelease
 
 TRANSLATIONS += \
     qspeakers_en.ts \
