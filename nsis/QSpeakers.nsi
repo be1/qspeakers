@@ -76,10 +76,10 @@ Section "Install" SecInstall
   SetOutPath "$INSTDIR"
   
   ; Add program, db, translations and scad
-  File /r ../release/qspeakers.exe
+  File /r release/qspeakers.exe
   File ../qspeakers.png
   File ../qspeakers_db.xml
-  File /r ../locale
+  File /r locale
   File ../sealedbox_template.scad
   File ../sealedbox_cutting_template.scad
   File ../portedbox_template.scad
