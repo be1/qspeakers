@@ -64,7 +64,7 @@ QList<QString> SpeakerDb::getModelsByVendor(const QString& vendor, int *maxchars
     QDomDocument doc = getDoc();
 
     if (file.exists()) {
-        file.open(QIODevice::ReadOnly);
+        (void) file.open(QIODevice::ReadOnly);
         doc.setContent(&file);
         file.close();
     }
@@ -98,7 +98,7 @@ QList<Speaker> SpeakerDb::getByVendor(const QString &vendor)
     QDomDocument doc = getDoc();
 
     if (file.exists()) {
-        file.open(QIODevice::ReadOnly);
+        (void) file.open(QIODevice::ReadOnly);
         doc.setContent(&file);
         file.close();
     }
@@ -126,7 +126,7 @@ QList<Speaker> SpeakerDb::getByValue(QString var, double min, double max) {
     QDomDocument doc = getDoc();
 
     if (file.exists()) {
-        file.open(QIODevice::ReadOnly);
+        (void) file.open(QIODevice::ReadOnly);
         doc.setContent(&file);
         file.close();
     }
@@ -162,7 +162,7 @@ bool SpeakerDb::merge(QFile &with)
     QDomDocument xml = getDoc();
 
     if (file.exists()) {
-        file.open(QIODevice::ReadOnly);
+        (void) file.open(QIODevice::ReadOnly);
         doc.setContent(&file);
         file.close();
     }
@@ -261,7 +261,7 @@ bool SpeakerDb::merge(QFile &with)
 
     /* write back */
     QFile wfile(path);
-    wfile.open(QIODevice::WriteOnly);
+    (void) wfile.open(QIODevice::WriteOnly);
     wfile.write(merged.toByteArray());
     wfile.close();
 
@@ -402,7 +402,7 @@ QList<QString> SpeakerDb::getVendors(int* maxchars)
     QDomDocument doc= getDoc();
 
     if (file.exists()) {
-        file.open(QIODevice::ReadOnly);
+        (void) file.open(QIODevice::ReadOnly);
         doc.setContent(&file);
         file.close();
     }
@@ -449,7 +449,7 @@ void SpeakerDb::insertOrReplace(const QString& vendor, const QString& model, con
     xml.appendChild(wroot);
 
     if (file.exists()) {
-        file.open(QIODevice::ReadOnly);
+        (void) file.open(QIODevice::ReadOnly);
         doc.setContent(&file);
         file.close();
     }
@@ -483,7 +483,7 @@ void SpeakerDb::insertOrReplace(const QString& vendor, const QString& model, con
 
     /* write back */
     QFile wfile(path);
-    wfile.open(QIODevice::WriteOnly);
+    (void) wfile.open(QIODevice::WriteOnly);
     wfile.write(xml.toByteArray());
     wfile.close();
 }
@@ -500,7 +500,7 @@ Speaker SpeakerDb::getByVendorAndModel(const QString &vendor, const QString &mod
     QDomDocument doc = getDoc();
 
     if (file.exists()) {
-        file.open(QIODevice::ReadOnly);
+        (void) file.open(QIODevice::ReadOnly);
         doc.setContent(&file);
         file.close();
     }

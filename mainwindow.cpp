@@ -714,7 +714,7 @@ void MainWindow::exportPlot(const QString& outfileName, int tabindex)
         f.append(line);
     }
 
-    file.open(QIODevice::WriteOnly);
+    (void) file.open(QIODevice::WriteOnly);
     file.write(f.toUtf8());
     file.close();
 }
@@ -722,7 +722,7 @@ void MainWindow::exportPlot(const QString& outfileName, int tabindex)
 void MainWindow::exportScad(const QString& scad, const QString &outfileName, int tabindex, qreal margin, qreal thick, qreal saw)
 {
     QFile templ(scad);
-    templ.open(QIODevice::ReadOnly);
+    (void) templ.open(QIODevice::ReadOnly);
     QString s = templ.readAll();
 
     s.replace("__VENDOR__", currentSpeaker.getVendor());
@@ -770,7 +770,7 @@ void MainWindow::exportScad(const QString& scad, const QString &outfileName, int
     }
 
     QFile f(outfileName);
-    f.open(QIODevice::WriteOnly);
+    (void) f.open(QIODevice::WriteOnly);
     f.write(s.toUtf8());
     f.close();
 }
