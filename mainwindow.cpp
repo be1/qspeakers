@@ -1,4 +1,3 @@
-#include <QtCore>
 #include <QDebug>
 #include <QMessageBox>
 #include <QPrintDialog>
@@ -80,6 +79,8 @@ MainWindow::MainWindow(QWidget *parent) :
     /* fix minimum width */
     setMinimumWidth(800);
     ui->menuBar->setMinimumWidth(800);
+
+    restoreSize();
 
     ui->mainToolBar->setFloatable(false);
     ui->mainToolBar->setMovable(false);
@@ -170,6 +171,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    saveSize();
     delete ui;
 }
 
@@ -254,6 +256,19 @@ void MainWindow::onOpenRecentActionTriggered()
 QString MainWindow::strippedName(const QString& fullFileName)
 {
     return QFileInfo(fullFileName).fileName();
+}
+
+void MainWindow::saveSize() {
+    QSettings settings(SETTINGS_DOMAIN, SETTINGS_APP);
+    settings.setValue("windowGeometry", saveGeometry());
+}
+
+void MainWindow::restoreSize() {
+    QSettings settings(SETTINGS_DOMAIN, SETTINGS_APP);
+    QByteArray geom = settings.value("windowGeometry").toByteArray();
+    if (!geom.isEmpty()) {
+        restoreGeometry(geom);
+    }
 }
 
 void MainWindow::updateRecentFileActions()

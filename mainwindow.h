@@ -150,7 +150,9 @@ protected:
     void syncUiFromCurrentPortedBox(const PortedBox& box);
     void syncUiFromCurrentBandPassBox(const BandPassBox& box);
     void setActivateActions(QList<QAction *> actions, bool enable);
-    void setCurrentSpeaker(const Speaker& spk);   
+    void setCurrentSpeaker(const Speaker& spk);
+    void saveSize();
+    void restoreSize();
 
 private:
     static QString getHome();
