@@ -316,11 +316,13 @@ bool MainWindow::loadFile(const QString& fileName)
 #else
     QString prefix = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
 #endif
-    if (!fileName.startsWith(prefix))
-        setRecentFile(fileName, true);
 
     ImportExport::setSavePath(fileName);
-    setWindowFilePath(ImportExport::getSavePath());
+
+    if (!fileName.startsWith(prefix)) {
+        setRecentFile(fileName, true);
+        setWindowFilePath(ImportExport::getSavePath());
+    }
 
     syncUiFromCurrentSpeaker(currentSpeaker);
     syncUiFromCurrentSealedBox(currentSealedBox);
