@@ -155,6 +155,8 @@ MainWindow::MainWindow(QWidget *parent) :
     syncUiFromCurrentPortedBox(currentPortedBox);
     syncUiFromCurrentBandPassBox(currentBandPassBox);
 
+    projectSaved = true;
+
     /*
      * connections
      */
