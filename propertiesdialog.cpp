@@ -6,6 +6,7 @@ PropertiesDialog::PropertiesDialog(QWidget *parent) :
     ui(new Ui::PropertiesDialog)
 {
     ui->setupUi(this);
+    setMinimumSize(600, 400);
 }
 
 PropertiesDialog::~PropertiesDialog()
