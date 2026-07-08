@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui xml widgets printsupport charts
-CONFIG += c++17
+CONFIG += c++17 lrelease
 VERSION = 1.8.6
 REVISION = $$system(git describe --long --tags 2>/dev/null || echo "stable")
 TARGET = qspeakers
@@ -84,19 +84,19 @@ FORMS += mainwindow.ui \
     searchdialog.ui \
     bandpassdialog.ui
 
-isEmpty(QMAKE_LRELEASE): QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease
+# isEmpty(QMAKE_LRELEASE): QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease
 
 TRANSLATIONS += \
     qspeakers_en.ts \
     qspeakers_fr.ts
 
-LOCALE_DIR = locale
+LRELEASE_DIR = locale
 
-updateqm.input = TRANSLATIONS
-updateqm.output = $$LOCALE_DIR/${QMAKE_FILE_BASE}.qm
-updateqm.commands = $$QMAKE_LRELEASE ${QMAKE_FILE_IN} -qm $$LOCALE_DIR/${QMAKE_FILE_BASE}.qm
-updateqm.CONFIG += no_link target_predeps
-QMAKE_EXTRA_COMPILERS += updateqm
+# updateqm.input = TRANSLATIONS
+# updateqm.output = $$LRELEASE_DIR/${QMAKE_FILE_BASE}.qm
+# updateqm.commands = $$QMAKE_LRELEASE ${QMAKE_FILE_IN} -qm $$LRELEASE_DIR/${QMAKE_FILE_BASE}.qm
+# updateqm.CONFIG += no_link target_predeps
+# QMAKE_EXTRA_COMPILERS += updateqm
 
 
 unix {
@@ -108,7 +108,7 @@ unix {
     QMAKE_EXTRA_COMPILERS += manpage
 }
 
-translations.files = $$OUT_PWD/$${LOCALE_DIR}
+translations.files = $$OUT_PWD/$${LRELEASE_DIR}
 database.files = "qspeakers_db.xml"
 scad.files = sealedbox_template.scad portedbox_template.scad bandpassbox_template.scad \
 	sealedbox_cutting_template.scad portedbox_cutting_template.scad bandpassbox_cutting_template.scad
