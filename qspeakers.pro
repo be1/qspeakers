@@ -84,8 +84,7 @@ FORMS += mainwindow.ui \
     searchdialog.ui \
     bandpassdialog.ui
 
-#isEmpty(QMAKE_LRELEASE):QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease
-isEmpty(QMAKE_LRELEASE):QMAKE_LRELEASE = lrelease
+isEmpty(QMAKE_LRELEASE): QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease
 
 TRANSLATIONS += \
     qspeakers_en.ts \
