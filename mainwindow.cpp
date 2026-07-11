@@ -225,7 +225,7 @@ QString MainWindow::generateProjectTitle() {
         box = "bandpass";
     }
 
-    QString title = currentSpeaker.getVendor() + "_" + currentSpeaker.getModel() + "_" + box + ".qsp";
+    QString title = currentSpeaker.getVendor().replace(" ", "_") + "_" + currentSpeaker.getModel().replace(" ", "_") + "_" + box + ".qsp";
     QString path = workdir + QDir::separator() + title;
 
     return path;
