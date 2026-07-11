@@ -180,7 +180,7 @@ MainWindow::~MainWindow()
 void MainWindow::onProjectSave()
 {
 
-    if(ImportExport::saveProject(projectProperties, currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, currentSpeakerNumber, currentTabIndex)) {
+    if (ImportExport::saveProject(projectProperties, currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, currentSpeakerNumber, currentTabIndex)) {
         projectSaved = true;
 
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
@@ -195,10 +195,48 @@ void MainWindow::onProjectSave()
     }
 }
 
+QString MainWindow::dirPath(const QString &path)
+{
+    QString dirpath;
+
+    QStringList parts = path.split(QDir::separator());
+    if (!parts.isEmpty()) {
+        parts.removeLast();
+        dirpath = parts.join(QDir::separator());
+    }
+
+    return dirpath;
+}
+
+QString MainWindow::generateProjectTitle() {
+    QSettings settings(SETTINGS_DOMAIN, SETTINGS_APP);
+
+    QString workdir = settings.value("workDir").toString();
+    if (workdir.isEmpty()) {
+        workdir = getHome();
+    }
+
+    QString box;
+    if (currentTabIndex == 0) {
+        box = "sealed";
+    } else if (currentTabIndex == 1) {
+        box = "ported";
+    } else {
+        box = "bandpass";
+    }
+
+    QString title = currentSpeaker.getVendor() + "_" + currentSpeaker.getModel() + "_" + box + ".qsp";
+    QString path = workdir + QDir::separator() + title;
+
+    return path;
+}
+
 void MainWindow::onProjectExport()
 {
-    QString home = MainWindow::getHome();
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Export File"), home + QDir::separator() + tr("untitled.qsp"), tr("QSpeakers project (*.qsp)"));
+    QSettings settings(SETTINGS_DOMAIN, SETTINGS_APP);
+
+    QString path = generateProjectTitle();
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Export File"), path, tr("QSpeakers project (*.qsp)"));
 
     /* user cancelled */
     if (fileName.isEmpty())
@@ -208,13 +246,22 @@ void MainWindow::onProjectExport()
         fileName += ".qsp";
 
     QFile file(fileName);
-    if(ImportExport::exportProject(file, projectProperties, currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, currentSpeakerNumber, currentTabIndex)) {
+    if (ImportExport::exportProject(file, projectProperties, currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, currentSpeakerNumber, currentTabIndex)) {
         setRecentFile(fileName, true);
+
+        settings.setValue("workDir", dirPath(fileName));
     }
 }
 
 void MainWindow::onProjectImport()
 {
+    QSettings settings(SETTINGS_DOMAIN, SETTINGS_APP);
+
+    QString workdir = settings.value("workDir").toString();
+    if (workdir.isEmpty()) {
+        workdir = getHome();
+    }
+
     if (!projectSaved) {
         QMessageBox::StandardButton pressed =
                 QMessageBox::question(this, tr("Project not saved"),
@@ -224,8 +271,7 @@ void MainWindow::onProjectImport()
             return;
     }
 
-    QString home = MainWindow::getHome();
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Import File"), home, tr("QSpeakers project (*.qsp)"));
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Import File"), workdir, tr("QSpeakers project (*.qsp)"));
 
     /* user cancelled */
     if (fileName.isEmpty())
@@ -233,6 +279,8 @@ void MainWindow::onProjectImport()
 
     if (!loadFile(fileName)) {
         QMessageBox::warning(this, tr("Warning"), tr("Could not open project!"));
+    } else {
+        settings.setValue("workDir", dirPath(fileName));
     }
 }
 
