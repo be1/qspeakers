@@ -1076,18 +1076,17 @@ void MainWindow::onSpeakerNew()
 
 void MainWindow::onSpeakerRemove()
 {
+    QString vendor = currentSpeaker.getVendor();
+    QString model = currentSpeaker.getModel();
 
     QMessageBox::StandardButton pressed =
             QMessageBox::question(this,
                                   tr("Removal confirmation"),
-                                  tr("Do you really want to remove this loudspeaker from the database?"),
+                                  tr("Do you really want to remove loudspeaker %1 %2 from the database?").arg(vendor).arg(model),
                                   QMessageBox::Yes|QMessageBox::No);
 
     if (pressed == QMessageBox::No)
         return;
-
-    QString vendor = currentSpeaker.getVendor();
-    QString model = currentSpeaker.getModel();
 
     int num = SpeakerDb::getModelsByVendor(currentSpeaker.getVendor()).size();
     ui->modelComboBox->removeItem(ui->modelComboBox->currentIndex());
