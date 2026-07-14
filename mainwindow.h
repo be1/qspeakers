@@ -153,8 +153,11 @@ protected:
     void setCurrentSpeaker(const Speaker& spk);
     void saveSize();
     void restoreSize();
-    QString generateProjectTitle();
+    QString suggestProjectBasename();
+    QString generateProjectPath();
     QString dirPath(const QString& path);
+    QString workDir();
+    void setWorkDir(const QString& dirPath);
 
 private:
     static QString getHome();

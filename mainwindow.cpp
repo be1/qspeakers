@@ -208,7 +208,14 @@ QString MainWindow::dirPath(const QString &path)
     return dirpath;
 }
 
-QString MainWindow::generateProjectTitle() {
+QString MainWindow::suggestProjectBasename() {
+    QString box = ui->tabWidget->currentWidget()->objectName().replace("Tab", "Box");
+    QString title = QString("QSpeakers %1 %2 %3").arg(currentSpeaker.getVendor()).arg(currentSpeaker.getModel()).arg(box);
+    title.replace(' ', '_');
+    return title;
+}
+
+QString MainWindow::workDir() {
     QSettings settings(SETTINGS_DOMAIN, SETTINGS_APP);
 
     QString workdir = settings.value("workDir").toString();
@@ -216,27 +223,18 @@ QString MainWindow::generateProjectTitle() {
         workdir = getHome();
     }
 
-    QString box;
-    if (currentTabIndex == 0) {
-        box = "sealed";
-    } else if (currentTabIndex == 1) {
-        box = "ported";
-    } else {
-        box = "bandpass";
-    }
+    return workdir;
+}
 
-    QString title = currentSpeaker.getVendor().replace(" ", "_") + "_" + currentSpeaker.getModel().replace(" ", "_") + "_" + box + ".qsp";
-    QString path = workdir + QDir::separator() + title;
-
-    return path;
+void MainWindow::setWorkDir(const QString& dirPath) {
+    QSettings settings(SETTINGS_DOMAIN, SETTINGS_APP);
+    settings.setValue("workDir", dirPath);
 }
 
 void MainWindow::onProjectExport()
 {
-    QSettings settings(SETTINGS_DOMAIN, SETTINGS_APP);
-
-    QString path = generateProjectTitle();
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Export File"), path, tr("QSpeakers project (*.qsp)"));
+    QString f = workDir() + QDir::separator() + suggestProjectBasename() + ".qsp";
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Export File"), f, tr("QSpeakers project (*.qsp)"));
 
     /* user cancelled */
     if (fileName.isEmpty())
@@ -249,19 +247,12 @@ void MainWindow::onProjectExport()
     if (ImportExport::exportProject(file, projectProperties, currentSpeaker, currentSealedBox, currentPortedBox, currentBandPassBox, currentSpeakerNumber, currentTabIndex)) {
         setRecentFile(fileName, true);
 
-        settings.setValue("workDir", dirPath(fileName));
+        setWorkDir(dirPath(fileName));
     }
 }
 
 void MainWindow::onProjectImport()
 {
-    QSettings settings(SETTINGS_DOMAIN, SETTINGS_APP);
-
-    QString workdir = settings.value("workDir").toString();
-    if (workdir.isEmpty()) {
-        workdir = getHome();
-    }
-
     if (!projectSaved) {
         QMessageBox::StandardButton pressed =
                 QMessageBox::question(this, tr("Project not saved"),
@@ -271,7 +262,7 @@ void MainWindow::onProjectImport()
             return;
     }
 
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Import File"), workdir, tr("QSpeakers project (*.qsp)"));
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Import File"), workDir(), tr("QSpeakers project (*.qsp)"));
 
     /* user cancelled */
     if (fileName.isEmpty())
@@ -280,7 +271,7 @@ void MainWindow::onProjectImport()
     if (!loadFile(fileName)) {
         QMessageBox::warning(this, tr("Warning"), tr("Could not open project!"));
     } else {
-        settings.setValue("workDir", dirPath(fileName));
+        setWorkDir(dirPath(fileName));
     }
 }
 
@@ -682,11 +673,8 @@ void MainWindow::onBandpassOptimizeCancelled()
 
 void MainWindow::onCurvePlot()
 {
-    QString home = getHome();
-    QString box = ui->tabWidget->currentWidget()->objectName().replace("Tab", "Box");
-    QString f = QString("QSpeakers %1 %2 %3").arg(currentSpeaker.getVendor()).arg(currentSpeaker.getModel()).arg(box);
-    f.replace(' ', '_');
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Export for Gnuplot"), home + QDir::separator() + f + ".dat", tr("Gnuplot data (*.dat)"));
+    QString f = workDir() + QDir::separator() + suggestProjectBasename() + ".dat";
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Export for Gnuplot"), f, tr("Gnuplot data (*.dat)"));
 
     /* user cancelled */
     if (fileName.isEmpty())
@@ -707,11 +695,8 @@ void MainWindow::on3DScadExport()
     qreal margin = vals.at(0); /* loudspeaker margin */
     qreal thick = vals.at(1); /* wood thick */
 
-    QString home = getHome();
-    QString box = ui->tabWidget->currentWidget()->objectName().replace("Tab", "Box");
-    QString f = QString("QSpeakers %1 %2 %3 3D").arg(currentSpeaker.getVendor()).arg(currentSpeaker.getModel()).arg(box);
-    f.replace(' ', '_');
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Export for 3D OpenSCAD"), home + QDir::separator() + f + ".scad", tr("OpenSCAD script (*.scad)"));
+    QString f = workDir() + QDir::separator() + suggestProjectBasename() + ".scad";
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Export for 3D OpenSCAD"), f, tr("OpenSCAD script (*.scad)"));
 
     /* user cancelled */
     if (fileName.isEmpty())
@@ -733,11 +718,8 @@ void MainWindow::on2DScadExport()
     qreal thick = vals.at(1); /* wood thick */
     qreal saw = vals.at(2); /* saw thick */
 
-   QString home = getHome();
-   QString box = ui->tabWidget->currentWidget()->objectName().replace("Tab", "Box");
-   QString f = QString("QSpeakers %1 %2 %3 2D").arg(currentSpeaker.getVendor()).arg(currentSpeaker.getModel()).arg(box);
-   f.replace(' ', '_');
-   QString fileName = QFileDialog::getSaveFileName(this, tr("Export for 2D OpenSCAD"), home + QDir::separator() + f + ".scad", tr("OpenSCAD script (*.scad)"));
+    QString f = workDir() + QDir::separator() + suggestProjectBasename() + ".scad";
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Export for 2D OpenSCAD"), f, tr("OpenSCAD script (*.scad)"));
 
     /* user cancelled */
     if (fileName.isEmpty())
@@ -1278,8 +1260,7 @@ void MainWindow::onProjectPrint()
     QPrinter printer;
     printer.setCreator("QSpeakers");
     printer.setDocName("QSpeakers Project");
-    QString box = ui->tabWidget->currentWidget()->objectName().replace("Tab", "Box");
-    printer.setOutputFileName("QSpeakers_" + currentSpeaker.getVendor() + "_" + currentSpeaker.getModel() + "_" + box + ".pdf");
+    printer.setOutputFileName(suggestProjectBasename() + ".pdf");
     printer.setPageOrientation(QPageLayout::Landscape);
     QPrintDialog dialog(&printer, this);
     if (dialog.exec() == QDialog::Accepted) {
