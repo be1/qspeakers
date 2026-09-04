@@ -18,6 +18,12 @@ else
 fi
 
 PATH=$HOME/src/mxe/usr/bin:$PATH
+
+if ! which ${ARCH}-w64-mingw32.static-qt6-qmake; then
+	echo  "please build ${ARCH}-w64-mingw32.static-qt6 in the mxe source tree"
+	exit 1
+fi
+
 make distclean
 ${ARCH}-w64-mingw32.static-qt6-qmake ..
 make
