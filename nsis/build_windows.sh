@@ -3,7 +3,7 @@
 
 if [ "$1" = "" ]
 then
-	ARCH="i686"
+	ARCH="x86_64"
 else
 	ARCH="$1" # i686 or x86_64
 fi
