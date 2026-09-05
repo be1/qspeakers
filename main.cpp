@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     if (qspeakersTranslator.load(TARGET "_" + locale, "locale"))
         a.installTranslator(&qspeakersTranslator);
 #ifdef __mswin
-    else if (qspeakersTranslator.load(TARGET "_" + locale, QCoreApplication::applicationDirPath() + QDir::separator() + "locale"))
+    else if (qspeakersTranslator.load(TARGET "_" + locale, QCoreApplication::applicationDirPath() + QDir::separator() + "locale" + QDir::separator() + "release"))
 #else
     else if (qspeakersTranslator.load(TARGET "_" + locale, DATADIR "/" TARGET "/locale"))
 #endif
