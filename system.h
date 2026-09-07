@@ -14,7 +14,7 @@ public:
     System(const Speaker &s, const PortedBox *b, unsigned int number = 1);
     System(const Speaker &s, const BandPassBox *b, unsigned int number = 1);
     double response(double f);
-    void render(QPainter *painter, const QRectF& area);
+    qreal render(QPainter *painter, const QRectF& area);
 
 private:
     Speaker speaker;

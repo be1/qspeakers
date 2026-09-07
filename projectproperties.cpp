@@ -1,5 +1,6 @@
 #include <QDomElement>
 #include <QDomDocument>
+#include <QPainter>
 
 #include "projectproperties.h"
 
@@ -39,4 +40,36 @@ void ProjectProperties::fromDomElement(const QDomElement &el)
 void ProjectProperties::clear() {
     title = "";
     note = "";
+}
+
+qreal ProjectProperties::renderNote(QPainter *painter, const QRectF& area)
+{
+    painter->drawRoundedRect(area.toRect(), 5, 5);
+
+    QFont orig = painter->font();
+
+    qreal textHeight = painter->fontMetrics().height();
+    QTextOption option(Qt::AlignLeft);
+    QRectF elementArea(area);
+
+    QFont font;
+    font.setPointSize(11);
+    font.setBold(false);
+    painter->setFont(font);
+
+    const int margins = 13; /* pixels */
+    qreal tab = area.left() + margins;
+
+    elementArea.moveTop(elementArea.y() + textHeight / 2.);
+
+    QRectF where = elementArea;
+    where.setX(elementArea.x() + tab / 2.);
+
+    /* note */
+    painter->drawText(where, this->note, option);
+    elementArea.moveTop(elementArea.y() + textHeight);
+
+    painter->setFont(orig);
+
+    return elementArea.y() + 3 * textHeight; /* next y */
 }

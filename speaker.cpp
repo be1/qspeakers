@@ -399,6 +399,7 @@ void Speaker::render(QPainter *painter, const QRectF &area)
 
     QTextOption option(Qt::AlignCenter);
     QFont font;
+    font.setPointSize(11);
     font.setBold(true);
     painter->setFont(font);
 
@@ -409,6 +410,7 @@ void Speaker::render(QPainter *painter, const QRectF &area)
         text = params[i];
 
         QFont font;
+        font.setPointSize(11);
         font.setBold(false);
         painter->setFont(font);
 

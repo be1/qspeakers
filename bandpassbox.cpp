@@ -188,6 +188,7 @@ void BandPassBox::render(QPainter *painter, const QRectF &area) const
     params[5] = QObject::tr("Fb: %1 Hz").arg(getPortedBoxResFreq());
 
     QFont font;
+    font.setPointSize(11);
     font.setBold(false);
     painter->setFont(font);
 

@@ -226,6 +226,7 @@ void PortedBox::render(QPainter *painter, const QRectF &area) const
 
     QFont font;
     font.setBold(false);
+    font.setPointSize(11);
     painter->setFont(font);
 
     for (int i = 0; i < PORTED_PARAMS; i++) {

@@ -69,27 +69,26 @@ double System::response(double f)
     }
 }
 
-void System::render(QPainter *painter, const QRectF& area)
+qreal System::render(QPainter *painter, const QRectF& area)
 {
     QFont orig = painter->font();
 
     qreal textHeight = painter->fontMetrics().height();
     QTextOption option(Qt::AlignLeft);
     QRectF elementArea(area);
-    const int elements = 2;
 
     QFont font;
+    font.setPointSize(11);
     font.setBold(true);
     painter->setFont(font);
 
-    elementArea.moveTop(elementArea.y() + textHeight); /* start after first line */
-    elementArea.setHeight((area.height() - textHeight) / elements);
-    elementArea.setHeight(elementArea.height() - 2 * textHeight); /* each element has 2 header lines */
+    elementArea.moveTop(elementArea.y() + textHeight / 2.);
 
-    /* elements */
-    elementArea.moveTop(elementArea.y() + textHeight); /* blank line */
+    /* title */
     painter->drawText(elementArea, QObject::tr("Loudspeaker(s): ") + QString::number(sibling), option);
     elementArea.moveTop(elementArea.y() + textHeight);
+
+    elementArea.setHeight(textHeight * 2 + 3 * textHeight / 2);
     speaker.render(painter, elementArea);
 
     elementArea.moveTop(elementArea.y() + elementArea.height());
@@ -101,4 +100,6 @@ void System::render(QPainter *painter, const QRectF& area)
     box->render(painter, elementArea);
 
     painter->setFont(orig);
+
+    return elementArea.y() + 3 * textHeight; /* next y */
 }

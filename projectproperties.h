@@ -4,6 +4,7 @@
 #include <QString>
 #include <QDomElement>
 #include <QDomDocument>
+#include <QPainter>
 
 class ProjectProperties
 {
@@ -14,6 +15,7 @@ public:
 
     QString title;
     QString note;
+    qreal renderNote(QPainter *painter, const QRectF &area);
 };
 
 #endif // PROJECTPROPERTIES_H

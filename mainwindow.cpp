@@ -585,9 +585,12 @@ bool MainWindow::print(QPrinter *printer)
     qreal realwidth = page.width() - 2 * margins.left();
 
     qreal textheight = painter.fontMetrics().height();
-    qreal step = 0;
+    qreal y = 0;
+
+    QFont orig = painter.font();
 
     QFont font;
+    font.setPointSize(11);
     font.setBold(true);
     painter.setFont(font);
 
@@ -597,32 +600,33 @@ bool MainWindow::print(QPrinter *printer)
 
     QTextOption option(Qt::AlignHCenter);
     painter.drawText(QRectF(page.left(), page.top(), realwidth, page.height()), projectProperties.title, option);
-    step += textheight;
 
     if (ui->tabWidget->currentWidget() == ui->sealedTab) {
         System s(currentSpeaker, &currentSealedBox, currentSpeakerNumber);
-        s.render(&painter, QRectF(page.left(), page.top() + step, realwidth, page.height() / 4.));
-        step += page.height() / 4.;
-        sealedPlot->render(&painter, QRectF(page.left(), page.top() + step, realwidth, page.height() / 2.));
-        step += page.height() / 2.;
+        y = s.render(&painter, QRectF(page.left(), page.top() + textheight, realwidth, page.height() / 4.));
+        y += textheight / 2.; /* margin */
+        painter.setFont(orig);
+        sealedPlot->render(&painter, QRectF(page.left(), y, realwidth, page.height()));
     } else if (ui->tabWidget->currentWidget() == ui->portedTab) {
         System s(currentSpeaker, &currentPortedBox, currentSpeakerNumber);
-        s.render(&painter, QRectF(page.left(), page.top() + step, realwidth, page.height() / 4.));
-        step += page.height() / 4.;
-        portedPlot->render(&painter, QRectF(page.left(), page.top() + step, realwidth, page.height() / 2.));
-        step += page.height() / 2.;
+        y = s.render(&painter, QRectF(page.left(), page.top() + textheight, realwidth, page.height() / 4.));
+        y += textheight / 2.; /* margin */
+        painter.setFont(orig);
+        portedPlot->render(&painter, QRectF(page.left(), y, realwidth, page.height()));
     } else {
         System s(currentSpeaker, &currentBandPassBox, currentSpeakerNumber);
-        s.render(&painter, QRectF(page.left(), page.top() + step, realwidth, page.height() / 4.));
-        step += page.height() / 4.;
-        bandpassPlot->render(&painter, QRectF(page.left(), page.top() + step, realwidth, page.height() / 2.));
-        step += page.height() / 2.;
+        y = s.render(&painter, QRectF(page.left(), page.top() + textheight, realwidth, page.height() / 4.));
+        y += textheight / 2.; /* margin */
+        painter.setFont(orig);
+        bandpassPlot->render(&painter, QRectF(page.left(), y, realwidth, page.height()));
     }
 
     font.setBold(false);
     painter.setFont(font);
 
-    painter.drawText(QRectF(page.left(), page.top() + step, page.width(), page.height() - step), projectProperties.note);
+    /* arbitrary fix */
+    y = page.height() - 3 * textheight;
+    projectProperties.renderNote(&painter, QRectF(page.left(), y, realwidth, 3 * textheight));
 
     painter.end();
     return true;

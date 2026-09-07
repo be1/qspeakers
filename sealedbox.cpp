@@ -49,6 +49,7 @@ void SealedBox::render(QPainter *painter, const QRectF &area) const
 
     QFont font;
     font.setBold(false);
+    font.setPointSize(11);
     painter->setFont(font);
 
     QString text = QObject::tr("Volume: %1 L").arg(QString::number(getVolume(), 'f', 2));
