@@ -231,6 +231,16 @@ void MainWindow::setWorkDir(const QString& dirPath) {
     settings.setValue("workDir", dirPath);
 }
 
+void MainWindow::closeEvent(QCloseEvent* event)
+{
+    if (gracefulQuit()) {
+        event->accept();
+        return;
+    }
+
+    event->ignore();
+}
+
 void MainWindow::onProjectExport()
 {
     QString f = workDir() + QDir::separator() + suggestProjectBasename() + ".qsp";
@@ -399,16 +409,18 @@ bool MainWindow::loadFile(const QString& fileName)
     return true;
 }
 
-void MainWindow::onProjectQuit()
+void MainWindow::onProjectQuit() {
+    this->close();
+}
+
+bool MainWindow::gracefulQuit()
 {
     if (projectSaved) {
-        this->close();
-        return;
+        return true;
     }
 
     if (!currentSpeaker.isValid()) {
-        this->close();
-        return;
+        return true;
     }
 
     QMessageBox::StandardButton pressed =
@@ -416,7 +428,9 @@ void MainWindow::onProjectQuit()
                                   tr("The current project has not been saved. Exit anyway?"),
                                   QMessageBox::Yes|QMessageBox::No);
     if (pressed == QMessageBox::Yes)
-        this->close();
+        return true;
+
+    return false;
 }
 
 void MainWindow::syncUiFromCurrentSpeaker(const Speaker& spk)

@@ -158,6 +158,8 @@ protected:
     QString dirPath(const QString& path);
     QString workDir();
     void setWorkDir(const QString& dirPath);
+    bool gracefulQuit();
+    virtual void closeEvent(QCloseEvent *event);
 
 private:
     static QString getHome();
