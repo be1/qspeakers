@@ -16,6 +16,7 @@ then
 	sed -i "s/^\(VERSION *= *\).*$/\1$1/" $PROJECT.pro
 	NOW=`date +%Y-%m-%d`
 	echo modifying *.$PROJECT.metainfo.xml
+	sed -i "/<release version=\"$1\"/d" *.$PROJECT.metainfo.xml
 	sed -i "s/^\( *<releases>\)$/\1\n    <release version=\"$1\" date=\"$NOW\" type=\"stable\" \/>/" *.$PROJECT.metainfo.xml
 else
 	exit 0
