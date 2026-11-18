@@ -24,7 +24,10 @@ if ! which ${ARCH}-w64-mingw32.static-qt6-qmake; then
 	exit 1
 fi
 
-make distclean
-${ARCH}-w64-mingw32.static-qt6-qmake ..
-make
-makensis QSpeakers.nsi
+if [ -f QSpeakers.nsi ]
+then
+	make distclean
+	${ARCH}-w64-mingw32.static-qt6-qmake .. && make && makensis QSpeakers.nsi
+else
+	echo "plase run this script inside "nsis" directory
+fi
